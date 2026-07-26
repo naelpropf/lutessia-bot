@@ -1,7 +1,6 @@
 import requests
 
-BOT_TOKEN = "
-8874281357 : AAFVy2x5KgLhkc-3AKT8aVdwVgqoMH8aMbw"
+BOT_TOKEN = "8874281357:AAFVy2x5KgLhkc-3AKT8aVdwVgqoMH8aMbw"
 CHAT_ID = "-5301699978"
 
 def envoyer_test():
