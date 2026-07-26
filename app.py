@@ -18,4 +18,3 @@ def envoyer_test():
         print(f"❌ Erreur : {response.text}")
 
 envoyer_test()
-EOF
