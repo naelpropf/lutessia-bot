@@ -1,4 +1,12 @@
+# Environnement virtuel et caches Python
 __pycache__/
-*.pyc
+*.py*
+.venv/
+env/
+venv/
+
+# Fichiers de configuration sensible
 .env
-historique_lutessia.csv
+
+# Données locales de backtest
+*.csv
