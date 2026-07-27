@@ -10,7 +10,7 @@ Ce dépôt contient l'architecture logicielle pour l'automatisation, l'analyse e
 
 ## Installation locale
 
+```bash
 git clone https://github.com/ton-repo/lutessia-bot.git
 cd lutessia-bot
 pip install -r requirements.txt
-
