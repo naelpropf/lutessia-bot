@@ -1,6 +1,6 @@
 # Environnement virtuel et caches Python
 __pycache__/
-*.py*
+*.pyc
 .venv/
 env/
 venv/
@@ -10,3 +10,7 @@ venv/
 
 # Données locales de backtest
 *.csv
+
+# Cache de bougies H1 (Yahoo Finance) et logs d'exécution
+yfinance_cache/
+*.log

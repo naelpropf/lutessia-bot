@@ -1,18 +1,22 @@
 import imaplib
 import email
 from email.header import decode_header
+import os
 import re
 import time
 import requests
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # --- CONFIGURATION TELEGRAM ---
-BOT_TOKEN = "8874281357:AAFVy2x5KgLhkc-3"
-CHAT_ID = "-5301699978"
+BOT_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"]
+CHAT_ID = os.environ["TELEGRAM_CHAT_ID"]
 
 # --- CONFIGURATION EMAIL ---
-IMAP_SERVER = "imap.gmail.com"
-EMAIL_USER = "lutessia.propfirm@gmail.com"
-EMAIL_PASS = "agjl ciie hzkr puya"
+IMAP_SERVER = os.environ.get("IMAP_SERVER", "imap.gmail.com")
+EMAIL_USER = os.environ["EMAIL_USER"]
+EMAIL_PASS = os.environ["EMAIL_PASS"]
 
 def envoyer_telegram(message):
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
