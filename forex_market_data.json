@@ -1,0 +1,128 @@
+{
+  "AUD/JPY": {
+    "tick_size": 0.001,
+    "tick_value": 0.5358051812361025,
+    "volume_min": 0.01,
+    "volume_max": 100.0,
+    "volume_step": 0.01,
+    "margin_per_lot": 3045.59,
+    "price": 113.681
+  },
+  "AUD/USD": {
+    "tick_size": 1e-05,
+    "tick_value": 0.8778321058314388,
+    "volume_min": 0.01,
+    "volume_max": 100.0,
+    "volume_step": 0.01,
+    "margin_per_lot": 3045.59,
+    "price": 0.69388
+  },
+  "CHF/JPY": {
+    "tick_size": 0.001,
+    "tick_value": 0.5358051812361025,
+    "volume_min": 0.01,
+    "volume_max": 100.0,
+    "volume_step": 0.01,
+    "margin_per_lot": 3580.2,
+    "price": 200.052
+  },
+  "EUR/CHF": {
+    "tick_size": 1e-05,
+    "tick_value": 1.0718688032584813,
+    "volume_min": 0.01,
+    "volume_max": 100.0,
+    "volume_step": 0.01,
+    "margin_per_lot": 3340.0,
+    "price": 0.93295
+  },
+  "EUR/GBP": {
+    "tick_size": 1e-05,
+    "tick_value": 1.1673651401421852,
+    "volume_min": 0.01,
+    "volume_max": 100.0,
+    "volume_step": 0.01,
+    "margin_per_lot": 3340.0,
+    "price": 0.85663
+  },
+  "EUR/JPY": {
+    "tick_size": 0.001,
+    "tick_value": 0.5358051812361025,
+    "volume_min": 0.01,
+    "volume_max": 100.0,
+    "volume_step": 0.01,
+    "margin_per_lot": 3340.0,
+    "price": 186.635
+  },
+  "EUR/USD": {
+    "tick_size": 1e-05,
+    "tick_value": 0.8778321058314388,
+    "volume_min": 0.01,
+    "volume_max": 100.0,
+    "volume_step": 0.01,
+    "margin_per_lot": 3340.0,
+    "price": 1.13917
+  },
+  "GBP/CHF": {
+    "tick_size": 1e-05,
+    "tick_value": 1.0718688032584813,
+    "volume_min": 0.01,
+    "volume_max": 100.0,
+    "volume_step": 0.01,
+    "margin_per_lot": 3899.05,
+    "price": 1.08913
+  },
+  "GBP/JPY": {
+    "tick_size": 0.001,
+    "tick_value": 0.5358051812361025,
+    "volume_min": 0.01,
+    "volume_max": 100.0,
+    "volume_step": 0.01,
+    "margin_per_lot": 3899.05,
+    "price": 217.87
+  },
+  "GBP/USD": {
+    "tick_size": 1e-05,
+    "tick_value": 0.8778321058314388,
+    "volume_min": 0.01,
+    "volume_max": 100.0,
+    "volume_step": 0.01,
+    "margin_per_lot": 3899.05,
+    "price": 1.32987
+  },
+  "NZD/USD": {
+    "tick_size": 1e-05,
+    "tick_value": 0.8778321058314388,
+    "volume_min": 0.01,
+    "volume_max": 100.0,
+    "volume_step": 0.01,
+    "margin_per_lot": 2535.29,
+    "price": 0.5776
+  },
+  "USD/CAD": {
+    "tick_size": 1e-05,
+    "tick_value": 0.6231539065518401,
+    "volume_min": 0.01,
+    "volume_max": 100.0,
+    "volume_step": 0.01,
+    "margin_per_lot": 2931.98,
+    "price": 1.4087100000000001
+  },
+  "USD/CHF": {
+    "tick_size": 1e-05,
+    "tick_value": 1.0718688032584813,
+    "volume_min": 0.01,
+    "volume_max": 100.0,
+    "volume_step": 0.01,
+    "margin_per_lot": 2931.98,
+    "price": 0.81897
+  },
+  "USD/JPY": {
+    "tick_size": 0.001,
+    "tick_value": 0.5358051812361025,
+    "volume_min": 0.01,
+    "volume_max": 100.0,
+    "volume_step": 0.01,
+    "margin_per_lot": 2931.98,
+    "price": 163.835
+  }
+}

@@ -23,13 +23,14 @@ RISK_PCT_PER_TRADE = 0.5  # % du capital risqué par trade (1R)
 DD_THRESHOLDS = [4.0, 5.0]
 
 
-def load_forex_population():
-    df = pd.read_csv(CSV_PATH)
+def load_forex_population(csv_path=None, sequence_results_path="tp_sequence_results.csv"):
+    csv_path = csv_path or CSV_PATH
+    df = pd.read_csv(csv_path)
     df["date_creation"] = pd.to_datetime(df["date_creation"])
     pop = df[(df["rr_tp1"] >= MIN_RR) & (df["statut_final"].isin(["OBJECTIF ATTEINT", "INVALIDÉE"]))].copy()
     pop = pop[pop["ticker"].apply(lambda t: bool(FOREX_PATTERN.match(t)))].copy()
 
-    seq = pd.read_csv("tp_sequence_results.csv")
+    seq = pd.read_csv(sequence_results_path)
     seq["date_creation"] = pd.to_datetime(seq["date_creation"])
     for col in ("tp1_time", "tp2_time", "sl_time"):
         seq[col] = pd.to_datetime(seq[col])
@@ -45,7 +46,12 @@ def load_forex_population():
     )
     dropped = merged[merged["resolution_time"].isna()]
     if not dropped.empty:
-        print(f"Exclu (résolution introuvable) : {len(dropped)} trade(s) -> {dropped[['ticker', 'date_creation']].values.tolist()}")
+        # Inclut les trades hors de la fenêtre H1 Yahoo disponible (~730 jours, cf.
+        # tp_sequence_analysis.py) : pas d'erreur, juste pas vérifiables avec les
+        # données de prix actuellement accessibles.
+        print(f"Exclu (résolution/données introuvables) : {len(dropped)} trade(s) sur {len(merged)}")
+        print(f"  Répartition par ticker : {dropped['ticker'].value_counts().to_dict()}")
+        print(f"  Plage de dates concernée : {dropped['date_creation'].min()} -> {dropped['date_creation'].max()}")
     merged = merged[merged["resolution_time"].notna()].reset_index(drop=True)
     return merged
 
@@ -150,12 +156,13 @@ def analyze_pairs(trade_days, tickers):
     return pd.DataFrame(results)
 
 
-def main():
-    pop = load_forex_population()
+def main(csv_path=None, sequence_results_path="tp_sequence_results.csv",
+         trade_days_path="daily_dd_trade_days.csv", ranking_path="daily_dd_pair_ranking.csv"):
+    pop = load_forex_population(csv_path=csv_path, sequence_results_path=sequence_results_path)
     print(f"Population forex analysée : {len(pop)} trades sur {pop['ticker'].nunique()} paires")
 
     trade_days = build_trade_day_excursions(pop)
-    trade_days.to_csv("daily_dd_trade_days.csv", index=False)
+    trade_days.to_csv(trade_days_path, index=False)
     print(f"Jours-trade calculés : {len(trade_days)}")
 
     tickers = sorted(pop["ticker"].unique())
@@ -163,7 +170,7 @@ def main():
     results = results.sort_values(
         ["jours_flottant_ge4", "jours_flottant_ge5", "max_dd_flottant_pct"]
     ).reset_index(drop=True)
-    results.to_csv("daily_dd_pair_ranking.csv", index=False)
+    results.to_csv(ranking_path, index=False)
 
     print("\n" + "=" * 100)
     print("CLASSEMENT DES 91 DUOS — SCÉNARIO ÉQUITÉ FLOTTANTE (le plus strict/prudent)")
@@ -187,7 +194,7 @@ def main():
     print(f"Duos avec au moins 1 jour >= -5% (flottant) : {total_ge5_flot}/91")
     print(f"Max DD flottant observé (tous duos confondus) : {results['max_dd_flottant_pct'].max():.2f}%")
 
-    print("\nDétails enregistrés dans daily_dd_pair_ranking.csv et daily_dd_trade_days.csv")
+    print(f"\nDétails enregistrés dans {ranking_path} et {trade_days_path}")
 
 
 if __name__ == "__main__":
