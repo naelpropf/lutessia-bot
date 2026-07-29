@@ -14,3 +14,7 @@ venv/
 # Cache de bougies H1 (Yahoo Finance) et logs d'exécution
 yfinance_cache/
 *.log
+
+# État runtime (drawdown par compte, cache calendrier économique)
+account_risk_state.json
+ff_calendar_cache.json
