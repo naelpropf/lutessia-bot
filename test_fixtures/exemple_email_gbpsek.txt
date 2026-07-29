@@ -1,0 +1,9 @@
+<html>
+<body>
+<p>Bonjour ,</p>
+<p>Nouvelles analyses disponibles:</p>
+<p><a href="https://www.centralcharts.com/fr/analyses-lutessia-opportunities/iaid/1133941">GBP/SEK (Baissière)</a></p>
+<p>Pour gérer vos notifications emails : <a href="https://example.com/unsubscribe">Cliquez ici</a>.</p>
+<p>L'équipe CentralCharts</p>
+</body>
+</html>
