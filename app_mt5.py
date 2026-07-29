@@ -22,6 +22,8 @@ import MetaTrader5 as mt5
 DRAWDOWN_STATE_PATH = Path("account_risk_state.json")
 # Moitié du seuil de clôture prop firm typique (10%) — cf. instructions : "5-6%".
 DRAWDOWN_PAUSE_THRESHOLD_PCT = 5.0
+# Avertissement précoce (pas une pause) pour anticiper avant le seuil de pause ci-dessus.
+DRAWDOWN_WARNING_THRESHOLD_PCT = 3.0
 # % du capital INITIAL (fixe) risqué par trade — jamais recalculé sur l'équité courante,
 # cohérent avec la méthode de calcul du drawdown des prop firms (FTMO, The5%ers, Alpha
 # Capital) déjà utilisée par check_drawdown() ci-dessous.
@@ -273,6 +275,42 @@ def check_drawdown(account):
 
     _save_risk_state(state)
     return drawdown_pct, just_paused
+
+
+def check_drawdown_warning(account):
+    """Avertissement précoce (jamais une pause) dès que le drawdown dépasse
+    DRAWDOWN_WARNING_THRESHOLD_PCT (3%), pour anticiper avant le seuil de pause
+    DRAWDOWN_PAUSE_THRESHOLD_PCT (5%). Contrairement à la pause, se réarme tout seul
+    si le drawdown repasse sous le seuil — pas de levée manuelle nécessaire, c'est un
+    signal informatif appelé depuis monitor.py, pas un contrôle de risque dur (déjà
+    couvert par check_drawdown()/is_account_paused()).
+    Retourne (drawdown_pct, should_warn)."""
+    info = mt5.account_info()
+    if info is None:
+        return None, False
+
+    initial_capital = get_initial_capital(account)
+    if not initial_capital:
+        return None, False
+
+    state = _load_risk_state()
+    account_state = state[account.account_id]
+
+    if info.equity > account_state["peak_equity"]:
+        account_state["peak_equity"] = info.equity
+
+    drawdown_pct = (account_state["peak_equity"] - info.equity) / initial_capital * 100
+
+    already_warned = account_state.get("early_warning_sent", False)
+    should_warn = False
+    if drawdown_pct >= DRAWDOWN_WARNING_THRESHOLD_PCT and not already_warned:
+        account_state["early_warning_sent"] = True
+        should_warn = True
+    elif drawdown_pct < DRAWDOWN_WARNING_THRESHOLD_PCT and already_warned:
+        account_state["early_warning_sent"] = False
+
+    _save_risk_state(state)
+    return drawdown_pct, should_warn
 
 
 if __name__ == "__main__":

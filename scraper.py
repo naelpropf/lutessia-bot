@@ -7,6 +7,7 @@ from bs4 import BeautifulSoup
 
 BASE_URL = "https://www.centralcharts.com"
 ARCHIVES_URL = f"{BASE_URL}/fr/analyses-lutessia-opportunities"
+LOGIN_URL = f"{BASE_URL}/fr/connexion"
 CRAWL_DELAY_SECONDS = 3  # aligné sur le Crawl-delay du robots.txt de centralcharts.com
 
 HEADERS = {
@@ -15,6 +16,36 @@ HEADERS = {
         "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
     )
 }
+
+
+def create_authenticated_session(login, password):
+    """Session requests connectée à CentralCharts (nécessaire pour lire les fiches
+    d'analyses EN COURS/non résolues, contrairement aux archives déjà résolues qui
+    restent publiques). Formulaire vérifié sur /fr/connexion : champs login/password/
+    redirect, pas de token CSRF, juste le cookie de session PHPSESSID posé au GET
+    initial. Retourne la Session (à réutiliser pour tous les appels suivants) ou None
+    si la connexion échoue."""
+    session = requests.Session()
+    session.headers.update(HEADERS)
+    try:
+        session.get(LOGIN_URL, timeout=15)
+        response = session.post(
+            LOGIN_URL,
+            data={"login": login, "password": password, "redirect": "", "submit": "Connexion"},
+            timeout=15,
+        )
+    except requests.RequestException as e:
+        print(f"Erreur lors de la connexion à CentralCharts : {e}")
+        return None
+
+    # Après une connexion réussie, le site redirige hors de /fr/connexion. Si le
+    # formulaire de login est encore présent dans la réponse, la connexion a échoué
+    # (identifiants refusés).
+    if "connexion" in response.url and 'name="password"' in response.text:
+        print("Échec de connexion à CentralCharts : identifiants refusés.")
+        return None
+
+    return session
 
 
 def _get_with_retries(url, retries=3, backoff=5):
@@ -145,6 +176,73 @@ def _fetch_entry_price(detail_url):
 
     match = QUOTE_PRICE_PATTERN.search(cotations_div.get_text(" ", strip=True))
     return _parse_price(match.group(1)) if match else None
+
+
+TIMEFRAME_PATTERN = re.compile(r"Unité de temps\s*:\s*(\S+)")
+
+
+def fetch_signal_detail(detail_url, session=None):
+    """Récupère prix d'entrée, seuil d'invalidation (SL) et objectifs (TP1/TP2)
+    directement depuis la fiche individuelle d'un signal — utilisé par app.py pour
+    les signaux reçus par email en direct, qui n'ont pas de ligne de liste associée
+    (contrairement au scraping d'archives, où stop_loss_init/tp1_init/tp2_init
+    viennent de la page liste). Pas de délai crawl-delay ici : requête ponctuelle
+    déclenchée par un signal réel, pas du scraping en masse.
+
+    session : requests.Session déjà authentifiée (create_authenticated_session),
+    nécessaire pour les analyses encore EN COURS (non publiques sans connexion) ;
+    None utilise une requête anonyme (suffisant pour les archives déjà résolues).
+
+    Retourne un dict {prix_entree, stop_loss_init, tp1_init, tp2_init, timeframe} ou
+    None si la fiche n'est pas accessible (redirection — typique d'une analyse encore
+    "EN COURS" sans session authentifiée) ou si les valeurs attendues sont absentes.
+    """
+    requester = session if session is not None else requests
+    try:
+        response = requester.get(detail_url, headers=HEADERS, timeout=15)
+    except requests.RequestException as e:
+        print(f"Erreur lors de la requête détail ({detail_url}) : {e}")
+        return None
+
+    if response.status_code != 200 or response.history:
+        print(f"Fiche détail inaccessible ({detail_url}) : redirection ou erreur HTTP {response.status_code}.")
+        return None
+
+    detail_soup = BeautifulSoup(response.text, "lxml")
+
+    cotations_div = detail_soup.select_one("div.bloc-section-cotations")
+    prix_entree = None
+    if cotations_div:
+        match = QUOTE_PRICE_PATTERN.search(cotations_div.get_text(" ", strip=True))
+        prix_entree = _parse_price(match.group(1)) if match else None
+
+    opinion_span = detail_soup.select_one("div.sy-opinion span.valToHide")
+    stop_loss_init = _parse_price(opinion_span.get_text()) if opinion_span else None
+
+    tp_divs = detail_soup.select("div.sy-tp")
+    tp1_init = tp2_init = None
+    if len(tp_divs) >= 1:
+        val = tp_divs[0].select_one("span.valToHide")
+        tp1_init = _parse_price(val.get_text()) if val else None
+    if len(tp_divs) >= 2:
+        val = tp_divs[1].select_one("span.valToHide")
+        tp2_init = _parse_price(val.get_text()) if val else None
+
+    timeframe = None
+    tf_match = TIMEFRAME_PATTERN.search(detail_soup.get_text(" ", strip=True))
+    if tf_match:
+        timeframe = tf_match.group(1)
+
+    if prix_entree is None or stop_loss_init is None or tp1_init is None:
+        return None
+
+    return {
+        "prix_entree": prix_entree,
+        "stop_loss_init": stop_loss_init,
+        "tp1_init": tp1_init,
+        "tp2_init": tp2_init,
+        "timeframe": timeframe or "1H",
+    }
 
 
 def _parse_archive_row(row):
