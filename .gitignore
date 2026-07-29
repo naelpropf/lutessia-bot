@@ -10,6 +10,9 @@ venv/
 
 # Données locales de backtest
 *.csv
+# Exception : matrice de corrélation calculée (référence pour account_router.py),
+# pas une donnée de backtest/log — utile de la versionner.
+!correlation_matrix.csv
 
 # Cache de bougies H1 (Yahoo Finance) et logs d'exécution
 yfinance_cache/
