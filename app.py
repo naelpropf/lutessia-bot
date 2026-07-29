@@ -59,7 +59,11 @@ EMAIL_PASS = os.environ["EMAIL_PASS"]
 CENTRALCHARTS_EMAIL = os.environ.get("CENTRALCHARTS_EMAIL")
 CENTRALCHARTS_PASSWORD = os.environ.get("CENTRALCHARTS_PASSWORD")
 
-MIN_RR = 2.0
+# Seuil abaissé de 2.0 à 1.5 pour la phase de validation initiale (risque 0.5%/trade,
+# cf. RISK_PCT_PER_TRADE dans app_mt5.py) — vérifié par Monte Carlo avec durées
+# réelles et règles de plafond/corrélation actuelles : meilleur profit net et P(perte
+# nette) la plus basse des seuils testés (voir rr_threshold_test.py).
+MIN_RR = 1.5
 
 # Session CentralCharts authentifiée, créée à la demande et réutilisée (voir
 # _get_centralcharts_session) — pas de reconnexion à chaque signal.
