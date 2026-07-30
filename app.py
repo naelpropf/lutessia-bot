@@ -153,14 +153,19 @@ def _get_message_id(msg, e_id):
     return "sha256:" + hashlib.sha256(msg.as_bytes()).hexdigest()
 
 
-def _find_signal_link(html_body):
-    """Cherche dans le corps HTML de l'email le lien "TICKER (Haussière|Baissière)"
-    et retourne (ticker, direction, detail_url), ou None si aucun lien de ce type
+def _find_signal_links(html_body):
+    """Cherche dans le corps HTML de l'email TOUS les liens "TICKER
+    (Haussière|Baissière)" — un même email "Opportunities FX/Indices" peut contenir
+    plusieurs signaux (ex: 2 tickers dans un même envoi groupé), pas un seul.
+    Retourne une liste de (ticker, direction, detail_url), dans l'ordre d'apparition
+    dans le HTML, dédupliquée par detail_url. Liste vide si aucun lien de ce type
     n'est trouvé (email non pertinent, ex: newsletter)."""
     if not html_body:
-        return None
+        return []
 
     soup = BeautifulSoup(html_body, "lxml")
+    seen_urls = set()
+    results = []
     for a in soup.find_all("a", href=True):
         text = a.get_text(strip=True)
         match = SIGNAL_LINK_PATTERN.match(text)
@@ -174,64 +179,77 @@ def _find_signal_link(html_body):
         direction = "buy" if direction_texte.lower() == "haussière" else "sell"
         href = a["href"]
         detail_url = href if href.startswith("http") else f"{scraper.BASE_URL}{href}"
-        return ticker, direction, detail_url
+        if detail_url in seen_urls:
+            continue
+        seen_urls.add(detail_url)
+        results.append((ticker, direction, detail_url))
 
-    return None
+    return results
 
 
 def extraire_champs_signal(html_body):
-    """Extrait ticker/direction/URL depuis le lien de l'email (corps HTML, pas texte
-    brut), valide le ticker contre la liste des paires suivies, visite la fiche
-    détail pour les prix réels, et calcule rr_tp1/rr_tp2 avec la même formule que
-    scraper.py.
+    """Extrait ticker/direction/URL depuis TOUS les liens de signal de l'email
+    (corps HTML, pas texte brut — un email peut en contenir plusieurs, cf.
+    _find_signal_links), valide chaque ticker contre la liste des paires suivies,
+    visite sa fiche détail pour les prix réels, et calcule rr_tp1/rr_tp2 avec la
+    même formule que scraper.py.
 
-    Retourne (outcome, champs) :
-      - ("ok", dict)            : prêt pour executer_signal_reel (rr_tp1 >= MIN_RR).
-      - ("hors_perimetre", None): ticker parsé avec succès mais pas dans notre liste
-                                  d'actifs suivis — signal légitimement ignoré, PAS
-                                  une erreur de parsing.
-      - ("rr_insuffisant", None): ticker suivi mais rr_tp1 < MIN_RR.
-      - ("echec_parsing", None) : aucun lien de signal trouvé dans l'email.
-      - ("fiche_inaccessible", None) : lien trouvé et ticker suivi, mais la fiche
-                                  détail n'a pas pu être récupérée (souvent une
+    Retourne une liste de (detail_url, outcome, champs) — un triplet par signal
+    trouvé dans l'email, traité indépendamment des autres (l'échec de l'un ne
+    bloque pas les autres) :
+      - (url, "ok", dict)            : prêt pour executer_signal_reel (rr_tp1 >= MIN_RR).
+      - (url, "hors_perimetre", None): ticker parsé avec succès mais pas dans notre
+                                  liste d'actifs suivis — signal légitimement ignoré,
+                                  PAS une erreur de parsing.
+      - (url, "rr_insuffisant", None): ticker suivi mais rr_tp1 < MIN_RR.
+      - (url, "fiche_inaccessible", None) : lien trouvé et ticker suivi, mais la
+                                  fiche détail n'a pas pu être récupérée (souvent une
                                   analyse encore "EN COURS", pas encore publique).
+    Si aucun lien de signal n'est trouvé dans l'email (newsletter, etc.), retourne
+    une liste à un seul élément [(None, "echec_parsing", None)].
     """
-    found = _find_signal_link(html_body)
-    if found is None:
-        return "echec_parsing", None
+    links = _find_signal_links(html_body)
+    if not links:
+        return [(None, "echec_parsing", None)]
 
-    ticker, direction, detail_url = found
+    resultats = []
+    for ticker, direction, detail_url in links:
+        if ticker not in scraper.TARGET_FOREX_TICKERS:
+            resultats.append((detail_url, "hors_perimetre", None))
+            continue
 
-    if ticker not in scraper.TARGET_FOREX_TICKERS:
-        return "hors_perimetre", None
-
-    session = _get_centralcharts_session()
-    details = scraper.fetch_signal_detail(detail_url, session=session)
-    if details is None and session is not None:
-        # La session a peut-être expiré : une tentative de reconnexion avant
-        # d'abandonner (pas de délai/backoff ici, chemin critique temps réel).
-        session = _get_centralcharts_session(force_relogin=True)
+        session = _get_centralcharts_session()
         details = scraper.fetch_signal_detail(detail_url, session=session)
-    if details is None:
-        return "fiche_inaccessible", None
+        if details is None and session is not None:
+            # La session a peut-être expiré : une tentative de reconnexion avant
+            # d'abandonner (pas de délai/backoff ici, chemin critique temps réel).
+            session = _get_centralcharts_session(force_relogin=True)
+            details = scraper.fetch_signal_detail(detail_url, session=session)
+        if details is None:
+            resultats.append((detail_url, "fiche_inaccessible", None))
+            continue
 
-    risk_distance = abs(details["prix_entree"] - details["stop_loss_init"])
-    if risk_distance == 0:
-        return "fiche_inaccessible", None
+        risk_distance = abs(details["prix_entree"] - details["stop_loss_init"])
+        if risk_distance == 0:
+            resultats.append((detail_url, "fiche_inaccessible", None))
+            continue
 
-    rr_tp1 = abs(details["tp1_init"] - details["prix_entree"]) / risk_distance
-    if rr_tp1 < MIN_RR:
-        return "rr_insuffisant", None
+        rr_tp1 = abs(details["tp1_init"] - details["prix_entree"]) / risk_distance
+        if rr_tp1 < MIN_RR:
+            resultats.append((detail_url, "rr_insuffisant", None))
+            continue
 
-    return "ok", {
-        "ticker": ticker,
-        "direction": direction,
-        "stop_loss_init": details["stop_loss_init"],
-        "tp1_init": details["tp1_init"],
-        "tp2_init": details["tp2_init"],
-        "asset_class": "FX/Indices",
-        "timeframe": details["timeframe"],
-    }
+        resultats.append((detail_url, "ok", {
+            "ticker": ticker,
+            "direction": direction,
+            "stop_loss_init": details["stop_loss_init"],
+            "tp1_init": details["tp1_init"],
+            "tp2_init": details["tp2_init"],
+            "asset_class": "FX/Indices",
+            "timeframe": details["timeframe"],
+        }))
+
+    return resultats
 
 
 def traiter_signal_valide(champs, subject):
@@ -276,7 +294,12 @@ def verifier_mails():
 
                 msg = email.message_from_bytes(response_part[1])
                 message_id = _get_message_id(msg, e_id)
-                if message_id in processed or message_id in _failed_this_run:
+                # Skip rapide : ne s'applique que si TOUS les signaux de cet email
+                # ont déjà atteint un état terminal lors d'un run précédent (voir la
+                # clé message_id posée en fin de boucle ci-dessous). Tant que ce
+                # n'est pas le cas, on reparse pour retenter individuellement les
+                # signaux encore en échec (fiche_inaccessible / echec_parsing).
+                if message_id in processed:
                     continue
 
                 subject, encoding = decode_header(msg["Subject"])[0]
@@ -302,40 +325,59 @@ def verifier_mails():
                         body_plain = payload
 
                 try:
-                    outcome, champs = extraire_champs_signal(body_html)
+                    resultats = extraire_champs_signal(body_html)
                 except Exception as e:
-                    outcome, champs = "echec_parsing", None
+                    resultats = [(None, "echec_parsing", None)]
                     print(f"⚠️ Exception lors du parsing du signal {message_id} : {e}")
 
-                if outcome == "ok":
-                    try:
-                        traiter_signal_valide(champs, subject)
-                        _mark_email_processed(message_id, "traite")
-                    except Exception as e:
-                        # Échec pendant l'exécution elle-même (pas le parsing) : même
-                        # traitement que les échecs de parsing, retenté au redémarrage.
-                        _failed_this_run.add(message_id)
-                        _log_failed_email(message_id, subject, body_plain or body_html)
-                        print(f"⚠️ Exception lors du traitement du signal {message_id} : {e}")
+                # Un email peut contenir plusieurs signaux (plusieurs liens /iaid/) :
+                # chacun a sa propre clé de suivi (message_id::detail_url), pour ne
+                # jamais ré-exécuter un signal déjà "ok" au run précédent juste parce
+                # qu'un AUTRE signal du même email a échoué et doit être retenté.
+                all_terminal = True
+                for detail_url, outcome, champs in resultats:
+                    sub_key = message_id if detail_url is None else f"{message_id}::{detail_url}"
+                    if sub_key in processed or sub_key in _failed_this_run:
+                        continue
 
-                elif outcome in ("hors_perimetre", "rr_insuffisant"):
-                    # Parsé avec succès, mais légitimement hors scope — pas une erreur,
-                    # ne sera jamais retraité (le résultat ne changera pas dans le temps).
-                    _mark_email_processed(message_id, outcome)
-                    print(f"ℹ️ Signal {message_id} ignoré ({outcome}) — {subject}")
+                    if outcome == "ok":
+                        try:
+                            traiter_signal_valide(champs, subject)
+                            _mark_email_processed(sub_key, "traite")
+                        except Exception as e:
+                            # Échec pendant l'exécution elle-même (pas le parsing) : même
+                            # traitement que les échecs de parsing, retenté au redémarrage.
+                            _failed_this_run.add(sub_key)
+                            _log_failed_email(sub_key, subject, body_plain or body_html)
+                            all_terminal = False
+                            print(f"⚠️ Exception lors du traitement du signal {sub_key} : {e}")
 
-                else:
-                    # "echec_parsing" ou "fiche_inaccessible" : notifié/logué une seule
-                    # fois par run (voir _failed_this_run), pas de re-log toutes les
-                    # 60s. Pas marqué dans processed_emails.json (persistant) : un
-                    # redémarrage du bot relance automatiquement le traitement.
-                    _failed_this_run.add(message_id)
-                    _log_failed_email(message_id, subject, body_plain or body_html)
-                    print(
-                        f"⚠️ Signal {message_id} non traité ({outcome}) — NON marqué comme "
-                        f"traité, contenu loggé dans {FAILED_EMAILS_LOG_PATH} "
-                        f"(une seule fois ce run ; relance au redémarrage du bot)."
-                    )
+                    elif outcome in ("hors_perimetre", "rr_insuffisant"):
+                        # Parsé avec succès, mais légitimement hors scope — pas une erreur,
+                        # ne sera jamais retraité (le résultat ne changera pas dans le temps).
+                        _mark_email_processed(sub_key, outcome)
+                        print(f"ℹ️ Signal {sub_key} ignoré ({outcome}) — {subject}")
+
+                    else:
+                        # "echec_parsing" ou "fiche_inaccessible" : notifié/logué une seule
+                        # fois par run (voir _failed_this_run), pas de re-log toutes les
+                        # 60s. Pas marqué dans processed_emails.json (persistant) : un
+                        # redémarrage du bot relance automatiquement le traitement.
+                        _failed_this_run.add(sub_key)
+                        _log_failed_email(sub_key, subject, body_plain or body_html)
+                        all_terminal = False
+                        print(
+                            f"⚠️ Signal {sub_key} non traité ({outcome}) — NON marqué comme "
+                            f"traité, contenu loggé dans {FAILED_EMAILS_LOG_PATH} "
+                            f"(une seule fois ce run ; relance au redémarrage du bot)."
+                        )
+
+                if all_terminal:
+                    # Tous les signaux de cet email ont atteint un état terminal (ok /
+                    # hors_perimetre / rr_insuffisant) : l'email entier peut être
+                    # sauté rapidement dès le prochain run (voir le skip en haut de
+                    # boucle), sans reparser son contenu à chaque cycle de 60s.
+                    _mark_email_processed(message_id, "traite_complet")
 
         mail.logout()
     except Exception as e:
