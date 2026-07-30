@@ -2,14 +2,21 @@
 Wrapper autour du package MetaTrader5 : connexion, positions ouvertes, exécution
 d'ordre au marché, suivi de clôture.
 
-Config via .env (voir .env.example) : MT5_LOGIN, MT5_PASSWORD, MT5_SERVER,
-MT5_ACCOUNT_ID (identifiant libre utilisé dans trades_reels.csv / le routage,
-distinct du login MT5 lui-même).
+Config via .env (voir .env.example) : compte de base MT5_LOGIN/MT5_PASSWORD/
+MT5_SERVER/MT5_ACCOUNT_ID (sans suffixe, ex: FTMO), puis MT5_LOGIN_2/MT5_PASSWORD_2/
+MT5_SERVER_2/MT5_ACCOUNT_ID_2 pour un 2e compte (ex: The5%ers), _3 pour un 3e (ex:
+Blueberry Funded), etc. MT5_ACCOUNT_ID(_n) est un identifiant libre utilisé dans
+trades_reels.csv / le routage, distinct du login MT5 lui-même.
 
-Structuré pour n'accueillir qu'un seul compte aujourd'hui, mais chaque fonction
-prend un objet compte explicite : ajouter des comptes plus tard (ex: MT5_LOGIN_2,
-MT5_PASSWORD_2, MT5_SERVER_2, MT5_ACCOUNT_ID_2...) ne demandera que d'étendre
-`load_accounts()`, pas de changer la logique de connexion/ordre/positions.
+Étendu (2026-07-30) pour la flotte copytrade à 3 comptes : `load_accounts()` charge
+maintenant TOUS les comptes configurés dans .env (au lieu d'un seul), le compte de
+base restant rétrocompatible sans suffixe. Un compte non encore configuré (login/
+password/server manquant) est simplement absent de la liste retournée -- permet de
+démarrer avec seulement le compte FTMO actif, et d'ajouter The5%ers/Blueberry Funded
+plus tard en complétant juste .env, sans toucher au code. Chaque fonction continue de
+prendre un objet compte explicite : la logique de connexion/ordre/positions/capital
+initial est déjà par-compte (state persisté par account.account_id), donc rien
+d'autre à changer ici pour gérer plusieurs comptes.
 """
 import json
 import os
@@ -38,20 +45,38 @@ class MT5Account:
     server: str
 
 
-def load_accounts():
-    """Charge les comptes MT5 depuis .env. Un seul compte pour l'instant
-    (MT5_LOGIN/MT5_PASSWORD/MT5_SERVER/MT5_ACCOUNT_ID) ; prêt à étendre vers une
-    liste numérotée (MT5_LOGIN_2, ...) quand un deuxième compte sera ajouté.
-    """
-    login = os.environ.get("MT5_LOGIN")
-    password = os.environ.get("MT5_PASSWORD")
-    server = os.environ.get("MT5_SERVER")
-    account_id = os.environ.get("MT5_ACCOUNT_ID", "compte_1")
+def _load_single_account(suffix, default_account_id):
+    login = os.environ.get(f"MT5_LOGIN{suffix}")
+    password = os.environ.get(f"MT5_PASSWORD{suffix}")
+    server = os.environ.get(f"MT5_SERVER{suffix}")
+    account_id = os.environ.get(f"MT5_ACCOUNT_ID{suffix}", default_account_id)
 
     if not login or not password or not server:
-        return []
+        return None
+    return MT5Account(account_id=account_id, login=int(login), password=password, server=server)
 
-    return [MT5Account(account_id=account_id, login=int(login), password=password, server=server)]
+
+def load_accounts():
+    """Charge TOUS les comptes MT5 configurés dans .env : le compte de base (sans
+    suffixe, MT5_LOGIN/MT5_PASSWORD/MT5_SERVER/MT5_ACCOUNT_ID) puis MT5_LOGIN_2/...,
+    MT5_LOGIN_3/... dans l'ordre, en s'arrêtant au premier numéro totalement absent.
+    Retourne une liste (peut contenir 0, 1, 2 ou 3+ comptes selon ce qui est réellement
+    configuré) -- un compte incomplet ou manquant est simplement omis, pas une erreur."""
+    accounts = []
+
+    base = _load_single_account("", "compte_1")
+    if base is not None:
+        accounts.append(base)
+
+    i = 2
+    while True:
+        account = _load_single_account(f"_{i}", f"compte_{i}")
+        if account is None:
+            break
+        accounts.append(account)
+        i += 1
+
+    return accounts
 
 
 def connect(account):

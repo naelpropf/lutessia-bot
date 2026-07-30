@@ -391,14 +391,18 @@ def verifier_mails():
 
 def executer_signal_reel(ticker, direction, stop_loss_init, tp1_init, tp2_init,
                           asset_class, timeframe, date_creation):
-    """Route le signal vers un compte MT5 éligible et exécute l'ordre au marché
-    (chemin critique — aucun appel Telegram bloquant ici). Log le trade dans
-    trades_reels.csv avec le prix de remplissage réel (pas celui de l'email).
-    Ne fait rien si aucun compte n'est éligible."""
+    """COPYTRADE : tente le MÊME signal INDÉPENDAMMENT sur CHAQUE compte MT5 éligible
+    (flotte de 3 comptes/3 firms distinctes, cf. account_router.eligible_accounts) --
+    si un compte rejette (plafond de positions atteint ou actif corrélé déjà ouvert sur
+    CE compte), les autres comptes éligibles prennent quand même le trade. Chemin
+    critique — aucun appel Telegram bloquant dans la boucle d'exécution elle-même.
+    Log chaque exécution séparément dans trades_reels.csv avec le prix de remplissage
+    réel (pas celui de l'email). Ne fait rien si aucun compte n'est éligible."""
     # Filtre news : ne s'applique qu'ici (nouvelle entrée), jamais sur une position déjà
     # ouverte (trade_logger.update_open_trades() ne l'appelle pas). Retarde sans jamais
-    # annuler ; placé avant le routage pour que la sélection de compte se fasse sur un
-    # état à jour (positions/corrélations) une fois la fenêtre de news passée.
+    # annuler ; placé avant le routage pour que l'éligibilité se calcule sur un état à
+    # jour (positions/corrélations) une fois la fenêtre de news passée. Un seul délai
+    # partagé pour les 3 comptes (même signal, même fenêtre de news).
     news_filter.apply_news_delay(ticker)
 
     accounts = app_mt5.load_accounts()
@@ -406,40 +410,45 @@ def executer_signal_reel(ticker, direction, stop_loss_init, tp1_init, tp2_init,
         print("⚠️ Aucun compte MT5 configuré (.env) : signal ignoré.")
         return
 
-    account = account_router.select_account(ticker, accounts)
-    if account is None:
-        print(f"ℹ️ Aucun compte éligible pour {ticker} (positions max atteintes ou actif corrélé) : signal ignoré.")
+    eligible = account_router.eligible_accounts(ticker, accounts)
+    if not eligible:
+        print(f"ℹ️ Aucun compte éligible pour {ticker} (positions max atteintes ou actif corrélé "
+              f"sur tous les comptes configurés) : signal ignoré.")
         return
 
-    if not app_mt5.connect(account):
-        return
-    try:
-        mt5_symbol = ticker.replace("/", "")
-        volume = app_mt5.calculate_position_size(account, mt5_symbol, stop_loss_init)
-        if volume is None:
-            print(f"⚠️ Taille de position incalculable pour {ticker} sur {account.account_id} : signal ignoré.")
-            return
-        success, fill_price, ticket, _ = app_mt5.place_market_order(
-            mt5_symbol, direction, stop_loss_init, tp1_init, volume
+    mt5_symbol = ticker.replace("/", "")
+    for account in eligible:
+        if not app_mt5.connect(account):
+            continue
+        try:
+            # Taille de position calculée INDÉPENDAMMENT pour ce compte, sur SON propre
+            # capital initial (cf. app_mt5.get_initial_capital, persisté par
+            # account.account_id) -- jamais un capital partagé entre comptes.
+            volume = app_mt5.calculate_position_size(account, mt5_symbol, stop_loss_init)
+            if volume is None:
+                print(f"⚠️ Taille de position incalculable pour {ticker} sur {account.account_id} : compte ignoré.")
+                continue
+            success, fill_price, ticket, _ = app_mt5.place_market_order(
+                mt5_symbol, direction, stop_loss_init, tp1_init, volume
+            )
+        finally:
+            app_mt5.disconnect()
+
+        if not success:
+            notifier_telegram_async(f"❌ *Échec d'exécution* {ticker} sur {account.account_id}")
+            continue
+
+        date_execution = time.strftime("%Y-%m-%d %H:%M:%S")
+        risk_distance = abs(fill_price - stop_loss_init)
+        rr_tp1 = abs(tp1_init - fill_price) / risk_distance if risk_distance else None
+        rr_tp2 = abs(tp2_init - fill_price) / risk_distance if risk_distance else None
+
+        trade_logger.log_trade_execution(
+            date_creation, ticker, asset_class, timeframe, fill_price,
+            stop_loss_init, tp1_init, tp2_init, rr_tp1, rr_tp2,
+            account.account_id, date_execution, ticket,
         )
-    finally:
-        app_mt5.disconnect()
-
-    if not success:
-        notifier_telegram_async(f"❌ *Échec d'exécution* {ticker} sur {account.account_id}")
-        return
-
-    date_execution = time.strftime("%Y-%m-%d %H:%M:%S")
-    risk_distance = abs(fill_price - stop_loss_init)
-    rr_tp1 = abs(tp1_init - fill_price) / risk_distance if risk_distance else None
-    rr_tp2 = abs(tp2_init - fill_price) / risk_distance if risk_distance else None
-
-    trade_logger.log_trade_execution(
-        date_creation, ticker, asset_class, timeframe, fill_price,
-        stop_loss_init, tp1_init, tp2_init, rr_tp1, rr_tp2,
-        account.account_id, date_execution, ticket,
-    )
-    notifier_telegram_async(f"✅ *Trade exécuté* {ticker} sur {account.account_id} @ {fill_price} (ticket {ticket})")
+        notifier_telegram_async(f"✅ *Trade exécuté* {ticker} sur {account.account_id} @ {fill_price} (ticket {ticket})")
 
 
 def verifier_drawdown_comptes():
