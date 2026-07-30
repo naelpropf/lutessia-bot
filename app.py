@@ -3,6 +3,7 @@ import email
 from email.header import decode_header
 import hashlib
 import json
+import msvcrt
 import os
 import re
 import subprocess
@@ -222,7 +223,11 @@ def extraire_champs_signal(html_body):
         details = scraper.fetch_signal_detail(detail_url, session=session)
         if details is None and session is not None:
             # La session a peut-être expiré : une tentative de reconnexion avant
-            # d'abandonner (pas de délai/backoff ici, chemin critique temps réel).
+            # d'abandonner. Court délai pour ne pas enchaîner deux requêtes quasi
+            # simultanées vers CentralCharts (cf. incident 403/429 Cloudflare du
+            # 29/07, confirmé causé par des requêtes concurrentes, pas la fréquence
+            # seule — voir aussi le verrou mono-instance dans verifier_mails()).
+            time.sleep(3)
             session = _get_centralcharts_session(force_relogin=True)
             details = scraper.fetch_signal_detail(detail_url, session=session)
         if details is None:
@@ -463,7 +468,34 @@ def verifier_drawdown_comptes():
             print(f"🛑 Compte {account.account_id} mis en pause (drawdown {drawdown_pct:.2f}%).")
 
 
+LOCK_FILE_PATH = "app.lock"
+
+
+def _acquire_single_instance_lock():
+    """Empêche deux instances de app.py de tourner en même temps sur cette machine.
+    Cause confirmée le 29/07 : plusieurs process app.py lancés en parallèle pendant
+    les tests d'infra (service NSSM + tâche planifiée + lancement manuel) ont
+    déclenché la protection anti-bot Cloudflare de CentralCharts (403/429, "Just a
+    moment...") en tapant la même fiche en concurrence — pas un problème de session
+    expirée ni de blocage IP permanent. Verrou OS (msvcrt.locking), pas juste un
+    fichier marqueur : relâché automatiquement par Windows si le process meurt/crash,
+    donc pas de risque de lock orphelin qui bloquerait un redémarrage légitime.
+    Quitte le process avec un message clair si une instance tourne déjà."""
+    lock_handle = open(LOCK_FILE_PATH, "w")
+    try:
+        msvcrt.locking(lock_handle.fileno(), msvcrt.LK_NBLCK, 1)
+    except OSError:
+        print(
+            "🛑 Une autre instance de app.py tourne déjà sur cette machine "
+            f"(verrou {LOCK_FILE_PATH} détenu) — arrêt pour éviter le double "
+            "traitement des signaux et le rate-limiting CentralCharts."
+        )
+        sys.exit(1)
+    return lock_handle  # gardé en vie tout le run : le verrou tient tant que ce handle est ouvert
+
+
 if __name__ == "__main__":
+    _acquire_single_instance_lock()
     print("🚀 Bot Lutessia démarré !")
     notifier_telegram_async("🚀 *Bot Lutessia opérationnel (H24)*")
 
