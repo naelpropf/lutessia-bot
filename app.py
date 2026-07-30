@@ -428,8 +428,13 @@ def executer_signal_reel(ticker, direction, stop_loss_init, tp1_init, tp2_init,
             if volume is None:
                 print(f"⚠️ Taille de position incalculable pour {ticker} sur {account.account_id} : compte ignoré.")
                 continue
+            # TP envoyé au broker = tp2_init, pas tp1_init (corrigé le 31/07 — cause
+            # racine du trade NZD/USD ticket 81685339 sorti prématurément à TP1 :
+            # cf. audit du même soir). La stratégie voulue vise TP2 comme sortie
+            # normale ; TP1 n'est utilisé nulle part comme cible d'exécution, sauf
+            # dans rr_tp1 (le filtre d'entrée sur extraire_champs_signal).
             success, fill_price, ticket, _ = app_mt5.place_market_order(
-                mt5_symbol, direction, stop_loss_init, tp1_init, volume
+                mt5_symbol, direction, stop_loss_init, tp2_init, volume
             )
         finally:
             app_mt5.disconnect()
