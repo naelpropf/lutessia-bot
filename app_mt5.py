@@ -26,6 +26,13 @@ from pathlib import Path
 
 import MetaTrader5 as mt5
 
+# Ré-exportés pour que les modules appelants (trade_logger.py) n'aient pas besoin
+# d'importer MetaTrader5 directement -- app_mt5.py reste le seul point de contact
+# avec le package MT5 (cf. structure existante : primitives ici, logique métier
+# dans app.py/trade_logger.py).
+POSITION_TYPE_BUY = mt5.POSITION_TYPE_BUY
+POSITION_TYPE_SELL = mt5.POSITION_TYPE_SELL
+
 DRAWDOWN_STATE_PATH = Path("account_risk_state.json")
 # Moitié du seuil de clôture prop firm typique (10%) — cf. instructions : "5-6%".
 DRAWDOWN_PAUSE_THRESHOLD_PCT = 5.0
@@ -177,6 +184,40 @@ def place_market_order(symbol, direction, sl, tp, volume, comment="lutessia-bot"
         return False, None, None, result
 
     return True, result.price, result.order, result
+
+
+def get_open_position_raw(ticket):
+    """Position brute (objet MT5 complet : price_current, sl, tp, type, symbol...),
+    contrairement à get_position_status() qui ne retourne qu'un statut résumé. Utilisé
+    par le trailing stop post-TP2 (trade_logger.manage_trailing_stops), qui a besoin
+    du prix courant et du SL actuellement en place sur le broker pour décider s'il
+    faut resserrer. Retourne None si la position n'est plus ouverte."""
+    positions = mt5.positions_get(ticket=ticket)
+    return positions[0] if positions else None
+
+
+def modify_position_sltp(ticket, symbol, sl, tp):
+    """Modifie le SL et/ou le TP d'une position déjà ouverte (TRADE_ACTION_SLTP,
+    par opposition à TRADE_ACTION_DEAL qui ouvre/ferme une position). Utilisé par le
+    trailing stop pour resserrer le SL au fil du prix. tp=0.0 désactive le TP fixe
+    (nécessaire une fois le trailing armé : sinon le TP fixe fermerait la position
+    à ce niveau avant que le trailing n'ait la moindre chance d'agir).
+    Retourne True/False."""
+    request = {
+        "action": mt5.TRADE_ACTION_SLTP,
+        "position": ticket,
+        "symbol": symbol,
+        "sl": sl,
+        "tp": tp,
+    }
+    result = mt5.order_send(request)
+    if result is None:
+        print(f"[MT5] modify_position_sltp() order_send() a retourné None pour le ticket {ticket} : {mt5.last_error()}")
+        return False
+    if result.retcode != mt5.TRADE_RETCODE_DONE:
+        print(f"[MT5] Échec de modification SL/TP ({result.retcode}) pour le ticket {ticket} : {result.comment}")
+        return False
+    return True
 
 
 def get_position_status(ticket):

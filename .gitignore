@@ -18,6 +18,10 @@ venv/
 yfinance_cache/
 *.log
 
-# État runtime (drawdown par compte, cache calendrier économique)
+# État runtime (drawdown par compte, cache calendrier économique, trailing stop,
+# suivi des emails déjà traités, verrou mono-instance)
 account_risk_state.json
 ff_calendar_cache.json
+trailing_stop_state.json
+processed_emails.json
+app.lock
