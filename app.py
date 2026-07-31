@@ -231,6 +231,10 @@ def extraire_champs_signal(html_body):
         "tp2_init": details["tp2_init"],
         "asset_class": "FX/Indices",
         "timeframe": details["timeframe"],
+        # Score "Force" (0-10, cf. scraper.py) : capturé pour usage futur uniquement,
+        # accumulé à partir de maintenant (aucune donnée rétroactive) -- peut être None
+        # si le widget est absent sur cette fiche, jamais bloquant pour l'exécution.
+        "score_force": details.get("score_force"),
     }
 
 
@@ -343,7 +347,7 @@ def verifier_mails():
 
 
 def executer_signal_reel(ticker, direction, stop_loss_init, tp1_init, tp2_init,
-                          asset_class, timeframe, date_creation):
+                          asset_class, timeframe, date_creation, score_force=None):
     """COPYTRADE : tente le MÊME signal INDÉPENDAMMENT sur CHAQUE compte MT5 éligible
     (flotte de 3 comptes/3 firms distinctes, cf. account_router.eligible_accounts) --
     si un compte rejette (plafond de positions atteint ou actif corrélé déjà ouvert sur
@@ -399,7 +403,7 @@ def executer_signal_reel(ticker, direction, stop_loss_init, tp1_init, tp2_init,
         trade_logger.log_trade_execution(
             date_creation, ticker, asset_class, timeframe, fill_price,
             stop_loss_init, tp1_init, tp2_init, rr_tp1, rr_tp2,
-            account.account_id, date_execution, ticket,
+            account.account_id, date_execution, ticket, score_force,
         )
         notifier_telegram_async(f"✅ *Trade exécuté* {ticker} sur {account.account_id} @ {fill_price} (ticket {ticket})")
 
