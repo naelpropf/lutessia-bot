@@ -198,14 +198,17 @@ def extraire_champs_signal(html_body):
     Retourne une liste de (detail_url, outcome, champs) — un triplet par signal
     trouvé dans l'email, traité indépendamment des autres (l'échec de l'un ne
     bloque pas les autres) :
-      - (url, "ok", dict)            : prêt pour executer_signal_reel (rr_tp1 >= MIN_RR).
-      - (url, "hors_perimetre", None): ticker parsé avec succès mais pas dans notre
-                                  liste d'actifs suivis — signal légitimement ignoré,
-                                  PAS une erreur de parsing.
-      - (url, "rr_insuffisant", None): ticker suivi mais rr_tp1 < MIN_RR.
-      - (url, "fiche_inaccessible", None) : lien trouvé et ticker suivi, mais la
-                                  fiche détail n'a pas pu être récupérée (souvent une
-                                  analyse encore "EN COURS", pas encore publique).
+      - (url, "ok", dict)                    : prêt pour executer_signal_reel (rr_tp1 >= MIN_RR).
+      - (url, "hors_perimetre", {"ticker"})  : ticker parsé avec succès mais pas dans
+                                  notre liste d'actifs suivis — signal légitimement
+                                  ignoré, PAS une erreur de parsing.
+      - (url, "rr_insuffisant", {"ticker", "rr_tp1"}) : ticker suivi mais rr_tp1 < MIN_RR.
+      - (url, "fiche_inaccessible", {"ticker"}) : lien trouvé et ticker suivi, mais
+                                  la fiche détail n'a pas pu être récupérée (souvent
+                                  une analyse encore "EN COURS", pas encore publique).
+    champs contient toujours au moins le ticker pour les cas non-"ok" (sauf
+    "echec_parsing", où aucun ticker n'a pu être identifié) -- utilisé par
+    verifier_mails() pour notifier la raison exacte d'un signal non pris.
     Si aucun lien de signal n'est trouvé dans l'email (newsletter, etc.), retourne
     une liste à un seul élément [(None, "echec_parsing", None)].
     """
@@ -216,7 +219,7 @@ def extraire_champs_signal(html_body):
     resultats = []
     for ticker, direction, detail_url in links:
         if ticker not in scraper.TARGET_FOREX_TICKERS:
-            resultats.append((detail_url, "hors_perimetre", None))
+            resultats.append((detail_url, "hors_perimetre", {"ticker": ticker}))
             continue
 
         session = _get_centralcharts_session()
@@ -231,17 +234,17 @@ def extraire_champs_signal(html_body):
             session = _get_centralcharts_session(force_relogin=True)
             details = scraper.fetch_signal_detail(detail_url, session=session)
         if details is None:
-            resultats.append((detail_url, "fiche_inaccessible", None))
+            resultats.append((detail_url, "fiche_inaccessible", {"ticker": ticker}))
             continue
 
         risk_distance = abs(details["prix_entree"] - details["stop_loss_init"])
         if risk_distance == 0:
-            resultats.append((detail_url, "fiche_inaccessible", None))
+            resultats.append((detail_url, "fiche_inaccessible", {"ticker": ticker}))
             continue
 
         rr_tp1 = abs(details["tp1_init"] - details["prix_entree"]) / risk_distance
         if rr_tp1 < MIN_RR:
-            resultats.append((detail_url, "rr_insuffisant", None))
+            resultats.append((detail_url, "rr_insuffisant", {"ticker": ticker, "rr_tp1": rr_tp1}))
             continue
 
         resultats.append((detail_url, "ok", {
@@ -270,6 +273,24 @@ def traiter_signal_valide(champs, subject):
         f"🚨 *Signal validé* {champs['ticker']} ({champs['direction']})\n\nSujet : {subject}"
     )
     executer_signal_reel(date_creation=time.strftime("%Y-%m-%d %H:%M:%S"), **champs)
+
+
+def _reason_text(outcome, champs):
+    """Raison lisible d'un signal NON pris, pour la notification Telegram (cf.
+    verifier_mails) -- pas juste un code interne, pour permettre une vérification
+    rapide sans aller lire les logs."""
+    ticker = (champs or {}).get("ticker", "?")
+    if outcome == "hors_perimetre":
+        return f"{ticker} — paire non suivie"
+    if outcome == "rr_insuffisant":
+        rr_tp1 = (champs or {}).get("rr_tp1")
+        rr_txt = f"{rr_tp1:.2f}" if rr_tp1 is not None else "?"
+        return f"{ticker} — R:R trop bas ({rr_txt} < {MIN_RR})"
+    if outcome == "fiche_inaccessible":
+        return f"{ticker} — fiche d'analyse inaccessible (page indisponible ou pas encore publiée)"
+    if outcome == "echec_parsing":
+        return "email reçu mais aucun signal reconnu dedans (format inattendu)"
+    return f"{ticker} — {outcome}"
 
 
 def verifier_mails():
@@ -362,6 +383,7 @@ def verifier_mails():
                         # ne sera jamais retraité (le résultat ne changera pas dans le temps).
                         _mark_email_processed(sub_key, outcome)
                         print(f"ℹ️ Signal {sub_key} ignoré ({outcome}) — {subject}")
+                        notifier_telegram_async(f"🚫 *Trade non pris* — {_reason_text(outcome, champs)}")
 
                     else:
                         # "echec_parsing" ou "fiche_inaccessible" : notifié/logué une seule
@@ -376,6 +398,7 @@ def verifier_mails():
                             f"traité, contenu loggé dans {FAILED_EMAILS_LOG_PATH} "
                             f"(une seule fois ce run ; relance au redémarrage du bot)."
                         )
+                        notifier_telegram_async(f"🚫 *Trade non pris* — {_reason_text(outcome, champs)}")
 
                 if all_terminal:
                     # Tous les signaux de cet email ont atteint un état terminal (ok /
