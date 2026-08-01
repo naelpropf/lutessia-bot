@@ -531,6 +531,37 @@ def _acquire_single_instance_lock():
     return lock_handle  # gardé en vie tout le run : le verrou tient tant que ce handle est ouvert
 
 
+def _run_trailing_check_if_due(now, last_trailing_check, next_trailing_delay):
+    """Exécute trade_logger.manage_trailing_stops() si next_trailing_delay s'est
+    écoulé depuis last_trailing_check, puis recalcule le délai avant le prochain
+    passage via trade_logger.get_next_poll_delay_seconds() -- polling ADAPTATIF :
+    NORMAL_POLL_INTERVAL_SECONDS (1h) tant qu'aucun trade ouvert n'approche de
+    tp2_init, FAST_POLL_INTERVAL_SECONDS (2 min) dès qu'un trade entre dans les
+    derniers 20% du chemin ou l'a déjà dépassé (cf. trade_logger.py, seuils validés
+    empiriquement le 31/07 sur 228 trades réels : 0% de trades manqués par le
+    polling normal, 96.2% des déclenchements rapides mènent bien à tp2_init).
+
+    Isolée de la boucle principale (plutôt que du code inline dans le while True)
+    pour rester testable en mock sans faire tourner app.py en entier -- cf.
+    tests/test_trailing_stop.py. Retourne (nouveau last_trailing_check, nouveau
+    next_trailing_delay), à réinjecter dans l'itération suivante de la boucle."""
+    if now - last_trailing_check < next_trailing_delay:
+        return last_trailing_check, next_trailing_delay
+
+    try:
+        trade_logger.manage_trailing_stops()
+    except Exception as e:
+        print(f"⚠️ Erreur lors de la gestion du trailing stop : {e}")
+
+    try:
+        next_trailing_delay = trade_logger.get_next_poll_delay_seconds()
+    except Exception as e:
+        print(f"⚠️ Erreur lors du calcul du délai de polling adaptatif : {e}")
+        next_trailing_delay = trade_logger.NORMAL_POLL_INTERVAL_SECONDS
+
+    return now, next_trailing_delay
+
+
 if __name__ == "__main__":
     _acquire_single_instance_lock()
     print("🚀 Bot Lutessia démarré !")
@@ -538,6 +569,8 @@ if __name__ == "__main__":
 
     last_status_check = 0.0
     last_weekly_analysis = 0.0
+    last_trailing_check = 0.0
+    next_trailing_delay = 0.0  # force un premier passage dès la première itération
 
     while True:
         verifier_mails()
@@ -554,6 +587,10 @@ if __name__ == "__main__":
             except Exception as e:
                 print(f"⚠️ Erreur lors de la mise à jour des trades ouverts : {e}")
             last_status_check = now
+
+        last_trailing_check, next_trailing_delay = _run_trailing_check_if_due(
+            now, last_trailing_check, next_trailing_delay
+        )
 
         if now - last_weekly_analysis >= WEEKLY_ANALYSIS_INTERVAL_SECONDS:
             try:
