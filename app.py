@@ -18,6 +18,7 @@ import account_router
 import app_mt5
 import news_filter
 import scraper
+import slippage_logger
 import trade_logger
 
 # Évite un crash sur les emojis/accents si la console Windows est en cp1252
@@ -255,12 +256,16 @@ def extraire_champs_signal(html_body):
             "tp2_init": details["tp2_init"],
             "asset_class": "FX/Indices",
             "timeframe": details["timeframe"],
+            # Prix de la fiche au moment du parsing -- référence pour la mesure de
+            # slippage (cf. slippage_logger.log_slippage), distinct du prix de
+            # remplissage réel obtenu plus tard dans executer_signal_reel().
+            "signal_price": details["prix_entree"],
         }))
 
     return resultats
 
 
-def traiter_signal_valide(champs, subject):
+def traiter_signal_valide(champs, subject, email_sent_at=None):
     """Point d'entrée unique pour un signal validé (ticker suivi, rr_tp1 >= MIN_RR).
     Déclenche deux actions indépendantes, non-bloquantes l'une envers l'autre :
       1. L'exécution réelle sur MT5 (chemin critique).
@@ -268,11 +273,15 @@ def traiter_signal_valide(champs, subject):
     Un échec ou un ralentissement de (2) n'affecte jamais (1), et inversement
     l'exécution ne retarde pas l'envoi de la notification puisqu'elle est
     dispatchée avant, dans son propre thread.
+    email_sent_at : datetime du header Date de l'email (latence email->exécution,
+    cf. slippage_logger) -- None si absent/non parsable, la mesure de latence
+    sera alors simplement omise pour ce trade.
     """
     notifier_telegram_async(
         f"🚨 *Signal validé* {champs['ticker']} ({champs['direction']})\n\nSujet : {subject}"
     )
-    executer_signal_reel(date_creation=time.strftime("%Y-%m-%d %H:%M:%S"), **champs)
+    executer_signal_reel(date_creation=time.strftime("%Y-%m-%d %H:%M:%S"),
+                          email_sent_at=email_sent_at, **champs)
 
 
 def _reason_text(outcome, champs):
@@ -332,6 +341,14 @@ def verifier_mails():
                 if isinstance(subject, bytes):
                     subject = subject.decode(encoding or "utf-8", errors="ignore")
 
+                # Header Date de l'email Lutessia -- référence pour la latence
+                # email->exécution (cf. slippage_logger.log_slippage). None si absent
+                # ou malformé : la mesure de latence sera simplement omise.
+                try:
+                    email_sent_at = email.utils.parsedate_to_datetime(msg["Date"])
+                except (TypeError, ValueError):
+                    email_sent_at = None
+
                 # Le lien de signal est un vrai hyperlien HTML : le texte brut seul ne
                 # donne pas le href, il faut la partie text/html du message.
                 body_plain = ""
@@ -368,7 +385,7 @@ def verifier_mails():
 
                     if outcome == "ok":
                         try:
-                            traiter_signal_valide(champs, subject)
+                            traiter_signal_valide(champs, subject, email_sent_at=email_sent_at)
                             _mark_email_processed(sub_key, "traite")
                         except Exception as e:
                             # Échec pendant l'exécution elle-même (pas le parsing) : même
@@ -413,7 +430,8 @@ def verifier_mails():
 
 
 def executer_signal_reel(ticker, direction, stop_loss_init, tp1_init, tp2_init,
-                          asset_class, timeframe, date_creation):
+                          asset_class, timeframe, date_creation, signal_price=None,
+                          email_sent_at=None):
     """COPYTRADE : tente le MÊME signal INDÉPENDAMMENT sur CHAQUE compte MT5 éligible
     (flotte de 3 comptes/3 firms distinctes, cf. account_router.eligible_accounts) --
     si un compte rejette (plafond de positions atteint ou actif corrélé déjà ouvert sur
@@ -476,6 +494,19 @@ def executer_signal_reel(ticker, direction, stop_loss_init, tp1_init, tp2_init,
             stop_loss_init, tp1_init, tp2_init, rr_tp1, rr_tp2,
             account.account_id, date_execution, ticket,
         )
+
+        # Mesure de slippage (pure observation, aucun impact sur l'exécution) : prix
+        # signal (fiche Lutessia) vs fill réel, latence email->exécution, session
+        # horaire. Ne doit jamais interrompre le pipeline critique si elle échoue.
+        if signal_price is not None:
+            try:
+                slippage_logger.log_slippage(
+                    ticker, direction, account.account_id, ticket,
+                    signal_price, fill_price, email_sent_at=email_sent_at,
+                )
+            except Exception as e:
+                print(f"⚠️ Erreur lors du log de slippage (n'affecte pas le trade) : {e}")
+
         notifier_telegram_async(f"✅ *Trade exécuté* {ticker} sur {account.account_id} @ {fill_price} (ticket {ticket})")
 
 
