@@ -18,6 +18,7 @@ import account_router
 import app_mt5
 import news_filter
 import scraper
+import slippage_logger
 import trade_logger
 
 # Évite un crash sur les emojis/accents si la console Windows est en cp1252
@@ -198,14 +199,17 @@ def extraire_champs_signal(html_body):
     Retourne une liste de (detail_url, outcome, champs) — un triplet par signal
     trouvé dans l'email, traité indépendamment des autres (l'échec de l'un ne
     bloque pas les autres) :
-      - (url, "ok", dict)            : prêt pour executer_signal_reel (rr_tp1 >= MIN_RR).
-      - (url, "hors_perimetre", None): ticker parsé avec succès mais pas dans notre
-                                  liste d'actifs suivis — signal légitimement ignoré,
-                                  PAS une erreur de parsing.
-      - (url, "rr_insuffisant", None): ticker suivi mais rr_tp1 < MIN_RR.
-      - (url, "fiche_inaccessible", None) : lien trouvé et ticker suivi, mais la
-                                  fiche détail n'a pas pu être récupérée (souvent une
-                                  analyse encore "EN COURS", pas encore publique).
+      - (url, "ok", dict)                    : prêt pour executer_signal_reel (rr_tp1 >= MIN_RR).
+      - (url, "hors_perimetre", {"ticker"})  : ticker parsé avec succès mais pas dans
+                                  notre liste d'actifs suivis — signal légitimement
+                                  ignoré, PAS une erreur de parsing.
+      - (url, "rr_insuffisant", {"ticker", "rr_tp1"}) : ticker suivi mais rr_tp1 < MIN_RR.
+      - (url, "fiche_inaccessible", {"ticker"}) : lien trouvé et ticker suivi, mais
+                                  la fiche détail n'a pas pu être récupérée (souvent
+                                  une analyse encore "EN COURS", pas encore publique).
+    champs contient toujours au moins le ticker pour les cas non-"ok" (sauf
+    "echec_parsing", où aucun ticker n'a pu être identifié) -- utilisé par
+    verifier_mails() pour notifier la raison exacte d'un signal non pris.
     Si aucun lien de signal n'est trouvé dans l'email (newsletter, etc.), retourne
     une liste à un seul élément [(None, "echec_parsing", None)].
     """
@@ -216,7 +220,7 @@ def extraire_champs_signal(html_body):
     resultats = []
     for ticker, direction, detail_url in links:
         if ticker not in scraper.TARGET_FOREX_TICKERS:
-            resultats.append((detail_url, "hors_perimetre", None))
+            resultats.append((detail_url, "hors_perimetre", {"ticker": ticker}))
             continue
 
         session = _get_centralcharts_session()
@@ -231,17 +235,17 @@ def extraire_champs_signal(html_body):
             session = _get_centralcharts_session(force_relogin=True)
             details = scraper.fetch_signal_detail(detail_url, session=session)
         if details is None:
-            resultats.append((detail_url, "fiche_inaccessible", None))
+            resultats.append((detail_url, "fiche_inaccessible", {"ticker": ticker}))
             continue
 
         risk_distance = abs(details["prix_entree"] - details["stop_loss_init"])
         if risk_distance == 0:
-            resultats.append((detail_url, "fiche_inaccessible", None))
+            resultats.append((detail_url, "fiche_inaccessible", {"ticker": ticker}))
             continue
 
         rr_tp1 = abs(details["tp1_init"] - details["prix_entree"]) / risk_distance
         if rr_tp1 < MIN_RR:
-            resultats.append((detail_url, "rr_insuffisant", None))
+            resultats.append((detail_url, "rr_insuffisant", {"ticker": ticker, "rr_tp1": rr_tp1}))
             continue
 
         resultats.append((detail_url, "ok", {
@@ -257,12 +261,16 @@ def extraire_champs_signal(html_body):
             # None si le widget est absent sur cette fiche, jamais bloquant pour
             # l'exécution.
             "score_force": details.get("score_force"),
+            # Prix de la fiche au moment du parsing -- référence pour la mesure de
+            # slippage (cf. slippage_logger.log_slippage), distinct du prix de
+            # remplissage réel obtenu plus tard dans executer_signal_reel().
+            "signal_price": details["prix_entree"],
         }))
 
     return resultats
 
 
-def traiter_signal_valide(champs, subject):
+def traiter_signal_valide(champs, subject, email_sent_at=None):
     """Point d'entrée unique pour un signal validé (ticker suivi, rr_tp1 >= MIN_RR).
     Déclenche deux actions indépendantes, non-bloquantes l'une envers l'autre :
       1. L'exécution réelle sur MT5 (chemin critique).
@@ -270,11 +278,33 @@ def traiter_signal_valide(champs, subject):
     Un échec ou un ralentissement de (2) n'affecte jamais (1), et inversement
     l'exécution ne retarde pas l'envoi de la notification puisqu'elle est
     dispatchée avant, dans son propre thread.
+    email_sent_at : datetime du header Date de l'email (latence email->exécution,
+    cf. slippage_logger) -- None si absent/non parsable, la mesure de latence
+    sera alors simplement omise pour ce trade.
     """
     notifier_telegram_async(
         f"🚨 *Signal validé* {champs['ticker']} ({champs['direction']})\n\nSujet : {subject}"
     )
-    executer_signal_reel(date_creation=time.strftime("%Y-%m-%d %H:%M:%S"), **champs)
+    executer_signal_reel(date_creation=time.strftime("%Y-%m-%d %H:%M:%S"),
+                          email_sent_at=email_sent_at, **champs)
+
+
+def _reason_text(outcome, champs):
+    """Raison lisible d'un signal NON pris, pour la notification Telegram (cf.
+    verifier_mails) -- pas juste un code interne, pour permettre une vérification
+    rapide sans aller lire les logs."""
+    ticker = (champs or {}).get("ticker", "?")
+    if outcome == "hors_perimetre":
+        return f"{ticker} — paire non suivie"
+    if outcome == "rr_insuffisant":
+        rr_tp1 = (champs or {}).get("rr_tp1")
+        rr_txt = f"{rr_tp1:.2f}" if rr_tp1 is not None else "?"
+        return f"{ticker} — R:R trop bas ({rr_txt} < {MIN_RR})"
+    if outcome == "fiche_inaccessible":
+        return f"{ticker} — fiche d'analyse inaccessible (page indisponible ou pas encore publiée)"
+    if outcome == "echec_parsing":
+        return "email reçu mais aucun signal reconnu dedans (format inattendu)"
+    return f"{ticker} — {outcome}"
 
 
 def verifier_mails():
@@ -316,6 +346,14 @@ def verifier_mails():
                 if isinstance(subject, bytes):
                     subject = subject.decode(encoding or "utf-8", errors="ignore")
 
+                # Header Date de l'email Lutessia -- référence pour la latence
+                # email->exécution (cf. slippage_logger.log_slippage). None si absent
+                # ou malformé : la mesure de latence sera simplement omise.
+                try:
+                    email_sent_at = email.utils.parsedate_to_datetime(msg["Date"])
+                except (TypeError, ValueError):
+                    email_sent_at = None
+
                 # Le lien de signal est un vrai hyperlien HTML : le texte brut seul ne
                 # donne pas le href, il faut la partie text/html du message.
                 body_plain = ""
@@ -352,7 +390,7 @@ def verifier_mails():
 
                     if outcome == "ok":
                         try:
-                            traiter_signal_valide(champs, subject)
+                            traiter_signal_valide(champs, subject, email_sent_at=email_sent_at)
                             _mark_email_processed(sub_key, "traite")
                         except Exception as e:
                             # Échec pendant l'exécution elle-même (pas le parsing) : même
@@ -367,6 +405,7 @@ def verifier_mails():
                         # ne sera jamais retraité (le résultat ne changera pas dans le temps).
                         _mark_email_processed(sub_key, outcome)
                         print(f"ℹ️ Signal {sub_key} ignoré ({outcome}) — {subject}")
+                        notifier_telegram_async(f"🚫 *Trade non pris* — {_reason_text(outcome, champs)}")
 
                     else:
                         # "echec_parsing" ou "fiche_inaccessible" : notifié/logué une seule
@@ -381,6 +420,7 @@ def verifier_mails():
                             f"traité, contenu loggé dans {FAILED_EMAILS_LOG_PATH} "
                             f"(une seule fois ce run ; relance au redémarrage du bot)."
                         )
+                        notifier_telegram_async(f"🚫 *Trade non pris* — {_reason_text(outcome, champs)}")
 
                 if all_terminal:
                     # Tous les signaux de cet email ont atteint un état terminal (ok /
@@ -395,7 +435,8 @@ def verifier_mails():
 
 
 def executer_signal_reel(ticker, direction, stop_loss_init, tp1_init, tp2_init,
-                          asset_class, timeframe, date_creation, score_force=None):
+                          asset_class, timeframe, date_creation, score_force=None,
+                          signal_price=None, email_sent_at=None):
     """COPYTRADE : tente le MÊME signal INDÉPENDAMMENT sur CHAQUE compte MT5 éligible
     (flotte de 3 comptes/3 firms distinctes, cf. account_router.eligible_accounts) --
     si un compte rejette (plafond de positions atteint ou actif corrélé déjà ouvert sur
@@ -458,6 +499,19 @@ def executer_signal_reel(ticker, direction, stop_loss_init, tp1_init, tp2_init,
             stop_loss_init, tp1_init, tp2_init, rr_tp1, rr_tp2,
             account.account_id, date_execution, ticket, score_force,
         )
+
+        # Mesure de slippage (pure observation, aucun impact sur l'exécution) : prix
+        # signal (fiche Lutessia) vs fill réel, latence email->exécution, session
+        # horaire. Ne doit jamais interrompre le pipeline critique si elle échoue.
+        if signal_price is not None:
+            try:
+                slippage_logger.log_slippage(
+                    ticker, direction, account.account_id, ticket,
+                    signal_price, fill_price, email_sent_at=email_sent_at,
+                )
+            except Exception as e:
+                print(f"⚠️ Erreur lors du log de slippage (n'affecte pas le trade) : {e}")
+
         notifier_telegram_async(f"✅ *Trade exécuté* {ticker} sur {account.account_id} @ {fill_price} (ticket {ticket})")
 
 
@@ -513,6 +567,37 @@ def _acquire_single_instance_lock():
     return lock_handle  # gardé en vie tout le run : le verrou tient tant que ce handle est ouvert
 
 
+def _run_trailing_check_if_due(now, last_trailing_check, next_trailing_delay):
+    """Exécute trade_logger.manage_trailing_stops() si next_trailing_delay s'est
+    écoulé depuis last_trailing_check, puis recalcule le délai avant le prochain
+    passage via trade_logger.get_next_poll_delay_seconds() -- polling ADAPTATIF :
+    NORMAL_POLL_INTERVAL_SECONDS (1h) tant qu'aucun trade ouvert n'approche de
+    tp2_init, FAST_POLL_INTERVAL_SECONDS (2 min) dès qu'un trade entre dans les
+    derniers 20% du chemin ou l'a déjà dépassé (cf. trade_logger.py, seuils validés
+    empiriquement le 31/07 sur 228 trades réels : 0% de trades manqués par le
+    polling normal, 96.2% des déclenchements rapides mènent bien à tp2_init).
+
+    Isolée de la boucle principale (plutôt que du code inline dans le while True)
+    pour rester testable en mock sans faire tourner app.py en entier -- cf.
+    tests/test_trailing_stop.py. Retourne (nouveau last_trailing_check, nouveau
+    next_trailing_delay), à réinjecter dans l'itération suivante de la boucle."""
+    if now - last_trailing_check < next_trailing_delay:
+        return last_trailing_check, next_trailing_delay
+
+    try:
+        trade_logger.manage_trailing_stops()
+    except Exception as e:
+        print(f"⚠️ Erreur lors de la gestion du trailing stop : {e}")
+
+    try:
+        next_trailing_delay = trade_logger.get_next_poll_delay_seconds()
+    except Exception as e:
+        print(f"⚠️ Erreur lors du calcul du délai de polling adaptatif : {e}")
+        next_trailing_delay = trade_logger.NORMAL_POLL_INTERVAL_SECONDS
+
+    return now, next_trailing_delay
+
+
 if __name__ == "__main__":
     _acquire_single_instance_lock()
     print("🚀 Bot Lutessia démarré !")
@@ -520,6 +605,8 @@ if __name__ == "__main__":
 
     last_status_check = 0.0
     last_weekly_analysis = 0.0
+    last_trailing_check = 0.0
+    next_trailing_delay = 0.0  # force un premier passage dès la première itération
 
     while True:
         verifier_mails()
@@ -536,6 +623,10 @@ if __name__ == "__main__":
             except Exception as e:
                 print(f"⚠️ Erreur lors de la mise à jour des trades ouverts : {e}")
             last_status_check = now
+
+        last_trailing_check, next_trailing_delay = _run_trailing_check_if_due(
+            now, last_trailing_check, next_trailing_delay
+        )
 
         if now - last_weekly_analysis >= WEEKLY_ANALYSIS_INTERVAL_SECONDS:
             try:
