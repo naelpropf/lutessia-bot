@@ -131,6 +131,17 @@ def count_open_positions():
     return len(get_open_positions())
 
 
+def _ensure_symbol_visible(symbol):
+    """S'assure que le symbole est sélectionné dans le Market Watch du terminal --
+    condition nécessaire pour que symbol_info_tick() retourne une cotation. Constaté
+    le 07/08 sur EURCHF : symbol_info() existe (visible=False) mais symbol_info_tick()
+    reste None tant que symbol_select() n'a pas été appelé une fois. N'importe quelle
+    paire suivie mais jamais encore tradée sur ce compte peut retomber dans ce piège."""
+    info = mt5.symbol_info(symbol)
+    if info is not None and not info.visible:
+        mt5.symbol_select(symbol, True)
+
+
 def calculate_position_size(account, symbol, sl_price, risk_pct=RISK_PCT_PER_TRADE):
     """Taille de position (en lots) pour risquer risk_pct% du capital INITIAL fixe du
     compte (get_initial_capital — jamais l'équité courante), si le SL est touché.
@@ -142,6 +153,7 @@ def calculate_position_size(account, symbol, sl_price, risk_pct=RISK_PCT_PER_TRA
         print(f"[risk] Capital initial introuvable pour {account.account_id}.")
         return None
 
+    _ensure_symbol_visible(symbol)
     tick = mt5.symbol_info_tick(symbol)
     symbol_info = mt5.symbol_info(symbol)
     if tick is None or symbol_info is None:
@@ -175,6 +187,7 @@ def calculate_position_size(account, symbol, sl_price, risk_pct=RISK_PCT_PER_TRA
 def place_market_order(symbol, direction, sl, tp, volume, comment="lutessia-bot"):
     """Passe un ordre au marché avec SL/TP. direction: 'buy' ou 'sell'.
     Retourne (success: bool, fill_price: float | None, ticket: int | None, raw_result)."""
+    _ensure_symbol_visible(symbol)
     tick = mt5.symbol_info_tick(symbol)
     if tick is None:
         print(f"[MT5] Symbole introuvable ou pas de cotation : {symbol}")
