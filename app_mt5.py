@@ -87,10 +87,33 @@ def load_accounts():
 
 
 def connect(account):
-    """Connecte le terminal MT5 local au compte donné. Retourne True/False."""
+    """Connecte le terminal MT5 local au compte donné. Retourne True/False.
+
+    Vérifie explicitement, après coup, que le compte réellement actif (account_info().login)
+    correspond bien à celui demandé -- constaté empiriquement le 2026-08-06 : quand le
+    terminal est déjà connecté à un autre compte (partagé entre tous les comptes de la
+    flotte copytrade), mt5.initialize(login=..., server=...) peut retourner True sans
+    avoir réellement basculé de compte, laissant silencieusement la session précédente
+    active. Sans cette vérification, la flotte à plusieurs comptes pourrait exécuter un
+    ordre en croyant être sur un compte alors qu'elle est restée sur un autre (doublon,
+    mauvaise taille de position calculée sur le mauvais capital initial). Si le premier
+    essai n'a pas basculé, on force un mt5.login() explicite avant d'abandonner."""
     if not mt5.initialize(login=account.login, password=account.password, server=account.server):
         print(f"[MT5] Échec de connexion au compte {account.account_id} : {mt5.last_error()}")
         return False
+
+    info = mt5.account_info()
+    if info is None or info.login != account.login:
+        if not mt5.login(login=account.login, password=account.password, server=account.server):
+            print(f"[MT5] Échec de bascule vers le compte {account.account_id} : {mt5.last_error()}")
+            return False
+        info = mt5.account_info()
+        if info is None or info.login != account.login:
+            actual = info.login if info else None
+            print(f"[MT5] Échec de bascule vers le compte {account.account_id} : "
+                  f"compte actif resté {actual} après tentative de connexion.")
+            return False
+
     return True
 
 
