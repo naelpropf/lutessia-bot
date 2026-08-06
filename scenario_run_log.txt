@@ -1,0 +1,59 @@
+Population étendue (rr_tp1 >= 1.5, forex, terminaux) : 472 trades
+Chargement/complément des bougies H1 pour 14 tickers...
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+Durées réelles vérifiées (bougies H1) : 277/472 (58.7%) — durée médiane de repli : 0 days 07:34:48
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+
+====================================================================================================
+WINRATE 37.29%
+====================================================================================================
+S1 N=3 daily=5% : profit final +1,750,204$ | casses 52.8 (30s)
+S1 N=4 daily=5% : profit final +2,333,605$ | casses 70.3 (35s)
+S2 risk=1.0% : profit final +1,342,023$ | casses 13.7 (35s)
+S2 risk=0.5% : profit final +666,815$ | casses 2.9 (44s)
+S3 tremplin : profit final +3,274,042$ (5ers +5,139$ / croissance +3,268,903$) | casses 52.9 (41s)
+S4 sizing budget : profit final +1,325,163$ | casses 13.4 (54s)
+S5 maxpos=1 : profit final +1,735,079$ | casses 73.5 (35s)
+S6 4x100k : profit an1 +144,163$ | cout entree 716$ | casses 0.6
+S6 3x50k  : profit an1 +53,259$ | cout entree 999$ | casses 0.5 (68s)
+
+====================================================================================================
+WINRATE 32%
+====================================================================================================
+S1 N=3 daily=5% : profit final +1,022,628$ | casses 66.2 (31s)
+S1 N=4 daily=5% : profit final +1,363,503$ | casses 88.3 (39s)
+S2 risk=1.0% : profit final +910,072$ | casses 19.4 (38s)
+S2 risk=0.5% : profit final +441,127$ | casses 4.8 (38s)
+S3 tremplin : profit final +2,052,515$ (5ers +2,479$ / croissance +2,050,036$) | casses 65.7 (42s)
+S4 sizing budget : profit final +896,516$ | casses 19.1 (41s)
+S5 maxpos=1 : profit final +1,110,750$ | casses 87.5 (33s)
+S6 4x100k : profit an1 +91,543$ | cout entree 716$ | casses 1.1
+S6 3x50k  : profit an1 +33,365$ | cout entree 999$ | casses 0.9 (66s)
+
+Terminé en 675s. Résumé enregistré dans the5ers_viability_scenarios_summary.csv

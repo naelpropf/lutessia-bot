@@ -1,0 +1,62 @@
+Population étendue (rr_tp1 >= 1.25, forex, terminaux) : 646 trades
+Chargement/complément des bougies H1 pour 14 tickers...
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+Durées réelles vérifiées (bougies H1) : 371/646 (57.4%) — durée médiane de repli : 0 days 07:42:39
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+Trades necessitant une fermeture forcee (hold > 24h) : 62/646 (9.6%)
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+Fermeture forcee appliquee avec succes : 59/62 (3 non resolus par manque de bougies -- outcome original conserve)
+====================================================================================================
+PART A -- FERMETURE FORCEE GLOBALE (toute la flotte, config gagnante point1)
+====================================================================================================
+  [sans_contrainte] profit +8,249,502$ | cash pire cas 13,986$ | P(an1<0) 1.20% | casses 281.0 (94s)
+  [avec_force_close_24h] profit +6,750,173$ | cash pire cas 13,986$ | P(an1<0) 1.70% | casses 269.0 (89s)
+
+====================================================================================================
+PART B -- VARIANTE SELECTIVE (FXIFY comme exemple de firm additionnelle)
+====================================================================================================
+  [fxify_sans_contrainte] profit standalone FXIFY +5,643,077$ | cash pire cas 68,766$ | P(an1<0) 0.75% | casses 237.6 (84s)
+  [fxify_avec_force_close_24h] profit standalone FXIFY +4,623,244$ | cash pire cas 68,766$ | P(an1<0) 3.00% | casses 218.4 (85s)
+
+Gain net d'ajouter FXIFY AVEC la contrainte 24h/week-end (vs ne pas l'ajouter) : +4,623,244$ sur son propre segment (a additionner a la flotte de base, RNG non aligne donc addition approximative -- cf. rapport pour la mise en garde methodologique)
+
+Terminé en 359s.

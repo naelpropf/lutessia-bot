@@ -1,0 +1,51 @@
+Population étendue (rr_tp1 >= 1.5, forex, terminaux) : 472 trades
+Chargement/complément des bougies H1 pour 14 tickers...
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+Durées réelles vérifiées (bougies H1) : 277/472 (58.7%) — durée médiane de repli : 0 days 07:34:48
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+
+====================================================================================================
+WINRATE 37.29%
+====================================================================================================
+  seuil Ment=20000$ : profit final +13,984,539$ | cash pire cas 39,046$ | casses 564.2 | bascule Ment mediane 71j | jamais bascule Ment: 0.0% (213s)
+  seuil Ment=50000$ : profit final +13,964,111$ | cash pire cas 39,046$ | casses 565.4 | bascule Ment mediane 89j | jamais bascule Ment: 0.0% (172s)
+  seuil Ment=100000$ : profit final +13,896,016$ | cash pire cas 39,046$ | casses 565.1 | bascule Ment mediane 105j | jamais bascule Ment: 0.0% (182s)
+  seuil Ment=250000$ : profit final +13,769,032$ | cash pire cas 39,046$ | casses 564.6 | bascule Ment mediane 147j | jamais bascule Ment: 0.0% (200s)
+  seuil Ment=500000$ : profit final +13,685,640$ | cash pire cas 39,046$ | casses 564.3 | bascule Ment mediane 178j | jamais bascule Ment: 0.0% (194s)
+
+====================================================================================================
+WINRATE 32%
+====================================================================================================
+  seuil Ment=20000$ : profit final +7,466,216$ | cash pire cas 43,406$ | casses 687.4 | bascule Ment mediane 91j | jamais bascule Ment: 0.0% (174s)
+  seuil Ment=50000$ : profit final +7,456,159$ | cash pire cas 43,406$ | casses 689.6 | bascule Ment mediane 103j | jamais bascule Ment: 0.0% (169s)
+  seuil Ment=100000$ : profit final +7,417,966$ | cash pire cas 43,406$ | casses 689.1 | bascule Ment mediane 140j | jamais bascule Ment: 0.0% (156s)
+  seuil Ment=250000$ : profit final +7,357,525$ | cash pire cas 43,406$ | casses 688.4 | bascule Ment mediane 178j | jamais bascule Ment: 0.0% (155s)
+  seuil Ment=500000$ : profit final +7,311,517$ | cash pire cas 43,406$ | casses 687.8 | bascule Ment mediane 227j | jamais bascule Ment: 0.0% (152s)
+
+Terminé en 1771s.

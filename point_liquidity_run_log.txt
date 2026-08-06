@@ -1,0 +1,47 @@
+Population étendue (rr_tp1 >= 1.25, forex, terminaux) : 646 trades
+Chargement/complément des bougies H1 pour 14 tickers...
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+Durées réelles vérifiées (bougies H1) : 371/646 (57.4%) — durée médiane de repli : 0 days 07:42:39
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+
+====================================================================================================
+WINRATE 40.09%_reel
+====================================================================================================
+  [old] profit an1 median +2,482,952$ | profit final moyen +11,973,009$ | cash an1 median=166$ P90=830$ P95=996$ P99=1660$ MAX=2988$ | cash pire cas horizon complet=2988$ (86s)
+  [wait] profit an1 median -2,214$ | profit final moyen +3,835,061$ | cash an1 median=166$ P90=166$ P95=166$ P99=166$ MAX=166$ | cash pire cas horizon complet=166$ (38s)
+  [advance] profit an1 median +2,482,952$ | profit final moyen +11,973,009$ | cash an1 median=2930$ P90=12318$ P95=15470$ P99=40039$ MAX=132256$ | cash pire cas horizon complet=132256$ (89s)
+
+====================================================================================================
+WINRATE 37.66%_P10bayesien
+====================================================================================================
+  [old] profit an1 median +1,983,431$ | profit final moyen +9,880,433$ | cash an1 median=166$ P90=830$ P95=1162$ P99=1660$ MAX=3154$ | cash pire cas horizon complet=3154$ (101s)
+  [wait] profit an1 median -2,214$ | profit final moyen +3,056,568$ | cash an1 median=166$ P90=166$ P95=166$ P99=166$ MAX=166$ | cash pire cas horizon complet=166$ (40s)
+  [advance] profit an1 median +1,983,431$ | profit final moyen +9,880,433$ | cash an1 median=2878$ P90=13883$ P95=18640$ P99=41863$ MAX=139765$ | cash pire cas horizon complet=139765$ (86s)
+
+Terminé en 446s.

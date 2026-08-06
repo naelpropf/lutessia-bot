@@ -1,0 +1,53 @@
+Population étendue (rr_tp1 >= 1.5, forex, terminaux) : 472 trades
+Chargement/complément des bougies H1 pour 14 tickers...
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+Durées réelles vérifiées (bougies H1) : 277/472 (58.7%) — durée médiane de repli : 0 days 07:34:48
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+
+====================================================================================================
+WINRATE 37.29%
+====================================================================================================
+  N=3 cutoff=21j : profit an1 +353,510$ (vs ancien ?) | cash pire cas an1 21,792$ | casses an1 19.5 | profit final +1,547,435$ (43s)
+  N=3 cutoff=26j : profit an1 +353,560$ (vs ancien ?) | cash pire cas an1 21,792$ | casses an1 19.5 | profit final +1,547,485$ (48s)
+  N=3 cutoff=35j : profit an1 +353,598$ (vs ancien ?) | cash pire cas an1 21,792$ | casses an1 19.5 | profit final +1,547,522$ (48s)
+  N=4 cutoff=21j : profit an1 +471,347$ (vs ancien ?) | cash pire cas an1 29,056$ | casses an1 25.9 | profit final +2,063,247$ (63s)
+  N=4 cutoff=26j : profit an1 +471,414$ (vs ancien ?) | cash pire cas an1 29,056$ | casses an1 25.9 | profit final +2,063,313$ (57s)
+  N=4 cutoff=35j : profit an1 +471,464$ (vs ancien ?) | cash pire cas an1 29,056$ | casses an1 25.9 | profit final +2,063,363$ (53s)
+
+====================================================================================================
+WINRATE 32%
+====================================================================================================
+  N=3 cutoff=21j : profit an1 +188,941$ (vs ancien ?) | cash pire cas an1 25,062$ | casses an1 23.2 | profit final +837,113$ (40s)
+  N=3 cutoff=26j : profit an1 +188,991$ (vs ancien ?) | cash pire cas an1 25,062$ | casses an1 23.2 | profit final +837,163$ (40s)
+  N=3 cutoff=35j : profit an1 +189,028$ (vs ancien ?) | cash pire cas an1 25,062$ | casses an1 23.2 | profit final +837,201$ (44s)
+  N=4 cutoff=21j : profit an1 +251,921$ (vs ancien ?) | cash pire cas an1 33,416$ | casses an1 30.9 | profit final +1,116,151$ (60s)
+  N=4 cutoff=26j : profit an1 +251,988$ (vs ancien ?) | cash pire cas an1 33,416$ | casses an1 30.9 | profit final +1,116,218$ (60s)
+  N=4 cutoff=35j : profit an1 +252,037$ (vs ancien ?) | cash pire cas an1 33,416$ | casses an1 30.9 | profit final +1,116,267$ (61s)
+
+Terminé en 621s.

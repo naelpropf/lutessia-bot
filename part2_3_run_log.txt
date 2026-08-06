@@ -1,0 +1,75 @@
+Population étendue (rr_tp1 >= 1.5, forex, terminaux) : 472 trades
+Chargement/complément des bougies H1 pour 14 tickers...
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+Durées réelles vérifiées (bougies H1) : 277/472 (58.7%) — durée médiane de repli : 0 days 07:34:48
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+
+####################################################################################################
+PART 2 -- DECLENCHEUR PAR SEUIL DE RESERVE
+####################################################################################################
+  [37.29%] seuil reserve=3000$ : profit +5,960,220$ | cash pire cas 11,988$ | P(an1<0) 4.80% | delai median 5ers 64j | jamais active 0.0% (59s)
+  [37.29%] seuil reserve=5000$ : profit +5,946,740$ | cash pire cas 11,988$ | P(an1<0) 5.10% | delai median 5ers 67j | jamais active 0.0% (59s)
+  [37.29%] seuil reserve=10000$ : profit +5,926,937$ | cash pire cas 11,988$ | P(an1<0) 5.40% | delai median 5ers 91j | jamais active 0.0% (65s)
+  [37.29%] seuil reserve=15000$ : profit +5,908,350$ | cash pire cas 11,988$ | P(an1<0) 5.40% | delai median 5ers 102j | jamais active 0.0% (73s)
+  [32%] seuil reserve=3000$ : profit +3,572,852$ | cash pire cas 13,986$ | P(an1<0) 15.75% | delai median 5ers 95j | jamais active 0.0% (89s)
+  [32%] seuil reserve=5000$ : profit +3,563,441$ | cash pire cas 13,986$ | P(an1<0) 16.20% | delai median 5ers 98j | jamais active 0.0% (82s)
+  [32%] seuil reserve=10000$ : profit +3,551,062$ | cash pire cas 13,986$ | P(an1<0) 16.30% | delai median 5ers 103j | jamais active 0.0% (95s)
+  [32%] seuil reserve=15000$ : profit +3,536,989$ | cash pire cas 13,986$ | P(an1<0) 16.65% | delai median 5ers 131j | jamais active 0.0% (92s)
+
+####################################################################################################
+PART 3a -- RAMPE DE RISQUE AU DEMARRAGE
+####################################################################################################
+  [37.29%] rampe 1.0% x5 trades : profit +5,991,277$ | cash pire cas 11,988$ | P(an1<0) 4.40% (97s)
+  [37.29%] rampe 1.0% x10 trades : profit +5,991,277$ | cash pire cas 11,988$ | P(an1<0) 4.40% (95s)
+  [37.29%] rampe 1.0% x15 trades : profit +5,964,057$ | cash pire cas 11,988$ | P(an1<0) 4.75% (102s)
+  [37.29%] rampe 1.5% x5 trades : profit +5,991,277$ | cash pire cas 11,988$ | P(an1<0) 4.40% (94s)
+  [37.29%] rampe 1.5% x10 trades : profit +5,991,277$ | cash pire cas 11,988$ | P(an1<0) 4.40% (70s)
+  [37.29%] rampe 1.5% x15 trades : profit +5,976,424$ | cash pire cas 11,988$ | P(an1<0) 4.70% (68s)
+  [37.29%] rampe 2.0% x5 trades : profit +5,991,277$ | cash pire cas 11,988$ | P(an1<0) 4.40% (69s)
+  [37.29%] rampe 2.0% x10 trades : profit +5,991,277$ | cash pire cas 11,988$ | P(an1<0) 4.40% (65s)
+  [37.29%] rampe 2.0% x15 trades : profit +5,980,069$ | cash pire cas 11,988$ | P(an1<0) 4.55% (65s)
+  [32%] rampe 1.0% x5 trades : profit +3,607,144$ | cash pire cas 13,986$ | P(an1<0) 14.70% (52s)
+  [32%] rampe 1.0% x10 trades : profit +3,607,144$ | cash pire cas 13,986$ | P(an1<0) 14.70% (52s)
+  [32%] rampe 1.0% x15 trades : profit +3,597,394$ | cash pire cas 12,987$ | P(an1<0) 14.50% (52s)
+  [32%] rampe 1.5% x5 trades : profit +3,607,144$ | cash pire cas 13,986$ | P(an1<0) 14.70% (52s)
+  [32%] rampe 1.5% x10 trades : profit +3,607,144$ | cash pire cas 13,986$ | P(an1<0) 14.70% (52s)
+  [32%] rampe 1.5% x15 trades : profit +3,602,099$ | cash pire cas 12,987$ | P(an1<0) 14.80% (52s)
+  [32%] rampe 2.0% x5 trades : profit +3,607,144$ | cash pire cas 13,986$ | P(an1<0) 14.70% (58s)
+  [32%] rampe 2.0% x10 trades : profit +3,607,144$ | cash pire cas 13,986$ | P(an1<0) 14.70% (52s)
+  [32%] rampe 2.0% x15 trades : profit +3,606,332$ | cash pire cas 13,986$ | P(an1<0) 14.50% (53s)
+
+####################################################################################################
+PART 3b -- PREMIER PALIER CROISSANCE REDUIT (25k)
+####################################################################################################
+  [37.29%] 1er palier 25k (FTMO_seul) : profit +5,937,355$ | cash pire cas 7,980$ | P(an1<0) 5.20% (51s)
+  [37.29%] 1er palier 25k (FTMO_BB) : profit +5,906,009$ | cash pire cas 6,474$ | P(an1<0) 5.90% (51s)
+  [32%] 1er palier 25k (FTMO_seul) : profit +3,563,257$ | cash pire cas 9,310$ | P(an1<0) 15.10% (49s)
+  [32%] 1er palier 25k (FTMO_BB) : profit +3,540,076$ | cash pire cas 6,972$ | P(an1<0) 15.55% (49s)
+
+Terminé en 2017s (33.6 min).

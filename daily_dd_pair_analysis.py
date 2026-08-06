@@ -56,28 +56,32 @@ def load_forex_population(csv_path=None, sequence_results_path="tp_sequence_resu
     return merged
 
 
-def build_daily_ranges(candles):
-    """OHLC journalier (low min / high max) par date, à partir des bougies H1 en cache."""
-    daily = candles.copy()
-    daily["date"] = daily["datetime"].dt.date
-    return daily.groupby("date").agg(low=("low", "min"), high=("high", "max"))
-
-
 def build_trade_day_excursions(pop):
     """Retourne un DataFrame : une ligne par (trade, jour ouvert), avec l'excursion
-    adverse ce jour-là en unités de R (0 = pas d'excursion adverse, 1 = -1R plein)."""
+    adverse ce jour-là en unités de R (0 = pas d'excursion adverse, 1 = -1R plein).
+
+    CORRECTIF (bug détecté lors du calibrage du déclencheur de hedge, piste #8) : la
+    version précédente calculait le low/high sur la JOURNÉE CALENDAIRE ENTIÈRE
+    (00:00-23:59), y compris les heures où la position n'était PAS encore ouverte ou
+    déjà refermée -- gonflant artificiellement l'excursion adverse rapportée (ex: un creux
+    survenu 4h avant l'entrée du trade comptait comme si la position l'avait subi).
+    Version corrigée : restreint le low/high à la fenêtre RÉELLE où la position était
+    ouverte (bougies dont l'heure de départ est dans [date_creation, resolution_time]),
+    même convention >= / <= que tp_sequence_analysis.analyze_trade (démarre à la
+    première bougie PLEINE après l'entrée -- une entrée à 07:27 ignore la bougie 07:00
+    qui a commencé avant l'entrée, cohérent avec le reste du projet)."""
     unique_symbols = sorted(set(ticker_to_yahoo_symbol(t) for t in pop["ticker"].unique()))
-    daily_ranges = {}
+    candles_by_symbol = {}
     for symbol in unique_symbols:
         candles = fetch_h1_history(symbol, pop["date_creation"].min(), pd.Timestamp.utcnow())
         if candles is not None and not candles.empty:
-            daily_ranges[symbol] = build_daily_ranges(candles)
+            candles_by_symbol[symbol] = candles.sort_values("datetime").reset_index(drop=True)
 
     rows = []
     for trade_id, row in pop.iterrows():
         symbol = ticker_to_yahoo_symbol(row["ticker"])
-        daily = daily_ranges.get(symbol)
-        if daily is None:
+        candles = candles_by_symbol.get(symbol)
+        if candles is None:
             continue
 
         entry = row["prix_entree"]
@@ -87,15 +91,27 @@ def build_trade_day_excursions(pop):
         if risk_distance == 0:
             continue
 
-        start_day = row["date_creation"].date()
-        end_day = row["resolution_time"].date()
+        entry_time = row["date_creation"]
+        exit_time = row["resolution_time"]
         resolution_is_loss = row["statut_final"] == "INVALIDÉE"
+        end_day = exit_time.date()
 
-        for day in pd.date_range(start_day, end_day, freq="D").date:
-            if day not in daily.index:
+        window = candles[(candles["datetime"] >= entry_time) & (candles["datetime"] <= exit_time)]
+        if window.empty:
+            # Entrée et sortie dans la même bougie H1 (position résolue en < 1h) :
+            # utilise la dernière bougie démarrée avant l'entrée (même bougie qui
+            # englobe l'entrée), même repli que "meme_bougie" ailleurs dans ce projet.
+            enclosing = candles[candles["datetime"] <= entry_time]
+            if enclosing.empty:
                 continue
-            day_low = daily.loc[day, "low"]
-            day_high = daily.loc[day, "high"]
+            window = enclosing.iloc[[-1]]
+
+        window = window.copy()
+        window["date"] = window["datetime"].dt.date
+        daily = window.groupby("date").agg(low=("low", "min"), high=("high", "max"))
+
+        for day, day_row in daily.iterrows():
+            day_low, day_high = day_row["low"], day_row["high"]
 
             if is_long:
                 adverse = max(0.0, entry - day_low)

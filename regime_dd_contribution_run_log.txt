@@ -1,0 +1,65 @@
+Population étendue (rr_tp1 >= 1.5, forex, terminaux) : 472 trades
+Chargement/complément des bougies H1 pour 14 tickers...
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+Durées réelles vérifiées (bougies H1) : 277/472 (58.7%) — durée médiane de repli : 0 days 07:34:48
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+
+====================================================================================================
+WINRATE 37.29%
+====================================================================================================
+--- 1. Sensibilite daily DD The5%ers (statu quo, t0) ---
+  DD=2.0% : profit final moyen +3,502,806$ | cash pire cas 105,627$ | P(an1<0) 6.20% | casses 628.4 (78s)
+  DD=2.5% : profit final moyen +5,296,750$ | cash pire cas 39,046$ | P(an1<0) 3.00% | casses 164.5 (51s)
+  DD=3.0% : profit final moyen +5,297,322$ | cash pire cas 39,046$ | P(an1<0) 3.00% | casses 164.3 (55s)
+  DD=3.5% : profit final moyen +5,297,322$ | cash pire cas 39,046$ | P(an1<0) 3.00% | casses 164.3 (76s)
+  DD=4.0% : profit final moyen +5,437,882$ | cash pire cas 34,686$ | P(an1<0) 2.75% | casses 137.2 (68s)
+  DD=4.5% : profit final moyen +5,540,784$ | cash pire cas 30,326$ | P(an1<0) 2.75% | casses 123.2 (63s)
+  DD=5.0% : profit final moyen +5,540,784$ | cash pire cas 30,326$ | P(an1<0) 2.75% | casses 123.2 (64s)
+--- 2. Contribution marginale The5%ers (t0 / retarde / elimine), DD=3.0% ---
+  [statu_quo_t0] profit final moyen +5,297,322$ | cash pire cas 39,046$ | P(an1<0) 3.00% | casses 164.3 (62s)
+  [retarde_post_immunite] profit final moyen +5,205,854$ | cash pire cas 9,990$ | P(an1<0) 4.70% | casses 159.3 (59s)
+  [elimine_2firms] profit final moyen +3,229,540$ | cash pire cas 9,990$ | P(an1<0) 4.50% | casses 52.9 (30s)
+
+====================================================================================================
+WINRATE 32%
+====================================================================================================
+--- 1. Sensibilite daily DD The5%ers (statu quo, t0) ---
+  DD=2.0% : profit final moyen +2,062,012$ | cash pire cas 124,248$ | P(an1<0) 19.10% | casses 691.9 (65s)
+  DD=2.5% : profit final moyen +3,141,314$ | cash pire cas 43,406$ | P(an1<0) 12.25% | casses 200.1 (58s)
+  DD=3.0% : profit final moyen +3,140,516$ | cash pire cas 43,406$ | P(an1<0) 12.30% | casses 199.9 (53s)
+  DD=3.5% : profit final moyen +3,175,144$ | cash pire cas 43,406$ | P(an1<0) 12.20% | casses 197.6 (67s)
+  DD=4.0% : profit final moyen +3,248,691$ | cash pire cas 39,046$ | P(an1<0) 12.10% | casses 169.1 (56s)
+  DD=4.5% : profit final moyen +3,355,731$ | cash pire cas 32,506$ | P(an1<0) 10.60% | casses 153.9 (55s)
+  DD=5.0% : profit final moyen +3,355,731$ | cash pire cas 32,506$ | P(an1<0) 10.60% | casses 153.9 (56s)
+--- 2. Contribution marginale The5%ers (t0 / retarde / elimine), DD=3.0% ---
+  [statu_quo_t0] profit final moyen +3,140,516$ | cash pire cas 43,406$ | P(an1<0) 12.30% | casses 199.9 (55s)
+  [retarde_post_immunite] profit final moyen +3,089,531$ | cash pire cas 13,986$ | P(an1<0) 14.55% | casses 192.9 (56s)
+  [elimine_2firms] profit final moyen +2,019,389$ | cash pire cas 13,986$ | P(an1<0) 14.35% | casses 65.6 (27s)
+
+Terminé en 1157s.

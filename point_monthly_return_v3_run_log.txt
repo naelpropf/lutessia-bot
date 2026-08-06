@@ -1,0 +1,89 @@
+Population étendue (rr_tp1 >= 1.25, forex, terminaux) : 646 trades
+Chargement/complément des bougies H1 pour 14 tickers...
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+Durées réelles vérifiées (bougies H1) : 371/646 (57.4%) — durée médiane de repli : 0 days 07:42:39
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+
+40.09%_reel : 2000 runs...
+  (64s)
+ mois  ev_pure_pct_mean  ev_pure_pct_std  portefeuille_pct_mean  portefeuille_pct_std
+    1          1.041052         2.754477              12.236349             20.160830
+    2          2.748035         2.607908              39.019004             30.061771
+    3          1.097884         2.583262               7.819315             44.070425
+    4          2.751969         2.603972              37.221478             34.565644
+    5          1.113462         2.549572               9.741282             44.529481
+    6          2.719907         2.606535              35.346331             36.211877
+    7          1.051814         2.546225               9.317726             42.466407
+    8          2.742547         2.613863              35.728496             35.435122
+    9          1.119725         2.558225              10.118786             36.822519
+   10          2.760670         2.612180              36.066935             34.478382
+   11          1.131360         2.646466              10.557309             38.934455
+   12          2.752544         2.647801              35.084458             34.818932
+   13          1.046523         2.461266              10.758869             38.794650
+   14          2.725874         2.551785              34.300741             37.614807
+   15          1.128037         2.535460              11.189165             40.538826
+   16          2.754476         2.633572              30.535686             37.266922
+   17          1.102815         2.468400              11.629025             37.407236
+   18          2.749793         2.597636              33.790669             36.071697
+   19          1.095411         2.618285              12.966511             39.944726
+   20          2.784106         2.572961              36.434888             34.297025
+   21          1.163705         2.575246              10.785980             37.736251
+   22          2.836742         2.606593              38.523718             34.983501
+   23          1.142397         2.602850              10.004291             39.107485
+   24          2.809643         2.640538              38.631308             36.032218
+
+37.66%_P10bayesien : 2000 runs...
+  (68s)
+ mois  ev_pure_pct_mean  ev_pure_pct_std  portefeuille_pct_mean  portefeuille_pct_std
+    1          0.870617         2.764380              12.236349             20.160830
+    2          2.364401         2.357789              30.915724             33.138742
+    3          0.881586         2.570304               4.209488             46.135263
+    4          2.376506         2.385586              28.997776             36.373914
+    5          0.923809         2.537310               8.539472             42.142413
+    6          2.347529         2.378937              29.571176             36.599905
+    7          0.863400         2.549696               8.220206             40.260146
+    8          2.384921         2.381729              29.725775             34.739079
+    9          0.943322         2.564904               8.053791             37.708960
+   10          2.397340         2.376533              30.609682             32.792829
+   11          0.938005         2.655434               8.112903             40.950715
+   12          2.364352         2.378006              27.716833             34.546576
+   13          0.880427         2.462618               9.237398             37.195565
+   14          2.409176         2.378511              29.999843             36.439796
+   15          0.942370         2.540913              11.020407             39.666809
+   16          2.380981         2.396948              25.545860             38.204660
+   17          0.920236         2.471116              10.074638             38.073045
+   18          2.411775         2.421727              27.424494             37.619910
+   19          0.929991         2.629874              10.349099             40.519704
+   20          2.415362         2.349106              30.643145             34.739818
+   21          0.989882         2.592160               9.023297             40.631346
+   22          2.461898         2.377840              32.796161             35.064829
+   23          0.970818         2.616988               8.394703             39.704725
+   24          2.438446         2.400882              33.511877             35.628297
+
+Terminé en 138s.

@@ -1,0 +1,55 @@
+Population étendue (rr_tp1 >= 1.25, forex, terminaux) : 646 trades
+Chargement/complément des bougies H1 pour 14 tickers...
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+Durées réelles vérifiées (bougies H1) : 371/646 (57.4%) — durée médiane de repli : 0 days 07:42:39
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+
+====================================================================================================
+WINRATE 40.09%_reel
+====================================================================================================
+  [reference_2.0x5_50k] profit +11,992,547$ | cash pire cas 4,662$ | P(an1<0) 1.25% | delai 32j (114s)
+  [25k_seul_2.0x5] profit +11,973,009$ | cash pire cas 2,988$ | P(an1<0) 1.35% | delai 32j (117s)
+  [ramp_1.0x5_50k] profit +11,937,886$ | cash pire cas 4,662$ | P(an1<0) 1.40% | delai 32j (104s)
+  [ramp_1.5x5_50k] profit +11,968,665$ | cash pire cas 4,662$ | P(an1<0) 1.30% | delai 32j (106s)
+  [ramp_1.0x10_50k] profit +11,897,924$ | cash pire cas 4,662$ | P(an1<0) 1.60% | delai 44j (109s)
+  [combo_25k_ramp1.0x5] profit +11,925,361$ | cash pire cas 2,988$ | P(an1<0) 1.40% | delai 32j (106s)
+  [combo_25k_ramp1.5x5] profit +11,969,410$ | cash pire cas 2,988$ | P(an1<0) 1.35% | delai 32j (107s)
+
+====================================================================================================
+WINRATE 37.66%_P10bayesien
+====================================================================================================
+  [reference_2.0x5_50k] profit +9,901,373$ | cash pire cas 5,328$ | P(an1<0) 2.40% | delai 32j (105s)
+  [25k_seul_2.0x5] profit +9,880,433$ | cash pire cas 3,154$ | P(an1<0) 2.70% | delai 37j (104s)
+  [ramp_1.0x5_50k] profit +9,846,453$ | cash pire cas 5,328$ | P(an1<0) 2.60% | delai 39j (106s)
+  [ramp_1.5x5_50k] profit +9,890,134$ | cash pire cas 5,328$ | P(an1<0) 2.30% | delai 32j (106s)
+  [ramp_1.0x10_50k] profit +9,819,803$ | cash pire cas 4,995$ | P(an1<0) 2.70% | delai 44j (107s)
+  [combo_25k_ramp1.0x5] profit +9,831,740$ | cash pire cas 3,154$ | P(an1<0) 2.75% | delai 39j (105s)
+  [combo_25k_ramp1.5x5] profit +9,890,553$ | cash pire cas 3,154$ | P(an1<0) 2.45% | delai 32j (106s)
+
+Terminé en 1506s.

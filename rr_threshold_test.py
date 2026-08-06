@@ -1,15 +1,15 @@
 """
-Teste l'effet d'un abaissement du seuil de filtre R:R (calculé sur rr_tp1, entrée)
-de 2.0 à 1.5, avec les VRAIES durées de trade (vérification par bougies H1, comme
+Teste l'effet d'un abaissement du seuil de filtre R:R (calculé sur rr_tp1, entrée),
+avec les VRAIES durées de trade (vérification par bougies H1, comme
 tp_sequence_analysis.py) plutôt que l'approximation à durée fixe utilisée dans le
 calcul rapide initial.
 
 Étapes :
-1. Construit une population étendue à MIN_RR=1.5 (sur-ensemble des 4 seuils testés :
-   1.5, 1.75, 2.0, 2.5), avec vérification des durées réelles via les bougies H1 déjà
-   en cache (yfinance_cache/, mêmes tickers que d'habitude) — pas de nouveau scraping
-   CentralCharts, juste des requêtes Yahoo Finance publiques (déjà utilisées ailleurs
-   dans ce projet, cf. tp_sequence_analysis.py).
+1. Construit une population étendue à MIN_RR=1.0 (sur-ensemble des 8 seuils testés :
+   1.0, 1.1, 1.25, 1.35, 1.5, 1.75, 2.0, 2.5), avec vérification des durées réelles
+   via les bougies H1 déjà en cache (yfinance_cache/, mêmes tickers que d'habitude) —
+   pas de nouveau scraping CentralCharts, juste des requêtes Yahoo Finance publiques
+   (déjà utilisées ailleurs dans ce projet, cf. tp_sequence_analysis.py).
 2. Pour chaque seuil : winrate/EV/somme des R (convention rr_tp1, la même que
    scaling_simulation.py partout ailleurs dans ce projet) + corrélation rr_tp1/gain.
 3. Monte Carlo (2000 sims, bootstrap par permutation) par seuil, risque fixe 0.5%,
@@ -35,8 +35,8 @@ from monte_carlo_simulation import (
 
 FOREX_PATTERN = re.compile(r"^[A-Z]{3}/[A-Z]{3}$")
 HIST_PATH = "historique_lutessia_15k.csv"
-MIN_RR_SUPERSET = 1.5
-THRESHOLDS = [1.5, 1.75, 2.0, 2.5]
+MIN_RR_SUPERSET = 1.0
+THRESHOLDS = [1.0, 1.1, 1.25, 1.35, 1.5, 1.75, 2.0, 2.5]
 RISK_PCT = 0.5
 
 
@@ -149,7 +149,7 @@ def taken_trades(sub, corr_matrix):
     return sub.loc[taken_idx]
 
 
-def run_mc_for_threshold(pop, threshold, market_data, corr_matrix):
+def run_mc_for_threshold(pop, threshold, market_data, corr_matrix, risk_pct=RISK_PCT):
     sub = pop[pop["rr_tp1"] >= threshold].copy().sort_values("date_creation").reset_index(drop=True)
 
     t0 = sub["date_creation"].iloc[0]
@@ -171,7 +171,7 @@ def run_mc_for_threshold(pop, threshold, market_data, corr_matrix):
 
     import random
     rng = random.Random(42)
-    results = [run_one(trades, slot_arrivals, RISK_PCT, market_data, excluded_map, rng) for _ in range(N_SIMULATIONS)]
+    results = [run_one(trades, slot_arrivals, risk_pct, market_data, excluded_map, rng) for _ in range(N_SIMULATIONS)]
     return sub, summarize(results)
 
 

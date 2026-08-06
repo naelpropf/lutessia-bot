@@ -1,0 +1,53 @@
+Population étendue (rr_tp1 >= 1.25, forex, terminaux) : 646 trades
+Chargement/complément des bougies H1 pour 14 tickers...
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+Durées réelles vérifiées (bougies H1) : 371/646 (57.4%) — durée médiane de repli : 0 days 07:42:39
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+
+====================================================================================================
+WINRATE 40.09%_reel
+====================================================================================================
+  [a_reference_3firms] profit +8,722,546$ | cash pire cas 13,986$ | P(an1<0) 0.90% | delai structure complete median 32j (P90 85j) (84s)
+  [a2_reference_plus2firms_ensemble] profit +12,050,961$ | cash pire cas 13,986$ | P(an1<0) 1.05% | delai structure complete median 32j (P90 85j) (108s)
+  [b_minimal_absolu] profit +11,850,772$ | cash pire cas 9,324$ | P(an1<0) 1.35% | delai structure complete median 66j (P90 159j) (103s)
+  [c_intermediaire] profit +11,958,494$ | cash pire cas 9,324$ | P(an1<0) 1.05% | delai structure complete median 52j (P90 121j) (102s)
+  [d1_ftmobb_day0_reste_ensemble] profit +12,050,961$ | cash pire cas 13,986$ | P(an1<0) 1.05% | delai structure complete median 32j (P90 85j) (104s)
+  [d2_ftmoseul_reste_ensemble] profit +12,014,701$ | cash pire cas 9,324$ | P(an1<0) 1.05% | delai structure complete median 32j (P90 85j) (104s)
+
+====================================================================================================
+WINRATE 37.66%_P10bayesien
+====================================================================================================
+  [a_reference_3firms] profit +7,194,332$ | cash pire cas 15,984$ | P(an1<0) 2.15% | delai structure complete median 32j (P90 104j) (80s)
+  [a2_reference_plus2firms_ensemble] profit +9,949,902$ | cash pire cas 15,984$ | P(an1<0) 2.25% | delai structure complete median 32j (P90 104j) (104s)
+  [b_minimal_absolu] profit +9,773,347$ | cash pire cas 10,656$ | P(an1<0) 2.90% | delai structure complete median 74j (P90 167j) (101s)
+  [c_intermediaire] profit +9,870,187$ | cash pire cas 10,656$ | P(an1<0) 2.60% | delai structure complete median 52j (P90 122j) (102s)
+  [d1_ftmobb_day0_reste_ensemble] profit +9,949,902$ | cash pire cas 15,984$ | P(an1<0) 2.25% | delai structure complete median 32j (P90 104j) (102s)
+  [d2_ftmoseul_reste_ensemble] profit +9,922,203$ | cash pire cas 10,656$ | P(an1<0) 2.60% | delai structure complete median 32j (P90 104j) (101s)
+
+Terminé en 1199s.

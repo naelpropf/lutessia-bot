@@ -3,7 +3,8 @@ import pandas as pd
 TERMINAL_STATUSES = ["OBJECTIF ATTEINT", "INVALIDÉE"]
 WIN_STATUS = "OBJECTIF ATTEINT"
 MIN_SAMPLE_SIZE = 50
-MIN_RR = 2.0
+MIN_RR = 1.5  # corrigé (2026-07-31) : était 2.0, obsolète -- seuil verrouillé = 1.5,
+# celui réellement utilisé par app.py en live (cf. audit du dossier de vérification).
 
 
 def _compute_metrics(group, rr_column):
@@ -48,6 +49,16 @@ def _print_metrics(metrics):
 
 
 def _analyze_rr_segment(df_clean, rr_column, label):
+    # AVERTISSEMENT (2026-07-31) : quand rr_column="rr_tp2", cette fonction fait la
+    # moyenne du rr_tp2 THÉORIQUE de TOUS les trades "OBJECTIF ATTEINT" (= TP1 atteint,
+    # cf. mémoire projet), SANS vérifier si le prix a réellement continué jusqu'à TP2 --
+    # ça surestime l'EV d'environ 85% (naïf +1.52R vs réaliste +0.82R sur les 472 trades
+    # de référence, cf. tp2_realistic_payoff_detail.csv/r_realiste). analyse_live.py
+    # (le seul appelant automatisé de ce module) utilise désormais directement
+    # tp2_realistic_payoff_detail.csv pour son comparatif live-vs-backtest -- CE
+    # segment "TP2 par actif/timeframe" ici reste sur l'ancienne convention naïve, gardé
+    # pour un usage exploratoire manuel uniquement. Ne pas citer son EV "TP2" comme
+    # référence sans repasser par r_realiste.
     print(f"\n--- Analyse par Segment (R:R {label} & Actif) ---")
     filtered_df = df_clean[df_clean[rr_column] >= MIN_RR]
 

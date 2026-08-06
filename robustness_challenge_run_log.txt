@@ -1,0 +1,117 @@
+Population étendue (rr_tp1 >= 1.5, forex, terminaux) : 472 trades
+Chargement/complément des bougies H1 pour 14 tickers...
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+Durées réelles vérifiées (bougies H1) : 277/472 (58.7%) — durée médiane de repli : 0 days 07:34:48
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+
+####################################################################################################
+PART 1 -- RISQUE DIFFERENCIE
+####################################################################################################
+  [37.29%] growth=2.5% 5ers=1.0% : profit +4,868,475$ | cash pire cas 11,988$ | P(an1<0) 4.25% (64s)
+  [37.29%] growth=2.5% 5ers=1.5% : profit +5,187,839$ | cash pire cas 11,988$ | P(an1<0) 4.35% (51s)
+  [37.29%] growth=2.5% 5ers=2.0% : profit +5,574,666$ | cash pire cas 11,988$ | P(an1<0) 4.65% (52s)
+  [37.29%] growth=2.5% 5ers=2.5% : profit +5,991,277$ | cash pire cas 11,988$ | P(an1<0) 4.40% (51s)
+  [32%] growth=2.5% 5ers=1.0% : profit +3,123,645$ | cash pire cas 13,986$ | P(an1<0) 13.40% (52s)
+  [32%] growth=2.5% 5ers=1.5% : profit +3,225,863$ | cash pire cas 13,986$ | P(an1<0) 14.40% (52s)
+  [32%] growth=2.5% 5ers=2.0% : profit +3,340,603$ | cash pire cas 13,986$ | P(an1<0) 15.65% (52s)
+  [32%] growth=2.5% 5ers=2.5% : profit +3,607,144$ | cash pire cas 13,986$ | P(an1<0) 14.70% (52s)
+
+####################################################################################################
+PART 2 -- DECLENCHEUR 5ERS
+####################################################################################################
+  [37.29%] trigger=event : profit +5,991,277$ | cash pire cas 11,988$ | cash std 1,224$ | cash P90 2,997$ (53s)
+  [37.29%] trigger=fixed45j : profit +6,018,519$ | cash pire cas 38,864$ | cash std 3,362$ | cash P90 3,713$ (53s)
+  [37.29%] trigger=fixed60j : profit +5,986,982$ | cash pire cas 36,684$ | cash std 3,065$ | cash P90 3,713$ (52s)
+  [37.29%] trigger=fixed75j : profit +5,953,237$ | cash pire cas 33,505$ | cash std 2,581$ | cash P90 3,713$ (52s)
+  [37.29%] trigger=fixed90j : profit +5,931,758$ | cash pire cas 33,505$ | cash std 2,410$ | cash P90 3,713$ (52s)
+  [32%] trigger=event : profit +3,607,144$ | cash pire cas 13,986$ | cash std 1,433$ | cash P90 2,997$ (51s)
+  [32%] trigger=fixed45j : profit +3,629,645$ | cash pire cas 45,222$ | cash std 4,028$ | cash P90 3,895$ (52s)
+  [32%] trigger=fixed60j : profit +3,608,910$ | cash pire cas 43,042$ | cash std 3,600$ | cash P90 3,713$ (53s)
+  [32%] trigger=fixed75j : profit +3,589,197$ | cash pire cas 38,682$ | cash std 2,990$ | cash P90 3,713$ (52s)
+  [32%] trigger=fixed90j : profit +3,578,649$ | cash pire cas 36,502$ | cash std 2,854$ | cash P90 3,713$ (51s)
+
+####################################################################################################
+PART 3a -- SWEEP RISQUE 5000 RUNS, SEED DIFFERENT (123 au lieu de 42)
+####################################################################################################
+  [37.29%] risque=0.5% (5000 runs, seed 123) : profit +1,509,063$ | cash pire cas 3,996$ | P(an1<0) 11.32% (129s)
+  [37.29%] risque=1.0% (5000 runs, seed 123) : profit +3,081,448$ | cash pire cas 5,994$ | P(an1<0) 6.52% (131s)
+  [37.29%] risque=1.5% (5000 runs, seed 123) : profit +4,240,603$ | cash pire cas 8,991$ | P(an1<0) 4.74% (132s)
+  [37.29%] risque=2.0% (5000 runs, seed 123) : profit +5,147,138$ | cash pire cas 10,989$ | P(an1<0) 4.68% (132s)
+  [37.29%] risque=2.5% (5000 runs, seed 123) : profit +5,910,875$ | cash pire cas 11,988$ | P(an1<0) 5.32% (129s)
+  [37.29%] risque=3.0% (5000 runs, seed 123) : profit +4,759,603$ | cash pire cas 16,983$ | P(an1<0) 7.40% (132s)
+  [32%] risque=0.5% (5000 runs, seed 123) : profit +950,954$ | cash pire cas 5,994$ | P(an1<0) 27.00% (127s)
+  [32%] risque=1.0% (5000 runs, seed 123) : profit +2,021,274$ | cash pire cas 8,991$ | P(an1<0) 15.22% (127s)
+  [32%] risque=1.5% (5000 runs, seed 123) : profit +2,636,804$ | cash pire cas 10,989$ | P(an1<0) 13.66% (130s)
+  [32%] risque=2.0% (5000 runs, seed 123) : profit +3,018,037$ | cash pire cas 13,986$ | P(an1<0) 14.42% (139s)
+  [32%] risque=2.5% (5000 runs, seed 123) : profit +3,513,320$ | cash pire cas 16,983$ | P(an1<0) 14.90% (131s)
+  [32%] risque=3.0% (5000 runs, seed 123) : profit +2,530,524$ | cash pire cas 17,982$ | P(an1<0) 23.42% (132s)
+
+####################################################################################################
+PART 3b -- SWEEP RISQUE AUX BORNES IC95%% WINRATE (32.9%% / 41.7%%)
+####################################################################################################
+  [32.9%] risque=0.5% : profit +1,071,124$ | cash pire cas 3,996$ | P(an1<0) 22.80% (54s)
+  [32.9%] risque=1.0% : profit +2,289,515$ | cash pire cas 7,992$ | P(an1<0) 12.80% (52s)
+  [32.9%] risque=1.5% : profit +3,081,411$ | cash pire cas 8,991$ | P(an1<0) 12.10% (53s)
+  [32.9%] risque=2.0% : profit +3,597,386$ | cash pire cas 13,986$ | P(an1<0) 12.35% (52s)
+  [32.9%] risque=2.5% : profit +4,216,387$ | cash pire cas 13,986$ | P(an1<0) 13.65% (52s)
+  [32.9%] risque=3.0% : profit +3,162,394$ | cash pire cas 17,982$ | P(an1<0) 20.45% (53s)
+  [41.7%] risque=0.5% : profit +2,038,690$ | cash pire cas 1,998$ | P(an1<0) 3.75% (53s)
+  [41.7%] risque=1.0% : profit +4,092,686$ | cash pire cas 2,997$ | P(an1<0) 1.85% (53s)
+  [41.7%] risque=1.5% : profit +5,565,812$ | cash pire cas 3,996$ | P(an1<0) 2.20% (53s)
+  [41.7%] risque=2.0% : profit +6,578,300$ | cash pire cas 8,991$ | P(an1<0) 2.30% (53s)
+  [41.7%] risque=2.5% : profit +7,624,721$ | cash pire cas 8,991$ | P(an1<0) 2.40% (53s)
+  [41.7%] risque=3.0% : profit +6,120,731$ | cash pire cas 9,990$ | P(an1<0) 2.95% (53s)
+
+####################################################################################################
+PART 3c -- STRESS RR GAGNANTS (-10%% / -20%%), winrate 37.29%%
+####################################################################################################
+  [RR moins10pct] risque=0.5% : profit +1,215,039$ | cash pire cas 3,996$ | P(an1<0) 17.35% (51s)
+  [RR moins10pct] risque=1.0% : profit +2,526,996$ | cash pire cas 5,994$ | P(an1<0) 10.55% (53s)
+  [RR moins10pct] risque=1.5% : profit +3,479,348$ | cash pire cas 6,993$ | P(an1<0) 7.80% (53s)
+  [RR moins10pct] risque=2.0% : profit +4,213,183$ | cash pire cas 9,990$ | P(an1<0) 7.25% (56s)
+  [RR moins10pct] risque=2.5% : profit +4,884,447$ | cash pire cas 11,988$ | P(an1<0) 7.35% (52s)
+  [RR moins10pct] risque=3.0% : profit +3,903,478$ | cash pire cas 14,985$ | P(an1<0) 10.60% (53s)
+  [RR moins20pct] risque=0.5% : profit +912,415$ | cash pire cas 3,996$ | P(an1<0) 26.50% (51s)
+  [RR moins20pct] risque=1.0% : profit +1,960,676$ | cash pire cas 7,992$ | P(an1<0) 14.85% (52s)
+  [RR moins20pct] risque=1.5% : profit +2,706,291$ | cash pire cas 7,992$ | P(an1<0) 10.80% (54s)
+  [RR moins20pct] risque=2.0% : profit +3,237,678$ | cash pire cas 9,990$ | P(an1<0) 11.90% (53s)
+  [RR moins20pct] risque=2.5% : profit +3,789,325$ | cash pire cas 11,988$ | P(an1<0) 11.55% (52s)
+  [RR moins20pct] risque=3.0% : profit +3,003,839$ | cash pire cas 14,985$ | P(an1<0) 15.35% (53s)
+
+####################################################################################################
+PART 4 -- RE-TEST AVEC SLIPPAGE REEL (Dukascopy), winrate 37.29%%
+####################################################################################################
+  [slippage reel] risque=0.5% : profit +1,411,513$ | cash pire cas 3,996$ | P(an1<0) 14.35% (52s)
+  [slippage reel] risque=1.0% : profit +2,900,091$ | cash pire cas 4,995$ | P(an1<0) 8.00% (52s)
+  [slippage reel] risque=1.5% : profit +3,956,921$ | cash pire cas 6,993$ | P(an1<0) 6.60% (52s)
+  [slippage reel] risque=2.0% : profit +4,764,156$ | cash pire cas 9,990$ | P(an1<0) 6.30% (53s)
+  [slippage reel] risque=2.5% : profit +5,560,078$ | cash pire cas 11,988$ | P(an1<0) 6.10% (53s)
+  [slippage reel] risque=3.0% : profit +4,352,834$ | cash pire cas 14,985$ | P(an1<0) 9.80% (55s)
+
+Terminé en 4108s (68.5 min).

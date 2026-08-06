@@ -1,0 +1,56 @@
+Population étendue (rr_tp1 >= 1.25, forex, terminaux) : 646 trades
+Chargement/complément des bougies H1 pour 14 tickers...
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+Durées réelles vérifiées (bougies H1) : 371/646 (57.4%) — durée médiane de repli : 0 days 07:42:39
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+Population RR>=1.25/trail0.15 : n=646, winrate=40.09%, EV moyen=+0.9713R, RR moyen gagnants=3.917
+
+37.29%(reel_RR1.25) : 2000 runs, 48 points mensuels...
+  (75s)
+  Profit final : mediane +8,708,553$ (P10 +6,033,197$ / P90 +11,681,169$)
+  Cash pire cas 13,986$ | median 999$
+  P(cash>3000$) 7.1% | P(cash>10000$) 0.2% | P(cash>20000$) 0.0%
+  P(an1<0) 0.85%
+  Rendement mensuel moyen phase mature (mois 13+) : +188,185$/mois
+  P(palier FTMO_0) : 200000$=100.0%
+  P(palier FTMO_1) : 200000$=100.0%
+  P(palier Blueberry_2) : 200000$=100.0%
+
+32%(P10 bayesien) : 2000 runs, 48 points mensuels...
+  (70s)
+  Profit final : mediane +5,021,642$ (P10 +3,134,287$ / P90 +7,312,956$)
+  Cash pire cas 18,981$ | median 1,998$
+  P(cash>3000$) 23.6% | P(cash>10000$) 2.1% | P(cash>20000$) 0.0%
+  P(an1<0) 5.80%
+  Rendement mensuel moyen phase mature (mois 13+) : +111,327$/mois
+  P(palier FTMO_0) : 200000$=100.0%
+  P(palier FTMO_1) : 200000$=100.0%
+  P(palier Blueberry_2) : 200000$=100.0%
+
+Terminé en 150s.

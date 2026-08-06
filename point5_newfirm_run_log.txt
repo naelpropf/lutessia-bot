@@ -1,0 +1,59 @@
+Population étendue (rr_tp1 >= 1.25, forex, terminaux) : 646 trades
+Chargement/complément des bougies H1 pour 14 tickers...
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+Durées réelles vérifiées (bougies H1) : 371/646 (57.4%) — durée médiane de repli : 0 days 07:42:39
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+
+====================================================================================================
+WINRATE 40.09%_reel
+====================================================================================================
+  REFERENCE (3 firms) : profit +8,722,546$ | cash pire cas 13,986$ | casses 285.2 (153s)
+  a) generique DD5%/cap=300000$ : profit +10,584,784$ | cash pire cas 18,648$ | casses 320.3 (98s)
+  a) generique DD5%/cap=400000$ : profit +10,584,784$ | cash pire cas 18,648$ | casses 320.3 (108s)
+  a) generique DD5%/cap=800000$ : profit +12,938,838$ | cash pire cas 18,648$ | casses 313.9 (112s)
+  a) generique DD5%/cap=2000000$ : profit +15,267,165$ | cash pire cas 18,648$ | casses 295.9 (108s)
+  b) Goat Funded Trader (DD4%/cap400k) : profit +10,268,999$ | cash pire cas 20,646$ | casses 332.2 (95s)
+  c) FundedNext 1 compte (DD5%, ~3e FTMO) : profit +10,546,969$ | cash pire cas 18,648$ | casses 320.3 (90s)
+  -> Gain marginal GFT vs reference : +1,546,453$ | cash supplementaire : +6,660$
+  -> Gain marginal FundedNext-1 vs reference : +1,824,423$ | cash supplementaire : +4,662$
+
+====================================================================================================
+WINRATE 37.66%_P10bayesien
+====================================================================================================
+  REFERENCE (3 firms) : profit +7,194,332$ | cash pire cas 15,984$ | casses 314.2 (77s)
+  a) generique DD5%/cap=300000$ : profit +8,694,005$ | cash pire cas 21,312$ | casses 353.7 (91s)
+  a) generique DD5%/cap=400000$ : profit +8,694,005$ | cash pire cas 21,312$ | casses 353.7 (92s)
+  a) generique DD5%/cap=800000$ : profit +10,566,155$ | cash pire cas 21,312$ | casses 347.0 (87s)
+  a) generique DD5%/cap=2000000$ : profit +12,912,211$ | cash pire cas 21,312$ | casses 326.1 (85s)
+  b) Goat Funded Trader (DD4%/cap400k) : profit +8,516,355$ | cash pire cas 22,977$ | casses 365.9 (85s)
+  c) FundedNext 1 compte (DD5%, ~3e FTMO) : profit +8,665,770$ | cash pire cas 21,312$ | casses 353.7 (84s)
+  -> Gain marginal GFT vs reference : +1,322,023$ | cash supplementaire : +6,993$
+  -> Gain marginal FundedNext-1 vs reference : +1,471,438$ | cash supplementaire : +5,328$
+
+Terminé en 1371s.

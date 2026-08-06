@@ -1,0 +1,81 @@
+Population étendue (rr_tp1 >= 1.5, forex, terminaux) : 472 trades
+Chargement/complément des bougies H1 pour 14 tickers...
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+Durées réelles vérifiées (bougies H1) : 277/472 (58.7%) — durée médiane de repli : 0 days 07:34:48
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+Calcul : winrate 37.29% | régime A. 2% direct...
+Calcul : winrate 37.29% | régime B. Hybride amélioré (bascule immédiate)...
+Calcul : winrate 37.29% | régime C. Hybride actuel (bascule @5000€)...
+Calcul : winrate 32% | régime A. 2% direct...
+Calcul : winrate 32% | régime B. Hybride amélioré (bascule immédiate)...
+Calcul : winrate 32% | régime C. Hybride actuel (bascule @5000€)...
+
+[37.29%] A. 2% direct
+  Profit an1  : moyenne +1,556,782€ | médiane +1,468,553€
+  Profit final: moyenne +7,737,939€ | médiane +7,668,586€
+  P(perte) an1 : 4.65%
+  Trésorerie -- moyenne 1,541€ | pire cas 9,990€
+  Casses moyennes (horizon complet) : 50.23
+
+[37.29%] B. Hybride amélioré (bascule immédiate)
+  Profit an1  : moyenne +1,269,544€ | médiane +1,148,020€
+  Profit final: moyenne +7,432,036€ | médiane +7,344,087€
+  P(perte) an1 : 9.95%
+  Trésorerie -- moyenne 1,057€ | pire cas 3,996€
+  Casses moyennes (horizon complet) : 47.02
+
+[37.29%] C. Hybride actuel (bascule @5000€)
+  Profit an1  : moyenne +962,339€ | médiane +788,033€
+  Profit final: moyenne +7,068,040€ | médiane +6,983,943€
+  P(perte) an1 : 18.80%
+  Trésorerie -- moyenne 1,057€ | pire cas 3,996€
+  Casses moyennes (horizon complet) : 42.75
+
+[32%] A. 2% direct
+  Profit an1  : moyenne +837,128€ | médiane +725,872€
+  Profit final: moyenne +4,603,339€ | médiane +4,478,079€
+  P(perte) an1 : 16.00%
+  Trésorerie -- moyenne 1,700€ | pire cas 10,989€
+  Casses moyennes (horizon complet) : 62.75
+
+[32%] B. Hybride amélioré (bascule immédiate)
+  Profit an1  : moyenne +648,326€ | médiane +492,183€
+  Profit final: moyenne +4,374,031€ | médiane +4,230,329€
+  P(perte) an1 : 24.45%
+  Trésorerie -- moyenne 1,123€ | pire cas 4,995€
+  Casses moyennes (horizon complet) : 57.62
+
+[32%] C. Hybride actuel (bascule @5000€)
+  Profit an1  : moyenne +457,348€ | médiane +157,208€
+  Profit final: moyenne +4,087,235€ | médiane +3,968,053€
+  P(perte) an1 : 36.80%
+  Trésorerie -- moyenne 1,123€ | pire cas 4,995€
+  Casses moyennes (horizon complet) : 50.42
+
+Résumé enregistré dans regime_abc_dailydd_summary.csv

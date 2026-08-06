@@ -1,0 +1,97 @@
+Population étendue (rr_tp1 >= 1.25, forex, terminaux) : 646 trades
+Chargement/complément des bougies H1 pour 14 tickers...
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+Durées réelles vérifiées (bougies H1) : 371/646 (57.4%) — durée médiane de repli : 0 days 07:42:39
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+
+====================================================================================================
+WINRATE 40.09%_reel : 2000 runs...
+====================================================================================================
+  (25s)
+
+--- Feuille de route mensuelle (40.09%_reel) ---
+  Mois  1 : cash median=166$ (P90=166$, P99=166$) | immunite=0.0% | 5ers actif=0.0% | BB=25000$ FTMO=0$ GFT=0$ FN=0$
+  Mois  2 : cash median=166$ (P90=332$, P99=498$) | immunite=49.6% | 5ers actif=49.6% | BB=25000$ FTMO=0$ GFT=0$ FN=0$
+  Mois  3 : cash median=166$ (P90=664$, P99=996$) | immunite=80.0% | 5ers actif=80.0% | BB=200000$ FTMO=100000$ GFT=100000$ FN=100000$
+  Mois  4 : cash median=166$ (P90=664$, P99=1162$) | immunite=90.5% | 5ers actif=90.5% | BB=200000$ FTMO=200000$ GFT=200000$ FN=200000$
+  Mois  5 : cash median=166$ (P90=830$, P99=1330$) | immunite=97.0% | 5ers actif=97.0% | BB=200000$ FTMO=200000$ GFT=200000$ FN=200000$
+  Mois  6 : cash median=166$ (P90=830$, P99=1494$) | immunite=98.6% | 5ers actif=98.6% | BB=200000$ FTMO=200000$ GFT=200000$ FN=200000$
+  Mois  7 : cash median=166$ (P90=830$, P99=1660$) | immunite=99.6% | 5ers actif=99.6% | BB=200000$ FTMO=200000$ GFT=200000$ FN=200000$
+  Mois  8 : cash median=166$ (P90=830$, P99=1660$) | immunite=99.7% | 5ers actif=99.7% | BB=200000$ FTMO=200000$ GFT=200000$ FN=200000$
+  Mois  9 : cash median=166$ (P90=830$, P99=1660$) | immunite=99.9% | 5ers actif=99.9% | BB=200000$ FTMO=200000$ GFT=200000$ FN=200000$
+  Mois 10 : cash median=166$ (P90=830$, P99=1660$) | immunite=99.9% | 5ers actif=99.9% | BB=200000$ FTMO=200000$ GFT=200000$ FN=200000$
+  Mois 11 : cash median=166$ (P90=830$, P99=1660$) | immunite=100.0% | 5ers actif=100.0% | BB=200000$ FTMO=200000$ GFT=200000$ FN=200000$
+  Mois 12 : cash median=166$ (P90=830$, P99=1660$) | immunite=100.0% | 5ers actif=100.0% | BB=200000$ FTMO=200000$ GFT=200000$ FN=200000$
+
+Seuil reserve FXIFY (50k$) atteint dans l'annee : 2000/2000 runs (100.0%), mois median 1
+Seuil reserve Ment Funding (20k$) atteint dans l'annee : 2000/2000 runs (100.0%), mois median 1
+
+--- Distribution cash reellement sorti, FIN ANNEE 1 uniquement (40.09%_reel) ---
+Median=166$ P90=830$ P95=996$ P99=1660$ Max=2988$
+  % runs sous 500$ en annee 1 : 86.1%
+  % runs sous 1000$ en annee 1 : 95.4%
+  % runs sous 3000$ en annee 1 : 100.0%
+  % runs sous 5000$ en annee 1 : 100.0%
+  % runs sous 10000$ en annee 1 : 100.0%
+
+Risque residuel post-immunite (annee 1) : P(shortfall absorbe > 0 a un moment) = 100.00% | P90=12052$ | max observe=131758$
+
+====================================================================================================
+WINRATE 37.66%_P10bayesien : 2000 runs...
+====================================================================================================
+  (25s)
+
+--- Feuille de route mensuelle (37.66%_P10bayesien) ---
+  Mois  1 : cash median=166$ (P90=166$, P99=166$) | immunite=0.0% | 5ers actif=0.0% | BB=25000$ FTMO=0$ GFT=0$ FN=0$
+  Mois  2 : cash median=166$ (P90=332$, P99=498$) | immunite=49.6% | 5ers actif=49.6% | BB=25000$ FTMO=0$ GFT=0$ FN=0$
+  Mois  3 : cash median=166$ (P90=830$, P99=996$) | immunite=75.6% | 5ers actif=75.6% | BB=200000$ FTMO=100000$ GFT=100000$ FN=100000$
+  Mois  4 : cash median=166$ (P90=830$, P99=1162$) | immunite=88.9% | 5ers actif=88.9% | BB=200000$ FTMO=200000$ GFT=200000$ FN=200000$
+  Mois  5 : cash median=166$ (P90=830$, P99=1494$) | immunite=96.5% | 5ers actif=96.5% | BB=200000$ FTMO=200000$ GFT=200000$ FN=200000$
+  Mois  6 : cash median=166$ (P90=830$, P99=1660$) | immunite=98.4% | 5ers actif=98.4% | BB=200000$ FTMO=200000$ GFT=200000$ FN=200000$
+  Mois  7 : cash median=166$ (P90=830$, P99=1660$) | immunite=99.6% | 5ers actif=99.6% | BB=200000$ FTMO=200000$ GFT=200000$ FN=200000$
+  Mois  8 : cash median=166$ (P90=830$, P99=1660$) | immunite=99.7% | 5ers actif=99.7% | BB=200000$ FTMO=200000$ GFT=200000$ FN=200000$
+  Mois  9 : cash median=166$ (P90=830$, P99=1660$) | immunite=99.9% | 5ers actif=99.9% | BB=200000$ FTMO=200000$ GFT=200000$ FN=200000$
+  Mois 10 : cash median=166$ (P90=830$, P99=1660$) | immunite=99.9% | 5ers actif=99.9% | BB=200000$ FTMO=200000$ GFT=200000$ FN=200000$
+  Mois 11 : cash median=166$ (P90=830$, P99=1660$) | immunite=100.0% | 5ers actif=100.0% | BB=200000$ FTMO=200000$ GFT=200000$ FN=200000$
+  Mois 12 : cash median=166$ (P90=830$, P99=1660$) | immunite=100.0% | 5ers actif=100.0% | BB=200000$ FTMO=200000$ GFT=200000$ FN=200000$
+
+Seuil reserve FXIFY (50k$) atteint dans l'annee : 2000/2000 runs (100.0%), mois median 2
+Seuil reserve Ment Funding (20k$) atteint dans l'annee : 2000/2000 runs (100.0%), mois median 1
+
+--- Distribution cash reellement sorti, FIN ANNEE 1 uniquement (37.66%_P10bayesien) ---
+Median=166$ P90=830$ P95=1162$ P99=1660$ Max=3154$
+  % runs sous 500$ en annee 1 : 80.0%
+  % runs sous 1000$ en annee 1 : 95.0%
+  % runs sous 3000$ en annee 1 : 100.0%
+  % runs sous 5000$ en annee 1 : 100.0%
+  % runs sous 10000$ en annee 1 : 100.0%
+
+Risque residuel post-immunite (annee 1) : P(shortfall absorbe > 0 a un moment) = 100.00% | P90=13460$ | max observe=139267$
+
+Terminé en 57s.

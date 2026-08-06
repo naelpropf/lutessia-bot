@@ -1,0 +1,51 @@
+Population étendue (rr_tp1 >= 1.5, forex, terminaux) : 472 trades
+Chargement/complément des bougies H1 pour 14 tickers...
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+Durées réelles vérifiées (bougies H1) : 277/472 (58.7%) — durée médiane de repli : 0 days 07:34:48
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+
+====================================================================================================
+WINRATE 37.29%
+====================================================================================================
+  [P1] cutoff=12m : 5ers seul profit final +2,077,018$ | flotte profit final +5,345,921$ | flotte cash pire cas 20,014$ | flotte casses 164.3 (46s)
+  [P1] cutoff=18m : 5ers seul profit final +2,081,621$ | flotte profit final +5,350,524$ | flotte cash pire cas 20,014$ | flotte casses 164.3 (51s)
+  [P1] cutoff=24m : 5ers seul profit final +2,086,355$ | flotte profit final +5,355,258$ | flotte cash pire cas 20,014$ | flotte casses 164.3 (47s)
+  [P3] freeze=6m : 5ers seul profit final +308,937$ | flotte profit final +3,577,840$ | flotte cash pire cas 17,150$ | flotte casses 68.4 (9s)
+  [P3] freeze=12m : 5ers seul profit final +590,098$ | flotte profit final +3,859,001$ | flotte cash pire cas 20,014$ | flotte casses 82.9 (19s)
+
+====================================================================================================
+WINRATE 32%
+====================================================================================================
+  [P1] cutoff=12m : 5ers seul profit final +1,132,640$ | flotte profit final +3,182,676$ | flotte cash pire cas 21,446$ | flotte casses 200.0 (60s)
+  [P1] cutoff=18m : 5ers seul profit final +1,138,263$ | flotte profit final +3,188,299$ | flotte cash pire cas 21,446$ | flotte casses 200.0 (53s)
+  [P1] cutoff=24m : 5ers seul profit final +1,143,892$ | flotte profit final +3,193,927$ | flotte cash pire cas 21,446$ | flotte casses 200.0 (44s)
+  [P3] freeze=6m : 5ers seul profit final +161,416$ | flotte profit final +2,211,452$ | flotte cash pire cas 17,150$ | flotte casses 83.2 (8s)
+  [P3] freeze=12m : 5ers seul profit final +317,918$ | flotte profit final +2,367,953$ | flotte cash pire cas 21,446$ | flotte casses 100.6 (13s)
+
+Terminé en 355s.

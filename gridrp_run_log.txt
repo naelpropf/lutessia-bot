@@ -1,0 +1,71 @@
+Population étendue (rr_tp1 >= 1.5, forex, terminaux) : 472 trades
+Chargement/complément des bougies H1 pour 14 tickers...
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+Durées réelles vérifiées (bougies H1) : 277/472 (58.7%) — durée médiane de repli : 0 days 07:34:48
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+
+====================================================================================================
+WINRATE 37.29%
+====================================================================================================
+  risk=2.0% maxpos=1 : 5ers seul profit final +1,750,760$ casses 76.4 | flotte profit final +5,019,663$ casses 129.3 cash_worst 32,506$ (50s)
+  risk=2.0% maxpos=2 : 5ers seul profit final +2,164,983$ casses 109.5 | flotte profit final +5,433,886$ casses 162.4 cash_worst 41,226$ (61s)
+  risk=2.0% maxpos=3 : 5ers seul profit final +2,106,138$ casses 114.4 | flotte profit final +5,375,041$ casses 167.3 cash_worst 41,226$ (65s)
+  risk=1.5% maxpos=1 : 5ers seul profit final +1,384,832$ casses 44.9 | flotte profit final +4,653,735$ casses 97.8 cash_worst 25,966$ (50s)
+  risk=1.5% maxpos=2 : 5ers seul profit final +1,683,413$ casses 71.1 | flotte profit final +4,952,315$ casses 124.0 cash_worst 28,146$ (52s)
+  risk=1.5% maxpos=3 : 5ers seul profit final +1,687,002$ casses 72.7 | flotte profit final +4,955,905$ casses 125.6 cash_worst 28,146$ (52s)
+  risk=1.0% maxpos=1 : 5ers seul profit final +1,031,535$ casses 12.6 | flotte profit final +4,300,438$ casses 65.5 cash_worst 18,427$ (43s)
+  risk=1.0% maxpos=2 : 5ers seul profit final +1,334,068$ casses 13.3 | flotte profit final +4,602,971$ casses 66.2 cash_worst 19,426$ (55s)
+  risk=1.0% maxpos=3 : 5ers seul profit final +1,337,015$ casses 13.7 | flotte profit final +4,605,918$ casses 66.6 cash_worst 19,426$ (60s)
+  risk=0.75% maxpos=1 : 5ers seul profit final +780,179$ casses 6.1 | flotte profit final +4,049,082$ casses 59.0 cash_worst 16,247$ (48s)
+  risk=0.75% maxpos=2 : 5ers seul profit final +993,499$ casses 7.3 | flotte profit final +4,262,402$ casses 60.2 cash_worst 17,246$ (60s)
+  risk=0.75% maxpos=3 : 5ers seul profit final +998,979$ casses 7.4 | flotte profit final +4,267,882$ casses 60.3 cash_worst 17,246$ (57s)
+  risk=0.5% maxpos=1 : 5ers seul profit final +522,211$ casses 1.9 | flotte profit final +3,791,114$ casses 54.8 cash_worst 14,067$ (45s)
+  risk=0.5% maxpos=2 : 5ers seul profit final +661,727$ casses 2.8 | flotte profit final +3,930,630$ casses 55.7 cash_worst 15,066$ (52s)
+  risk=0.5% maxpos=3 : 5ers seul profit final +665,771$ casses 2.9 | flotte profit final +3,934,674$ casses 55.8 cash_worst 15,066$ (54s)
+
+====================================================================================================
+WINRATE 32%
+====================================================================================================
+  risk=2.0% maxpos=1 : 5ers seul profit final +1,109,439$ casses 90.6 | flotte profit final +3,159,474$ casses 156.3 cash_worst 34,686$ (45s)
+  risk=2.0% maxpos=2 : 5ers seul profit final +1,210,935$ casses 132.8 | flotte profit final +3,260,970$ casses 198.4 cash_worst 45,586$ (53s)
+  risk=2.0% maxpos=3 : 5ers seul profit final +1,137,548$ casses 137.9 | flotte profit final +3,187,584$ casses 203.6 cash_worst 45,586$ (53s)
+  risk=1.5% maxpos=1 : 5ers seul profit final +914,213$ casses 56.1 | flotte profit final +2,964,248$ casses 121.7 cash_worst 30,326$ (46s)
+  risk=1.5% maxpos=2 : 5ers seul profit final +1,042,698$ casses 89.1 | flotte profit final +3,092,734$ casses 154.8 cash_worst 30,326$ (53s)
+  risk=1.5% maxpos=3 : 5ers seul profit final +1,021,690$ casses 90.7 | flotte profit final +3,071,726$ casses 156.4 cash_worst 30,326$ (54s)
+  risk=1.0% maxpos=1 : 5ers seul profit final +714,013$ casses 17.4 | flotte profit final +2,764,049$ casses 83.1 cash_worst 19,790$ (44s)
+  risk=1.0% maxpos=2 : 5ers seul profit final +894,970$ casses 20.0 | flotte profit final +2,945,006$ casses 85.7 cash_worst 21,970$ (53s)
+  risk=1.0% maxpos=3 : 5ers seul profit final +903,036$ casses 19.4 | flotte profit final +2,953,071$ casses 85.0 cash_worst 21,970$ (59s)
+  risk=0.75% maxpos=1 : 5ers seul profit final +545,062$ casses 8.5 | flotte profit final +2,595,098$ casses 74.1 cash_worst 17,246$ (38s)
+  risk=0.75% maxpos=2 : 5ers seul profit final +670,992$ casses 10.0 | flotte profit final +2,721,028$ casses 75.7 cash_worst 21,242$ (50s)
+  risk=0.75% maxpos=3 : 5ers seul profit final +676,593$ casses 9.8 | flotte profit final +2,726,628$ casses 75.5 cash_worst 17,610$ (46s)
+  risk=0.5% maxpos=1 : 5ers seul profit final +354,515$ casses 3.9 | flotte profit final +2,404,550$ casses 69.6 cash_worst 16,882$ (39s)
+  risk=0.5% maxpos=2 : 5ers seul profit final +436,246$ casses 4.9 | flotte profit final +2,486,281$ casses 70.5 cash_worst 19,062$ (49s)
+  risk=0.5% maxpos=3 : 5ers seul profit final +439,352$ casses 4.8 | flotte profit final +2,489,388$ casses 70.5 cash_worst 19,062$ (54s)
+
+Terminé en 1543s.

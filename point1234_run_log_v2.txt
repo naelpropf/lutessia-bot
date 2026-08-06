@@ -1,0 +1,54 @@
+Population étendue (rr_tp1 >= 1.25, forex, terminaux) : 646 trades
+Chargement/complément des bougies H1 pour 14 tickers...
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+Durées réelles vérifiées (bougies H1) : 371/646 (57.4%) — durée médiane de repli : 0 days 07:42:39
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+Population RR>=1.25/trail0.15 : n=646, wins=259, winrate REEL = 40.09%
+
+40.09%_reel : 2000 runs, 48 points mensuels...
+  (102s)
+  Cash pire cas (real_cash_paid, fin d'horizon) : 13,986$
+  Creux MIN combined_net pendant annee1 (continu, pas juste mensuel) : P10=-74,320$ | median=-17,135$ | P90=-1,715$ | pire=-248,553$
+  P(annee1 negative, fin d'annee) : 0.85%
+  P(creux > 5000$ sous zero pendant annee1) : 81.85%
+  ... dont finissent quand meme positifs en fin d'annee1 : 81.00%
+  Mois negatifs (sur 12) : mediane 1 | P90 5
+  Sequence max de mois consecutifs negatifs : mediane 1 | P90 4
+
+37.66%_P10bayesien_recalibre : 2000 runs, 48 points mensuels...
+  (101s)
+  Cash pire cas (real_cash_paid, fin d'horizon) : 15,984$
+  Creux MIN combined_net pendant annee1 (continu, pas juste mensuel) : P10=-110,048$ | median=-25,274$ | P90=-2,954$ | pire=-356,830$
+  P(annee1 negative, fin d'annee) : 2.20%
+  P(creux > 5000$ sous zero pendant annee1) : 84.85%
+  ... dont finissent quand meme positifs en fin d'annee1 : 82.65%
+  Mois negatifs (sur 12) : mediane 2 | P90 6
+  Sequence max de mois consecutifs negatifs : mediane 2 | P90 5
+
+Terminé en 209s.

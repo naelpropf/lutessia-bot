@@ -1,0 +1,55 @@
+Population étendue (rr_tp1 >= 1.25, forex, terminaux) : 646 trades
+Chargement/complément des bougies H1 pour 14 tickers...
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+Durées réelles vérifiées (bougies H1) : 371/646 (57.4%) — durée médiane de repli : 0 days 07:42:39
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+
+====================================================================================================
+WINRATE 40.09%_reel
+====================================================================================================
+  [plafond=500$] profit an1 median -310$ | profit final moyen +5,827,025$ | cash an1: med=500$ P90=500$ P95=500$ P99=500$ MAX=500$ | cash pire cas final=500$ | P(plafond atteint)=100.0% | structure complete mois median=1.4 (65s)
+  [plafond=1000$] profit an1 median +1,568,708$ | profit final moyen +7,837,470$ | cash an1: med=1000$ P90=1000$ P95=1000$ P99=1000$ MAX=1000$ | cash pire cas final=1000$ | P(plafond atteint)=100.0% | structure complete mois median=1.1 (71s)
+  [plafond=2000$] profit an1 median +2,066,354$ | profit final moyen +9,502,746$ | cash an1: med=2000$ P90=2000$ P95=2000$ P99=2000$ MAX=2000$ | cash pire cas final=2000$ | P(plafond atteint)=100.0% | structure complete mois median=1.3 (78s)
+  [plafond=3000$] profit an1 median +2,175,282$ | profit final moyen +9,871,402$ | cash an1: med=2930$ P90=3000$ P95=3000$ P99=3000$ MAX=3000$ | cash pire cas final=3000$ | P(plafond atteint)=46.5% | structure complete mois median=1.1 (101s)
+  [plafond=5000$] profit an1 median +2,293,368$ | profit final moyen +10,365,230$ | cash an1: med=2930$ P90=5000$ P95=5000$ P99=5000$ MAX=5000$ | cash pire cas final=5000$ | P(plafond atteint)=28.1% | structure complete mois median=1.1 (96s)
+  [plafond=7500$] profit an1 median +2,359,929$ | profit final moyen +10,780,298$ | cash an1: med=2930$ P90=7500$ P95=7500$ P99=7500$ MAX=7500$ | cash pire cas final=7500$ | P(plafond atteint)=16.6% | structure complete mois median=1.1 (100s)
+  [plafond=10000$] profit an1 median +2,406,054$ | profit final moyen +11,179,161$ | cash an1: med=2930$ P90=10000$ P95=10000$ P99=10000$ MAX=10000$ | cash pire cas final=10000$ | P(plafond atteint)=12.8% | structure complete mois median=1.1 (105s)
+
+====================================================================================================
+WINRATE 37.66%_P10bayesien
+====================================================================================================
+  [plafond=500$] profit an1 median -530$ | profit final moyen +4,562,411$ | cash an1: med=500$ P90=500$ P95=500$ P99=500$ MAX=500$ | cash pire cas final=500$ | P(plafond atteint)=100.0% | structure complete mois median=1.4 (59s)
+  [plafond=1000$] profit an1 median +1,108,194$ | profit final moyen +6,345,000$ | cash an1: med=1000$ P90=1000$ P95=1000$ P99=1000$ MAX=1000$ | cash pire cas final=1000$ | P(plafond atteint)=100.0% | structure complete mois median=1.1 (77s)
+  [plafond=2000$] profit an1 median +1,539,773$ | profit final moyen +7,518,988$ | cash an1: med=2000$ P90=2000$ P95=2000$ P99=2000$ MAX=2000$ | cash pire cas final=2000$ | P(plafond atteint)=100.0% | structure complete mois median=1.6 (92s)
+  [plafond=3000$] profit an1 median +1,636,389$ | profit final moyen +7,832,915$ | cash an1: med=2878$ P90=3000$ P95=3000$ P99=3000$ MAX=3000$ | cash pire cas final=3000$ | P(plafond atteint)=45.4% | structure complete mois median=1.0 (92s)
+  [plafond=5000$] profit an1 median +1,780,014$ | profit final moyen +8,261,212$ | cash an1: med=2878$ P90=5000$ P95=5000$ P99=5000$ MAX=5000$ | cash pire cas final=5000$ | P(plafond atteint)=31.6% | structure complete mois median=1.2 (97s)
+  [plafond=7500$] profit an1 median +1,846,389$ | profit final moyen +8,699,106$ | cash an1: med=2878$ P90=7500$ P95=7500$ P99=7500$ MAX=7500$ | cash pire cas final=7500$ | P(plafond atteint)=20.8% | structure complete mois median=1.2 (102s)
+  [plafond=10000$] profit an1 median +1,889,633$ | profit final moyen +9,008,465$ | cash an1: med=2878$ P90=10000$ P95=10000$ P99=10000$ MAX=10000$ | cash pire cas final=10000$ | P(plafond atteint)=16.0% | structure complete mois median=1.2 (105s)
+
+Terminé en 1248s.

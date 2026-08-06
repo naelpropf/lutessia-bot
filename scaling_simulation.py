@@ -54,6 +54,21 @@ TIER_SEQUENCE = [50000, 200000, 500000]
 CHALLENGE_COST = {50000: 333, 200000: 1000, 500000: 3000}
 UPGRADE_COST = {200000: 1000, 500000: 3000}
 
+# CORRECTION 06/08/2026 : TIER_SEQUENCE ci-dessus est correcte pour Blueberry mais
+# PAS pour FTMO -- plafonds reels confirmes au site officiel FTMO (05/08/2026) :
+# taille de compte INDIVIDUEL max 200 000$ (jamais 500 000$, palier absent de la
+# vraie progression FTMO), plafond de capital COMBINE 400 000$ (type "defaut") ou
+# 200 000$ (type "Aggressive", non utilise dans ce projet). La vraie sequence FTMO
+# est 50k->100k->200k. Cout du palier 100k NON source officiellement -- approxime
+# ici proportionnellement au meme ratio cout/palier que les tiers FTMO voisins
+# (~0.5%), a corriger si un prix officiel est trouve. Utiliser TIER_SEQUENCE_FTMO/
+# CHALLENGE_COST_FTMO/UPGRADE_COST_FTMO pour tout nouveau script modelisant un
+# compte FTMO -- TIER_SEQUENCE (sans suffixe) reste valable tel quel pour Blueberry
+# (aucune correction demandee sur cette firm).
+TIER_SEQUENCE_FTMO = [50000, 100000, 200000]
+CHALLENGE_COST_FTMO = {50000: 333, 100000: 500, 200000: 1000}
+UPGRADE_COST_FTMO = {100000: 500, 200000: 1000}
+
 RISK_LEVELS = [0.5, 1.0, 1.5, 2.0, 3.0]
 
 ADAPTIVE_DEFAULT_RISK = 2.0
