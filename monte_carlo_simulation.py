@@ -1,4 +1,16 @@
 """
+CORRECTIF (2026-08-01) : run_one() comptait AVANT cette date tout le P&L de trading
+(y compris généré en phase "challenge", jamais réellement encaissable) comme profit
+réel -- même bug déjà identifié et corrigé le même soir dans sizing_fleet_test.py,
+mais jamais propagé ici. Corrigé (total_trading_pnl gaté par phase=="funded"). Tout
+CSV/résultat généré via run_one() AVANT cette date (ex. risk_levels_trailing_02_summary.csv,
+risk_levels_trailing_summary.csv, risk_levels_realistic_summary.csv et équivalents
+copytrade_vs_fleet_*) surestime le profit net de ~30 à 40% (plus l'écart grandit avec
+le risque/le nombre de casses) -- à régénérer, ne pas réutiliser tel quel. Voir aussi
+le manque de "réserve poolée"/"immunité post-financement" (cf. copytrade_simulation_test.py,
+même date) pour la trésorerie perso -- non corrigé dans CE module (run_one reste un
+moteur MONO-COMPTE, le pooling se fait au niveau de l'orchestrateur copytrade).
+
 Monte Carlo (bootstrap par permutation) sur la trajectoire de scaling prop firm,
 pour connaître la DISTRIBUTION des résultats possibles — pas une seule trajectoire
 déterministe comme scaling_simulation.py.
@@ -74,9 +86,14 @@ def precompute_correlation_pairs(tickers, corr_matrix, threshold):
     return excluded
 
 
-def run_one(trades, slot_arrivals, risk_pct, market_data, excluded_map, rng):
-    order = list(range(len(trades)))
-    rng.shuffle(order)
+def run_one(trades, slot_arrivals, risk_pct, market_data, excluded_map, rng, order=None):
+    """order : permutation pré-calculée à réutiliser (ex: copytrade — le même ordre
+    de trades doit être rejoué IDENTIQUE sur plusieurs comptes indépendants, puisque
+    c'est le même signal répliqué). Si None (cas normal), une permutation fraîche est
+    tirée depuis rng."""
+    if order is None:
+        order = list(range(len(trades)))
+        rng.shuffle(order)
 
     reserve = 0.0
     palier = TIER_SEQUENCE[0]
@@ -112,15 +129,22 @@ def run_one(trades, slot_arrivals, risk_pct, market_data, excluded_map, rng):
             if fell_back:
                 adaptive_fallback_count += 1
         else:
+            # risk_pct peut être un scalaire (risque fixe) ou une fonction palier->risque
+            # (schéma progressif, ex: 0.5% tant qu'on est à 50k, 2% dès 200k+) — le
+            # risque cible est réévalué à CHAQUE trade sur le palier COURANT, pas figé
+            # au palier de départ.
+            target_risk_pct = risk_pct(palier) if callable(risk_pct) else risk_pct
             effective_risk_pct, _ = feasible_risk_pct(
-                trade["ticker"], trade["sl_distance"], palier, risk_pct, market_data
+                trade["ticker"], trade["sl_distance"], palier, target_risk_pct, market_data
             )
         risk_amount = effective_risk_pct / 100 * palier
         pnl = trade["outcome_r"] * risk_amount
 
         open_positions.append((trade["ticker"], close_time))
 
-        total_trading_pnl += pnl
+        if phase == "funded":
+            total_trading_pnl += pnl  # CORRECTIF (2026-08-01) : seul le pnl en phase
+            # financée est un profit réel -- cf. en-tête du module.
         cumulative_since_reset += pnl
         peak_since_reset = max(peak_since_reset, cumulative_since_reset)
         trading_days_since_reset.add(int(now // 86400))  # jour entier depuis le début

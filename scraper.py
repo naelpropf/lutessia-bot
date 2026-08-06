@@ -119,6 +119,7 @@ CSV_COLUMNS = [
     "rr_tp1",
     "rr_tp2",
     "statut_final",
+    "score_force",
 ]
 
 
@@ -132,6 +133,20 @@ def _parse_price(text):
         return float(cleaned)
     except ValueError:
         return None
+
+
+def _parse_last_number(text):
+    """Dernier nombre (entier ou décimal) trouvé dans un texte -- utilisé pour le score
+    Force sur la fiche détail, où le widget jauge affiche "0" puis "10" (bornes de
+    l'échelle) AVANT la valeur réelle dans l'ordre du texte (vérifié en direct sur
+    plusieurs fiches : .sy-force-wrapper -> "0 10 <valeur>"), donc le DERNIER nombre est
+    toujours la valeur, jamais une borne."""
+    if not text:
+        return None
+    matches = re.findall(r"\d+(?:[.,]\d+)?", text)
+    if not matches:
+        return None
+    return _parse_price(matches[-1])
 
 
 def _compute_rr(prix_entree, stop_loss_init, target):
@@ -193,9 +208,11 @@ def fetch_signal_detail(detail_url, session=None):
     nécessaire pour les analyses encore EN COURS (non publiques sans connexion) ;
     None utilise une requête anonyme (suffisant pour les archives déjà résolues).
 
-    Retourne un dict {prix_entree, stop_loss_init, tp1_init, tp2_init, timeframe} ou
-    None si la fiche n'est pas accessible (redirection — typique d'une analyse encore
-    "EN COURS" sans session authentifiée) ou si les valeurs attendues sont absentes.
+    Retourne un dict {prix_entree, stop_loss_init, tp1_init, tp2_init, timeframe,
+    score_force} ou None si la fiche n'est pas accessible (redirection — typique d'une
+    analyse encore "EN COURS" sans session authentifiée) ou si les valeurs attendues
+    (prix_entree/stop_loss_init/tp1_init) sont absentes. score_force peut être None
+    même si la fiche est valide (widget absent selon le type d'actif) : pas bloquant.
     """
     requester = session if session is not None else requests
     try:
@@ -233,6 +250,14 @@ def fetch_signal_detail(detail_url, session=None):
     if tf_match:
         timeframe = tf_match.group(1)
 
+    # Score "Force" (0-10, décimal) : widget jauge .sy-force-wrapper, dont le texte
+    # brut est "0 10 <valeur>" dans cet ordre (bornes de l'échelle puis valeur réelle,
+    # vérifié en direct sur plusieurs fiches) -- le dernier nombre est donc toujours la
+    # valeur. Absent sur certains types d'actifs : pas bloquant (None), contrairement à
+    # prix_entree/stop_loss_init/tp1_init.
+    force_div = detail_soup.select_one(".sy-force-wrapper") or detail_soup.select_one(".sy-force")
+    score_force = _parse_last_number(force_div.get_text(" ", strip=True)) if force_div else None
+
     if prix_entree is None or stop_loss_init is None or tp1_init is None:
         return None
 
@@ -242,6 +267,7 @@ def fetch_signal_detail(detail_url, session=None):
         "tp1_init": tp1_init,
         "tp2_init": tp2_init,
         "timeframe": timeframe or "1H",
+        "score_force": score_force,
     }
 
 
@@ -278,6 +304,12 @@ def _parse_archive_row(row):
         if len(prices) >= 2:
             tp2_init = prices[1]
 
+    # Score "Force" (0-10, décimal) : colonne dédiée du tableau de liste, cf. en-têtes
+    # observés ["Instrument financier", "", "Statut", "Unité de temps", "Opinion",
+    # "Objectifs", "Force", ""] -- 7e colonne, valeur brute simple (ex: "8", "8.8").
+    force_cell = row.select_one("td:nth-of-type(7)")
+    score_force = _parse_price(force_cell.text) if force_cell else None
+
     detail_path = row.get("data-url")
     detail_url = f"{BASE_URL}{detail_path}" if detail_path else None
 
@@ -290,6 +322,7 @@ def _parse_archive_row(row):
         "tp1_init": tp1_init,
         "tp2_init": tp2_init,
         "statut_final": statut_final,
+        "score_force": score_force,
         "detail_url": detail_url,
     }
 
@@ -350,6 +383,7 @@ def scrape_lutessia_archives(max_pages=None, save_every=50, csv_path="historique
                 "rr_tp1": _compute_rr(prix_entree, stop_loss_init, parsed["tp1_init"]),
                 "rr_tp2": _compute_rr(prix_entree, stop_loss_init, parsed["tp2_init"]),
                 "statut_final": parsed["statut_final"],
+                "score_force": parsed["score_force"],
             })
 
         if save_every and page % save_every == 0:

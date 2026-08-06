@@ -48,6 +48,7 @@ CSV_COLUMNS = [
     "date_execution",
     "mt5_ticket",
     "prix_cloture",
+    "score_force",
 ]
 
 
@@ -59,17 +60,19 @@ def _ensure_csv_exists():
 
 def log_trade_execution(date_creation, ticker, asset_class, timeframe, prix_entree,
                          stop_loss_init, tp1_init, tp2_init, rr_tp1, rr_tp2,
-                         compte_id, date_execution, mt5_ticket):
+                         compte_id, date_execution, mt5_ticket, score_force=None):
     """Ajoute une ligne pour un trade qui vient d'être exécuté sur MT5.
     prix_entree doit être le prix de remplissage réel (retourné par
     app_mt5.place_market_order), pas le prix indiqué dans l'email du signal.
-    statut_final et prix_cloture restent vides jusqu'à résolution."""
+    statut_final et prix_cloture restent vides jusqu'à résolution. score_force (0-10,
+    cf. scraper.py) est capturé pour usage futur uniquement -- accumulé à partir de
+    maintenant, aucune donnée rétroactive ; None si absent de la fiche du signal."""
     _ensure_csv_exists()
     with open(TRADES_REELS_PATH, "a", newline="", encoding="utf-8") as f:
         csv.writer(f).writerow([
             date_creation, ticker, asset_class, timeframe, prix_entree,
             stop_loss_init, tp1_init, tp2_init, rr_tp1, rr_tp2,
-            "", compte_id, date_execution, mt5_ticket, "",
+            "", compte_id, date_execution, mt5_ticket, "", score_force,
         ])
 
 
