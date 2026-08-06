@@ -81,12 +81,13 @@ class TrailingStopTestCase(unittest.TestCase):
     def test_buy_arms_tightens_and_never_loosens_on_retrace(self):
         self._write_open_trade(ticket=111, prix_entree=1.2500, stop_loss_init=1.2450, tp2_init=1.2600)
 
+        # Distance de trailing = 0.15 * (1.2500 - 1.2450) = 0.00075 (TRAILING_STOP_FACTOR).
         ticks = [
             _position(111, price_current=1.2590, sl=1.2450, direction_type=app_mt5.POSITION_TYPE_BUY),  # pas encore tp2
             _position(111, price_current=1.2600, sl=1.2450, direction_type=app_mt5.POSITION_TYPE_BUY),  # armement
-            _position(111, price_current=1.2620, sl=1.2590, direction_type=app_mt5.POSITION_TYPE_BUY),  # nouveau plus haut
-            _position(111, price_current=1.2615, sl=1.2610, direction_type=app_mt5.POSITION_TYPE_BUY),  # retracement
-            _position(111, price_current=1.2650, sl=1.2610, direction_type=app_mt5.POSITION_TYPE_BUY),  # nouveau plus haut
+            _position(111, price_current=1.2620, sl=1.25925, direction_type=app_mt5.POSITION_TYPE_BUY),  # nouveau plus haut
+            _position(111, price_current=1.2615, sl=1.26125, direction_type=app_mt5.POSITION_TYPE_BUY),  # retracement
+            _position(111, price_current=1.2650, sl=1.26125, direction_type=app_mt5.POSITION_TYPE_BUY),  # nouveau plus haut
         ]
 
         with patch.object(app_mt5, "get_open_position_raw", side_effect=ticks) as mock_get, \
@@ -101,15 +102,15 @@ class TrailingStopTestCase(unittest.TestCase):
         self.assertEqual(mock_modify.call_count, 3)
 
         calls = mock_modify.call_args_list
-        _assert_call_almost_equal(self, calls[0], (111, "EURUSD", 1.2590, 0.0))  # armement
-        _assert_call_almost_equal(self, calls[1], (111, "EURUSD", 1.2610, 0.0))  # tick 3
-        _assert_call_almost_equal(self, calls[2], (111, "EURUSD", 1.2640, 0.0))  # tick 5
+        _assert_call_almost_equal(self, calls[0], (111, "EURUSD", 1.25925, 0.0))  # armement
+        _assert_call_almost_equal(self, calls[1], (111, "EURUSD", 1.26125, 0.0))  # tick 3
+        _assert_call_almost_equal(self, calls[2], (111, "EURUSD", 1.26425, 0.0))  # tick 5
 
         with open(self.state_path, encoding="utf-8") as f:
             import json
             state = json.load(f)
         self.assertAlmostEqual(state["111"]["extremum"], 1.2650)
-        self.assertAlmostEqual(state["111"]["last_sl"], 1.2640)
+        self.assertAlmostEqual(state["111"]["last_sl"], 1.26425)
 
         # Le SL final (1.2640) est au-dessus du prix de retracement simulé
         # (1.2635) : une position achat se ferme si le prix retombe à/sous le SL.
@@ -122,12 +123,13 @@ class TrailingStopTestCase(unittest.TestCase):
     def test_sell_arms_tightens_and_never_loosens_on_retrace(self):
         self._write_open_trade(ticket=222, prix_entree=1.2500, stop_loss_init=1.2550, tp2_init=1.2400)
 
+        # Distance de trailing = 0.15 * (1.2550 - 1.2500) = 0.00075 (TRAILING_STOP_FACTOR).
         ticks = [
             _position(222, price_current=1.2410, sl=1.2550, direction_type=app_mt5.POSITION_TYPE_SELL),  # pas encore tp2
             _position(222, price_current=1.2400, sl=1.2550, direction_type=app_mt5.POSITION_TYPE_SELL),  # armement
-            _position(222, price_current=1.2380, sl=1.2410, direction_type=app_mt5.POSITION_TYPE_SELL),  # nouveau plus bas
-            _position(222, price_current=1.2385, sl=1.2390, direction_type=app_mt5.POSITION_TYPE_SELL),  # retracement
-            _position(222, price_current=1.2350, sl=1.2390, direction_type=app_mt5.POSITION_TYPE_SELL),  # nouveau plus bas
+            _position(222, price_current=1.2380, sl=1.24075, direction_type=app_mt5.POSITION_TYPE_SELL),  # nouveau plus bas
+            _position(222, price_current=1.2385, sl=1.23875, direction_type=app_mt5.POSITION_TYPE_SELL),  # retracement
+            _position(222, price_current=1.2350, sl=1.23875, direction_type=app_mt5.POSITION_TYPE_SELL),  # nouveau plus bas
         ]
 
         with patch.object(app_mt5, "get_open_position_raw", side_effect=ticks) as mock_get, \
@@ -139,9 +141,9 @@ class TrailingStopTestCase(unittest.TestCase):
         self.assertEqual(mock_modify.call_count, 3)
 
         calls = mock_modify.call_args_list
-        _assert_call_almost_equal(self, calls[0], (222, "EURUSD", 1.2410, 0.0))
-        _assert_call_almost_equal(self, calls[1], (222, "EURUSD", 1.2390, 0.0))
-        _assert_call_almost_equal(self, calls[2], (222, "EURUSD", 1.2360, 0.0))
+        _assert_call_almost_equal(self, calls[0], (222, "EURUSD", 1.24075, 0.0))
+        _assert_call_almost_equal(self, calls[1], (222, "EURUSD", 1.23875, 0.0))
+        _assert_call_almost_equal(self, calls[2], (222, "EURUSD", 1.23575, 0.0))
 
     # --- Position déjà fermée entre deux cycles ----------------------------
 
