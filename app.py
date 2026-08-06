@@ -458,8 +458,16 @@ def executer_signal_reel(ticker, direction, stop_loss_init, tp1_init, tp2_init,
 
     eligible = account_router.eligible_accounts(ticker, accounts)
     if not eligible:
+        # Corrigé le 06/08 : ce cas ne notifiait jamais Telegram (contrairement à tous
+        # les autres rejets -- hors_perimetre, rr_insuffisant, échec d'exécution...),
+        # cause confirmée d'un signal AUD/USD silencieusement ignoré (corrélé 0.85 à
+        # une position NZD/USD déjà ouverte, seuil 0.6) sans aucune trace côté utilisateur.
         print(f"ℹ️ Aucun compte éligible pour {ticker} (positions max atteintes ou actif corrélé "
               f"sur tous les comptes configurés) : signal ignoré.")
+        notifier_telegram_async(
+            f"🚫 *Trade non pris* — {ticker} : aucun compte éligible "
+            f"(position corrélée déjà ouverte ou plafond de positions atteint)"
+        )
         return
 
     mt5_symbol = ticker.replace("/", "")
