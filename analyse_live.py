@@ -39,14 +39,13 @@ hebdomadaire de app.py, pour ne jamais faire dépendre la fiabilité/latence du 
 d'une requête externe. À régénérer manuellement de temps en temps si l'historique de
 référence s'étoffe significativement (pas nécessairement à chaque semaine).
 
-ÉCART CONNU AVEC LA CONFIG VERROUILLÉE PAR SIMULATION (session du 06-07/08/2026,
-cf. contexte_projet_lutessia_2026-08-07-v3.md section 5.7) : les simulations de
-cette session ont verrouillé RR>=1,25 (pas 1,5) et un trailing post-TP2 à 0,15x la
-distance SL (pas 0,2x) comme configuration dominante -- MIN_RR ici et dans app.py/
-backtest_analyzer.py, ainsi que le trailing câblé dans trade_logger.py, n'ont PAS
-été mis à jour vers ces valeurs. Décision explicite à prendre avant de répercuter
-ce changement dans le code de trading réel (impact direct sur l'argent réel,
-contrairement aux scripts de simulation).
+ALIGNÉ (2026-08-08) SUR LA CONFIG VERROUILLÉE PAR SIMULATION (session du 06-07/08/2026,
+cf. contexte_projet_lutessia_2026-08-07-v3.md section 5.7) : MIN_RR (ici, dans app.py
+et dans backtest_analyzer.py) est passé à 1,25 et le trailing post-TP2 câblé dans
+trade_logger.py à 0,15x la distance SL, conformément à la config dominante sous Monte
+Carlo flotte complète (étaient respectivement 1,5 et 0,2x). Risque par trade laissé
+volontairement à 0,5% fixe (app_mt5.py) pendant la phase de collecte de données -- le
+risque en $ n'affecte pas la comparabilité des R multiples avec le backtest.
 
 RAPPEL : tout chiffre de profit produit par ce projet (backtest, simulations Monte
 Carlo, comparatif live) reste BRUT -- split prop firm et fiscalité non intégrés à

@@ -3,8 +3,10 @@ import pandas as pd
 TERMINAL_STATUSES = ["OBJECTIF ATTEINT", "INVALIDÉE"]
 WIN_STATUS = "OBJECTIF ATTEINT"
 MIN_SAMPLE_SIZE = 50
-MIN_RR = 1.5  # corrigé (2026-07-31) : était 2.0, obsolète -- seuil verrouillé = 1.5,
-# celui réellement utilisé par app.py en live (cf. audit du dossier de vérification).
+MIN_RR = 1.25  # aligné (2026-08-08) sur app.py, lui-même aligné sur la config verrouillée
+# par simulation (commit 03fda00) -- celui réellement utilisé par app.py en live,
+# pour que le comparatif live-vs-backtest (analyse_live.py) filtre les trades live au
+# même seuil que le bot en production (était 1.5, cf. audit du dossier de vérification).
 
 
 def _compute_metrics(group, rr_column):
