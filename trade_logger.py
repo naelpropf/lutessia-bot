@@ -17,9 +17,10 @@ TRAILING_STATE_PATH = "trailing_stop_state.json"
 TRAILING_LOG_PATH = "trailing_stop.log"
 # Fraction de la distance SL initiale utilisée comme distance de trailing une fois
 # tp2_init dépassé (ex: SL initial à 40 pips de l'entrée -> trailing à 6 pips du
-# plus haut/bas atteint). Aligné sur la config verrouillée par simulation (commit
-# 03fda00, session du 06-07/08/2026) : 0.15x dominant sous Monte Carlo flotte
-# complète (était 0.2x).
+# plus haut/bas atteint). Abaissé à 0.15 le 07/08 (était 0.2) -- confirmé optimal par
+# Monte Carlo flotte complète, combiné à MIN_RR=1.25 dans app.py (voir
+# contexte_projet_lutessia_2026-08-07-v3.md, section 1 : optimum conjoint vérifié,
+# aucune combinaison alternative testée ne fait mieux sur profit/cash/P(perte)).
 TRAILING_STOP_FACTOR = 0.15
 # Tolérance pour la comparaison "candidate_sl plus favorable que le SL actuel" :
 # sans elle, une imprécision flottante (ex: 1.2620 - 0.0010 = 1.2610000000000001)

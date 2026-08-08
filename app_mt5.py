@@ -20,6 +20,7 @@ d'autre à changer ici pour gérer plusieurs comptes.
 """
 import json
 import os
+import time
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -131,6 +132,31 @@ def count_open_positions():
     return len(get_open_positions())
 
 
+def _ensure_symbol_visible(symbol):
+    """S'assure que le symbole est sélectionné dans le Market Watch du terminal --
+    condition nécessaire pour que symbol_info_tick() retourne une cotation. Constaté
+    le 07/08 sur EURCHF : symbol_info() existe (visible=False) mais symbol_info_tick()
+    reste None tant que symbol_select() n'a pas été appelé une fois. N'importe quelle
+    paire suivie mais jamais encore tradée sur ce compte peut retomber dans ce piège.
+
+    Deuxième cas constaté le 07/08 sur EURJPY : juste après symbol_select(), le
+    terminal peut renvoyer un tick "vide" (bid=ask=0) le temps que le flux de prix
+    démarre réellement -- symbol_info_tick() n'est alors plus None mais reste
+    inutilisable, ce qui faisait échouer calculate_position_size() en silence
+    (entry_price_estimate faussement falsy). On attend donc explicitement un tick
+    valide (ask > 0) avant de rendre la main, jusqu'à ~2s."""
+    info = mt5.symbol_info(symbol)
+    if info is None:
+        return
+    if not info.visible:
+        mt5.symbol_select(symbol, True)
+    for _ in range(10):
+        tick = mt5.symbol_info_tick(symbol)
+        if tick is not None and tick.ask > 0:
+            return
+        time.sleep(0.2)
+
+
 def calculate_position_size(account, symbol, sl_price, risk_pct=RISK_PCT_PER_TRADE):
     """Taille de position (en lots) pour risquer risk_pct% du capital INITIAL fixe du
     compte (get_initial_capital — jamais l'équité courante), si le SL est touché.
@@ -142,6 +168,7 @@ def calculate_position_size(account, symbol, sl_price, risk_pct=RISK_PCT_PER_TRA
         print(f"[risk] Capital initial introuvable pour {account.account_id}.")
         return None
 
+    _ensure_symbol_visible(symbol)
     tick = mt5.symbol_info_tick(symbol)
     symbol_info = mt5.symbol_info(symbol)
     if tick is None or symbol_info is None:
@@ -152,6 +179,8 @@ def calculate_position_size(account, symbol, sl_price, risk_pct=RISK_PCT_PER_TRA
     # légèrement (spread/slippage normal entre le calcul et l'exécution).
     entry_price_estimate = tick.ask if symbol_info.trade_tick_size else None
     if not entry_price_estimate or symbol_info.trade_tick_size == 0:
+        print(f"[risk] Cotation invalide (ask={tick.ask}, trade_tick_size={symbol_info.trade_tick_size}) "
+              f"pour {symbol} : impossible de dimensionner la position.")
         return None
 
     sl_distance = abs(entry_price_estimate - sl_price)
@@ -162,6 +191,8 @@ def calculate_position_size(account, symbol, sl_price, risk_pct=RISK_PCT_PER_TRA
     risk_amount = initial_capital * (risk_pct / 100)
     loss_per_lot = (sl_distance / symbol_info.trade_tick_size) * symbol_info.trade_tick_value
     if loss_per_lot <= 0:
+        print(f"[risk] loss_per_lot non positif ({loss_per_lot}) pour {symbol} : "
+              f"trade_tick_value={symbol_info.trade_tick_value}, sl_distance={sl_distance}.")
         return None
 
     volume = risk_amount / loss_per_lot
@@ -175,6 +206,7 @@ def calculate_position_size(account, symbol, sl_price, risk_pct=RISK_PCT_PER_TRA
 def place_market_order(symbol, direction, sl, tp, volume, comment="lutessia-bot"):
     """Passe un ordre au marché avec SL/TP. direction: 'buy' ou 'sell'.
     Retourne (success: bool, fill_price: float | None, ticket: int | None, raw_result)."""
+    _ensure_symbol_visible(symbol)
     tick = mt5.symbol_info_tick(symbol)
     if tick is None:
         print(f"[MT5] Symbole introuvable ou pas de cotation : {symbol}")

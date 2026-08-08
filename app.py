@@ -61,12 +61,13 @@ EMAIL_PASS = os.environ["EMAIL_PASS"]
 CENTRALCHARTS_EMAIL = os.environ.get("CENTRALCHARTS_EMAIL")
 CENTRALCHARTS_PASSWORD = os.environ.get("CENTRALCHARTS_PASSWORD")
 
-# Aligné sur la config verrouillée par simulation (commit 03fda00, session du
-# 06-07/08/2026) : RR>=1.25 dominant sous Monte Carlo flotte complète. Risque par
-# trade laissé à 0.5% fixe (cf. RISK_PCT_PER_TRADE dans app_mt5.py) — volontairement
-# non aligné sur la rampe verrouillée (2%->2.75%) pendant la phase de collecte de
-# données, le risque en $ n'affectant pas la comparabilité des R multiples avec le
-# backtest (voir rr_threshold_test.py pour le seuil).
+# Abaissé à 1.25 le 07/08 (était 1.5, qui remplaçait déjà 2.0) -- confirmé par Monte
+# Carlo flotte complète (contexte_projet_lutessia_2026-08-07-v3.md, section 1) :
+# malgré une EV brute par trade plus faible (+0.97R vs +0.91R), la fréquence de
+# trades plus élevée (646 vs 472 sur l'échantillon) compense largement via l'effet de
+# compounding -- +43.5% de profit final, P(an1<0) 4x meilleure. La rampe de risque
+# 2.0%->2.5% évaluée dans la même session n'est PAS appliquée ici (RISK_PCT_PER_TRADE
+# dans app_mt5.py reste fixe à 0.5%, changement structurel à part).
 MIN_RR = 1.25
 
 # Session CentralCharts authentifiée, créée à la demande et réutilisée (voir
@@ -267,6 +268,7 @@ def extraire_champs_signal(html_body):
             # slippage (cf. slippage_logger.log_slippage), distinct du prix de
             # remplissage réel obtenu plus tard dans executer_signal_reel().
             "signal_price": details["prix_entree"],
+            "rr_tp1": rr_tp1,
         }))
 
     return resultats
@@ -284,8 +286,10 @@ def traiter_signal_valide(champs, subject, email_sent_at=None):
     cf. slippage_logger) -- None si absent/non parsable, la mesure de latence
     sera alors simplement omise pour ce trade.
     """
+    rr_tp1 = champs.get("rr_tp1")
+    rr_txt = f"{rr_tp1:.2f}" if rr_tp1 is not None else "?"
     notifier_telegram_async(
-        f"🚨 *Signal validé* {champs['ticker']} ({champs['direction']})\n\nSujet : {subject}"
+        f"🚨 *Signal validé* {champs['ticker']} ({champs['direction']}) — R:R {rr_txt}\n\nSujet : {subject}"
     )
     executer_signal_reel(date_creation=time.strftime("%Y-%m-%d %H:%M:%S"),
                           email_sent_at=email_sent_at, **champs)
@@ -438,7 +442,7 @@ def verifier_mails():
 
 def executer_signal_reel(ticker, direction, stop_loss_init, tp1_init, tp2_init,
                           asset_class, timeframe, date_creation, score_force=None,
-                          signal_price=None, email_sent_at=None):
+                          signal_price=None, email_sent_at=None, rr_tp1=None):
     """COPYTRADE : tente le MÊME signal INDÉPENDAMMENT sur CHAQUE compte MT5 éligible
     (flotte de 3 comptes/3 firms distinctes, cf. account_router.eligible_accounts) --
     si un compte rejette (plafond de positions atteint ou actif corrélé déjà ouvert sur
@@ -475,6 +479,7 @@ def executer_signal_reel(ticker, direction, stop_loss_init, tp1_init, tp2_init,
     mt5_symbol = ticker.replace("/", "")
     for account in eligible:
         if not app_mt5.connect(account):
+            notifier_telegram_async(f"🚫 *Trade non pris* — {ticker} sur {account.account_id} : connexion MT5 impossible")
             continue
         try:
             # Taille de position calculée INDÉPENDAMMENT pour ce compte, sur SON propre
@@ -482,7 +487,15 @@ def executer_signal_reel(ticker, direction, stop_loss_init, tp1_init, tp2_init,
             # account.account_id) -- jamais un capital partagé entre comptes.
             volume = app_mt5.calculate_position_size(account, mt5_symbol, stop_loss_init)
             if volume is None:
+                # Corrigé le 07/08 : silencieux jusqu'ici (contrairement à "aucun compte
+                # éligible" ci-dessus) -- cause confirmée d'un signal EUR/CHF validé mais
+                # jamais exécuté ni notifié (symbole présent sur le broker mais pas encore
+                # visible dans le Market Watch, cf. app_mt5._ensure_symbol_visible).
                 print(f"⚠️ Taille de position incalculable pour {ticker} sur {account.account_id} : compte ignoré.")
+                notifier_telegram_async(
+                    f"🚫 *Trade non pris* — {ticker} sur {account.account_id} : "
+                    f"taille de position incalculable (symbole/cotation indisponible)"
+                )
                 continue
             # TP envoyé au broker = tp2_init, pas tp1_init (corrigé le 31/07 — cause
             # racine du trade NZD/USD ticket 81685339 sorti prématurément à TP1 :
