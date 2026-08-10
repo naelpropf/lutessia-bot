@@ -476,8 +476,11 @@ def executer_signal_reel(ticker, direction, stop_loss_init, tp1_init, tp2_init,
         )
         return
 
-    mt5_symbol = ticker.replace("/", "")
     for account in eligible:
+        # Nom de symbole résolu PAR COMPTE (cf. MT5Account.to_mt5_symbol) -- des brokers
+        # différents peuvent exposer le même actif sous un nom différent (ex: BlueBerry
+        # "EURGBP.pi" vs Pepperstone "EURGBP"), cf. commentaire sur symbol_suffix.
+        mt5_symbol = account.to_mt5_symbol(ticker)
         if not app_mt5.connect(account):
             notifier_telegram_async(f"🚫 *Trade non pris* — {ticker} sur {account.account_id} : connexion MT5 impossible")
             continue

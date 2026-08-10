@@ -51,6 +51,26 @@ class MT5Account:
     login: int
     password: str
     server: str
+    # Suffixe que CE broker ajoute aux noms de symboles (ex: BlueBerry expose "EURGBP"
+    # sous "EURGBP.pi", pas le nom brut utilisé par Pepperstone) -- constaté le 10/08 :
+    # un trade EUR/GBP pris sur compte_1 (Pepperstone, pas de suffixe) mais ignoré en
+    # silence sur compte_blueberry ("Symbole introuvable"), le nom brut n'existant tout
+    # simplement pas chez ce broker. Vide par défaut (comportement inchangé pour un
+    # broker sans suffixe). Configuré via MT5_SYMBOL_SUFFIX{suffix} dans .env.
+    symbol_suffix: str = ""
+
+    def to_mt5_symbol(self, ticker):
+        """Convertit un ticker Lutessia ('EUR/GBP') en nom de symbole MT5 pour CE
+        compte précis (ex: 'EURGBP' ou 'EURGBP.pi' selon le broker)."""
+        return ticker.replace("/", "") + self.symbol_suffix
+
+    def strip_symbol_suffix(self, mt5_symbol):
+        """Inverse de to_mt5_symbol : retire le suffixe de CE broker s'il est présent,
+        pour ramener un symbole MT5 réel (ex: position ouverte) à sa forme brute
+        comparable à un ticker Lutessia sans '/' (ex: 'EURGBP.pi' -> 'EURGBP')."""
+        if self.symbol_suffix and mt5_symbol.endswith(self.symbol_suffix):
+            return mt5_symbol[: -len(self.symbol_suffix)]
+        return mt5_symbol
 
 
 def _load_single_account(suffix, default_account_id):
@@ -58,10 +78,12 @@ def _load_single_account(suffix, default_account_id):
     password = os.environ.get(f"MT5_PASSWORD{suffix}")
     server = os.environ.get(f"MT5_SERVER{suffix}")
     account_id = os.environ.get(f"MT5_ACCOUNT_ID{suffix}", default_account_id)
+    symbol_suffix = os.environ.get(f"MT5_SYMBOL_SUFFIX{suffix}", "")
 
     if not login or not password or not server:
         return None
-    return MT5Account(account_id=account_id, login=int(login), password=password, server=server)
+    return MT5Account(account_id=account_id, login=int(login), password=password,
+                       server=server, symbol_suffix=symbol_suffix)
 
 
 def load_accounts():

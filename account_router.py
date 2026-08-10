@@ -92,9 +92,13 @@ def eligible_accounts(ticker, accounts, corr_matrix=None):
             if n_positions >= MAX_POSITIONS_PER_ACCOUNT:
                 continue
 
-            open_symbols = {p.symbol for p in positions}
-            # Les symboles MT5 (ex: "EURUSD") n'ont pas le "/" du ticker Lutessia :
-            # on compare sur la forme sans séparateur pour matcher les deux univers.
+            # Les symboles MT5 (ex: "EURUSD", ou "EURUSD.pi" chez un broker qui suffixe
+            # -- cf. MT5Account.symbol_suffix) n'ont pas le "/" du ticker Lutessia : on
+            # retire le suffixe PROPRE à ce compte pour comparer sur la forme brute
+            # commune aux deux univers. Corrigé le 10/08 : avant ce fix, la comparaison
+            # échouait systématiquement sur tout compte à suffixe (ex: BlueBerry),
+            # rendant l'exclusion par corrélation totalement inopérante sur ces comptes.
+            open_symbols = {account.strip_symbol_suffix(p.symbol) for p in positions}
             correlated_no_slash = {c.replace("/", "") for c in excluded_tickers}
             if open_symbols & correlated_no_slash:
                 continue
