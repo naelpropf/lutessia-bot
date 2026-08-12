@@ -137,7 +137,26 @@ def connect(account):
                   f"compte actif resté {actual} après tentative de connexion.")
             return False
 
-    return True
+    # Constaté le 12/08 : même login correct, account_info() peut renvoyer un objet
+    # "placeholder" juste après la bascule -- balance=equity=0.0 -- le temps que le
+    # terminal synchronise réellement le compte (probable collision avec app.py et
+    # monitor.py interrogeant le même terminal partagé au même moment). Sans ce
+    # contrôle, check_drawdown() calculait un drawdown de 100.85% sur une équité
+    # fantôme et mettait compte_blueberry en pause automatique à tort. On attend
+    # donc une lecture non dégénérée avant de rendre la main, jusqu'à ~2s.
+    for _ in range(10):
+        if info.balance != 0 or info.equity != 0:
+            return True
+        time.sleep(0.2)
+        info = mt5.account_info()
+        if info is None or info.login != account.login:
+            print(f"[MT5] Compte {account.account_id} déconnecté pendant la vérification "
+                  f"de fraîcheur des données.")
+            return False
+
+    print(f"[MT5] Données de compte toujours à zéro pour {account.account_id} après "
+          f"connexion (balance=equity=0) : connexion considérée en échec par précaution.")
+    return False
 
 
 def disconnect():
