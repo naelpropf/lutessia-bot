@@ -58,6 +58,16 @@ class MT5Account:
     # simplement pas chez ce broker. Vide par défaut (comportement inchangé pour un
     # broker sans suffixe). Configuré via MT5_SYMBOL_SUFFIX{suffix} dans .env.
     symbol_suffix: str = ""
+    # Overrides PAR COMPTE des réglages globaux (None = utiliser le défaut global,
+    # cf. RISK_PCT_PER_TRADE ici et account_router.MAX_POSITIONS_PER_ACCOUNT).
+    # Ajouté le 15/08 pour compte_blueberry : ce compte sert à collecter un maximum
+    # de données d'exécution (pas un vrai objectif de profit/challenge), donc pas de
+    # plafond de positions (max_positions=None : jamais bloqué par account_router) --
+    # mais en contrepartie un risque par trade réduit (0.25% au lieu de 0.5%) pour ne
+    # pas cumuler un risque total démesuré avec beaucoup plus de positions ouvertes
+    # simultanément. Configurables via MT5_MAX_POSITIONS{suffix}/MT5_RISK_PCT{suffix}.
+    max_positions: int | None = None
+    risk_pct: float | None = None
 
     def to_mt5_symbol(self, ticker):
         """Convertit un ticker Lutessia ('EUR/GBP') en nom de symbole MT5 pour CE
@@ -79,11 +89,16 @@ def _load_single_account(suffix, default_account_id):
     server = os.environ.get(f"MT5_SERVER{suffix}")
     account_id = os.environ.get(f"MT5_ACCOUNT_ID{suffix}", default_account_id)
     symbol_suffix = os.environ.get(f"MT5_SYMBOL_SUFFIX{suffix}", "")
+    max_positions_raw = os.environ.get(f"MT5_MAX_POSITIONS{suffix}")
+    max_positions = int(max_positions_raw) if max_positions_raw else None
+    risk_pct_raw = os.environ.get(f"MT5_RISK_PCT{suffix}")
+    risk_pct = float(risk_pct_raw) if risk_pct_raw else None
 
     if not login or not password or not server:
         return None
     return MT5Account(account_id=account_id, login=int(login), password=password,
-                       server=server, symbol_suffix=symbol_suffix)
+                       server=server, symbol_suffix=symbol_suffix,
+                       max_positions=max_positions, risk_pct=risk_pct)
 
 
 def load_accounts():
@@ -198,12 +213,17 @@ def _ensure_symbol_visible(symbol):
         time.sleep(0.2)
 
 
-def calculate_position_size(account, symbol, sl_price, risk_pct=RISK_PCT_PER_TRADE):
+def calculate_position_size(account, symbol, sl_price, risk_pct=None):
     """Taille de position (en lots) pour risquer risk_pct% du capital INITIAL fixe du
     compte (get_initial_capital — jamais l'équité courante), si le SL est touché.
+    risk_pct : si non fourni par l'appelant, utilise account.risk_pct (override par
+    compte, cf. MT5Account) s'il est défini, sinon RISK_PCT_PER_TRADE global.
     Retourne None si le calcul est impossible (symbole/cotation introuvable, capital
     initial inconnu, distance SL nulle...) — l'appelant doit alors ignorer le signal
     plutôt que d'exécuter avec une taille par défaut arbitraire."""
+    if risk_pct is None:
+        risk_pct = account.risk_pct if account.risk_pct is not None else RISK_PCT_PER_TRADE
+
     initial_capital = get_initial_capital(account)
     if not initial_capital:
         print(f"[risk] Capital initial introuvable pour {account.account_id}.")

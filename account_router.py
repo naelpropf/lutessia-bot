@@ -89,7 +89,16 @@ def eligible_accounts(ticker, accounts, corr_matrix=None):
             positions = app_mt5.get_open_positions()
             n_positions = len(positions)
 
-            if n_positions >= MAX_POSITIONS_PER_ACCOUNT:
+            # Plafond overridable par compte (cf. MT5Account.max_positions, None =
+            # utiliser le défaut global MAX_POSITIONS_PER_ACCOUNT) -- ajouté le 15/08
+            # pour compte_blueberry : ce compte sert à collecter un maximum de données
+            # d'exécution, plafond relevé très haut via MT5_MAX_POSITIONS{suffix}
+            # dans .env pour ne quasiment plus jamais bloquer un signal.
+            account_max_positions = (
+                account.max_positions if account.max_positions is not None
+                else MAX_POSITIONS_PER_ACCOUNT
+            )
+            if n_positions >= account_max_positions:
                 continue
 
             # Les symboles MT5 (ex: "EURUSD", ou "EURUSD.pi" chez un broker qui suffixe
