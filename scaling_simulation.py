@@ -43,7 +43,7 @@ from tp_sequence_analysis import FOREX_PATTERN
 MARKET_DATA_PATH = "forex_market_data.json"
 
 MIN_RR = 2.0
-CORR_THRESHOLD = 0.6
+CORR_THRESHOLD = 0.8  # relevé de 0.6 à 0.8 le 15/08 (nouvelle config transmise par le user)
 MAX_POSITIONS = 3
 CHALLENGE_TARGET_PCT = 8.0
 MIN_TRADING_DAYS = 4  # jours distincts avec >=1 trade avant de pouvoir valider un challenge

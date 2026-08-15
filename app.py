@@ -61,14 +61,12 @@ EMAIL_PASS = os.environ["EMAIL_PASS"]
 CENTRALCHARTS_EMAIL = os.environ.get("CENTRALCHARTS_EMAIL")
 CENTRALCHARTS_PASSWORD = os.environ.get("CENTRALCHARTS_PASSWORD")
 
-# Abaissé à 1.25 le 07/08 (était 1.5, qui remplaçait déjà 2.0) -- confirmé par Monte
-# Carlo flotte complète (contexte_projet_lutessia_2026-08-07-v3.md, section 1) :
-# malgré une EV brute par trade plus faible (+0.97R vs +0.91R), la fréquence de
-# trades plus élevée (646 vs 472 sur l'échantillon) compense largement via l'effet de
-# compounding -- +43.5% de profit final, P(an1<0) 4x meilleure. La rampe de risque
-# 2.0%->2.5% évaluée dans la même session n'est PAS appliquée ici (RISK_PCT_PER_TRADE
+# Relevé à 1.35 le 15/08 (était 1.25 depuis le 07/08, qui remplaçait déjà 1.5 puis 2.0)
+# -- nouvelle config transmise par le user (session PC), pas encore documentée dans un
+# contexte_projet_*.md au moment de ce changement (dernier doc trouvé : 2026-08-07-v3).
+# La rampe de risque 2.0%->2.5% n'est toujours PAS appliquée ici (RISK_PCT_PER_TRADE
 # dans app_mt5.py reste fixe à 0.5%, changement structurel à part).
-MIN_RR = 1.25
+MIN_RR = 1.35
 
 # Session CentralCharts authentifiée, créée à la demande et réutilisée (voir
 # _get_centralcharts_session) — pas de reconnexion à chaque signal.
