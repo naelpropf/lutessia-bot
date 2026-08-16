@@ -124,53 +124,63 @@ def load_accounts():
     return accounts
 
 
+def get_validated_account_info(account):
+    """mt5.account_info() pour le compte demandé, mais en vérifiant que la lecture est
+    fiable avant de la renvoyer -- retourne None si elle ne l'est jamais devenue.
+
+    Deux garanties, PAS une simple lecture brute :
+      1. info.login correspond bien au compte demandé (terminal partagé entre tous
+         les comptes de la flotte copytrade -- constaté le 06/08 : mt5.initialize()
+         peut retourner True sans avoir réellement basculé de compte).
+      2. Les données ne sont pas un objet "placeholder" -- balance=equity=0.0 --
+         renvoyé juste après une bascule/connexion, le temps que le terminal
+         synchronise réellement le compte (constaté le 12/08 puis de nouveau le
+         16/08 : probable collision entre app.py et monitor.py interrogeant le même
+         terminal partagé au même moment). Sans ce contrôle, check_drawdown()
+         calculait un drawdown proche de 100% sur une équité fantôme et mettait le
+         compte en pause automatique à tort -- y compris un WEEK-END, marchés
+         fermés, où une vraie variation d'équité de cette ampleur est impossible.
+
+    Utilisée par connect() ET par tout appelant qui a besoin d'une lecture fraîche
+    a posteriori (check_drawdown, check_drawdown_warning) -- une bascule réussie ne
+    garantit pas qu'un account_info() ultérieur, quelques instants plus tard, ne
+    retombera pas sur la même lecture fantôme."""
+    info = mt5.account_info()
+    for _ in range(10):
+        if info is not None and info.login == account.login and (info.balance != 0 or info.equity != 0):
+            return info
+        time.sleep(0.2)
+        info = mt5.account_info()
+    return None
+
+
 def connect(account):
     """Connecte le terminal MT5 local au compte donné. Retourne True/False.
 
-    Vérifie explicitement, après coup, que le compte réellement actif (account_info().login)
-    correspond bien à celui demandé -- constaté empiriquement le 2026-08-06 : quand le
-    terminal est déjà connecté à un autre compte (partagé entre tous les comptes de la
-    flotte copytrade), mt5.initialize(login=..., server=...) peut retourner True sans
-    avoir réellement basculé de compte, laissant silencieusement la session précédente
-    active. Sans cette vérification, la flotte à plusieurs comptes pourrait exécuter un
-    ordre en croyant être sur un compte alors qu'elle est restée sur un autre (doublon,
-    mauvaise taille de position calculée sur le mauvais capital initial). Si le premier
-    essai n'a pas basculé, on force un mt5.login() explicite avant d'abandonner."""
+    Vérifie explicitement, après coup, que le compte réellement actif correspond bien
+    à celui demandé ET que ses données sont fiables (cf. get_validated_account_info)
+    avant de rendre la main -- sans quoi la flotte à plusieurs comptes pourrait
+    exécuter un ordre en croyant être sur un compte alors qu'elle est restée sur un
+    autre (doublon, mauvaise taille de position calculée sur le mauvais capital
+    initial). Si le premier essai n'a pas basculé, on force un mt5.login() explicite
+    avant d'abandonner."""
     if not mt5.initialize(login=account.login, password=account.password, server=account.server):
         print(f"[MT5] Échec de connexion au compte {account.account_id} : {mt5.last_error()}")
         return False
 
-    info = mt5.account_info()
-    if info is None or info.login != account.login:
-        if not mt5.login(login=account.login, password=account.password, server=account.server):
-            print(f"[MT5] Échec de bascule vers le compte {account.account_id} : {mt5.last_error()}")
-            return False
-        info = mt5.account_info()
-        if info is None or info.login != account.login:
-            actual = info.login if info else None
-            print(f"[MT5] Échec de bascule vers le compte {account.account_id} : "
-                  f"compte actif resté {actual} après tentative de connexion.")
-            return False
+    if get_validated_account_info(account) is not None:
+        return True
 
-    # Constaté le 12/08 : même login correct, account_info() peut renvoyer un objet
-    # "placeholder" juste après la bascule -- balance=equity=0.0 -- le temps que le
-    # terminal synchronise réellement le compte (probable collision avec app.py et
-    # monitor.py interrogeant le même terminal partagé au même moment). Sans ce
-    # contrôle, check_drawdown() calculait un drawdown de 100.85% sur une équité
-    # fantôme et mettait compte_blueberry en pause automatique à tort. On attend
-    # donc une lecture non dégénérée avant de rendre la main, jusqu'à ~2s.
-    for _ in range(10):
-        if info.balance != 0 or info.equity != 0:
-            return True
-        time.sleep(0.2)
-        info = mt5.account_info()
-        if info is None or info.login != account.login:
-            print(f"[MT5] Compte {account.account_id} déconnecté pendant la vérification "
-                  f"de fraîcheur des données.")
-            return False
+    if not mt5.login(login=account.login, password=account.password, server=account.server):
+        print(f"[MT5] Échec de bascule vers le compte {account.account_id} : {mt5.last_error()}")
+        return False
 
-    print(f"[MT5] Données de compte toujours à zéro pour {account.account_id} après "
-          f"connexion (balance=equity=0) : connexion considérée en échec par précaution.")
+    if get_validated_account_info(account) is not None:
+        return True
+
+    actual = mt5.account_info().login if mt5.account_info() else None
+    print(f"[MT5] Échec de bascule vers le compte {account.account_id} : "
+          f"compte actif resté {actual} (ou données jamais fiabilisées) après tentative de connexion.")
     return False
 
 
@@ -432,7 +442,7 @@ def check_drawdown(account):
     Retourne (drawdown_pct, just_paused). Ne déclenche aucune alerte ici : ce module
     reste un client MT5 pur, sans dépendance à Telegram — c'est à l'appelant (app.py)
     de notifier si just_paused est True."""
-    info = mt5.account_info()
+    info = get_validated_account_info(account)
     if info is None:
         return None, False
 
@@ -467,7 +477,7 @@ def check_drawdown_warning(account):
     signal informatif appelé depuis monitor.py, pas un contrôle de risque dur (déjà
     couvert par check_drawdown()/is_account_paused()).
     Retourne (drawdown_pct, should_warn)."""
-    info = mt5.account_info()
+    info = get_validated_account_info(account)
     if info is None:
         return None, False
 
