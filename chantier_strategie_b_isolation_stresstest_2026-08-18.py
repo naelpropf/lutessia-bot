@@ -1,0 +1,896 @@
+"""
+Correctif risque Instant (2026-08-17) -- decouverte : Instant Elite/Lite ne
+beneficient PAS de l'exemption Prime, ils sont soumis a un risque plafonne a
+1,5%/trade calcule sur la taille INITIALE du compte (fixe). Seul Prime en
+est exempte.
+
+Verifie par citation de code (engine_multiformat.py:314-330,
+chantier_cascade_combined_bb_switch_any_rr_2026-08-16.py:445-453) : AUCUN
+mecanisme de cap par format n'existe dans le moteur -- `format_def()`
+(engine_multiformat.py:46-55) n'a aucun champ risque-par-trade, et le risque
+applique a un compte Blueberry Instant funded est le FLEET_RISK global
+(1,90%, ligne 55 de la reference), IDENTIQUE a Prime, potentiellement
+multiplie par le mecanisme DD-distance V2 (b_reduction=0.5 si proche DD,
+JAMAIS un cap absolu). 1,90% > 1,5% -- le moteur autorise donc actuellement
+PLUS de risque par trade sur Instant que ce que la vraie contrainte permet.
+
+Ce script corrige : clamp r=min(r, BB_INSTANT_RISK_CAP) specifiquement pour
+les trades Blueberry en format Instant (Elite/Lite), APRES tout autre
+multiplicateur (DD-distance V2 inclus). Palier ne scale jamais dans ce
+moteur (verifie -- aucune assignation `acc["palier"] = ... > acc["palier"]`
+existante), donc "calcule sur la taille initiale, fixe" est automatiquement
+satisfait par construction : capper `r` suffit, pas besoin de tracker une
+taille initiale separee.
+
+Copie figee de chantier_cascade_combined_bb_switch_any_rr_2026-08-16.py
+(script backant la reference officielle S1.8), SEUL le clamp de risque
+Instant ajoute (marque <<< CORRECTIF RISQUE INSTANT), rien d'autre change --
+comparaison directe REF / COMBINE-original(risque non corrige) /
+COMBINE-corrige, meme script/seed, n=300 d'abord (screening avant tout
+n=600).
+"""
+import random
+import sys
+import time
+
+import numpy as np
+import pandas as pd
+
+import robustness_5ers_risk_challenge as eng
+from point_liquidity_rules import CORR_TH, DAY_SECONDS
+from trailing_payoff_population import build_population_with_trailing
+from monte_carlo_simulation import precompute_correlation_pairs
+from real_cash_risk_year1_block_bootstrap import build_blocks, DAYS_PER_MONTH
+from reference_metrics_final import build_full_block_bootstrap_sequence
+from split_tax_model import compute_is, handle_tax_payment, IS_THRESHOLD_ACOMPTE, Q_OFFSETS_DAYS, \
+    SOLDE_OFFSET_DAYS, ACOMPTE_FRACTION
+from corrected_scaling_mechanism import BASE_PALIER
+
+from engine_multiformat import FORMATS, make_acc_mf, process_trade_mf, _current_phase
+import etape_e_fleet_integration as ei
+
+YEAR_SECONDS = 365.25 * DAY_SECONDS
+MONTH_SECONDS = DAYS_PER_MONTH * DAY_SECONDS
+SIX_MONTHS_SECONDS = 6 * MONTH_SECONDS
+FIRMS = ("Blueberry", "FTMO", "Fivers", "GFT", "FundedNext")
+
+HYSTERESIS = 0.10
+FTMO_DISCOUNT_FACTOR = 0.90
+GOAT_GUARD_SPLIT_DAYS = 30
+GOAT_GUARD_SPLIT_FLAT = 0.50
+PAYOUT_CYCLE_FIRMS = ("Blueberry", "GFT", "Fivers")
+PAYOUT_CYCLE_DAYS_FIRST = {"Blueberry": 14, "GFT": 3, "Fivers": 14}
+PAYOUT_CYCLE_DAYS_SUBSEQUENT = {"Blueberry": 14, "GFT": 1.5, "Fivers": 14}
+
+BB_CLASSIC_KEY = "Blueberry_Prime2Step"
+BB_INSTANT_KEY = "Blueberry_InstantElite"
+MIN_RR_NEW, CORR_TH_NEW = 1.35, 0.80
+EVAL_RISK, FLEET_RISK, GFT_EVAL_RISK = 1.25, 1.90, 1.75
+
+# <<< CORRECTIF RISQUE INSTANT : cap reel decouvert, PAS applique jusqu'ici
+# (aucun champ risque-par-trade dans format_def(), verifie). Formats Instant
+# concernes = Elite/Lite (Prime exempte). Seul Elite est utilise en S1.8.
+BB_INSTANT_RISK_CAP = 1.5
+BB_INSTANT_FORMAT_KEYS = {"Blueberry_InstantElite", "Blueberry_InstantLite"}
+
+# <<< CHANTIER GROUPE (correction post-mesure) : Run F (etape_ar_run_f_rr135_
+# corr080_2026-08-12.py) applique Blueberry 7j + surcharge 20% UNIQUEMENT a
+# 3000$ (decision #16, registre_parametres_projet.md S1.8) -- absent du
+# moteur herite de chantier_position_cap_2026-08-15.py (14j partout), ce qui
+# aurait produit un REF@3000$/5000$ ~0,9% sous la vraie reference officielle.
+# Applique ICI uniquement au format CLASSIQUE (Instant Elite n'a aucune
+# source documentant un equivalent 7j, cf. chantier_blueberry_switch_2026-
+# 08-15.py). 5000$ n'a jamais fait partie de la decision #16 (seul 3000$
+# y figure) -- reste a 14j par defaut, pas d'extension non verifiee.
+BB_PAYOUT_ADDON_MULT = 1.20
+BB_PAYOUT_7J_CEILINGS = {3000.0}
+
+
+def price_for_bb(fmt_key, palier, ceiling):
+    price = ei.price_for(fmt_key, palier)
+    bb_7j_active = (fmt_key == BB_CLASSIC_KEY and ceiling in BB_PAYOUT_7J_CEILINGS)
+    return price * BB_PAYOUT_ADDON_MULT if bb_7j_active else price
+
+
+def bb_payout_days(fmt_key, ceiling, first_payout_done):
+    if fmt_key == BB_CLASSIC_KEY and ceiling in BB_PAYOUT_7J_CEILINGS:
+        return 7
+    table = PAYOUT_CYCLE_DAYS_SUBSEQUENT if first_payout_done else PAYOUT_CYCLE_DAYS_FIRST
+    return table["Blueberry"]
+
+
+def payout_cycle_days(gname, first_payout_done):
+    table = PAYOUT_CYCLE_DAYS_SUBSEQUENT if first_payout_done else PAYOUT_CYCLE_DAYS_FIRST
+    return table[gname]
+
+
+# ============================================================
+# <<< CHANTIER GROUPE : any-RR (identique a chantier_correlation_swap_2026-08-16.py)
+# ============================================================
+
+def build_flexible_population_with_rr(pop, target_winrate, rr_stress_factor, use_slippage, rng):
+    trades, slot_arrivals = eng.build_flexible_population(pop, target_winrate, rr_stress_factor, use_slippage, rng)
+    sub = pop.sort_values("date_creation").reset_index(drop=True)
+    assert len(sub) == len(trades), "desynchronisation build_flexible_population_with_rr"
+    for t, rr1, rr2 in zip(trades, sub["rr_tp1"], sub["rr_tp2"]):
+        t["rr_tp1"] = float(rr1)
+        t["rr_tp2"] = float(rr2)
+    return trades, slot_arrivals
+
+
+def make_size_func_tail(mult, threshold=8.0):
+    # <<< S2.35 (rr_tp2 sizing, manquant du script S1.8 seul -- "stack actuel
+    # complet" demande explicitement S1.8+S2.35)
+    def f(rr_tp2):
+        return mult if rr_tp2 >= threshold else 1.0
+    return f
+
+
+def process_trade_corr_swap_rr(acc, trade, now, fmt, state, risk_pct, market_data, excluded_map,
+                                split_flat=0.80, reserve_share=0.95, cost_override=None, routing_field="rr_tp2"):
+    """<<< CHANTIER GROUPE : identique a process_trade_corr_swap_rr (criterion='rr')
+    de chantier_correlation_swap_2026-08-16.py, routing_field parametrable (rr_tp2
+    depuis S2.35, au lieu de rr_tp1 seul comme dans le script S1.8 d'origine)."""
+    if not acc["active"]:
+        return False
+
+    acc["open_positions"] = [(t, c) for (t, c) in acc["open_positions"] if c > now]
+    acc["_open_meta_rr"] = [m for m in acc.get("_open_meta_rr", []) if m["close_time"] > now]
+
+    new_ticker = trade["ticker"]
+    new_rr = trade[routing_field]
+    at_cap = len(acc["open_positions"]) >= eng.MAX_POSITIONS
+    evicted_this_call = False
+    if not at_cap:
+        conflicts = [m for m in acc["_open_meta_rr"] if m["ticker"] in excluded_map[new_ticker]]
+        if len(conflicts) == 1:
+            occ = conflicts[0]
+            if new_rr > occ["rr"]:
+                acc["open_positions"] = [p for p in acc["open_positions"]
+                                          if not (p[0] == occ["ticker"] and p[1] == occ["close_time"])]
+                acc["_open_meta_rr"] = [m for m in acc["_open_meta_rr"] if m is not occ]
+                state["corr_swap_evictions"] = state.get("corr_swap_evictions", 0) + 1
+                evicted_this_call = True
+
+    n_before = len(acc["open_positions"])
+    result = process_trade_mf(acc, trade, now, fmt, state, risk_pct, market_data, excluded_map,
+                               split_flat=split_flat, reserve_share=reserve_share, cost_override=cost_override)
+    if len(acc["open_positions"]) > n_before:
+        new_t, new_c = acc["open_positions"][-1]
+        acc.setdefault("_open_meta_rr", []).append({"ticker": new_t, "close_time": new_c, "rr": new_rr})
+        if evicted_this_call:
+            state["corr_swap_admits"] = state.get("corr_swap_admits", 0) + 1
+    return result
+
+
+# ============================================================
+# Moteur de flotte complet (copie chantier_blueberry_switch_2026-08-15.py)
+# ============================================================
+
+def run_one(trades, slot_arrivals, market_data, excluded_map, order, ceiling, seq_grouped, format_by_firm,
+            emergency_capital, eval_risk, fleet_risk, gft_eval_risk, reserve_share, extra_threshold_mult,
+            b_entry_frac=None, b_reduction=None, pre_unlock_only=False,
+            ftmo_discount=False, gft_goat_guard=False, payout_cycle=False,
+            bb_threshold=float("inf"), use_any_rr=False, apply_instant_risk_cap=False,
+            size_func=None, routing_field="rr_tp2"):
+    fmt_by_firm = {g: FORMATS[k] for g, k in format_by_firm.items()}
+
+    def bb_choose_fmt_key():
+        return BB_INSTANT_KEY if state["reserve"] >= bb_threshold else BB_CLASSIC_KEY
+
+    def base_palier_cost(gname):
+        if gname == "FundedNext":
+            fmt_key = format_by_firm["FundedNext"]
+            return ei.FUNDEDNEXT_PALIER, ei.price_for(fmt_key, ei.FUNDEDNEXT_PALIER)
+        if gname == "Fivers":
+            fmt_key = format_by_firm["Fivers"]
+            palier = ei.FIVERS_PALIER[fmt_key]
+            return palier, ei.price_for(fmt_key, palier)
+        palier = BASE_PALIER[gname]
+        return palier, ei.price_for(format_by_firm[gname], palier)
+
+    accounts_by_group = {}
+    active0_cost = 0.0
+    state = {"reserve": 0.0}
+    for gname in FIRMS:
+        is_day0 = (gname == ei.STARTER)
+        if gname == "Blueberry":
+            fmt_key = bb_choose_fmt_key() if is_day0 else BB_CLASSIC_KEY
+            fmt = FORMATS[fmt_key]
+            palier = BASE_PALIER["Blueberry"]
+            cost = price_for_bb(fmt_key, palier, ceiling)
+        else:
+            fmt_key = format_by_firm[gname]
+            palier, cost = base_palier_cost(gname)
+            fmt = fmt_by_firm[gname]
+        accs = [make_acc_mf(fmt, palier, cost=cost, active=is_day0) for _ in range(ei.N_ACCOUNTS_DAY0[gname])]
+        for a in accs:
+            a["_gname"] = gname
+            a["_fmt_key"] = fmt_key
+            a["base_palier"] = palier
+            a["base_cost"] = cost
+            a["_reset_used"] = False
+            a["last_open_time"] = 0.0 if is_day0 else None
+            a["_dd_reduced"] = False
+            a["_dd_oscillations"] = 0
+            a["_gg_triggered_count"] = 0
+            a["_gg_split_until"] = None
+            a["pending_payout"] = 0.0
+            a["last_payout_time"] = 0.0 if is_day0 else None
+            a["_first_payout_done"] = False
+        accounts_by_group[gname] = accs
+        if is_day0:
+            active0_cost += sum(a["cost"] for a in accs)
+
+    fleet_unlocked = False
+    _init_own_funded = {g for g in ("Blueberry",) if not FORMATS[accounts_by_group[g][0]["_fmt_key"]]["phases"]}
+    state.update({"ever_funded": False, "real_cash_paid": active0_cost, "total_breaks": 0,
+             "group_funded_count": len(_init_own_funded), "group_own_funded": set(_init_own_funded),
+             "hit_ceiling": False, "emergency_remaining": emergency_capital, "is_paid_cum": 0.0,
+             "extra_accounts_opened": {g: 0 for g in ei.GROWTH_FIRMS_EXTRA},
+             "tax_breach_count": 0, "tax_breach_total": 0.0, "tax_breach_max": 0.0,
+             "tax_breach_concurrent_with_repurchase": 0, "tax_breach_events": [], "_now": 0.0,
+             "total_opens": sum(1 for accs in accounts_by_group.values() for a in accs if a["last_open_time"] == 0.0),
+             "breaks_within_30d": 0, "breaks_within_60d": 0, "blueberry_resets_used": 0,
+             "dd_reduced_obs": 0, "dd_total_obs": 0, "funding_delays": [], "gft_soft_breaches": 0,
+             "forfeited_pre": {g: 0.0 for g in PAYOUT_CYCLE_FIRMS}, "forfeited_post": {g: 0.0 for g in PAYOUT_CYCLE_FIRMS},
+             "forfeit_events_pre": {g: 0 for g in PAYOUT_CYCLE_FIRMS}, "forfeit_events_post": {g: 0 for g in PAYOUT_CYCLE_FIRMS},
+             "bb_instant_opens": 0, "bb_classic_opens": 0,
+             "corr_swap_evictions": 0, "corr_swap_admits": 0,
+             "instant_trades_total": 0, "instant_risk_capped_trades": 0})
+    pending_group_trigger = [(names, trig, thresh, final) for names, trig, thresh, final in seq_grouped if trig != "day0"]
+    pending_reopen = []
+    pending_group_open = []
+
+    def mark_group_funded_if_needed(gname):
+        if gname not in state["group_own_funded"]:
+            state["group_own_funded"].add(gname)
+            state["group_funded_count"] += 1
+
+    def combined_net():
+        return sum(a["total_funded_pnl"] - a["total_fees_paid"] for accs in accounts_by_group.values() for a in accs)
+
+    def n_active_accounts():
+        return sum(1 for accs in accounts_by_group.values() for a in accs if a["active"])
+
+    def downgrade_active():
+        return not fleet_unlocked
+
+    def handle_cost_hybrid(cost, pending_list, pending_key, on_success):
+        if state["reserve"] >= cost:
+            state["reserve"] -= cost
+            on_success()
+            return
+        shortfall = cost - state["reserve"]
+        state["reserve"] = 0.0
+        room = max(0.0, ceiling - state["real_cash_paid"])
+        if shortfall <= room:
+            state["real_cash_paid"] += shortfall
+            on_success()
+        else:
+            paid_now = room
+            remaining = shortfall - paid_now
+            state["real_cash_paid"] += paid_now
+            state["hit_ceiling"] = True
+            pending_list.append({"key": pending_key, "cost_remaining": remaining, "on_success": on_success})
+
+    def process_pending(pending_list):
+        i = 0
+        while i < len(pending_list):
+            item = pending_list[i]
+            if state["reserve"] >= item["cost_remaining"]:
+                state["reserve"] -= item["cost_remaining"]
+                item["on_success"]()
+                pending_list.pop(i)
+            else:
+                i += 1
+
+    def reopen_account(acc, cost, fmt, skip_to_funded=False):
+        acc["active"] = True
+        acc["total_fees_paid"] += cost
+        acc["cost"] = cost
+        acc["phase"] = "funded" if (skip_to_funded or not fmt["phases"]) else "challenge"
+        acc["phase_index"] = 0
+        acc["cumulative_since_reset"] = 0.0
+        acc["peak_since_reset"] = 0.0
+        acc["trading_days_since_reset"] = set()
+        acc["daily_pnl"] = {}
+        acc["locked_peak"] = None
+        acc["eod_peak"] = 0.0
+        acc["last_day_seen"] = None
+        acc["last_open_time"] = state["_now"]
+        acc["_dd_reduced"] = False
+        acc["_gg_triggered_count"] = 0
+        acc["_gg_split_until"] = None
+        acc["pending_payout"] = 0.0
+        acc["last_payout_time"] = state["_now"]
+        acc["_first_payout_done"] = False
+        state["total_opens"] += 1
+        if downgrade_active() and acc.get("_gname") == ei.STARTER and acc.get("_fmt_key") == BB_CLASSIC_KEY:
+            acc["palier"] = acc["base_palier"]
+
+    def open_group(gname, is_final):
+        for a in accounts_by_group[gname]:
+            a["active"] = True
+            a["total_fees_paid"] = a["cost"]
+            a["last_open_time"] = state["_now"]
+            a["_dd_reduced"] = False
+            a["_gg_triggered_count"] = 0
+            a["_gg_split_until"] = None
+            a["pending_payout"] = 0.0
+            a["last_payout_time"] = state["_now"]
+            a["_first_payout_done"] = False
+            state["total_opens"] += 1
+        if not fmt_by_firm[gname]["phases"]:
+            mark_group_funded_if_needed(gname)
+
+    def try_emergency_bootstrap():
+        if n_active_accounts() != 0 or emergency_capital <= 0 or state["emergency_remaining"] <= 0:
+            return
+        bb_acc = accounts_by_group[ei.STARTER][0]
+        cost = bb_acc["base_cost"] if downgrade_active() else bb_acc["cost"]
+        if state["emergency_remaining"] >= cost:
+            state["emergency_remaining"] -= cost
+            reopen_account(bb_acc, cost, FORMATS[bb_acc["_fmt_key"]])
+            pending_reopen[:] = [p for p in pending_reopen if p["key"] != id(bb_acc)]
+
+    def process_extra_account(now):
+        if not fleet_unlocked:
+            return
+        for gname in ei.GROWTH_FIRMS_EXTRA:
+            accs = accounts_by_group[gname]
+            max_acc = ei.FIRM_MAX_ACCOUNTS.get(gname)
+            if max_acc is not None and len(accs) >= max_acc:
+                continue
+            unit_palier = BASE_PALIER[gname] * ei.EXTRA_ACCOUNT_MULT
+            current_capital = sum(a["palier"] for a in accs)
+            if current_capital + unit_palier > ei.FIRM_CAPITAL_CAP[gname]:
+                continue
+            if gname == "Blueberry":
+                extra_fmt_key = bb_choose_fmt_key()
+                extra_fmt = FORMATS[extra_fmt_key]
+                extra_cost = price_for_bb(extra_fmt_key, unit_palier, ceiling)
+            else:
+                extra_fmt_key = format_by_firm[gname]
+                extra_fmt = fmt_by_firm[gname]
+                extra_cost = ei.price_for(extra_fmt_key, unit_palier)
+            if state["reserve"] >= extra_threshold_mult * extra_cost:
+                state["reserve"] -= extra_cost
+                new_acc = make_acc_mf(extra_fmt, unit_palier, cost=extra_cost, active=True)
+                new_acc["total_fees_paid"] = extra_cost
+                new_acc["_gname"] = gname
+                new_acc["_fmt_key"] = extra_fmt_key
+                new_acc["base_palier"] = unit_palier
+                new_acc["base_cost"] = extra_cost
+                new_acc["_reset_used"] = False
+                new_acc["last_open_time"] = now
+                new_acc["_dd_reduced"] = False
+                new_acc["_dd_oscillations"] = 0
+                new_acc["_gg_triggered_count"] = 0
+                new_acc["_gg_split_until"] = None
+                new_acc["pending_payout"] = 0.0
+                new_acc["last_payout_time"] = now
+                new_acc["_first_payout_done"] = False
+                accs.append(new_acc)
+                state["extra_accounts_opened"][gname] += 1
+                state["total_opens"] += 1
+                if gname == "Blueberry":
+                    if extra_fmt_key == BB_INSTANT_KEY:
+                        state["bb_instant_opens"] += 1
+                    else:
+                        state["bb_classic_opens"] += 1
+
+    def structure_complete():
+        for g in FIRMS:
+            if not accounts_by_group[g][0]["active"]:
+                return False
+        return True
+
+    def effective_risk(acc, pdef, base_r):
+        if b_entry_frac is None:
+            return base_r
+        if pre_unlock_only and fleet_unlocked:
+            return base_r
+        dd_max = pdef["dd_max_pct"]
+        if dd_max is None:
+            return base_r
+        distance = dd_distance_pct(acc, pdef)
+        frac = distance / dd_max if dd_max > 0 else 1.0
+        state["dd_total_obs"] += 1
+        was_reduced = acc["_dd_reduced"]
+        if not was_reduced and frac <= b_entry_frac:
+            acc["_dd_reduced"] = True
+            acc["_dd_oscillations"] += 1
+        elif was_reduced and frac >= b_entry_frac + HYSTERESIS:
+            acc["_dd_reduced"] = False
+        mult = b_reduction if acc["_dd_reduced"] else 1.0
+        if mult < 1.0:
+            state["dd_reduced_obs"] += 1
+        return base_r * mult
+
+    def dd_distance_pct(acc, pdef):
+        if pdef["dd_max_pct"] is None:
+            return float("inf")
+        if pdef["dd_max_mode"] == "static":
+            current_dd = max(0.0, -acc["cumulative_since_reset"])
+        elif pdef["dd_max_mode"] == "trailing_peak":
+            ref = acc["locked_peak"] if acc["locked_peak"] is not None else acc["peak_since_reset"]
+            current_dd = max(0.0, ref - acc["cumulative_since_reset"])
+        else:
+            current_dd = max(0.0, acc["eod_peak"] - acc["cumulative_since_reset"])
+        return max(0.0, pdef["dd_max_pct"] - current_dd / acc["palier"] * 100)
+
+    fy_start_net = {0: 0.0}
+    acomptes_paid_by_year = {}
+    next_fy_to_close = 0
+    tax_events = []
+
+    def close_fiscal_year(y):
+        profit_y = combined_net() - fy_start_net.get(y, 0.0)
+        is_y = compute_is(profit_y)
+        fy_start_net[y + 1] = combined_net()
+        acomptes_y = acomptes_paid_by_year.get(y, 0.0)
+        solde = max(0.0, is_y - acomptes_y)
+        solde_time = (y + 1) * YEAR_SECONDS + SOLDE_OFFSET_DAYS * DAY_SECONDS
+        tax_events.append((solde_time, solde))
+        if is_y > IS_THRESHOLD_ACOMPTE:
+            for q_off in Q_OFFSETS_DAYS:
+                t_acompte = (y + 1) * YEAR_SECONDS + q_off * DAY_SECONDS
+                amt = ACOMPTE_FRACTION * is_y
+                tax_events.append((t_acompte, amt))
+                acomptes_paid_by_year[y + 1] = acomptes_paid_by_year.get(y + 1, 0.0) + amt
+        tax_events.sort(key=lambda e: e[0])
+
+    full_structure_month = None
+    year1_net_split = None
+    reserve_min_6mo = float("inf")
+
+    for slot_idx, trade_idx in enumerate(order):
+        trade = trades[trade_idx]
+        now = slot_arrivals[slot_idx]
+        state["_now"] = now
+
+        if now <= SIX_MONTHS_SECONDS:
+            reserve_min_6mo = min(reserve_min_6mo, state["reserve"])
+
+        if year1_net_split is None and now >= YEAR_SECONDS:
+            year1_net_split = combined_net()
+
+        while (next_fy_to_close + 1) * YEAR_SECONDS <= now:
+            close_fiscal_year(next_fy_to_close)
+            next_fy_to_close += 1
+
+        i = 0
+        while i < len(tax_events):
+            t_ev, amt = tax_events[i]
+            if t_ev > now:
+                i += 1
+                continue
+            tax_events.pop(i)
+            handle_tax_payment(amt, state, ceiling, now, pending_reopen, pending_group_open)
+            state["is_paid_cum"] += amt
+
+        for gname, accs in list(accounts_by_group.items()):
+            base_risk = gft_eval_risk if gname == "GFT" else eval_risk
+            use_payout_cycle = payout_cycle and gname in PAYOUT_CYCLE_FIRMS
+            for acc in list(accs):
+                if not acc["active"]:
+                    continue
+                fmt = FORMATS[acc["_fmt_key"]]
+                base_r = fleet_risk if acc["phase"] == "funded" else base_risk
+                pdef = _current_phase(fmt, acc)
+                r = effective_risk(acc, pdef, base_r)
+                # <<< S2.35 : sizing rr_tp2, applique AVANT le cap risque Instant
+                # (le cap est la contrainte finale absolue, apres tout boost)
+                if size_func is not None:
+                    r = r * size_func(trade["rr_tp2"])
+                # <<< CORRECTIF RISQUE INSTANT : cap 1,5%/trade reel, applique
+                # APRES tout multiplicateur (DD-distance V2 + sizing rr_tp2 inclus).
+                # Palier ne scale jamais dans ce moteur -> "taille initiale fixe"
+                # deja satisfait par construction, capper r suffit.
+                if gname == "Blueberry" and acc["_fmt_key"] in BB_INSTANT_FORMAT_KEYS:
+                    state["instant_trades_total"] += 1
+                    if apply_instant_risk_cap and r > BB_INSTANT_RISK_CAP:
+                        r = BB_INSTANT_RISK_CAP
+                        state["instant_risk_capped_trades"] += 1
+                was_challenge = acc["active"] and acc["phase"] == "challenge"
+                was_funded = acc["active"] and acc["phase"] == "funded"
+                phase_before, idx_before = acc["phase"], acc["phase_index"]
+                split_this = GOAT_GUARD_SPLIT_FLAT if (gft_goat_guard and gname == "GFT"
+                                                        and acc["_gg_split_until"] is not None
+                                                        and now < acc["_gg_split_until"]) else 0.80
+
+                funded_pnl_before = acc["total_funded_pnl"] if was_funded else None
+                # <<< CHANTIER GROUPE : dispatch any-RR par-dessus le format par-compte
+                if use_any_rr:
+                    just_funded = process_trade_corr_swap_rr(acc, trade, now, fmt, state, r, market_data,
+                                                              excluded_map, split_flat=split_this,
+                                                              reserve_share=reserve_share, cost_override=0.0,
+                                                              routing_field=routing_field)
+                else:
+                    just_funded = process_trade_mf(acc, trade, now, fmt, state, r, market_data, excluded_map,
+                                                    split_flat=split_this, reserve_share=reserve_share,
+                                                    cost_override=0.0)
+
+                if use_payout_cycle and was_funded:
+                    delta = acc["total_funded_pnl"] - funded_pnl_before
+                    if delta > 0:
+                        acc["total_funded_pnl"] -= delta
+                        state["reserve"] -= delta * reserve_share
+                        acc["pending_payout"] += delta
+
+                if just_funded and acc["last_open_time"] is not None:
+                    state["funding_delays"].append((now - acc["last_open_time"]) / 86400.0)
+
+                if use_payout_cycle and acc["active"] and acc["last_payout_time"] is not None \
+                        and now - acc["last_payout_time"] >= (bb_payout_days(acc["_fmt_key"], ceiling, acc["_first_payout_done"])
+                                                                if gname == "Blueberry" else
+                                                                payout_cycle_days(gname, acc["_first_payout_done"])) * 86400:
+                    acc["total_funded_pnl"] += acc["pending_payout"]
+                    if acc["pending_payout"] > 0:
+                        state["reserve"] += acc["pending_payout"] * reserve_share
+                    acc["pending_payout"] = 0.0
+                    acc["last_payout_time"] = now
+                    acc["_first_payout_done"] = True
+
+                progressed = (fmt["phases"] and (
+                    (acc["phase"] == "challenge" and acc["phase_index"] == idx_before + 1) or
+                    (acc["phase"] == "funded" and phase_before == "challenge")))
+                reset_happened = (acc["cumulative_since_reset"] == 0.0 and acc["peak_since_reset"] == 0.0
+                                  and len(acc["trading_days_since_reset"]) == 0)
+                broke = reset_happened and not progressed
+
+                use_goat_guard = (broke and gft_goat_guard and gname == "GFT" and was_funded
+                                  and acc["_gg_triggered_count"] < 1)
+                if use_goat_guard:
+                    acc["_gg_triggered_count"] += 1
+                    acc["_gg_split_until"] = now + GOAT_GUARD_SPLIT_DAYS * 86400
+                    acc["phase"] = "funded"
+                    state["gft_soft_breaches"] += 1
+                elif broke:
+                    state["total_breaks"] += 1
+                    if use_payout_cycle and acc["pending_payout"] != 0.0:
+                        forfeited = max(0.0, acc["pending_payout"])
+                        bucket = state["forfeited_post"] if fleet_unlocked else state["forfeited_pre"]
+                        events = state["forfeit_events_post"] if fleet_unlocked else state["forfeit_events_pre"]
+                        if forfeited > 0:
+                            bucket[gname] += forfeited
+                            events[gname] += 1
+                        acc["pending_payout"] = 0.0
+                    t_since_open = now - acc["last_open_time"] if acc["last_open_time"] is not None else None
+                    if t_since_open is not None:
+                        if t_since_open <= 30 * 86400:
+                            state["breaks_within_30d"] += 1
+                        if t_since_open <= 60 * 86400:
+                            state["breaks_within_60d"] += 1
+                    use_bb_reset = (gname == "Blueberry" and was_funded and not acc["_reset_used"]
+                                     and acc["_fmt_key"] == BB_CLASSIC_KEY)
+                    if use_bb_reset:
+                        cost = 2.0 * acc["base_cost"]
+                        acc["active"] = False
+                        acc["_reset_used"] = True
+                        state["blueberry_resets_used"] += 1
+                        handle_cost_hybrid(cost, pending_reopen, id(acc),
+                                            lambda a=acc, c=cost, f=fmt: reopen_account(a, c, f, skip_to_funded=True))
+                    else:
+                        if gname == "Blueberry":
+                            new_fmt_key = bb_choose_fmt_key()
+                            acc["_fmt_key"] = new_fmt_key
+                            new_fmt = FORMATS[new_fmt_key]
+                            palier_for_cost = acc["base_palier"] if downgrade_active() else acc["palier"]
+                            cost = price_for_bb(new_fmt_key, palier_for_cost, ceiling)
+                            if new_fmt_key == BB_INSTANT_KEY:
+                                state["bb_instant_opens"] += 1
+                            else:
+                                state["bb_classic_opens"] += 1
+                        elif downgrade_active() and gname == ei.STARTER:
+                            new_fmt = fmt
+                            cost = acc["base_cost"]
+                        else:
+                            new_fmt = fmt
+                            cost = ei.price_for(format_by_firm[gname], acc["palier"])
+                            if ftmo_discount and gname == "FTMO":
+                                cost *= FTMO_DISCOUNT_FACTOR
+                        acc["active"] = False
+                        handle_cost_hybrid(cost, pending_reopen, id(acc),
+                                            lambda a=acc, c=cost, f=new_fmt: reopen_account(a, c, f, skip_to_funded=False))
+                else:
+                    if was_challenge and just_funded and gname not in state["group_own_funded"]:
+                        state["group_own_funded"].add(gname)
+                        state["group_funded_count"] += 1
+
+        process_extra_account(now)
+        process_pending(pending_reopen)
+        process_pending(pending_group_open)
+        try_emergency_bootstrap()
+
+        still_pending = []
+        for group_names, trig, thresh, is_final in pending_group_trigger:
+            _, n_req = trig
+            if state["group_funded_count"] >= n_req and state["reserve"] >= thresh:
+                for gname in group_names:
+                    cost0 = sum(a["cost"] for a in accounts_by_group[gname])
+                    handle_cost_hybrid(cost0, pending_group_open, gname, lambda g=gname, f=is_final: open_group(g, f))
+                if is_final:
+                    fleet_unlocked = True
+            else:
+                still_pending.append((group_names, trig, thresh, is_final))
+        pending_group_trigger = still_pending
+
+        if full_structure_month is None and structure_complete():
+            full_structure_month = now / MONTH_SECONDS
+
+    if year1_net_split is None:
+        year1_net_split = combined_net()
+
+    pre = full_structure_month is None or full_structure_month > 12
+    result = {"final_net_split": combined_net(), "is_paid_cum": state["is_paid_cum"],
+              "year1_net_split": year1_net_split, "total_breaks": state["total_breaks"], "pre_deblocage": pre,
+              "total_opens": state["total_opens"], "breaks_within_30d": state["breaks_within_30d"],
+              "breaks_within_60d": state["breaks_within_60d"], "blueberry_resets_used": state["blueberry_resets_used"],
+              "reserve_min_6mo": reserve_min_6mo if reserve_min_6mo != float("inf") else 0.0,
+              "final_reserve": state["reserve"], "hit_ceiling": state["hit_ceiling"],
+              "bb_instant_opens": state["bb_instant_opens"], "bb_classic_opens": state["bb_classic_opens"],
+              "corr_swap_evictions": state["corr_swap_evictions"], "corr_swap_admits": state["corr_swap_admits"],
+              "instant_trades_total": state["instant_trades_total"],
+              "instant_risk_capped_trades": state["instant_risk_capped_trades"]}
+    for g in PAYOUT_CYCLE_FIRMS:
+        result[f"forfeited_pre_{g}"] = state["forfeited_pre"][g]
+        result[f"forfeited_post_{g}"] = state["forfeited_post"][g]
+        result[f"forfeit_events_pre_{g}"] = state["forfeit_events_pre"][g]
+        result[f"forfeit_events_post_{g}"] = state["forfeit_events_post"][g]
+    return result
+
+
+def run_propagated(pop, market_data, excluded_map, ceiling, seq_grouped, format_by_firm, emergency,
+                    eval_risk, fleet_risk, gft_eval_risk, reserve_share, extra_threshold_mult, n_sims, seed,
+                    b_entry_frac=None, b_reduction=None, pre_unlock_only=False,
+                    ftmo_discount=False, gft_goat_guard=False, payout_cycle=False,
+                    bb_threshold=float("inf"), use_any_rr=False, apply_instant_risk_cap=False,
+                    size_func=None, routing_field="rr_tp2"):
+    rng_wr = random.Random(seed)
+    rng_boot = random.Random(seed + 1)
+    rows = []
+    for _ in range(n_sims):
+        wr_draw = rng_wr.betavariate(ei.ALPHA_POST, ei.BETA_POST)
+        trades, slot_arrivals = build_flexible_population_with_rr(pop, wr_draw, 1.0, False, random.Random(rng_boot.random()))
+        block_seconds = 2 * 30 * DAY_SECONDS
+        blocks = build_blocks(trades, slot_arrivals, block_seconds)
+        target_duration = slot_arrivals[-1]
+        raw_trades, raw_slots = build_full_block_bootstrap_sequence(blocks, block_seconds, rng_boot, target_duration)
+        order = list(range(len(raw_trades)))
+        res = run_one(raw_trades, raw_slots, market_data, excluded_map, order, ceiling, seq_grouped, format_by_firm,
+                      emergency, eval_risk, fleet_risk, gft_eval_risk, reserve_share, extra_threshold_mult,
+                      b_entry_frac=b_entry_frac, b_reduction=b_reduction, pre_unlock_only=pre_unlock_only,
+                      ftmo_discount=ftmo_discount, gft_goat_guard=gft_goat_guard, payout_cycle=payout_cycle,
+                      bb_threshold=bb_threshold, use_any_rr=use_any_rr,
+                      apply_instant_risk_cap=apply_instant_risk_cap,
+                      size_func=size_func, routing_field=routing_field)
+        rows.append(res)
+    return pd.DataFrame(rows)
+
+
+def summarize(df, label, ceiling, bb_threshold, use_any_rr):
+    net = df["final_net_split"] - df["is_paid_cum"]
+    year1_neg = df["year1_net_split"] < 0
+    pre_mask = df["pre_deblocage"]
+    n_pre = (year1_neg & pre_mask).sum()
+    n_post = (year1_neg & ~pre_mask).sum()
+    solde_neg_mask = net < 0
+    hc_mask = df["hit_ceiling"]
+    instant_total = df["instant_trades_total"].sum()
+    instant_capped = df["instant_risk_capped_trades"].sum()
+    capped_frac = (instant_capped / instant_total * 100) if instant_total > 0 else float("nan")
+    return dict(config=label, ceiling=ceiling, bb_threshold=bb_threshold, use_any_rr=use_any_rr, n=len(df),
+                profit_moyen=net.mean(), profit_median=net.median(),
+                solde_negatif_annee4=solde_neg_mask.mean() * 100,
+                hit_ceiling_pct=hc_mask.mean() * 100,
+                annee1_neg=year1_neg.mean() * 100, annee1_neg_pre=n_pre / len(df) * 100,
+                annee1_neg_post=n_post / len(df) * 100,
+                bb_instant_opens_moy=df["bb_instant_opens"].mean(),
+                bb_classic_opens_moy=df["bb_classic_opens"].mean(),
+                corr_swap_admits_moy=df["corr_swap_admits"].mean(),
+                instant_trades_total=instant_total, instant_risk_capped_pct=capped_frac)
+
+
+def _stop_fn_fixed(param):
+    def fn(extreme, entry, risk_distance, atr):
+        is_long_direction = extreme >= entry
+        return extreme - param * risk_distance if is_long_direction else extreme + param * risk_distance
+    return fn
+
+
+INDEX_KEYWORDS = ["DAX40", "S&P500", "NASDAQ100"]
+CONTINUATION_CONFIRMED_CASES = {"tp1_avant_tp2", "meme_bougie"}
+
+
+def load_index_population_with_payoff():
+    """<<< TACHE (2026-08-18) : meme pipeline que chantier_strategie_b_gisement_
+    indices_2026-08-18.py -- indices mappables uniquement (DJ30 exclu, rr_tp1=NaN
+    dans la source), meme methode payoff (analyze_trade + realiste + trailing 0,15)."""
+    import datetime as dt
+    import tp_sequence_analysis as tpseq
+    from trailing_stop_variants import compute_atr, simulate_trailing
+
+    df = pd.read_csv("historique_lutessia_15k_force.csv")
+    df["date_creation"] = pd.to_datetime(df["date_creation"])
+    is_index = df["ticker"].str.contains("|".join(INDEX_KEYWORDS), case=False, na=False)
+    pop = df[is_index].copy()
+    pop = pop[pop["statut_final"].isin(["OBJECTIF ATTEINT", "INVALIDÉE"])].copy()
+    pop = pop.dropna(subset=["rr_tp1", "prix_entree", "stop_loss_init", "tp1_init", "tp2_init"]).copy()
+    pop["yahoo_symbol"] = pop["ticker"].apply(tpseq.ticker_to_yahoo_symbol)
+    pop = pop.dropna(subset=["yahoo_symbol"]).reset_index(drop=True)
+
+    unique_symbols = sorted(pop["yahoo_symbol"].unique())
+    start_dt = pop["date_creation"].min() - dt.timedelta(days=1)
+    end_dt = pd.Timestamp.utcnow().tz_localize(None)
+    candles_by_symbol = {}
+    for symbol in unique_symbols:
+        candles = tpseq.fetch_h1_history(symbol, start_dt.to_pydatetime(), end_dt.to_pydatetime())
+        if candles is not None and not candles.empty:
+            candles_by_symbol[symbol] = compute_atr(candles)
+
+    r_realiste, r_trailing, tp1_times, sl_times = [], [], [], []
+    for _, row in pop.iterrows():
+        candles = candles_by_symbol.get(row["yahoo_symbol"])
+        if candles is None:
+            val = -1.0 if row["statut_final"] != "OBJECTIF ATTEINT" else row["rr_tp1"]
+            r_realiste.append(val)
+            r_trailing.append(val)
+            tp1_times.append(None)
+            sl_times.append(None)
+            continue
+        res = tpseq.analyze_trade(row, candles)
+        case = res.get("case", "pas_de_donnees")
+        tp1_times.append(res.get("tp1_time"))
+        sl_times.append(res.get("sl_time"))
+        if row["statut_final"] != "OBJECTIF ATTEINT":
+            r_real = -1.0
+        elif case in CONTINUATION_CONFIRMED_CASES:
+            r_real = row["rr_tp2"]
+        else:
+            r_real = row["rr_tp1"]
+        r_realiste.append(r_real)
+        if row["statut_final"] == "OBJECTIF ATTEINT" and case in CONTINUATION_CONFIRMED_CASES:
+            sim = simulate_trailing(row, candles, _stop_fn_fixed(0.15), "fixed_0.15")
+            r_trailing.append(sim["exit_r"] if sim is not None else r_real)
+        else:
+            r_trailing.append(r_real)
+
+    pop = pop.copy()
+    pop["r_realiste"] = r_realiste
+    pop["r_trailing"] = r_trailing
+    pop["tp1_time"] = pd.to_datetime(pd.Series(tp1_times, index=pop.index))
+    pop["sl_time"] = pd.to_datetime(pd.Series(sl_times, index=pop.index))
+    pop["resolution_time"] = pop.apply(
+        lambda r: r["tp1_time"] if r["statut_final"] == "OBJECTIF ATTEINT" else r["sl_time"], axis=1)
+    verified = pop[pop["resolution_time"].notna()]
+    median_duration = (verified["resolution_time"] - verified["date_creation"]).median()
+    pop["resolution_time_est"] = pop["resolution_time"].fillna(pop["date_creation"] + median_duration)
+    return pop
+
+
+def build_pop_B(variant, min_rr_a=MIN_RR_NEW):
+    """variant='naturel' -> B forex (401) + indices RR<1,35 (59) = 460.
+    variant='tout_indices' -> B forex (401) + TOUS les indices (170) = 571.
+
+    <<< IMPORTANT (2026-08-18) : build_population_with_trailing() inclut
+    desormais les indices automatiquement (correctif filtre forex-only du
+    meme jour, rr_threshold_test.py:43-61) -- il faut donc explicitement
+    RETIRER les indices de pop_B_fx ici pour eviter un double-compte avec
+    pop_idx_sel ajoute plus bas (bug trouve en test de fumee : n=519/630
+    au lieu de 460/571 attendus, delta exact +59 dans les 2 cas)."""
+    pop_B_fx_all = build_population_with_trailing("fixed", 0.15, min_rr=0.75, verbose=False)
+    pop_B_fx_all = pop_B_fx_all[pop_B_fx_all["rr_tp1"] < min_rr_a].reset_index(drop=True)
+    is_index_ticker = pop_B_fx_all["ticker"].str.contains("|".join(INDEX_KEYWORDS), case=False, na=False)
+    pop_B_fx = pop_B_fx_all[~is_index_ticker].reset_index(drop=True)
+
+    pop_idx = load_index_population_with_payoff()
+    if variant == "naturel":
+        pop_idx_sel = pop_idx[(pop_idx["rr_tp1"] >= 1.0) & (pop_idx["rr_tp1"] < min_rr_a)]
+    elif variant == "tout_indices":
+        pop_idx_sel = pop_idx
+    else:
+        raise ValueError(variant)
+
+    keep_cols = ["date_creation", "ticker", "rr_tp1", "rr_tp2", "statut_final", "r_trailing",
+                 "resolution_time_est", "prix_entree", "stop_loss_init"]
+    combined = pd.concat([pop_B_fx[keep_cols], pop_idx_sel[keep_cols]], ignore_index=True)
+    combined = combined.sort_values("date_creation").reset_index(drop=True)
+    return combined
+
+
+def build_market_data_with_indices():
+    """<<< Feasabilite d'execution (marge/lot) NON modelisee pour les indices --
+    aucune specification broker reelle disponible (tick_size/tick_value/margin_per_lot
+    pour DAX40/S&P500/NASDAQ100 CFD chez Blueberry, non recherchee -- distinct de la
+    question deja tranchee de faisabilite d'EXECUTION live, cf. reponse Tache 1
+    precedente). Contrainte de capacite desactivee pour ces 5 labels (valeurs qui ne
+    contraignent jamais feasible_risk_pct, cf. engine_multiformat.py:329/
+    scaling_simulation.py:121-147) -- l'economie du trade (R realise) vient des
+    donnees historiques reelles, INCHANGEE par cette simplification. A remplacer par
+    de vraies specs broker si ce candidat devient serieux."""
+    market_data = eng.load_market_data()
+    unconstrained = {"tick_size": 1.0, "tick_value": 1.0, "volume_min": 0.0001,
+                      "volume_max": 1e9, "volume_step": 0.0001, "margin_per_lot": 0.0001, "price": 1.0}
+    for label in ["DAX40 FULL0926", "DAX40 PERF INDEX",
+                  "NASDAQ100 - MINI NASDAQ100 FULL0926", "NASDAQ100 INDEX",
+                  "S&P500 - MINI S&P500 FULL0926"]:
+        market_data[label] = dict(unconstrained)
+    return market_data
+
+
+if __name__ == "__main__":
+    # <<< STRESS-TEST H1/H2 + 4 blocs k-fold (2026-08-18), AVANT toute conclusion
+    # sur l'ecart net tout_indices >> naturel deja mesure (n=300, +55-61% profit,
+    # -10 a -17pt annee1<0, tous plafonds). Meme protocole que rr_tp2/any-RR
+    # (chantier_stresstest_pisteAB_2026-08-17.py, chantier_S1_8_stresstest_
+    # risque_instant_2026-08-17.py) : chaque variante decoupee en sous-periodes
+    # CHRONOLOGIQUES INDEPENDANTES (pas la meme fenetre pour les 2 -- tout_indices
+    # a plus de trades que naturel a n'importe quelle sous-periode donnee, c'est
+    # attendu et fait partie de l'effet teste), n=100, 2 plafonds representatifs
+    # des 2 regimes bb_threshold (960=regime 5000, 3000=regime 0).
+    n_sims = int(sys.argv[1]) if len(sys.argv) > 1 else 100
+
+    t_start = time.time()
+    market_data = build_market_data_with_indices()
+    corr_matrix = pd.read_csv("correlation_matrix.csv", index_col=0)
+
+    seq = ei.seq_grouped_multi(1000, 15000, 25000, 25000)
+    config = ei.CONFIG_REF
+    ref_size_func = make_size_func_tail(1.6, threshold=8.0)
+
+    common_kwargs = dict(emergency=ei.DEFAULT_EMERGENCY, eval_risk=EVAL_RISK, fleet_risk=FLEET_RISK,
+                          gft_eval_risk=GFT_EVAL_RISK, reserve_share=ei.FINAL_RESERVE_SHARE,
+                          extra_threshold_mult=ei.EXTRA_THRESHOLD_MULT, n_sims=n_sims, seed=9999,
+                          b_entry_frac=0.20, b_reduction=0.5, pre_unlock_only=True,
+                          ftmo_discount=True, gft_goat_guard=True, payout_cycle=True,
+                          use_any_rr=True, apply_instant_risk_cap=True,
+                          size_func=ref_size_func, routing_field="rr_tp2")
+
+    BB_THRESHOLD_BY_CEILING = {960.0: 5000.0, 3000.0: 0.0}
+    CEILINGS_TESTED = [960.0, 3000.0]
+
+    pops_full = {v: build_pop_B(v) for v in ("naturel", "tout_indices")}
+
+    subperiods_by_variant = {}
+    for variant, pop_full in pops_full.items():
+        pop_sorted = pop_full.sort_values("date_creation").reset_index(drop=True)
+        mid = len(pop_sorted) // 2
+        sp = {"H1": pop_sorted.iloc[:mid], "H2": pop_sorted.iloc[mid:]}
+        for i, b in enumerate(np.array_split(pop_sorted, 4)):
+            sp[f"bloc{i}"] = b
+        subperiods_by_variant[variant] = sp
+        print(f"[verif] '{variant}' n={len(pop_sorted)} -- sous-periodes : "
+              + ", ".join(f"{k}={len(v)}" for k, v in sp.items()))
+
+    rows = []
+    for ceiling in CEILINGS_TESTED:
+        bb_th = BB_THRESHOLD_BY_CEILING[ceiling]
+        print(f"\n{'='*70}\nplafond={ceiling:.0f}$ (bb_threshold={bb_th:.0f})\n{'='*70}")
+        for sp_name in ("H1", "H2", "bloc0", "bloc1", "bloc2", "bloc3"):
+            results = {}
+            for variant in ("naturel", "tout_indices"):
+                sp_pop = subperiods_by_variant[variant][sp_name]
+                tickers = sorted(sp_pop["ticker"].unique())
+                excluded_map_sp = precompute_correlation_pairs(tickers, corr_matrix, CORR_TH_NEW)
+                t0 = time.time()
+                df = run_propagated(sp_pop, market_data, excluded_map_sp, ceiling, seq, config,
+                                     bb_threshold=bb_th, **common_kwargs)
+                row = summarize(df, f"B_{variant}_{sp_name}", ceiling, bb_th, True)
+                results[variant] = row
+                rows.append(dict(subperiod=sp_name, variant=variant,
+                                  n_trades=len(sp_pop), **row))
+            d_profit_pct = ((results["tout_indices"]["profit_moyen"] - results["naturel"]["profit_moyen"])
+                             / abs(results["naturel"]["profit_moyen"]) * 100) if results["naturel"]["profit_moyen"] != 0 else float("nan")
+            d_a1 = results["tout_indices"]["annee1_neg"] - results["naturel"]["annee1_neg"]
+            better = results["tout_indices"]["profit_moyen"] > results["naturel"]["profit_moyen"]
+            flag = "OK (tout_indices > naturel)" if better else "INVERSION (tout_indices <= naturel)"
+            print(f"  [{sp_name}] naturel profit={results['naturel']['profit_moyen']:+,.0f}$ "
+                  f"annee1<0={results['naturel']['annee1_neg']:.1f}% | "
+                  f"tout_indices profit={results['tout_indices']['profit_moyen']:+,.0f}$ "
+                  f"({d_profit_pct:+.1f}%) annee1<0={results['tout_indices']['annee1_neg']:.1f}% "
+                  f"(delta={d_a1:+.1f}pt) -- {flag} ({time.time()-t0:.0f}s)")
+            pd.DataFrame(rows).to_csv("chantier_strategie_b_isolation_stresstest_2026-08-18.csv", index=False)
+
+    print(f"\nTermine en {time.time()-t_start:.0f}s.")

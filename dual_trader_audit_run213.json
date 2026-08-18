@@ -1,0 +1,5809 @@
+{
+ "run_idx": 213,
+ "result_summary": {
+  "T1_net": 4758518.425685593,
+  "T1_is_paid": 1747945.22245734,
+  "T1_year1_net": 2412822.689325135,
+  "T1_hit_ceiling": false,
+  "T1_total_breaks": 287,
+  "T1_break_days": [
+   126,
+   126,
+   126,
+   126,
+   235,
+   235,
+   235,
+   235,
+   235,
+   235,
+   235,
+   235,
+   235,
+   235,
+   235,
+   235,
+   235,
+   235,
+   235,
+   235,
+   235,
+   235,
+   235,
+   236,
+   236,
+   236,
+   236,
+   236,
+   236,
+   236,
+   236,
+   236,
+   236,
+   236,
+   236,
+   236,
+   236,
+   236,
+   236,
+   236,
+   236,
+   236,
+   246,
+   246,
+   246,
+   246,
+   246,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   325,
+   325,
+   325,
+   325,
+   328,
+   338,
+   338,
+   338,
+   338,
+   338,
+   338,
+   338,
+   338,
+   338,
+   338,
+   338,
+   338,
+   338,
+   338,
+   361,
+   361,
+   361,
+   361,
+   361,
+   361,
+   361,
+   361,
+   361,
+   361,
+   368,
+   368,
+   368,
+   368,
+   368,
+   384,
+   384,
+   384,
+   384,
+   384,
+   384,
+   384,
+   384,
+   384,
+   384,
+   390,
+   390,
+   390,
+   390,
+   451,
+   451,
+   451,
+   451,
+   480,
+   480,
+   480,
+   480,
+   480,
+   480,
+   480,
+   480,
+   480,
+   480,
+   480,
+   480,
+   480,
+   480,
+   480,
+   480,
+   480,
+   480,
+   480,
+   480,
+   480,
+   480,
+   480,
+   480,
+   484,
+   484,
+   484,
+   484,
+   497,
+   497,
+   497,
+   497,
+   497,
+   497,
+   497,
+   497,
+   497,
+   501,
+   501,
+   501,
+   501,
+   501,
+   501,
+   501,
+   501,
+   501,
+   510,
+   510,
+   510,
+   510,
+   510,
+   510,
+   510,
+   510,
+   511,
+   511,
+   511,
+   511,
+   511,
+   511,
+   511,
+   511,
+   1075,
+   1075,
+   1075,
+   1075,
+   1075,
+   1075,
+   1075,
+   1075,
+   1075,
+   1075,
+   1075,
+   1075,
+   1075,
+   1075,
+   1075,
+   1076,
+   1076,
+   1076,
+   1076,
+   1076,
+   1076,
+   1076,
+   1076,
+   1076,
+   1076,
+   1076,
+   1076,
+   1076,
+   1076,
+   1076,
+   1076,
+   1076,
+   1076,
+   1076,
+   1114,
+   1114,
+   1114,
+   1114,
+   1341,
+   1341,
+   1341,
+   1341,
+   1341,
+   1341,
+   1341,
+   1341,
+   1341,
+   1341,
+   1341,
+   1341,
+   1341,
+   1341,
+   1341,
+   1397,
+   1397,
+   1397,
+   1397,
+   1397,
+   1397,
+   1397,
+   1397,
+   1397,
+   1399,
+   1399,
+   1399,
+   1399,
+   1399,
+   1399,
+   1485,
+   1485,
+   1485,
+   1485,
+   1485,
+   1485,
+   1485,
+   1485,
+   1485,
+   1487,
+   1493,
+   1493,
+   1493,
+   1493,
+   1493,
+   1517,
+   1517,
+   1517,
+   1517,
+   1517,
+   1517,
+   1517,
+   1517,
+   1517
+  ],
+  "T2_net": 4615678.002652162,
+  "T2_is_paid": 1693647.173041873,
+  "T2_year1_net": 2339089.2020748304,
+  "T2_hit_ceiling": false,
+  "T2_total_breaks": 272,
+  "T2_break_days": [
+   126,
+   126,
+   126,
+   126,
+   235,
+   235,
+   235,
+   235,
+   235,
+   235,
+   235,
+   235,
+   235,
+   235,
+   235,
+   235,
+   235,
+   235,
+   235,
+   235,
+   235,
+   235,
+   236,
+   236,
+   236,
+   236,
+   236,
+   236,
+   236,
+   236,
+   236,
+   236,
+   236,
+   236,
+   236,
+   236,
+   236,
+   236,
+   236,
+   236,
+   246,
+   246,
+   246,
+   246,
+   246,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   307,
+   325,
+   325,
+   325,
+   325,
+   328,
+   338,
+   338,
+   338,
+   338,
+   338,
+   338,
+   338,
+   338,
+   338,
+   338,
+   338,
+   338,
+   338,
+   361,
+   361,
+   361,
+   361,
+   361,
+   361,
+   361,
+   361,
+   361,
+   368,
+   368,
+   368,
+   368,
+   368,
+   384,
+   384,
+   384,
+   384,
+   384,
+   384,
+   384,
+   384,
+   384,
+   390,
+   390,
+   390,
+   390,
+   451,
+   451,
+   451,
+   451,
+   480,
+   480,
+   480,
+   480,
+   480,
+   480,
+   480,
+   480,
+   480,
+   480,
+   480,
+   480,
+   480,
+   480,
+   480,
+   480,
+   480,
+   480,
+   480,
+   480,
+   480,
+   480,
+   480,
+   484,
+   484,
+   484,
+   484,
+   497,
+   497,
+   497,
+   497,
+   497,
+   497,
+   497,
+   497,
+   501,
+   501,
+   501,
+   501,
+   501,
+   501,
+   501,
+   501,
+   510,
+   510,
+   510,
+   510,
+   510,
+   510,
+   510,
+   510,
+   511,
+   511,
+   511,
+   511,
+   511,
+   511,
+   511,
+   511,
+   1075,
+   1075,
+   1075,
+   1075,
+   1075,
+   1075,
+   1075,
+   1075,
+   1075,
+   1075,
+   1075,
+   1075,
+   1075,
+   1075,
+   1076,
+   1076,
+   1076,
+   1076,
+   1076,
+   1076,
+   1076,
+   1076,
+   1076,
+   1076,
+   1076,
+   1076,
+   1076,
+   1076,
+   1076,
+   1076,
+   1076,
+   1076,
+   1114,
+   1114,
+   1114,
+   1114,
+   1341,
+   1341,
+   1341,
+   1341,
+   1341,
+   1341,
+   1341,
+   1341,
+   1341,
+   1341,
+   1341,
+   1341,
+   1341,
+   1341,
+   1397,
+   1397,
+   1397,
+   1397,
+   1397,
+   1397,
+   1397,
+   1397,
+   1397,
+   1399,
+   1399,
+   1399,
+   1399,
+   1399,
+   1485,
+   1485,
+   1485,
+   1485,
+   1485,
+   1485,
+   1485,
+   1485,
+   1485,
+   1487,
+   1493,
+   1493,
+   1493,
+   1493,
+   1517,
+   1517,
+   1517,
+   1517,
+   1517,
+   1517,
+   1517,
+   1517,
+   1517
+  ],
+  "combined_net": 9374196.428337755,
+  "combined_is_paid": 3441592.3954992127,
+  "combined_year1_net": 4751911.891399966,
+  "combined_hit_ceiling": false,
+  "bb_used_shared_final": 400000.0,
+  "bb_T1_palier_sum": 225000.0,
+  "bb_T2_palier_sum": 175000.0,
+  "bb_T1_n_accounts": 5,
+  "bb_T2_n_accounts": 4
+ },
+ "events": [
+  {
+   "jour_simulation": 0.0,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "jour0_creation",
+   "bb_used_shared_combined": 50000.0,
+   "palier": 25000.0,
+   "cost": 198.0
+  },
+  {
+   "jour_simulation": 0.0,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "jour0_creation",
+   "bb_used_shared_combined": 50000.0,
+   "palier": 25000.0,
+   "cost": 198.0
+  },
+  {
+   "jour_simulation": 85.74,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "compte_extra_ouvert",
+   "bb_used_shared_combined": 100000.0,
+   "palier": 50000.0,
+   "cost": 399.6
+  },
+  {
+   "jour_simulation": 85.74,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "compte_extra_ouvert",
+   "bb_used_shared_combined": 100000.0,
+   "palier": 100000.0,
+   "cost": 439
+  },
+  {
+   "jour_simulation": 85.74,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "compte_extra_ouvert",
+   "bb_used_shared_combined": 100000.0,
+   "palier": 100000.0,
+   "cost": 458
+  },
+  {
+   "jour_simulation": 85.74,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "compte_extra_ouvert",
+   "bb_used_shared_combined": 150000.0,
+   "palier": 50000.0,
+   "cost": 399.6
+  },
+  {
+   "jour_simulation": 85.74,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "compte_extra_ouvert",
+   "bb_used_shared_combined": 150000.0,
+   "palier": 100000.0,
+   "cost": 439
+  },
+  {
+   "jour_simulation": 85.74,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "compte_extra_ouvert",
+   "bb_used_shared_combined": 150000.0,
+   "palier": 100000.0,
+   "cost": 458
+  },
+  {
+   "jour_simulation": 90.61,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "compte_extra_ouvert",
+   "bb_used_shared_combined": 200000.0,
+   "palier": 50000.0,
+   "cost": 399.6
+  },
+  {
+   "jour_simulation": 90.61,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "compte_extra_ouvert",
+   "bb_used_shared_combined": 200000.0,
+   "palier": 100000.0,
+   "cost": 439
+  },
+  {
+   "jour_simulation": 90.61,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "compte_extra_ouvert",
+   "bb_used_shared_combined": 200000.0,
+   "palier": 100000.0,
+   "cost": 458
+  },
+  {
+   "jour_simulation": 90.61,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "compte_extra_ouvert",
+   "bb_used_shared_combined": 250000.0,
+   "palier": 50000.0,
+   "cost": 399.6
+  },
+  {
+   "jour_simulation": 90.61,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "compte_extra_ouvert",
+   "bb_used_shared_combined": 250000.0,
+   "palier": 100000.0,
+   "cost": 439
+  },
+  {
+   "jour_simulation": 90.61,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "compte_extra_ouvert",
+   "bb_used_shared_combined": 250000.0,
+   "palier": 100000.0,
+   "cost": 458
+  },
+  {
+   "jour_simulation": 92.04,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "compte_extra_ouvert",
+   "bb_used_shared_combined": 300000.0,
+   "palier": 50000.0,
+   "cost": 399.6
+  },
+  {
+   "jour_simulation": 92.04,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "compte_extra_ouvert",
+   "bb_used_shared_combined": 300000.0,
+   "palier": 100000.0,
+   "cost": 439
+  },
+  {
+   "jour_simulation": 92.04,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "compte_extra_ouvert",
+   "bb_used_shared_combined": 300000.0,
+   "palier": 100000.0,
+   "cost": 458
+  },
+  {
+   "jour_simulation": 92.04,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "compte_extra_ouvert",
+   "bb_used_shared_combined": 350000.0,
+   "palier": 50000.0,
+   "cost": 399.6
+  },
+  {
+   "jour_simulation": 92.04,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "compte_extra_ouvert",
+   "bb_used_shared_combined": 350000.0,
+   "palier": 100000.0,
+   "cost": 439
+  },
+  {
+   "jour_simulation": 92.04,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "compte_extra_ouvert",
+   "bb_used_shared_combined": 350000.0,
+   "palier": 100000.0,
+   "cost": 458
+  },
+  {
+   "jour_simulation": 92.08,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "compte_extra_ouvert",
+   "bb_used_shared_combined": 400000.0,
+   "palier": 50000.0,
+   "cost": 399.6
+  },
+  {
+   "jour_simulation": 126.78,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": 8.117
+  },
+  {
+   "jour_simulation": 126.78,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": 8.117
+  },
+  {
+   "jour_simulation": 126.78,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": 8.117
+  },
+  {
+   "jour_simulation": 126.78,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": 8.117
+  },
+  {
+   "jour_simulation": 126.78,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": 8.117
+  },
+  {
+   "jour_simulation": 126.78,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": 8.117
+  },
+  {
+   "jour_simulation": 126.78,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": 8.117
+  },
+  {
+   "jour_simulation": 126.78,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": 8.117
+  },
+  {
+   "jour_simulation": 235.61,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 235.61,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 235.61,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 235.61,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 235.61,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 235.61,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 235.61,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 235.61,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 235.61,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 235.61,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 235.61,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 235.61,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 235.61,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 235.61,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 235.61,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 235.61,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 235.61,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 235.61,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 235.61,
+   "trader": "T1",
+   "firm": "FundedNext",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 235.61,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 235.61,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 235.61,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 235.61,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 235.61,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 235.61,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 235.61,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 235.61,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 235.61,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 235.61,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 235.61,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 235.61,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 235.61,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 235.61,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 235.61,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 235.61,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 235.61,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 235.61,
+   "trader": "T2",
+   "firm": "FundedNext",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 236.74,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 236.74,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 236.74,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 236.74,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 236.74,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 236.74,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 236.74,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 236.74,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 236.74,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 236.74,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 236.74,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 236.74,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 236.74,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 236.74,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 236.74,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 236.74,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 236.74,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 236.74,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 236.74,
+   "trader": "T1",
+   "firm": "FundedNext",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 236.74,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 236.74,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 236.74,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 236.74,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 236.74,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 236.74,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 236.74,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 236.74,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 236.74,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 236.74,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 236.74,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 236.74,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 236.74,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 236.74,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 236.74,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 236.74,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 236.74,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 236.74,
+   "trader": "T2",
+   "firm": "FundedNext",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 246.78,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": 8.117
+  },
+  {
+   "jour_simulation": 246.78,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": 8.117
+  },
+  {
+   "jour_simulation": 246.78,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": 8.117
+  },
+  {
+   "jour_simulation": 246.78,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": 8.117
+  },
+  {
+   "jour_simulation": 246.78,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": 8.117
+  },
+  {
+   "jour_simulation": 246.78,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": 8.117
+  },
+  {
+   "jour_simulation": 246.78,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": 8.117
+  },
+  {
+   "jour_simulation": 246.78,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": 8.117
+  },
+  {
+   "jour_simulation": 246.78,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": 8.117
+  },
+  {
+   "jour_simulation": 246.78,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": 8.117
+  },
+  {
+   "jour_simulation": 307.42,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.42,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.42,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.42,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.42,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.42,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.42,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.42,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.42,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.42,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.42,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.42,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.42,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.42,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.42,
+   "trader": "T1",
+   "firm": "FundedNext",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.42,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.42,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.42,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.42,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.42,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.42,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.42,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.42,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.42,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.42,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.42,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.42,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.42,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.42,
+   "trader": "T2",
+   "firm": "FundedNext",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.58,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.58,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.58,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.58,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.58,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.58,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.58,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.58,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.58,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.58,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.58,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.58,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.58,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.58,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.58,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.58,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.58,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.58,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.58,
+   "trader": "T1",
+   "firm": "FundedNext",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.58,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.58,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.58,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.58,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.58,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.58,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.58,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.58,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.58,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.58,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.58,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.58,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.58,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.58,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.58,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.58,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.58,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 307.58,
+   "trader": "T2",
+   "firm": "FundedNext",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 325.21,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 325.21,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 325.21,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 325.21,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 325.21,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 325.21,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 325.21,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 325.21,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 328.87,
+   "trader": "T1",
+   "firm": "FundedNext",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CAD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 328.87,
+   "trader": "T2",
+   "firm": "FundedNext",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CAD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 338.41,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/GBP",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 338.41,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/GBP",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 338.41,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/GBP",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 338.41,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/GBP",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 338.41,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/GBP",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 338.41,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/GBP",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 338.41,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/GBP",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 338.41,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/GBP",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 338.41,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/GBP",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 338.41,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/GBP",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 338.41,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/GBP",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 338.41,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/GBP",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 338.41,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/GBP",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 338.41,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/GBP",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 338.41,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/GBP",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 338.41,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/GBP",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 338.41,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/GBP",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 338.41,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/GBP",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 338.41,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/GBP",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 338.41,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/GBP",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 338.41,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/GBP",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 338.41,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/GBP",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 338.41,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/GBP",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 338.41,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/GBP",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 338.41,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/GBP",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 338.41,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/GBP",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 338.41,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/GBP",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 361.66,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CAD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 361.66,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CAD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 361.66,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CAD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 361.66,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CAD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 361.66,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CAD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 361.66,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CAD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 361.66,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CAD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 361.66,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CAD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 361.66,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CAD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 361.66,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CAD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 361.66,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CAD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 361.66,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CAD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 361.66,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CAD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 361.66,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CAD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 361.66,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CAD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 361.66,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CAD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 361.66,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CAD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 361.66,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CAD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 361.66,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CAD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 368.37,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 368.37,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 368.37,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 368.37,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 368.37,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 368.37,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 368.37,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 368.37,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 368.91,
+   "trader": "T1",
+   "firm": "FundedNext",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 368.91,
+   "trader": "T2",
+   "firm": "FundedNext",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 384.7,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 384.7,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 384.7,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 384.7,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 384.7,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 384.7,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 384.7,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 384.7,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 384.7,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 384.7,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 384.7,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 384.7,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 384.7,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 384.7,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 384.7,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 384.7,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 384.7,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 384.7,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 384.7,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 390.04,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 390.04,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 390.04,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 390.04,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 390.04,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 390.04,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 390.04,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 390.04,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 451.28,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 451.28,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 451.28,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 451.28,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 451.28,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 451.28,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 451.28,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 451.28,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 480.41,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 4.594
+  },
+  {
+   "jour_simulation": 480.41,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 4.594
+  },
+  {
+   "jour_simulation": 480.41,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 4.594
+  },
+  {
+   "jour_simulation": 480.41,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 4.594
+  },
+  {
+   "jour_simulation": 480.41,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 4.594
+  },
+  {
+   "jour_simulation": 480.41,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 4.594
+  },
+  {
+   "jour_simulation": 480.41,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 4.594
+  },
+  {
+   "jour_simulation": 480.41,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 4.594
+  },
+  {
+   "jour_simulation": 480.41,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 4.594
+  },
+  {
+   "jour_simulation": 480.41,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 4.594
+  },
+  {
+   "jour_simulation": 480.62,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/JPY",
+   "r_realise": 3.82
+  },
+  {
+   "jour_simulation": 480.62,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/JPY",
+   "r_realise": 3.82
+  },
+  {
+   "jour_simulation": 480.62,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/JPY",
+   "r_realise": 3.82
+  },
+  {
+   "jour_simulation": 480.62,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/JPY",
+   "r_realise": 3.82
+  },
+  {
+   "jour_simulation": 480.62,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/JPY",
+   "r_realise": 3.82
+  },
+  {
+   "jour_simulation": 480.62,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/JPY",
+   "r_realise": 3.82
+  },
+  {
+   "jour_simulation": 480.62,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/JPY",
+   "r_realise": 3.82
+  },
+  {
+   "jour_simulation": 480.62,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/JPY",
+   "r_realise": 3.82
+  },
+  {
+   "jour_simulation": 480.62,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/JPY",
+   "r_realise": 3.82
+  },
+  {
+   "jour_simulation": 480.62,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/JPY",
+   "r_realise": 3.82
+  },
+  {
+   "jour_simulation": 480.66,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 4.469
+  },
+  {
+   "jour_simulation": 480.66,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 4.469
+  },
+  {
+   "jour_simulation": 480.66,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 4.469
+  },
+  {
+   "jour_simulation": 480.66,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 4.469
+  },
+  {
+   "jour_simulation": 480.66,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 4.469
+  },
+  {
+   "jour_simulation": 480.66,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 4.469
+  },
+  {
+   "jour_simulation": 480.66,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 4.469
+  },
+  {
+   "jour_simulation": 480.66,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 4.469
+  },
+  {
+   "jour_simulation": 480.66,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 4.469
+  },
+  {
+   "jour_simulation": 480.66,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 4.469
+  },
+  {
+   "jour_simulation": 480.66,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 4.469
+  },
+  {
+   "jour_simulation": 480.66,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 4.469
+  },
+  {
+   "jour_simulation": 480.66,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 4.469
+  },
+  {
+   "jour_simulation": 480.66,
+   "trader": "T1",
+   "firm": "FundedNext",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 4.469
+  },
+  {
+   "jour_simulation": 480.66,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 4.469
+  },
+  {
+   "jour_simulation": 480.66,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 4.469
+  },
+  {
+   "jour_simulation": 480.66,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 4.469
+  },
+  {
+   "jour_simulation": 480.66,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 4.469
+  },
+  {
+   "jour_simulation": 480.66,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 4.469
+  },
+  {
+   "jour_simulation": 480.66,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 4.469
+  },
+  {
+   "jour_simulation": 480.66,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 4.469
+  },
+  {
+   "jour_simulation": 480.66,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 4.469
+  },
+  {
+   "jour_simulation": 480.66,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 4.469
+  },
+  {
+   "jour_simulation": 480.66,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 4.469
+  },
+  {
+   "jour_simulation": 480.66,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 4.469
+  },
+  {
+   "jour_simulation": 480.66,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 4.469
+  },
+  {
+   "jour_simulation": 480.66,
+   "trader": "T2",
+   "firm": "FundedNext",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 4.469
+  },
+  {
+   "jour_simulation": 484.53,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 484.53,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 484.53,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 484.53,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 484.53,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 484.53,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 484.53,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 484.53,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 497.12,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/JPY",
+   "r_realise": 6.867
+  },
+  {
+   "jour_simulation": 497.12,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/JPY",
+   "r_realise": 6.867
+  },
+  {
+   "jour_simulation": 497.12,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/JPY",
+   "r_realise": 6.867
+  },
+  {
+   "jour_simulation": 497.12,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/JPY",
+   "r_realise": 6.867
+  },
+  {
+   "jour_simulation": 497.12,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/JPY",
+   "r_realise": 6.867
+  },
+  {
+   "jour_simulation": 497.12,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/JPY",
+   "r_realise": 6.867
+  },
+  {
+   "jour_simulation": 497.12,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/JPY",
+   "r_realise": 6.867
+  },
+  {
+   "jour_simulation": 497.12,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/JPY",
+   "r_realise": 6.867
+  },
+  {
+   "jour_simulation": 497.12,
+   "trader": "T1",
+   "firm": "FundedNext",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/JPY",
+   "r_realise": 6.867
+  },
+  {
+   "jour_simulation": 497.12,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/JPY",
+   "r_realise": 6.867
+  },
+  {
+   "jour_simulation": 497.12,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/JPY",
+   "r_realise": 6.867
+  },
+  {
+   "jour_simulation": 497.12,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/JPY",
+   "r_realise": 6.867
+  },
+  {
+   "jour_simulation": 497.12,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/JPY",
+   "r_realise": 6.867
+  },
+  {
+   "jour_simulation": 497.12,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/JPY",
+   "r_realise": 6.867
+  },
+  {
+   "jour_simulation": 497.12,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/JPY",
+   "r_realise": 6.867
+  },
+  {
+   "jour_simulation": 497.12,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/JPY",
+   "r_realise": 6.867
+  },
+  {
+   "jour_simulation": 497.12,
+   "trader": "T2",
+   "firm": "FundedNext",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/JPY",
+   "r_realise": 6.867
+  },
+  {
+   "jour_simulation": 501.72,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 501.72,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 501.72,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 501.72,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 501.72,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 501.72,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 501.72,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 501.72,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 501.72,
+   "trader": "T1",
+   "firm": "FundedNext",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 501.72,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 501.72,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 501.72,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 501.72,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 501.72,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 501.72,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 501.72,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 501.72,
+   "trader": "T2",
+   "firm": "FundedNext",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 510.23,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 510.23,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 510.23,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 510.23,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 510.23,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 510.23,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 510.23,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 510.23,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 510.35,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 510.35,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 510.35,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 510.35,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 510.35,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 510.35,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 510.35,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 510.35,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 511.83,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 6.791
+  },
+  {
+   "jour_simulation": 511.83,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 6.791
+  },
+  {
+   "jour_simulation": 511.83,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 6.791
+  },
+  {
+   "jour_simulation": 511.83,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 6.791
+  },
+  {
+   "jour_simulation": 511.83,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 6.791
+  },
+  {
+   "jour_simulation": 511.83,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 6.791
+  },
+  {
+   "jour_simulation": 511.83,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 6.791
+  },
+  {
+   "jour_simulation": 511.83,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": 6.791
+  },
+  {
+   "jour_simulation": 511.98,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 511.98,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 511.98,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 511.98,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 511.98,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 511.98,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 511.98,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 511.98,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1075.61,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1075.61,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1075.61,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1075.61,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1075.61,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1075.61,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1075.61,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1075.61,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1075.61,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1075.61,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1075.61,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1075.61,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1075.61,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1075.61,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1075.61,
+   "trader": "T1",
+   "firm": "FundedNext",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1075.61,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1075.61,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1075.61,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1075.61,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1075.61,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1075.61,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1075.61,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1075.61,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1075.61,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1075.61,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1075.61,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1075.61,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1075.61,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1075.61,
+   "trader": "T2",
+   "firm": "FundedNext",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "AUD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1076.74,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1076.74,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1076.74,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1076.74,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1076.74,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1076.74,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1076.74,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1076.74,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1076.74,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1076.74,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1076.74,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1076.74,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1076.74,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1076.74,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1076.74,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1076.74,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1076.74,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1076.74,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1076.74,
+   "trader": "T1",
+   "firm": "FundedNext",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1076.74,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1076.74,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1076.74,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1076.74,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1076.74,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1076.74,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1076.74,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1076.74,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1076.74,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1076.74,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1076.74,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1076.74,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1076.74,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1076.74,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1076.74,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1076.74,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1076.74,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1076.74,
+   "trader": "T2",
+   "firm": "FundedNext",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "EUR/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1114.53,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1114.53,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1114.53,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1114.53,
+   "trader": "T1",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1114.53,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1114.53,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1114.53,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1114.53,
+   "trader": "T2",
+   "firm": "GFT",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1341.4,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "NZD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1341.4,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "NZD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1341.4,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "NZD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1341.4,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "NZD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1341.4,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "NZD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1341.4,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "NZD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1341.4,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "NZD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1341.4,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "NZD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1341.4,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "NZD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1341.4,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "NZD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1341.4,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "NZD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1341.4,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "NZD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1341.4,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "NZD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1341.4,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "NZD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1341.4,
+   "trader": "T1",
+   "firm": "FundedNext",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "NZD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1341.4,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "NZD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1341.4,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "NZD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1341.4,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "NZD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1341.4,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "NZD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1341.4,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "NZD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1341.4,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "NZD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1341.4,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "NZD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1341.4,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "NZD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1341.4,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "NZD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1341.4,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "NZD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1341.4,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "NZD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1341.4,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "NZD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1341.4,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "NZD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1341.4,
+   "trader": "T2",
+   "firm": "FundedNext",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "NZD/USD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1397.9,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1397.9,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1397.9,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1397.9,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1397.9,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1397.9,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1397.9,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1397.9,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1397.9,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1397.9,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1397.9,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1397.9,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1397.9,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1397.9,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1397.9,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1397.9,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1397.9,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1397.9,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1399.27,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1399.27,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1399.27,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1399.27,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1399.27,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1399.27,
+   "trader": "T1",
+   "firm": "FundedNext",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1399.27,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1399.27,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1399.27,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1399.27,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1399.27,
+   "trader": "T2",
+   "firm": "FundedNext",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1485.06,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "CHF/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1485.06,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "CHF/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1485.06,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "CHF/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1485.06,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "CHF/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1485.06,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "CHF/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1485.06,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "CHF/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1485.06,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "CHF/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1485.06,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "CHF/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1485.06,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "CHF/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1485.06,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "CHF/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1485.06,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "CHF/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1485.06,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "CHF/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1485.06,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "CHF/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1485.06,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "CHF/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1485.06,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "CHF/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1485.06,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "CHF/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1485.06,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "CHF/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1485.06,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "CHF/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1487.52,
+   "trader": "T1",
+   "firm": "FundedNext",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CAD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1487.52,
+   "trader": "T2",
+   "firm": "FundedNext",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "USD/CAD",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1493.03,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1493.03,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1493.03,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1493.03,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1493.03,
+   "trader": "T1",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1493.03,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1493.03,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1493.03,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1493.03,
+   "trader": "T2",
+   "firm": "Blueberry",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/JPY",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1517.9,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1517.9,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1517.9,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1517.9,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1517.9,
+   "trader": "T1",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1517.9,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1517.9,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1517.9,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1517.9,
+   "trader": "T1",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1517.9,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1517.9,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1517.9,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1517.9,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1517.9,
+   "trader": "T2",
+   "firm": "FTMO",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1517.9,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1517.9,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1517.9,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  },
+  {
+   "jour_simulation": 1517.9,
+   "trader": "T2",
+   "firm": "Fivers",
+   "type_evenement": "casse",
+   "bb_used_shared_combined": 400000.0,
+   "ticker": "GBP/CHF",
+   "r_realise": -1.0
+  }
+ ]
+}

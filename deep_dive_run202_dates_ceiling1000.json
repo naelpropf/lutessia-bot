@@ -1,0 +1,646 @@
+[
+ {
+  "jour_simulation": 34.66,
+  "firm": "Blueberry",
+  "ticker": "USD/CAD",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-03-03 06:39:28"
+ },
+ {
+  "jour_simulation": 105.62,
+  "firm": "FTMO",
+  "ticker": "CHF/JPY",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2025-03-04 21:29:02"
+ },
+ {
+  "jour_simulation": 105.62,
+  "firm": "FTMO",
+  "ticker": "CHF/JPY",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2025-03-04 21:29:02"
+ },
+ {
+  "jour_simulation": 177.29,
+  "firm": "FTMO",
+  "ticker": "AUD/USD",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2026-05-03 21:40:33"
+ },
+ {
+  "jour_simulation": 177.29,
+  "firm": "FTMO",
+  "ticker": "AUD/USD",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2026-05-03 21:40:33"
+ },
+ {
+  "jour_simulation": 284.12,
+  "firm": "GFT",
+  "ticker": "AUD/USD",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-11-08 20:35:26"
+ },
+ {
+  "jour_simulation": 285.25,
+  "firm": "GFT",
+  "ticker": "NZD/USD",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-11-11 12:32:01"
+ },
+ {
+  "jour_simulation": 285.25,
+  "firm": "FundedNext",
+  "ticker": "NZD/USD",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-11-11 12:32:01"
+ },
+ {
+  "jour_simulation": 294.78,
+  "firm": "FTMO",
+  "ticker": "GBP/CHF",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-11-18 09:31:45"
+ },
+ {
+  "jour_simulation": 294.78,
+  "firm": "FTMO",
+  "ticker": "GBP/CHF",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-11-18 09:31:45"
+ },
+ {
+  "jour_simulation": 294.78,
+  "firm": "GFT",
+  "ticker": "GBP/CHF",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-11-18 09:31:45"
+ },
+ {
+  "jour_simulation": 294.83,
+  "firm": "Blueberry",
+  "ticker": "NZD/USD",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-11-21 18:35:11"
+ },
+ {
+  "jour_simulation": 294.83,
+  "firm": "FTMO",
+  "ticker": "NZD/USD",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-11-21 18:35:11"
+ },
+ {
+  "jour_simulation": 294.83,
+  "firm": "GFT",
+  "ticker": "NZD/USD",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-11-21 18:35:11"
+ },
+ {
+  "jour_simulation": 298.16,
+  "firm": "Blueberry",
+  "ticker": "USD/CHF",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-11-21 18:35:11"
+ },
+ {
+  "jour_simulation": 298.16,
+  "firm": "FTMO",
+  "ticker": "USD/CHF",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-11-21 18:35:11"
+ },
+ {
+  "jour_simulation": 299.87,
+  "firm": "Blueberry",
+  "ticker": "EUR/JPY",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-11-29 00:29:23"
+ },
+ {
+  "jour_simulation": 299.87,
+  "firm": "FTMO",
+  "ticker": "EUR/JPY",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-11-29 00:29:23"
+ },
+ {
+  "jour_simulation": 305.41,
+  "firm": "Blueberry",
+  "ticker": "CHF/JPY",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-02 05:29:46"
+ },
+ {
+  "jour_simulation": 305.41,
+  "firm": "Fivers",
+  "ticker": "CHF/JPY",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-02 05:29:46"
+ },
+ {
+  "jour_simulation": 305.41,
+  "firm": "Fivers",
+  "ticker": "CHF/JPY",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-02 05:29:46"
+ },
+ {
+  "jour_simulation": 305.41,
+  "firm": "Fivers",
+  "ticker": "CHF/JPY",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-02 05:29:46"
+ },
+ {
+  "jour_simulation": 305.41,
+  "firm": "Fivers",
+  "ticker": "CHF/JPY",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-02 05:29:46"
+ },
+ {
+  "jour_simulation": 305.41,
+  "firm": "GFT",
+  "ticker": "CHF/JPY",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-02 05:29:46"
+ },
+ {
+  "jour_simulation": 308.62,
+  "firm": "Blueberry",
+  "ticker": "EUR/CHF",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-02 17:35:35"
+ },
+ {
+  "jour_simulation": 308.62,
+  "firm": "GFT",
+  "ticker": "EUR/CHF",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-02 17:35:35"
+ },
+ {
+  "jour_simulation": 311.53,
+  "firm": "FundedNext",
+  "ticker": "EUR/CHF",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-05 03:29:37"
+ },
+ {
+  "jour_simulation": 314.57,
+  "firm": "Blueberry",
+  "ticker": "USD/CAD",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-08 04:29:05"
+ },
+ {
+  "jour_simulation": 314.57,
+  "firm": "GFT",
+  "ticker": "USD/CAD",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-08 04:29:05"
+ },
+ {
+  "jour_simulation": 314.62,
+  "firm": "Blueberry",
+  "ticker": "GBP/JPY",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-12 11:31:47"
+ },
+ {
+  "jour_simulation": 314.62,
+  "firm": "GFT",
+  "ticker": "GBP/JPY",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-12 11:31:47"
+ },
+ {
+  "jour_simulation": 318.87,
+  "firm": "FTMO",
+  "ticker": "USD/CHF",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-12 12:53:55"
+ },
+ {
+  "jour_simulation": 318.87,
+  "firm": "FTMO",
+  "ticker": "USD/CHF",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-12 12:53:55"
+ },
+ {
+  "jour_simulation": 318.92,
+  "firm": "Blueberry",
+  "ticker": "GBP/JPY",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-12 12:53:55"
+ },
+ {
+  "jour_simulation": 318.92,
+  "firm": "FTMO",
+  "ticker": "GBP/JPY",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-12 12:53:55"
+ },
+ {
+  "jour_simulation": 321.41,
+  "firm": "Blueberry",
+  "ticker": "NZD/USD",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-15 18:36:06"
+ },
+ {
+  "jour_simulation": 321.41,
+  "firm": "FTMO",
+  "ticker": "NZD/USD",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-15 18:36:06"
+ },
+ {
+  "jour_simulation": 321.41,
+  "firm": "GFT",
+  "ticker": "NZD/USD",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-15 18:36:06"
+ },
+ {
+  "jour_simulation": 333.83,
+  "firm": "Blueberry",
+  "ticker": "GBP/JPY",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-27 12:31:10"
+ },
+ {
+  "jour_simulation": 333.83,
+  "firm": "FTMO",
+  "ticker": "GBP/JPY",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-27 12:31:10"
+ },
+ {
+  "jour_simulation": 333.83,
+  "firm": "GFT",
+  "ticker": "GBP/JPY",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-27 12:31:10"
+ },
+ {
+  "jour_simulation": 333.91,
+  "firm": "Blueberry",
+  "ticker": "AUD/JPY",
+  "r_realise": 1.45,
+  "date_historique_reelle": "2022-12-27 16:37:01"
+ },
+ {
+  "jour_simulation": 333.91,
+  "firm": "FTMO",
+  "ticker": "AUD/JPY",
+  "r_realise": 1.45,
+  "date_historique_reelle": "2022-12-27 16:37:01"
+ },
+ {
+  "jour_simulation": 333.91,
+  "firm": "GFT",
+  "ticker": "AUD/JPY",
+  "r_realise": 1.45,
+  "date_historique_reelle": "2022-12-27 16:37:01"
+ },
+ {
+  "jour_simulation": 334.08,
+  "firm": "Blueberry",
+  "ticker": "USD/JPY",
+  "r_realise": 2.931,
+  "date_historique_reelle": "2022-12-28 12:31:02"
+ },
+ {
+  "jour_simulation": 334.08,
+  "firm": "FTMO",
+  "ticker": "USD/JPY",
+  "r_realise": 2.931,
+  "date_historique_reelle": "2022-12-28 12:31:02"
+ },
+ {
+  "jour_simulation": 334.08,
+  "firm": "GFT",
+  "ticker": "USD/JPY",
+  "r_realise": 2.931,
+  "date_historique_reelle": "2022-12-28 12:31:02"
+ },
+ {
+  "jour_simulation": 339.28,
+  "firm": "Blueberry",
+  "ticker": "EUR/USD",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2023-01-01 21:29:02"
+ },
+ {
+  "jour_simulation": 339.28,
+  "firm": "Fivers",
+  "ticker": "EUR/USD",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2023-01-01 21:29:02"
+ },
+ {
+  "jour_simulation": 339.28,
+  "firm": "Fivers",
+  "ticker": "EUR/USD",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2023-01-01 21:29:02"
+ },
+ {
+  "jour_simulation": 339.28,
+  "firm": "Fivers",
+  "ticker": "EUR/USD",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2023-01-01 21:29:02"
+ },
+ {
+  "jour_simulation": 339.28,
+  "firm": "Fivers",
+  "ticker": "EUR/USD",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2023-01-01 21:29:02"
+ },
+ {
+  "jour_simulation": 339.28,
+  "firm": "GFT",
+  "ticker": "EUR/USD",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2023-01-01 21:29:02"
+ },
+ {
+  "jour_simulation": 339.28,
+  "firm": "FundedNext",
+  "ticker": "EUR/USD",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2023-01-01 21:29:02"
+ },
+ {
+  "jour_simulation": 340.53,
+  "firm": "Blueberry",
+  "ticker": "EUR/GBP",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2023-01-03 03:28:59"
+ },
+ {
+  "jour_simulation": 340.53,
+  "firm": "GFT",
+  "ticker": "EUR/GBP",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2023-01-03 03:28:59"
+ },
+ {
+  "jour_simulation": 341.2,
+  "firm": "Blueberry",
+  "ticker": "USD/CAD",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2023-01-03 19:34:42"
+ },
+ {
+  "jour_simulation": 343.53,
+  "firm": "Blueberry",
+  "ticker": "EUR/JPY",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2023-01-06 03:31:56"
+ },
+ {
+  "jour_simulation": 348.62,
+  "firm": "FTMO",
+  "ticker": "CHF/JPY",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2023-01-11 12:57:31"
+ },
+ {
+  "jour_simulation": 348.62,
+  "firm": "FTMO",
+  "ticker": "CHF/JPY",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2023-01-11 12:57:31"
+ },
+ {
+  "jour_simulation": 348.62,
+  "firm": "GFT",
+  "ticker": "CHF/JPY",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2023-01-11 12:57:31"
+ },
+ {
+  "jour_simulation": 348.93,
+  "firm": "Blueberry",
+  "ticker": "EUR/GBP",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2023-01-15 21:29:59"
+ },
+ {
+  "jour_simulation": 348.93,
+  "firm": "FTMO",
+  "ticker": "EUR/GBP",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2023-01-15 21:29:59"
+ },
+ {
+  "jour_simulation": 348.93,
+  "firm": "GFT",
+  "ticker": "EUR/GBP",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2023-01-15 21:29:59"
+ },
+ {
+  "jour_simulation": 353.28,
+  "firm": "Blueberry",
+  "ticker": "GBP/USD",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2023-01-15 21:29:59"
+ },
+ {
+  "jour_simulation": 353.28,
+  "firm": "FTMO",
+  "ticker": "GBP/USD",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2023-01-15 21:29:59"
+ },
+ {
+  "jour_simulation": 353.28,
+  "firm": "GFT",
+  "ticker": "GBP/USD",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2023-01-15 21:29:59"
+ },
+ {
+  "jour_simulation": 353.55,
+  "firm": "Blueberry",
+  "ticker": "EUR/JPY",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2023-01-17 21:31:05"
+ },
+ {
+  "jour_simulation": 353.55,
+  "firm": "FTMO",
+  "ticker": "EUR/JPY",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2023-01-17 21:31:05"
+ },
+ {
+  "jour_simulation": 353.55,
+  "firm": "GFT",
+  "ticker": "EUR/JPY",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2023-01-17 21:31:05"
+ },
+ {
+  "jour_simulation": 353.55,
+  "firm": "FundedNext",
+  "ticker": "EUR/JPY",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2023-01-17 21:31:05"
+ },
+ {
+  "jour_simulation": 365.41,
+  "firm": "Blueberry",
+  "ticker": "CHF/JPY",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-02 05:29:46"
+ },
+ {
+  "jour_simulation": 365.41,
+  "firm": "Fivers",
+  "ticker": "CHF/JPY",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-02 05:29:46"
+ },
+ {
+  "jour_simulation": 365.41,
+  "firm": "Fivers",
+  "ticker": "CHF/JPY",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-02 05:29:46"
+ },
+ {
+  "jour_simulation": 365.41,
+  "firm": "Fivers",
+  "ticker": "CHF/JPY",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-02 05:29:46"
+ },
+ {
+  "jour_simulation": 365.41,
+  "firm": "Fivers",
+  "ticker": "CHF/JPY",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-02 05:29:46"
+ },
+ {
+  "jour_simulation": 368.62,
+  "firm": "Blueberry",
+  "ticker": "EUR/CHF",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-02 17:35:35"
+ },
+ {
+  "jour_simulation": 374.57,
+  "firm": "Blueberry",
+  "ticker": "USD/CAD",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-08 04:29:05"
+ },
+ {
+  "jour_simulation": 374.57,
+  "firm": "Blueberry",
+  "ticker": "USD/CAD",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-08 04:29:05"
+ },
+ {
+  "jour_simulation": 374.57,
+  "firm": "GFT",
+  "ticker": "USD/CAD",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-08 04:29:05"
+ },
+ {
+  "jour_simulation": 374.57,
+  "firm": "GFT",
+  "ticker": "USD/CAD",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-08 04:29:05"
+ },
+ {
+  "jour_simulation": 374.62,
+  "firm": "Blueberry",
+  "ticker": "GBP/JPY",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-12 11:31:47"
+ },
+ {
+  "jour_simulation": 374.62,
+  "firm": "GFT",
+  "ticker": "GBP/JPY",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-12 11:31:47"
+ },
+ {
+  "jour_simulation": 378.87,
+  "firm": "FTMO",
+  "ticker": "USD/CHF",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-12 12:53:55"
+ },
+ {
+  "jour_simulation": 378.87,
+  "firm": "FTMO",
+  "ticker": "USD/CHF",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-12 12:53:55"
+ },
+ {
+  "jour_simulation": 378.92,
+  "firm": "Blueberry",
+  "ticker": "GBP/JPY",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-12 12:53:55"
+ },
+ {
+  "jour_simulation": 378.92,
+  "firm": "FTMO",
+  "ticker": "GBP/JPY",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-12 12:53:55"
+ },
+ {
+  "jour_simulation": 381.41,
+  "firm": "Blueberry",
+  "ticker": "NZD/USD",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-15 18:36:06"
+ },
+ {
+  "jour_simulation": 381.41,
+  "firm": "FTMO",
+  "ticker": "NZD/USD",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2022-12-15 18:36:06"
+ },
+ {
+  "jour_simulation": 399.28,
+  "firm": "Blueberry",
+  "ticker": "EUR/USD",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2023-01-01 21:29:02"
+ },
+ {
+  "jour_simulation": 399.28,
+  "firm": "Fivers",
+  "ticker": "EUR/USD",
+  "r_realise": -1.0,
+  "date_historique_reelle": "2023-01-01 21:29:02"
+ },
+ {
+  "jour_simulation": 435.82,
+  "firm": "Blueberry",
+  "ticker": "EUR/JPY",
+  "r_realise": 6.105,
+  "date_historique_reelle": "2026-01-23 17:07:48"
+ }
+]

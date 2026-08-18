@@ -8,7 +8,11 @@ valide pour The5%ers seule.
 Groupes disponibles :
   FTMO       : 2 comptes, paliers 50k->100k->200k, DD5%, plafond combine 400k
   Blueberry  : 1 compte, paliers 50k->200k->500k, DD5%, plafond combine 400k
-  Fivers     : 4 comptes The5%ers, palier fixe 100k (pas d'upgrade), DD3%,
+  Fivers     : 4 comptes The5%ers, palier fixe 100k (pas d'upgrade), DD5%
+               (corrige 08/08 -- programme reellement retenu = High Stakes
+               2-Step format 8/5%, DD journalier officiel 5% source
+               help.the5ers.com/the5ers.com/faqs ; 3% appartenait a tort au
+               Bootcamp/Hyper Growth, jamais utilises dans ce projet),
                prix 179$->545$ a 26j
   GFT        : 1 compte Goat Funded Trader, paliers 50k->100k->200k (approxime
                sur le modele FTMO, prix GFT reels non sources), DD4%,
@@ -41,12 +45,19 @@ DAY_SECONDS = 86400
 FTMO_SEQ, FTMO_COST, FTMO_UPGRADE = list(eng.TIER_SEQUENCE_FTMO), dict(eng.CHALLENGE_COST_FTMO), dict(eng.UPGRADE_COST_FTMO)
 BB_SEQ, BB_COST, BB_UPGRADE = list(eng.TIER_SEQUENCE_BB), dict(eng.CHALLENGE_COST_BB), dict(eng.UPGRADE_COST_BB)
 
+# dd = DD journalier (%), dd_max = DD max/total (%) -- differencies par firm (audit
+# 08/08 session 6, verification croisee vs sources officielles) :
+#   FTMO 5%/10%, Blueberry 5%/10%, GFT 4%/10% (trailing), Fivers 5%/10% (deja
+#   corrige session 5), FundedNext (Stellar Lite, palier max) 4%/8% -- AVANT cette
+#   correction, dd=5.0 (faux, etait 4%) et dd_max non differencie du tout (10%
+#   global via BREAK_DD_PCT partout dans le moteur, faux, etait 8%). Meme type de
+#   bug de donnees que le DD journalier Fivers corrige session 5.
 GROUP_DEFS = {
-    "FTMO": dict(n_accounts=2, seq=FTMO_SEQ, cost=FTMO_COST, upgrade=FTMO_UPGRADE, dd=5.0, cap=400000, kind="growth"),
-    "Blueberry": dict(n_accounts=1, seq=list(BB_SEQ), cost=dict(BB_COST), upgrade=dict(BB_UPGRADE), dd=5.0, cap=400000, kind="growth"),
-    "GFT": dict(n_accounts=1, seq=FTMO_SEQ, cost=FTMO_COST, upgrade=FTMO_UPGRADE, dd=4.0, cap=400000, kind="growth"),
-    "FundedNext": dict(n_accounts=1, seq=FTMO_SEQ, cost=FTMO_COST, upgrade=FTMO_UPGRADE, dd=5.0, cap=200000, kind="growth"),
-    "Fivers": dict(n_accounts=4, dd=3.0, kind="fivers"),
+    "FTMO": dict(n_accounts=2, seq=FTMO_SEQ, cost=FTMO_COST, upgrade=FTMO_UPGRADE, dd=5.0, dd_max=10.0, cap=400000, kind="growth"),
+    "Blueberry": dict(n_accounts=1, seq=list(BB_SEQ), cost=dict(BB_COST), upgrade=dict(BB_UPGRADE), dd=5.0, dd_max=10.0, cap=400000, kind="growth"),
+    "GFT": dict(n_accounts=1, seq=FTMO_SEQ, cost=FTMO_COST, upgrade=FTMO_UPGRADE, dd=4.0, dd_max=10.0, cap=400000, kind="growth"),
+    "FundedNext": dict(n_accounts=1, seq=FTMO_SEQ, cost=FTMO_COST, upgrade=FTMO_UPGRADE, dd=4.0, dd_max=8.0, cap=200000, kind="growth"),  # corrige 08/08 session 6 : etait dd=5.0, dd_max absent (10.0 global)
+    "Fivers": dict(n_accounts=4, dd=5.0, dd_max=10.0, kind="fivers"),  # corrige 08/08 session 5 : etait 3.0 (faux, cf docstring)
 }
 
 

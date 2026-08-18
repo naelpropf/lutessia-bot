@@ -1,0 +1,54 @@
+Population étendue (rr_tp1 >= 1.35, forex, terminaux) : 631 trades
+Chargement/complément des bougies H1 pour 14 tickers...
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+Durées réelles vérifiées (bougies H1) : 325/631 (51.5%) — durée médiane de repli : 0 days 07:41:32
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+[verif] population construite (RR>=1.35) : 631 trades
+[verif marge] REF_tail_x1.6_th8 : mult_max=1.60 -> marge=24.0%  [!!! <30%, deja accepte pour x1.6 en S2.35, aucune nouvelle violation]
+[verif marge] A1_step2_1.3-1.6 : mult_max=1.60 -> marge=24.0%  [!!! <30%, deja accepte pour x1.6 en S2.35, aucune nouvelle violation]
+[verif marge] A2_ramp_1.0-1.6 : mult_max=1.60 -> marge=24.0%  [!!! <30%, deja accepte pour x1.6 en S2.35, aucune nouvelle violation]
+[verif marge] A3_decile_full_1.0-1.6 : mult_max=1.60 -> marge=24.0%  [!!! <30%, deja accepte pour x1.6 en S2.35, aucune nouvelle violation]
+[REF_tail_x1.6_th8 plafond=960$] profit_moy=+7,909,560$ solde_neg=0.33% hit_ceiling=2.33% annee1<0=22.33% (190s)
+[A1_step2_1.3-1.6 plafond=960$] profit_moy=+7,420,169$ solde_neg=3.00% hit_ceiling=5.33% annee1<0=23.67% (195s)
+[A2_ramp_1.0-1.6 plafond=960$] profit_moy=+7,412,874$ solde_neg=0.33% hit_ceiling=2.00% annee1<0=22.00% (202s)
+[A3_decile_full_1.0-1.6 plafond=960$] profit_moy=+5,946,512$ solde_neg=5.33% hit_ceiling=8.33% annee1<0=30.33% (246s)
+[REF_tail_x1.6_th8 plafond=1000$] profit_moy=+7,911,585$ solde_neg=0.33% hit_ceiling=1.33% annee1<0=22.33% (209s)
+[A1_step2_1.3-1.6 plafond=1000$] profit_moy=+7,462,309$ solde_neg=2.33% hit_ceiling=3.67% annee1<0=23.67% (204s)
+[A2_ramp_1.0-1.6 plafond=1000$] profit_moy=+7,436,947$ solde_neg=0.00% hit_ceiling=1.00% annee1<0=22.00% (208s)
+[A3_decile_full_1.0-1.6 plafond=1000$] profit_moy=+6,047,560$ solde_neg=3.33% hit_ceiling=6.67% annee1<0=29.33% (236s)
+[REF_tail_x1.6_th8 plafond=3000$] profit_moy=+8,334,629$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=11.67% (209s)
+[A1_step2_1.3-1.6 plafond=3000$] profit_moy=+8,031,699$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=11.67% (181s)
+[A2_ramp_1.0-1.6 plafond=3000$] profit_moy=+7,809,156$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=12.00% (160s)
+[A3_decile_full_1.0-1.6 plafond=3000$] profit_moy=+6,644,236$ solde_neg=0.00% hit_ceiling=0.33% annee1<0=13.00% (195s)
+[REF_tail_x1.6_th8 plafond=5000$] profit_moy=+8,334,629$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=11.67% (162s)
+[A1_step2_1.3-1.6 plafond=5000$] profit_moy=+8,031,699$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=11.67% (162s)
+[A2_ramp_1.0-1.6 plafond=5000$] profit_moy=+7,809,156$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=12.00% (154s)
+[A3_decile_full_1.0-1.6 plafond=5000$] profit_moy=+6,644,236$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=13.00% (171s)
+
+Termine en 3088s.

@@ -34,27 +34,37 @@ from monte_carlo_simulation import (
 )
 
 FOREX_PATTERN = re.compile(r"^[A-Z]{3}/[A-Z]{3}$")
-HIST_PATH = "historique_lutessia_15k.csv"
+HIST_PATH = "historique_lutessia_15k_force.csv"
 MIN_RR_SUPERSET = 1.0
 THRESHOLDS = [1.0, 1.1, 1.25, 1.35, 1.5, 1.75, 2.0, 2.5]
 RISK_PCT = 0.5
 
 
 def build_extended_population(min_rr=MIN_RR_SUPERSET):
+    # <<< CORRECTIF 2026-08-18 : l'ancien filtre `FOREX_PATTERN.match(t)` excluait
+    # silencieusement TOUT ticker non-forex (indices inclus), independamment de tout
+    # critere RR ou whitelist scraper -- jamais un choix methodologique documente,
+    # juste un artefact herite de l'epoque ou seul le forex etait pertinent (voir
+    # chantier_reference_A_indices_2026-08-18.py / registre_parametres_projet.md
+    # S1.8bis pour la mesure d'impact : +17,6% de volume sur A, EV quasi inchangee).
+    # Remplace par un critere base sur la mappabilite reelle (forex OU indices geres
+    # par ticker_to_yahoo_symbol / INDEX_KEYWORD_MAP) -- MINI DJ30 reste exclu
+    # naturellement (rr_tp1=NaN dans la source, echoue deja le filtre ligne precedente,
+    # et de toute facon absent de INDEX_KEYWORD_MAP).
     df = pd.read_csv(HIST_PATH)
     df["date_creation"] = pd.to_datetime(df["date_creation"])
     pop = df[(df["rr_tp1"] >= min_rr) & (df["statut_final"].isin(["OBJECTIF ATTEINT", "INVALIDÉE"]))].copy()
-    pop = pop[pop["ticker"].apply(lambda t: bool(FOREX_PATTERN.match(t)))].copy()
+    pop["yahoo_symbol"] = pop["ticker"].apply(tpseq.ticker_to_yahoo_symbol)
+    pop = pop.dropna(subset=["yahoo_symbol"]).copy()
     pop = pop.sort_values("date_creation").reset_index(drop=True)
 
-    pop["yahoo_symbol"] = pop["ticker"].apply(tpseq.ticker_to_yahoo_symbol)
-    assert pop["yahoo_symbol"].notna().all(), "Tickers non mappés inattendus (forex uniquement ici)"
+    assert pop["yahoo_symbol"].notna().all(), "Tickers non mappés inattendus (forex+indices mappés ici)"
 
     unique_symbols = sorted(pop["yahoo_symbol"].unique())
     start_dt = pop["date_creation"].min() - pd_timedelta_1d()
     end_dt = pd.Timestamp.utcnow().tz_localize(None)
 
-    print(f"Population étendue (rr_tp1 >= {min_rr}, forex, terminaux) : {len(pop)} trades")
+    print(f"Population étendue (rr_tp1 >= {min_rr}, forex+indices mappés, terminaux) : {len(pop)} trades")
     print(f"Chargement/complément des bougies H1 pour {len(unique_symbols)} tickers...")
 
     candles_by_symbol = {}

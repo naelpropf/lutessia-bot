@@ -1,0 +1,64 @@
+Population étendue (rr_tp1 >= 1.35, forex, terminaux) : 631 trades
+Chargement/complément des bougies H1 pour 14 tickers...
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+Durées réelles vérifiées (bougies H1) : 325/631 (51.5%) — durée médiane de repli : 0 days 07:41:32
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+[verif] population complete (RR>=1.35) : 631 trades
+
+======================================================================
+BBx2@5000 (extra_day0_starter=Blueberry, ceiling=5000$)
+======================================================================
+  [H1, n=100] REF profit=+110,016$ hit_ceiling=0.00% | BBx2@5000 profit=+130,814$ (+18.90%, profit MIEUX) hit_ceiling=0.00% (delta=+0.00pt) annee1<0 delta=-10.00pt (45s)
+  [H2, n=100] REF profit=+6,658,676$ hit_ceiling=0.00% | BBx2@5000 profit=+6,907,524$ (+3.74%, profit MIEUX) hit_ceiling=0.00% (delta=+0.00pt) annee1<0 delta=+0.00pt (44s)
+  [bloc0, n=100] REF profit=-39,463$ hit_ceiling=0.00% | BBx2@5000 profit=-49,589$ (+25.66%, profit MIEUX) hit_ceiling=0.00% (delta=+0.00pt) annee1<0 delta=-4.00pt (19s)
+  [bloc1, n=100] REF profit=+83,994$ hit_ceiling=0.00% | BBx2@5000 profit=+91,073$ (+8.43%, profit MIEUX) hit_ceiling=0.00% (delta=+0.00pt) annee1<0 delta=-10.00pt (20s)
+  [bloc2, n=100] REF profit=+4,879,477$ hit_ceiling=0.00% | BBx2@5000 profit=+5,296,519$ (+8.55%, profit MIEUX) hit_ceiling=0.00% (delta=+0.00pt) annee1<0 delta=+0.00pt (32s)
+  [bloc3, n=100] REF profit=+2,759,680$ hit_ceiling=0.00% | BBx2@5000 profit=+3,065,990$ (+11.10%, profit MIEUX) hit_ceiling=0.00% (delta=+0.00pt) annee1<0 delta=-1.00pt (29s)
+
+======================================================================
+BBGFT@5000 (extra_day0_starter=GFT, ceiling=5000$)
+======================================================================
+  [H1, n=100] REF profit=+110,016$ hit_ceiling=0.00% | BBGFT@5000 profit=+116,328$ (+5.74%, profit MIEUX) hit_ceiling=0.00% (delta=+0.00pt) annee1<0 delta=-6.00pt (46s)
+  [H2, n=100] REF profit=+6,658,676$ hit_ceiling=0.00% | BBGFT@5000 profit=+6,759,219$ (+1.51%, profit MIEUX) hit_ceiling=0.00% (delta=+0.00pt) annee1<0 delta=+0.00pt (40s)
+  [bloc0, n=100] REF profit=-39,463$ hit_ceiling=0.00% | BBGFT@5000 profit=-39,298$ (-0.42%, profit PIRE) hit_ceiling=0.00% (delta=+0.00pt) annee1<0 delta=-4.00pt (16s)
+  [bloc1, n=100] REF profit=+83,994$ hit_ceiling=0.00% | BBGFT@5000 profit=+96,365$ (+14.73%, profit MIEUX) hit_ceiling=0.00% (delta=+0.00pt) annee1<0 delta=-7.00pt (16s)
+  [bloc2, n=100] REF profit=+4,879,477$ hit_ceiling=0.00% | BBGFT@5000 profit=+5,196,204$ (+6.49%, profit MIEUX) hit_ceiling=0.00% (delta=+0.00pt) annee1<0 delta=+0.00pt (18s)
+  [bloc3, n=100] REF profit=+2,759,680$ hit_ceiling=0.00% | BBGFT@5000 profit=+2,937,802$ (+6.45%, profit MIEUX) hit_ceiling=0.00% (delta=+0.00pt) annee1<0 delta=-1.00pt (19s)
+
+======================================================================
+BBGFT@3000 (extra_day0_starter=GFT, ceiling=3000$)
+======================================================================
+  [H1, n=100] REF profit=+110,016$ hit_ceiling=0.00% | BBGFT@3000 profit=+120,354$ (+9.40%, profit MIEUX) hit_ceiling=7.00% (delta=+7.00pt) annee1<0 delta=-4.00pt (36s)
+  [H2, n=100] REF profit=+6,658,676$ hit_ceiling=0.00% | BBGFT@3000 profit=+6,759,219$ (+1.51%, profit MIEUX) hit_ceiling=0.00% (delta=+0.00pt) annee1<0 delta=+0.00pt (38s)
+  [bloc0, n=100] REF profit=-39,463$ hit_ceiling=0.00% | BBGFT@3000 profit=-38,112$ (-3.42%, profit PIRE) hit_ceiling=3.00% (delta=+3.00pt) annee1<0 delta=-4.00pt (16s)
+  [bloc1, n=100] REF profit=+83,994$ hit_ceiling=0.00% | BBGFT@3000 profit=+96,365$ (+14.73%, profit MIEUX) hit_ceiling=0.00% (delta=+0.00pt) annee1<0 delta=-7.00pt (17s)
+  [bloc2, n=100] REF profit=+4,879,477$ hit_ceiling=0.00% | BBGFT@3000 profit=+5,193,053$ (+6.43%, profit MIEUX) hit_ceiling=1.00% (delta=+1.00pt) annee1<0 delta=+0.00pt (19s)
+  [bloc3, n=100] REF profit=+2,759,680$ hit_ceiling=0.00% | BBGFT@3000 profit=+2,936,121$ (+6.39%, profit MIEUX) hit_ceiling=1.00% (delta=+1.00pt) annee1<0 delta=-1.00pt (18s)
+
+Termine en 493s.

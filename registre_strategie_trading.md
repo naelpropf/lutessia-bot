@@ -215,7 +215,84 @@ compromis EV/volume dans ce sweep, sans être le seul point testé.
 risque% (progressif/fixe) — volet risque% hors périmètre de ce registre
 (capital, cf. `registre_parametres_projet.md`).
 
+### 2.8bis 🟡 *(CANDIDAT n=300, 08/12)* Affinage de la grille RR — 1,35 domine strictement 1,25 sur les 4 axes
+
+Le sweep §2.8 était grossier {1,0/1,1/1,25/1,35/1,5/1,75/2,0/2,5}. Affiné
+autour de l'optimum : {1,05/1,10/1,15/1,20/1,25 réf/1,30/1,35/1,40/1,45},
+population 721, **payoff trailing 0,15×SL actuellement en production**
+(pas le payoff TP1-plat de l'ancien `rr_threshold_test.py` — écart
+méthodologique explicite, `chantier1_rr_grid_2026-08-12.py`).
+
+**Étape 1 — solo** (EV des trades PRIS après plafond 3 positions +
+corrélation 0,6/JPY, marche chronologique déterministe) :
+
+| Seuil | n pris | Winrate pris | EV pris (R) |
+|---|---|---|---|
+| 1,05 | 762 | 41,5% | +0,7300 |
+| 1,10 | 712 | 40,2% | +0,7007 |
+| 1,15 | 675 | 39,9% | +0,7007 |
+| 1,20 | 636 | 39,0% | +0,7133 |
+| **1,25 (réf)** | **612** | **39,9%** | **+0,7938** |
+| 1,30 | 571 | 39,6% | +0,7989 |
+| **1,35** | **546** | **38,8%** | **+0,8080** |
+| 1,40 | 513 | 38,0% | +0,7812 |
+| 1,45 | 488 | 37,3% | +0,7487 |
+
+EV_pris culmine à 1,35, top 3 candidats retenus pour confirmation flotte :
+1,35/1,30/1,40.
+
+**Étape 2 — flotte n=300, 2 plafonds** (moteur officiel Option A/Prime,
+config Run C) :
+
+| Plafond | Seuil | n trades | Profit moyen/médian | solde_negatif_annee4 | hit_ceiling_pct | Année1<0 |
+|---|---|---|---|---|---|---|
+| 1000$ | **1,25 (réf)** | 721 | **5 588 381$/5 336 808$** | 1,33% | 3,33% | 32,67% |
+| 1000$ | 1,30 | 669 | 5 049 693$/4 913 330$ | 0,67% | 2,00% | 33,33% |
+| 1000$ | **1,35** | 631 | **5 764 076$/5 632 206$** | **0,33%** | **1,67%** | **29,33%** |
+| 1000$ | 1,40 | 591 | 5 655 586$/5 396 698$ | 0,67% | 3,00% | 31,00% |
+| 3000$ | **1,25 (réf)** | 721 | **5 629 882$/5 361 131$** | 0,33% | 1,67% | 32,67% |
+| 3000$ | 1,30 | 669 | 5 084 237$/4 926 585$ | 0,00% | 0,33% | 33,33% |
+| 3000$ | **1,35** | 631 | **5 764 865$/5 632 206$** | **0,33%** | **1,00%** | **29,33%** |
+| 3000$ | 1,40 | 591 | 5 701 782$/5 463 724$ | 0,00% | 1,00% | 31,00% |
+
+**1,35 DOMINE STRICTEMENT 1,25 sur les 4 axes aux deux plafonds** :
+profit +3,1%/+2,4%, solde_neg meilleur/égal, hit_ceiling meilleur, année1<0
+-3,3pt aux deux plafonds — standard "GO" du projet (dominance 3+ axes aux
+2 plafonds) atteint. 1,40 domine aussi 1,25 mais plus faiblement (+1,2%/
++1,3% profit). **1,30 est nettement PIRE que la référence sur le profit
+(-9,6%/-9,7%)** malgré un solo EV_pris légèrement meilleur que 1,25 — rappel
+que l'EV solo ne se traduit pas linéairement en profit flotte (interaction
+avec le volume de trades/le bootstrap/le scaling). **Candidat prioritaire :
+1,35.**
+
+**✅ 08/12, plus tard : n=600+cascade CONFIRMÉ** en combinaison avec le
+seuil de corrélation 0,80 (`registre_parametres_projet.md` §2.62,
+`chantier1_combined_confirm_n600_2026-08-12.py`) — RR1,35 seul (corr 0,60
+inchangé) confirmé n=600 : 1000$ 5 710 066$/0,50%/1,83%/33,17% ; 3000$
+5 717 829$/0,33%/0,83%/33,17% (domine la référence 1,25 sur les 4 axes aux
+deux plafonds). Combiné avec corr0,80 : dominance encore renforcée (profit
++6,3%/+5,5% vs référence, année1<0 -5,0pt/-4,8pt, effet super-additif sur
+année1<0 spécifiquement).
+
+**✅ ADOPTÉ 08/12 (cascade complète, `registre_parametres_projet.md`
+§2.62-2.63)** — RR≥1,35 est désormais la référence officielle du projet
+(avec corrélation 0,80). Toute la chaîne dépendante régénérée : référence
+capital Run C/F, config 1/4 dual-trader, décomposition du mécanisme de
+sauvetage (mécanisme confirmé intact), Blueberry Prime A/B/C (verdict
+qualitatif inchangé). Un risque structurel a été trouvé et corrigé en
+route : la bande contrarian de Stratégie B (0,75-1,25, `dual_trader_2026-
+08-11.py`) était bornée par un littéral dupliqué indépendant de RR T1 —
+aurait créé une zone morte de trades (rr_tp1∈[1,25;1,35)) ni pris par T1
+ni par T2. Corrigée : la borne haute suit désormais `MIN_RR_T1=1.35`, une
+constante partagée — voir §2.63 pour le détail. Nouvelle bande Stratégie B
+(0,75-1,35) revérifiée solo avant réutilisation : n=401 (vs 311), EV
++0,8005R (vs +0,7809R) — pas de dilution.
+
 ### 2.9 Filtre news (calendrier ForexFactory) — BACKTEST PARTIEL 08/11, DONNÉES INSUFFISANTES POUR TRANCHER
+
+**08/12 : réouverture demandée puis annulée par l'utilisateur en cours de
+chantier** ("le filtre news a été testé, annule la section 4") — le verdict
+ci-dessous (08/11) reste inchangé, pas de nouveau test effectué.
 
 `news_filter.py` : mécanisme de PRODUCTION — sur un signal d'entrée, si
 un événement High-impact ForexFactory (NFP/CPI/décisions banque
@@ -832,6 +909,1542 @@ lui-même. Fichiers sur disque : `edge_dxy_realtime_detection_2026-08-11
 (non suivi, `*.csv` gitignoré projet entier sauf `correlation_matrix
 .csv` — même convention que les ~100 autres CSV `etape_*` du dépôt).
 
+### 2.27 Piste 11 — Amplification d'exposition sur bonne série confirmée — REJETÉ (08/11)
+
+Distincte de la recherche de signal précurseur négatif (§2.16-2.26,
+fermée, 10 pistes rejetées) : ici on ne cherche pas à détecter une
+mauvaise période pour couper, mais une BONNE période confirmée pour
+amplifier l'exposition pendant qu'elle dure. Hypothèse testée (prompt
+utilisateur 08/11) : même avec un signal aussi imparfait que celui déjà
+rejeté pour couper, l'asymétrie du coût d'erreur pourrait être favorable
+à l'amplification (se tromper en amplifiant sur du bruit coûte peu, se
+tromper en coupant sur du bruit coûte du vrai profit perdu).
+
+**Étape 1 — recensement des fenêtres de surperformance** (721 trades,
+même grille que Piste 7 §2.17, seuil moyenne+2σ, N=15/20/30,
+`edge_amplification_episodes_2026-08-11.py`). Deux résultats mesurés
+avant même de construire le mécanisme :
+- **Le critère EV seul est inutilisable côté positif** — R n'est pas
+  borné à la hausse (le trailing stop peut produire des gains très
+  larges) mais borné à -1R à la baisse, donc un seuil EV crée un
+  "sillage" artificiel : une seule grosse levée de trailing gonfle la
+  fenêtre glissante EV pour les N trades suivants même s'ils sont
+  eux-mêmes perdants. Pas symétrique au cas négatif de Piste 7 (le plancher
+  -1R borne la queue côté casse). Bascule sur winrate seul — qui a
+  l'avantage supplémentaire d'être exactement le signal déjà utilisé par
+  le coupe-circuit rejeté (`compute_pause_mask`,
+  `edge_circuit_breaker_v2_2026-08-11.py`), donc comparaison directe à
+  l'Étape 4.
+- **Diagnostic de persistance (nouveau, ajouté en cours de route)** :
+  corrélation entre le winrate glissant précédent un trade et l'issue de
+  ce trade est quasi nulle (+0,03 à +0,11 selon N=15/20/30) — très
+  faible comparé aux 6 épisodes froids substantiels et récurrents de
+  Piste 7. Sous le seuil winrate seul (2σ), 10/6/4 épisodes trouvés selon
+  N, mais courts (quelques jours à quelques semaines, jamais plusieurs
+  mois) — contre les 6 épisodes de Piste 7 (semaines à mois). Signal
+  d'alerte fort mesuré AVANT de construire le mécanisme, mais la mesure a
+  été poursuivie jusqu'au bout conformément à la consigne (mesurer, pas
+  supposer).
+
+**Étape 2b — mécanisme et 3 variantes** (`edge_amplification_fleet_2026-
+08-11.py`, base = référence officielle par plafond, décision #16
+`registre_parametres_projet.md` §1.8/§2.35bis — Run C à 1000$, Run F à
+3000$). Détection : fenêtre glissante N=20, seuil winrate>62,3% (formule
+2σ, mirroir exact de la meilleure config testée côté coupe-circuit,
+20/0,18/20), sortie 20 trades après l'entrée (délai fixe, même
+convention que le coupe-circuit). 3 variantes testées séparément, jamais
+combinées :
+1. **unlock** — seuil de réserve pour le déclenchement de groupe/palier
+   divisé par 2 pendant un épisode boost (déblocage accéléré).
+2. **sizing** — risque multiplié par 1,3 pendant un épisode boost.
+3. **reopen** — coût de réouverture/rachat après casse réduit de 15%
+   pendant un épisode boost (même mécanique que le discount FTMO déjà
+   codé, appliqué ici à toutes les firms pendant un boost).
+
+**Étape 3 — n=300, deux plafonds, faux positifs mesurés explicitement**
+(overlap calendaire avec les fenêtres de surperformance de l'Étape 1,
+même méthode que le point 2 du coupe-circuit) :
+
+| Plafond | Config | Profit moyen | Δ vs référence | solde_negatif_annee4 | hit_ceiling_pct | Année1<0 |
+|---|---|---|---|---|---|---|
+| 1000$ | référence (Run C) | 5 588 381$ | — | 1,33% | 3,33% | 32,67% |
+| 1000$ | unlock | 5 606 460$ | +0,32% | 1,67% (pire) | 3,33% | 33,00% (pire) |
+| 1000$ | sizing | 5 374 527$ | **-3,83%** | 1,67% (pire) | 3,33% | 34,00% (pire) |
+| 1000$ | reopen | 5 588 964$ | +0,01% (nul) | 1,33% | 3,33% | 32,67% |
+| 3000$ | référence (Run F) | 5 658 217$ | — | 0,67% | 1,67% | 29,00% |
+| 3000$ | unlock | 5 675 445$ | +0,30% | 0,67% | 3,00% (pire) | 29,00% |
+| 3000$ | sizing | 5 495 444$ | **-2,88%** | 0,67% | 2,33% (pire) | 28,67% |
+| 3000$ | reopen | 5 659 019$ | +0,01% (nul) | 0,67% | 1,67% | 29,00% |
+
+**Taux de faux positifs mesuré (n=300, deux plafonds confondus — la
+détection est identique pour les 3 variantes)** : 1 261 épisodes
+déclenchés au total, 522 vrais positifs (chevauchent une fenêtre de
+surperformance connue de l'Étape 1), **739 faux positifs — 58,6%**, plus
+d'un épisode sur deux. Cohérent avec le diagnostic de persistance quasi
+nulle de l'Étape 1.
+
+**Étape 4 — verdict, comparaison explicite au coupe-circuit** (§2.16
+`registre_parametres_projet.md`, config gagnante N=20/X=18%/M=10 :
+-5,5%/-5,7% de profit pour un année1<0 identique à la référence, REJETÉ) :
+aucune des 3 variantes d'amplification ne produit de gain net. `sizing`
+perd -2,9 à -3,8% de profit ET dégrade les 3 axes de risque aux deux
+plafonds — pire que le coupe-circuit sur le rapport coût/bénéfice, pas
+meilleur. `reopen` est économiquement nul (effet <0,01%, le rachat après
+casse coûte déjà trop peu pour qu'une remise de 15% se voie). `unlock`
+est le seul cas où l'hypothèse d'asymétrie tient PARTIELLEMENT sur
+l'ordre de grandeur du coût (+0,3% de profit contre -5,5% pour le
+coupe-circuit) — mais ce n'est pas un gain net non plus : hit_ceiling se
+dégrade à 3000$ (+1,33pt) et solde_negatif_annee4 à 1000$ (+0,34pt), pour
+un gain de profit dans le bruit. **Conclusion demandée explicitement par
+le prompt utilisateur en cas de ratio non nettement meilleur : le
+problème n'est pas l'asymétrie du coût d'erreur, c'est la fiabilité
+intrinsèque du signal** (persistance quasi nulle, 58,6% de faux
+positifs) — la piste est fermée avec la MÊME conclusion opérationnelle
+que le coupe-circuit réactif et que Piste 9/10 (DXY) : aucun signal
+testé à ce jour, ni pour couper ni pour amplifier, ne devance ou n'exploite
+utilement la matérialisation du edge dans le P&L lui-même. **REJETÉ,
+n=600 non engagé** (aucune configuration positive à confirmer). Fichiers :
+`edge_amplification_episodes_2026-08-11.py`,
+`edge_amplification_fleet_2026-08-11.py` (suivis par git),
+`edge_amplification_episodes_2026-08-11.csv`,
+`edge_amplification_fleet_n300.csv` (non suivis, convention gitignore
+standard du projet).
+
+### 2.28 Plafond de 3 positions simultanées — REJETÉ (cap=4 ET swap), Section 4 non engagée (08/15)
+
+**Contexte** : chantier demandé explicitement pour vérifier si le plafond de
+3 positions ouvertes par compte (`MAX_POSITIONS`, `scaling_simulation.py`)
+bloque des signaux à haut RR de façon significative, sous la base actuelle
+du projet (RR≥1,35, corrélation 0,80, éval=1,25%, §1.8
+`registre_parametres_projet.md`). Fichier : `chantier_position_cap_2026-
+08-15.py` (suivi par git).
+
+**⚠️ Correction méthodologique reçue de l'utilisateur en cours de chantier** :
+la doc historique de `missed_signals_replay.py` ("un signal bloqué sur un
+compte peut être pris par un autre") est **fausse pour les comptes d'une
+même firm** (FTMO a 2 comptes day-0, The5%ers en a 4, `N_ACCOUNTS_DAY0`
+`etape_e_fleet_integration.py:120`) : en copytrade, ces clones reçoivent le
+même flux de signaux, au même risque%, avec les mêmes règles de DD, ouverts
+au même instant — rien dans le moteur n'introduit de divergence entre eux
+(aucun RNG par-compte), donc ils bloquent/cassent en **lockstep parfait**.
+La redondance "un autre compte peut prendre le relais" n'existe qu'**ENTRE
+FIRMS DIFFÉRENTES** (règles de DD et âges différents), pas entre clones
+d'une même firm. Le remplay 1-compte de la Section 1 (ci-dessous) est donc une borne
+haute plus généreuse que ce que le texte d'origine suggérait — mais peu
+importe pour le verdict final : les chiffres $ qui tranchent (Section
+2/3) viennent du moteur de flotte complet, où chaque compte (y compris les
+clones FTMO/Fivers) suit son propre `open_positions` correctement, sans
+cette approximation.
+
+**Section 1 — ampleur (replay chronologique 1-compte, population réelle
+RR≥1,35, n=631)** :
+
+| | n | % population | R_trailing moyen | Winrate | RR (rr_tp1) moyen |
+|---|---|---|---|---|---|
+| Pris | 582 | 92,2% | +0,819 | 38,7% | 1,97 |
+| Bloqué (cap) | 5 | **0,8%** | **-0,500** | **20,0%** | 1,95 |
+| Bloqué (corrélation) | 44 | 7,0% | +2,029 | 52,3% | 2,15 |
+
+Volume marginal (5 cas sur 631) et — résultat contre-intuitif — les
+signaux historiquement bloqués par le cap auraient en moyenne PERDU de
+l'argent (-0,500R, winrate 20%), malgré un RR planifié correct. RR max
+observé chez les bloqués-cap = 2,81 (jamais de RR "exceptionnel type 5" —
+`rr_tp1` est de toute façon plafonné à 3,0 par construction du payoff
+trailing, `pop['rr_tp1'].max()`=3,0 vérifié). n=5 trop petit pour un
+verdict en soi — juste un signal d'alerte cohérent avec le verdict final
+ci-dessous.
+
+**Sections 2/3 — moteur de flotte complet, n=300, seed=9999, référence
+RunC/RunF rr135/corr080 (§1.8) comme baseline `REF_cap3`** :
+
+| Config | Plafond | Profit moyen | Δ vs REF | solde_neg_an4 | hit_ceiling | Année1<0 |
+|---|---|---|---|---|---|---|
+| REF (cap=3) | 1000$ | 5 915 946$ | — | 0,33% | 2,00% | 28,00% |
+| **Section 2 — cap=4** | 1000$ | 5 928 809$ | **+0,22%** | 0,67% (pire) | 2,00% | 28,00% |
+| Section 3 — swap X=1,5 | 1000$ | 5 890 726$ | -0,43% | 0,33% | 1,67% (mieux) | 27,67% (mieux) |
+| Section 3 — swap X=2,0 | 1000$ | 5 899 331$ | -0,28% | 0,33% | 1,67% (mieux) | 27,67% (mieux) |
+| Section 3 — swap X=3,0 | 1000$ | 5 915 946$ | 0,00% (0 éviction) | 0,33% | 2,00% | 28,00% |
+| REF (cap=3) | 3000$ | 5 919 687$ | — | 0,33% | 1,00% | 28,00% |
+| Section 2 — cap=4 | 3000$ | 5 948 372$ | **+0,48%** | 0,33% | 1,00% | 28,00% |
+| Section 3 — swap X=1,5 | 3000$ | 5 892 831$ | -0,45% | 0,33% | 1,00% | 27,67% (mieux) |
+| Section 3 — swap X=2,0 | 3000$ | 5 901 436$ | -0,31% | 0,33% | 1,00% | 27,67% (mieux) |
+| Section 3 — swap X=3,0 | 3000$ | 5 919 687$ | 0,00% (0 éviction) | 0,33% | 1,00% | 28,00% |
+
+X=3,0 est un no-op structurel confirmé (ratio max possible entre deux
+`rr_tp1` de la population = 3,0/1,35 = 2,22, donc `rr_tp1_nouveau >=
+3,0 x rr_tp1_le_plus_faible` n'est jamais atteignable — 0 éviction
+mesurée aux deux plafonds, cohérent). X=1,5/2,0 déclenchent en moyenne
+~20-22 évictions par run sur un total de plusieurs milliers de trades
+fleet-wide sur 4 ans — volume dérisoire, cohérent avec Section 1.
+
+**Limite de modélisation explicite (Section 3, swap)** : le moteur
+(`engine_multiformat.process_trade_mf`) applique le PnL d'un trade
+intégralement à SON OUVERTURE (résolution instantanée, aucun prix
+intra-position suivi). "Couper" une position ne peut donc être modélisé
+qu'en libérant son slot d'occupation SANS toucher au PnL déjà appliqué
+(qui reste son issue réelle finale) — ce qui SURESTIME probablement le
+vrai gain d'un swap réel (une vraie coupe anticipée change le R réel,
+généralement vers un résultat moins extrême que l'issue finale). Signalé
+explicitement plutôt que supposé neutre.
+
+**Verdict : REJETÉ dans les deux variantes testées.** Cap=4 apporte un
+gain de profit dans le bruit (+0,2%/+0,5%, effet de cet ordre jamais
+confirmé à n=600 dans ce projet) tout en dégradant légèrement
+solde_negatif_annee4 à 1000$ (0,33%→0,67%, ×2 mais reste marginal en
+absolu à n=300). Le swap (X=1,5/2,0) est carrément CONTRE-PRODUCTIF sur
+le profit (-0,3% à -0,5%) malgré une légère amélioration de hit_ceiling/
+année1<0 — cohérent avec Section 1 (les signaux historiquement bloqués
+par le cap ont un R_trailing négatif en moyenne, donc les capturer coûte
+plus qu'il ne rapporte), ET ce, avec une limite de modélisation qui
+SURESTIME déjà l'effet réel. **N=600 non engagé** — aucune configuration
+positive à confirmer, exactement le cas visé par la consigne du prompt
+("si le volume est marginal, le dire explicitement, pas la peine de
+complexifier").
+
+**Section 4 (4e position temporaire + retour à 3) : NON ENGAGÉE**, gating
+explicite du prompt ("seulement si Section 3 déçoit") — Section 3 n'a pas
+juste déçu, elle est allée dans le sens négatif sur l'axe qui compte le
+plus (profit), avec une méthodologie déjà optimiste. Rien dans ces
+résultats ne suggère qu'une variante plus complexe (4e slot temporaire)
+inverserait le verdict — le goulot d'étranglement mesuré (0,8% de la
+population, EV négatif sur ces cas précis) est trop petit pour qu'aucune
+règle de gestion de plafond ne produise un gain mesurable. **Chantier
+fermé.**
+
+Fichiers : `chantier_position_cap_2026-08-15.py` (suivi par git),
+`chantier_position_cap_section1_detail_2026-08-15.csv`,
+`chantier_position_cap_n300_2026-08-15.csv`,
+`chantier_position_cap_run_2026-08-15.log` (non suivis, convention
+gitignore standard du projet).
+
+**Vérification complémentaire demandée le 08/15 (même jour) : le 14/08 est-il
+un jour normal ou un outlier, méthodologie Section 1 fiable ?** Script
+`verif_clustering_14aout_2026-08-15.py` (suivi par git) :
+- **Q1** — sur la population complète min_rr=1,25 (721 trades) : **29,6% des
+  jours actifs (153/517) ont 2+ signaux le même jour calendaire**, 8,1% en
+  ont 3+. Le 14/08 (2 signaux) est un jour **NORMAL**, pas un outlier.
+- **Q2** — audit du code de Section 1 : compare des timestamps complets
+  (`date_creation`/`resolution_time_est`), PAS des jours calendaires — aucun
+  bug de granularité trouvé. Point de vigilance réel mais mineur : le
+  fallback à la durée médiane (~7h41, pour les ~49% de trades non vérifiés
+  par bougies H1) sous-estime probablement la queue longue de la
+  distribution réelle (moyenne 29,3h vs médiane 7,7h, p95=140,7h≈5,9j sur
+  les 325 trades vérifiés) — source plausible de sous-comptage résiduel,
+  concentrée sur les positions les plus longues, mais pas une erreur de
+  méthode.
+- **Q3** — taux de blocage cap, population 631 (RR≥1,35) : temps réel
+  (Section 1) = 0,79% (5/631) vs méthode naïve jour-calendaire (borne
+  haute grossière, ignore les heures) = 1,11% (7/631) — **écart de
+  seulement 1,4x**, pas d'ordre de grandeur.
+- **Verdict : ni anomalie statistique, ni sous-comptage structurel.**
+  "Même jour" (fréquent, 29,6%) et "chevauchement réel de position" (rare,
+  <1%) sont deux choses différentes — la durée médiane de détention
+  (~7h41) est courte devant l'écart typique entre signaux, donc un jour à
+  2 signaux ne sature quasiment jamais le plafond de 3. Le verdict REJETÉ
+  du chantier ci-dessus tient, avec une nuance mineure notée (queue longue
+  de durée, biais résiduel non quantifié précisément mais probablement
+  petit vu que même la borne haute naïve reste basse).
+
+### 2.29 CHANTIER 2 (08/15) — Stabilité temporelle du winrate + distribution bayésienne, population actuelle (RR≥1,35, 631 trades)
+
+Fichier : `chantier2_section2_stability_bayes_2026-08-15.py` (suivi par
+git). Refait sur la base actuelle (les analyses antérieures de ce type
+tournaient sur RR≥1,25/721 ou RR≥1,5/472).
+
+**Population** : n=631, wins=249, losses=382, winrate observé=39,46%, RR
+(rr_tp1) moyen=1,985.
+
+**Stabilité temporelle** — winrate par semestre : 2022-S1 41,5% →
+2022-S2 28,2% → 2023-S1 34,5% → 2023-S2 38,3% → 2024-S1 46,4% → 2024-S2
+43,2% → 2025-S1 42,0% → 2025-S2 39,3% → 2026-S1 40,0% (n=75) → 2026-S2
+50,0% (n=10 seulement, à ignorer). **Aucune dérive temporelle
+statistiquement significative** : test le plus puissant disponible
+(corrélation point-bisériale trade-par-trade, pas de perte d'info par
+binning) r=+0,057, p=0,150 > 0,05. Une régression sur les moyennes
+semestrielles suggère une légère tendance HAUSSIÈRE (pente
++0,0116/semestre) mais reste elle-même non significative (p=0,079) — pas
+un signal à traiter, cohérent avec un winrate stable dans le temps.
+
+**Distribution bayésienne** (prior Jeffreys Beta(0,5;0,5), non-informatif
+standard — PAS le posterior Beta(172,66;305,36) de
+`winrate_bayesian_posterior_weighted.py`, qui vient d'un contexte
+différent et sans rapport, ancienne population 472 trades + scénario "15
+pertes consécutives" spécifique ; sensibilité vérifiée avec un prior
+uniforme Beta(1,1), résultat quasi identique — le choix de prior importe
+peu à n=631) :
+- Posterior Beta(249,5 ; 382,5) → **P10=36,99% | P50=39,47% | P90=41,98%**
+- P(winrate>35%)=99,0% | P(winrate>38%)=77,6% | P(winrate>40%)=39,2% |
+  P(winrate>42%)=9,8%
+- EV correspondant à chaque seuil (RR=1,985) : +0,045R (35%) / +0,135R
+  (38%) / +0,194R (40%) / +0,254R (42%)
+
+**Seuil de rentabilité (EV=0)** : winrate_seuil = 1/(RR+1) = **33,50%**.
+**P(winrate réel < seuil, donc EV réel < 0) = 0,09%** sous le posterior
+Jeffreys — marge du winrate observé au-dessus du seuil : **+5,97pt**
+(39,46% observé vs 33,50% seuil). **Verdict : edge statistiquement très
+solide, risque de faux edge quasi nul (<0,1%) sur cette population.**
+
+### 2.30 CHANTIER 2 (08/15) — Frottements réels décomposés, population actuelle (RR≥1,35, 631 trades)
+
+Fichiers : `chantier2_section1_slippage_631_2026-08-15.py`,
+`chantier2_section1_frictions_bdef_2026-08-15.py` (suivis par git),
+`slippage_proxy_dukascopy_detail_631_2026-08-15.csv` (non suivi,
+convention gitignore).
+
+**a) Slippage réel (Dukascopy)** — 469/472 trades déjà mesurés (ancienne
+base RR≥1,5) + 159/162 trades supplémentaires mesurés spécifiquement pour
+ce chantier (nouveaux appels tick Dukascopy, 3 sans tick trouvé malgré
+retries réseau) → **628/631 trades couverts (99,5%)**. Slippage moyen
+**-0,939 pips** (médiane -0,700 pips), quasi identique à l'ancien test
+(-0,910 pips sur RR≥1,5/469 trades) — se généralise bien à la population
+élargie, pas d'anomalie. Par classe d'actif : /JPY -1,111 | /USD -0,426 |
+/GBP -0,814 | /CHF -1,224 | /CAD -1,639 pips. Reconstruction déterministe
+par trade (pas un tirage dans la distribution empirique comme
+`slippage_adjusted_population.py` — ici le slippage RÉEL mesuré de
+CHAQUE trade est appliqué à CE trade, plus précis) : **EV +0,8934R
+(sans frottement) → +0,8490R (avec slippage) = -0,0444R (-5,0%)**, très
+proche de l'ancien chiffre cité (-6,3%) — l'écart s'explique par un
+mélange population plus large (RR≥1,35) + méthode déterministe vs tirage
+empirique, dans le même ordre de grandeur.
+
+**d) Swap/rollover** — hypothèse haute -2 à -3 pips/nuit, pondérée par le
+vrai nombre de franchissements de l'heure de rollover (22h UTC,
+convention retail standard) entre `date_creation` et
+`resolution_time_est` de chaque trade (pas une durée moyenne globale
+appliquée uniformément) : 40,3% des trades franchissent au moins 1
+rollover. Coût moyen dilué sur la population entière : **-0,053R/trade**
+(hypothèse -2 pips/nuit) à **-0,079R/trade** (hypothèse -3 pips/nuit).
+
+**e) Erreurs de parsing/exécution manquée** — modélisé comme un
+prélèvement PROPORTIONNEL sur l'EV (trades manqués = échantillon
+aléatoire, pas de biais supposé sur lesquels) : coût = miss_rate × EV,
+donc **dépend explicitement de quelle EV sert de référence** (⚠️
+autocorrection en cours d'assemblage : le calcul initial de ce
+paragraphe utilisait par erreur l'EV simple +0,153R comme base pour LES
+DEUX combinaisons finales ci-dessous, alors que la combinaison "EV
+plancher réaliste" doit utiliser l'EV réaliste +0,8934R comme base —
+corrigé dans les totaux ci-dessous, l'écart final reste minime mais
+autant citer le bon chiffre) : à 3% (hypothèse haute retenue), coût
+= 0,03×0,8934=**-0,0268R** (base réaliste) ou 0,03×0,1042=**-0,0031R**
+(base P10 bayésien, RR moyen simple) selon la combinaison utilisée
+ci-dessous.
+
+**f) Gap de week-end** — revérifié sur la population actuelle (193/382
+pertes couvertes par les bougies H1, même limite ~730j que d'habitude) :
+**4/193 pertes couvertes (2,1%)** touchées par un gap ≥20h, coût excess
+moyen sur ces cas +0,434R (au-delà du -1R théorique). Dilué sur
+l'ensemble des pertes couvertes : **+0,009R/perte** ; dilué sur la
+population totale (n=631, gains inclus) : **-0,00275R/trade** (frottement
+mineur, cohérent avec la faible fréquence de gaps significatifs sur ces
+14 paires majeures/mineures).
+
+**b) Spread** — la mesure de slippage Dukascopy (point a) compare déjà
+`prix_entree` au prix réellement tradable (ask pour un achat, bid pour
+une vente) : le coût du côté spread payé à l'entrée est donc **déjà
+inclus** dans le slippage mesuré, ce n'est pas un frottement additif
+séparé (coût = 0 dans la combinaison ci-dessous). Vérification de
+symétrie/widening +20-30% non poussée plus loin — la note méthodologique
+ci-dessus rend le point largement sans objet (il n'y a pas de second
+frottement distinct à isoler).
+
+**c) Latence d'exécution** (délai email→bot, proxy 10s = milieu de la
+fourchette 5-15s demandée, mesuré par décalage de tick Dukascopy sur
+607/631 trades, mêmes heures que (a) donc déjà en cache) : mouvement
+moyen sur 10s = **-0,0217 pips** (médiane 0,0000), **pas de biais
+directionnel détectable** (test t : p=0,447 — le bruit domine largement
+le signal à cette échelle de temps, cohérent avec un marché liquide sur
+ces 14 paires). Coût pessimiste (ne compte QUE le mouvement défavorable,
+hypothèse conservatrice demandée) : **-0,00838R/trade** en moyenne.
+
+**Section 1 point 3 — EV plancher final**, combinaison additive de tous
+les frottements (hypothèse pessimiste sur chacun) :
+
+| Frottement | Coût (R) |
+|---|---|
+| a) Slippage réel (mesuré) | -0,0444 |
+| b) Spread (déjà inclus dans a) | 0 |
+| c) Latence exécution (pessimiste) | -0,0084 |
+| d) Swap/rollover (-3 pips/nuit, pessimiste) | -0,0792 |
+| e) Erreurs parsing (3%, pessimiste) | -0,0268 (base réaliste) |
+| f) Gap week-end (dilué population) | -0,0028 |
+| **TOTAL** | **-0,1615** |
+
+**EV plancher (base réaliste, EV brute +0,8934R avec payoff trailing/TP2)
+= +0,7319R** — largement positif même sous l'hypothèse pessimiste
+cumulée de TOUS les frottements simultanément.
+
+**Combiné avec le P10 bayésien du winrate (Section 2, 36,99%) et l'EV
+SIMPLE (RR moyen 1,985, pas le payoff réaliste — cohérence avec la
+formule EV=0 de la Section 2)** : EV brute à ce P10 = +0,1042R → total
+frottements recalculé à cette base (e recalculé = 0,03×0,1042=-0,0031R,
+total=-0,1378R) → **EV PLANCHER FINAL = -0,0336R**.
+
+**🔴 Verdict : le plancher ABSOLU (P10 winrate pessimiste ET tous les
+frottements au pire cas simultanément, ET formule EV simple sans le
+bonus du payoff réaliste trailing/TP2) devient marginalement NÉGATIF.**
+À lire avec 3 nuances explicites, pas comme une alerte au même titre
+qu'un signal cassé :
+1. C'est un cumul de PLUSIEURS scénarios pessimistes indépendants à la
+   fois (P10 winrate ET pire cas sur chaque frottement) — la probabilité
+   que TOUS se matérialisent simultanément est bien plus faible que
+   10% seul. C'est un stress-test du plancher, pas un scénario probable.
+2. La formule utilise le RR simple (1,985), pas le payoff RÉALISTE
+   (trailing/continuation TP2) qui donne l'EV brute réelle du projet
+   (+0,8934R) — sous cette base réaliste (plus fidèle à ce qui est
+   effectivement tradé), le plancher reste **largement positif
+   (+0,7319R)**, cf. tableau ci-dessus.
+3. Le winrate observé actuel (39,46%) reste à +5,97pt au-dessus du
+   seuil de rentabilité EV simple (33,50%, Section 2) — le scénario P10
+   (36,99%) est déjà lui-même conservateur, pas la médiane.
+**Conclusion opérationnelle : pas de signal d'alarme sur l'edge lui-même
+(la marge réaliste reste large), mais le point mérite d'être gardé en
+tête si plusieurs frottements pessimistes se cumulaient EN MÊME TEMPS
+qu'une mauvaise série de winrate — ce n'est capturé nulle part ailleurs
+dans le projet avant ce chantier.**
+
+### 2.31 CHANTIER 2 (08/15) — Couverture ADX/ATR sur population actuelle + coût d'extension Dukascopy — extension REFUSÉE (raisonnée), verdict ADX/ATR mis à jour
+
+**Couverture actuelle** (RR≥1,35, 631 trades) : **328/631 (52,0%)** —
+quasiment identique à l'ancienne mesure (52,0% sur 375/721, RR≥1,25) : le
+changement de seuil RR n'a pas changé la couverture, cohérent (la
+contrainte est la fenêtre H1 Yahoo ~730j, indépendante du seuil RR).
+Fenêtre couverte : 2024-08-01 → 2026-07-30 ; fenêtre non couverte :
+2022-01-31 → 2024-08-01 (**913 jours**).
+
+**Estimation coût/temps de l'extension Dukascopy (demandée avant tout
+lancement)** : construire des bougies H1 continues sur les 913 jours non
+couverts × 14 tickers nécessite un appel par heure de marché actif
+(≈120h/168h en forex) : 913j × 24h × (120/168) ≈ **15 650 heures actives
+× 14 tickers ≈ 219 000 requêtes**. Au délai minimal imposé par le code
+(0,3s anti-429, `dukascopy_ticks.REQUEST_DELAY_SECONDS`) plus latence
+réseau réaliste (0,3-1,0s tout compris avec les 429 déjà observés sur ce
+projet) : **18 à 61 heures d'exécution continue, mono-thread** (le
+parallélisme agressif est risqué — Dukascopy limite déjà le débit sans
+`Retry-After`, cf. docstring `dukascopy_ticks.py`).
+
+**Décision : extension REFUSÉE, chantier lourd disproportionné au signal
+recherché.** Même APRÈS mise à jour sur la population actuelle (ci-dessous),
+le signal ADX/ATR reste dans la même zone d'incertitude qu'en 08/11 (IC
+bootstrap traversant largement zéro) — passer 1 à 2,5 jours de scraping
+continu pour renforcer un lead déjà marginal n'est pas un usage
+raisonnable du temps, conformément au gating explicite du prompt ("si
+raisonnable, étendre"). Le point reste ouvert pour reconsidération future
+si un nouveau lead structurel rendait ADX/ATR prioritaire.
+
+**Verdict ADX/ATR mis à jour SANS extension** (population RR≥1,35,
+corrélation 0,80, couverture 52% inchangée, n=328 couverts) :
+
+| Config | n | Winrate | EV (R) | Δ vs baseline | Sous-période 1 | Sous-période 2 |
+|---|---|---|---|---|---|---|
+| Baseline (couvert, sans filtre) | 328 | 41,2% | 1,636 | — | 1,864 | 1,409 |
+| ADX≥20 | 207 | 42,5% | 1,806 | +10,4% | 2,099 | 1,516 |
+| ADX≥25 | 126 | 43,7% | 1,792 | +9,6% | 2,165 | 1,419 |
+| ADX≥30 | 77 | 39,0% | 1,572 | -3,9% | 1,846 | 1,305 |
+| ATR[0,5-2,0] | 313 | 40,6% | 1,590 | -2,8% | 1,779 | 1,402 |
+| **COMBO ADX≥20+ATR[0,5-2,0]** | 196 | 42,3% | 1,769 | **+8,1%** | 2,064 | 1,474 |
+
+**Changement notable vs 08/11** : sous l'ANCIENNE base (RR≥1,25), ADX
+seul s'effondrait en sous-période 2 (signe qui s'inversait) — sous la
+NOUVELLE base (RR≥1,35, corr 0,80), **ADX≥20 seul ET le combo restent
+positifs dans les DEUX sous-périodes** (ADX≥20 : 2,099→1,516 ;
+combo : 2,064→1,474 ; baseline : 1,864→1,409 — tous en baisse en
+période 2, cohérent avec la baisse globale du winrate en 2025-2026, mais
+le FILTRE reste au-dessus du baseline dans les deux). IC bootstrap
+(5000 itérations) sur le delta EV du combo : **+0,133R observé, IC95%=
+[-0,496, +0,778], P(delta>0)=65,2%** (vs 61,8% en 08/11 — légère
+amélioration mais **toujours pas significatif**, l'IC traverse
+largement zéro).
+
+**Verdict final : PAS ADOPTÉ, toujours pas rejeté non plus — statut
+inchangé malgré la mise à jour.** Le signe ne s'inverse plus en
+sous-période (amélioration qualitative réelle par rapport à 08/11), mais
+la significativité statistique reste insuffisante (n=196 pour le combo,
+IC large). Extension de couverture refusée pour la raison de coût
+ci-dessus — ce point restera dans cet état tant qu'aucun signal
+structurel supplémentaire ne justifie le coût de l'extension complète.
+
+### 2.32 Échange par corrélation — classement de paires + mécanisme d'échange ciblé sur les blocages corrélation (08/16)
+
+**Contexte** : suite directe de §2.28 (plafond de 3 positions, REJETÉ) —
+mais cible ici le blocage par la règle de **corrélation** (44 trades, 7,0%
+de la population, R_trailing moyen +2,029 — bien plus significatif en
+volume ET en qualité que les 5 trades bloqués par le cap, EV -0,500,
+déjà fermé). Fichiers : `chantier_correlation_swap_2026-08-16.py`,
+`chantier_correlation_swap_h1rank_check_2026-08-16.py`,
+`chantier_correlation_swap_n600_confirm_2026-08-16.py` (tous suivis par
+git), CSV associés (non suivis, convention gitignore).
+
+**Section 0 — robustesse du chiffre +2,029R** : distribution complète des
+44 R_trailing bloqués-corrélation = 23 valeurs positives (+1,45 à +10,27)
++ 21 valeurs exactement à -1,00 (pas de traîne d'outliers positifs
+au-delà de +10,27). Médiane +1,508R. Retrait du top 3 : moyenne
++1,555R (delta -0,47R). Retrait du top 5 : moyenne +1,284R (delta
+-0,74R). Bootstrap IC95% (5000 itérations) : **[+1,05R, +3,02R],
+P(moyenne>0)=100,0%**. **Verdict : signal robuste, ne dépend pas de
+quelques outliers** — reste largement positif même après retrait des 5
+meilleurs cas.
+
+**Section 1 — classement de paires** (EV/winrate/rendement total par
+ticker, population complète 631 trades) :
+
+| Quartile | Paires | EV (R) |
+|---|---|---|
+| 1 (meilleur) | AUD/USD (n=57), AUD/JPY (n=57), GBP/CHF (n=30), EUR/JPY (n=42) | +1,22 à +1,42 |
+| 2 | GBP/JPY (n=49), USD/JPY (n=43), CHF/JPY (n=46) | +0,99 à +1,15 |
+| 3 | GBP/USD (n=40), EUR/USD (n=38), NZD/USD (n=60) | +0,62 à +0,93 |
+| 4 (pire) | USD/CHF (n=41), EUR/CHF (n=36), USD/CAD (n=49), EUR/GBP (n=43) | +0,06 à +0,62 |
+
+Aucune paire sous n=20 sur la population complète (fiabilité correcte).
+
+**🔴 Alerte data-mining confirmée (piège déjà rencontré sur ce projet —
+score Force, ADX/ATR)** : validation split temporel (classement calculé
+sur H1 seul [n=315, 2022-01-31→2024-08-22], testé sur H2 [n=316,
+2024-08-30→2026-07-30]) — **l'ordre ne se maintient PAS hors
+échantillon**. EV pondéré en H2 du quartile 1-selon-H1 = +1,635R contre
+**+1,793R pour le quartile 4-selon-H1** (ordre inversé). Corrélation de
+rang (Spearman) entre classement H1 et classement population complète =
+**0,446** (faible). Sur H1 seul, 6/14 paires ont n<20 (1, GBP/CHF, n<15)
+— échantillon par moitié trop petit pour un classement stable par
+paire à ce niveau de granularité (14 tickers seulement).
+
+**Section 2 — mécanisme d'échange** (moteur de flotte complet, copie de
+`chantier_position_cap_2026-08-15.py`, convention "copie figée, points
+`<<< CHANTIER` marqués") : au moment où un signal est bloqué par la
+règle de corrélation avec EXACTEMENT une position ouverte conflictuelle
+(cas à conflits multiples simultanés : non traité, trop rare), teste
+l'écart de quartile entre la paire bloquée et la paire occupante ; si
+favorable selon la variante, ferme la position occupante pour admettre
+le signal bloqué. Même limite de modélisation que §2.28 (PnL de la
+position coupée déjà appliqué à son ouverture, non recalculé — borne
+HAUTE de l'effet réel). n=300, seed=9999, référence RunC/F rr135/corr080
+(§1.8 `registre_parametres_projet.md`) :
+
+| Variante | Plafond | Profit moyen | Δ vs REF | hit_ceiling | Année1<0 | Évictions moy. |
+|---|---|---|---|---|---|---|
+| extreme (Q1 exact vs Q4 exact) | 1000$/3000$ | 5 915 946$/5 919 687$ | **0,00%** (0 éviction) | inchangé | inchangé | 0,00 |
+| gap2 (écart≥2) | 1000$/3000$ | 5 889 341$/5 893 082$ | -0,45% | inchangé | 27,67% (léger mieux) | 38,76 |
+| **any (tout écart favorable)** | 1000$ | **6 389 435$** | **+8,00%** | 2,00%→**0,67%** | 28,00%→27,00% | 292,98 |
+| **any** | 3000$ | **6 389 392$** | **+8,00%** | 1,00%→**0,33%** | 28,00%→27,00% | 292,99 |
+
+"extreme" est un **no-op structurel confirmé** (0 éviction sur 300 runs —
+exiger Q1/Q4 exact ET exactement 1 conflit ne se produit jamais dans le
+moteur bootstrappé). "gap2" est dans le bruit. "any" **domine sur les 4
+axes simultanément** aux deux plafonds (solde_neg inchangé à 0,33%,
+les 3 autres axes meilleurs).
+
+**Test de sensibilité au classement** (`chantier_correlation_swap_
+h1rank_check_2026-08-16.py`, n=300) : rejoue "any" avec le classement
+**H1 seul** (délibérément dégradé/instable, cf. alerte Section 1) au lieu
+du classement in-sample complet, pour isoler si le gain vient de la
+PRÉCISION du classement ou du mécanisme de fond (Section 0, déjà validé
+robuste) :
+
+| Classement utilisé | Plafond | Profit moyen | Δ vs REF | hit_ceiling |
+|---|---|---|---|---|
+| Complet (in-sample) | 1000$ | 6 389 435$ | +8,00% | 0,67% (mieux) |
+| H1 seul (dégradé) | 1000$ | 6 285 931$ | **+6,26%** | 2,00% (= REF, pas d'amélioration) |
+| Complet (in-sample) | 3000$ | 6 389 392$ | +8,00% | 0,33% (mieux) |
+| H1 seul (dégradé) | 3000$ | 6 286 646$ | **+6,20%** | 1,33% (légèrement pire que REF) |
+
+**Interprétation** : le gain de PROFIT persiste largement (+6,2-6,3% sur
+les +8,0%, soit ~78% de l'effet) même avec un classement de paires
+délibérément instable — ce n'est donc PAS un artefact de data-mining pur
+comme le score Force ou ADX/ATR (qui s'effondraient sous ce type de
+test). L'essentiel de la valeur vient bien du mécanisme validé en
+Section 0 (admettre des signaux bloqués-corrélation, structurellement
+très bons, en échange d'une position quelconque). En revanche,
+l'amélioration du RISQUE (hit_ceiling) NE PERSISTE PAS avec un
+classement dégradé (revient au niveau REF ou légèrement pire) — cette
+partie de l'effet dépend bien de la précision du classement, qui elle
+n'est pas confirmée stable hors échantillon.
+
+**Confirmation n=600** (`chantier_correlation_swap_n600_confirm_
+2026-08-16.py`, classement complet, cascade check 4 axes complet,
+848s≈14min) :
+
+| Config | Plafond | Profit moyen | solde_negatif_annee4 | hit_ceiling | Année1<0 |
+|---|---|---|---|---|---|
+| REF | 1000$ | 5 836 643$ | 0,50% | 1,50% | 30,50% |
+| **any** | 1000$ | **6 317 804$ (+8,24%)** | **0,17% (mieux)** | **0,67% (mieux)** | **29,17% (mieux)** |
+| REF | 3000$ | 5 847 908$ | 0,33% | 0,67% | 30,50% |
+| **any** | 3000$ | **6 318 027$ (+8,05%)** | **0,17% (mieux)** | **0,33% (mieux)** | **29,17% (mieux)** |
+
+**🔴 Verdict : DOMINANCE STRICTE confirmée n=600 sur les 4 axes
+simultanément, aux deux plafonds** — sous le standard du projet pour un
+"GO" (cf. BBx2 §2.18), c'est un free lunch, pas un arbitrage. C'est
+l'effet confirmé le plus large mesuré à ce jour sur ce projet en
+proportion (+8,0-8,2% profit, devant la bascule Blueberry +5,2%,
+`registre_parametres_projet.md` §7.1), avec une réserve documentée et
+quantifiée (pas juste signalée) : ~22% de l'effet profit et la totalité
+de l'effet risque dépendent de la précision du classement de paires, qui
+n'a pas passé le test de stabilité hors échantillon en Section 1. **PAS
+ENCORE ADOPTÉ dans la référence officielle §1.8** — comme pour la
+bascule Blueberry (§7 `registre_parametres_projet.md`), nécessiterait une
+régénération complète de la cascade avant tout chiffre définitif
+(décision utilisateur en attente). Recommandation : candidat le plus
+solide actuellement en attente d'adoption, mais présenter le chiffre
+comme "+6 à +8% profit selon la fiabilité du classement" plutôt que
+"+8%" sec, pour rester honnête sur la part non confirmée hors
+échantillon.
+
+### 2.33 Classement de paires — fiabilisation (ÉCHEC) + critère alternatif RR (nouveau meilleur candidat) (08/16)
+
+Suite directe de §2.32 (échange ciblé blocages-corrélation) : deux
+objectifs — fiabiliser le classement de paires pour retrouver le
+bénéfice risque perdu avec un classement dégradé, et tester un critère
+alternatif ne reposant pas sur un historique par paire. Fichiers :
+`chantier_pair_ranking_shrinkage_kfold_2026-08-16.py`,
+`chantier_correlation_swap_section4_rr_2026-08-16.py`,
+`chantier_correlation_swap_section4_n600_confirm_2026-08-16.py` (tous
+suivis par git).
+
+**Section 3 — fiabilisation du classement : ÉCHEC, documenté clairement
+(pas de conclusion forcée, conformément à la consigne du prompt).**
+Estimateur à rétrécissement empirique bayésien (EV de chaque paire
+ramenée vers la moyenne globale +0,8934R, poids=n/(n+k), k=20/30) +
+validation k-fold temporelle (4 blocs chronologiques de ~157-158
+trades, ~11 trades/paire/bloc en moyenne, remplace le split unique
+H1/H2 de §2.32) :
+
+| Méthode | Fold0 | Fold1 | Fold2 | Fold3 | Spearman moyen |
+|---|---|---|---|---|---|
+| Brut | +0,648 | -0,191 | -0,231 | -0,288 | -0,015 |
+| Shrinkage k=20 | +0,670 | -0,200 | -0,187 | -0,262 | +0,005 |
+| Shrinkage k=30 | +0,670 | -0,209 | -0,187 | -0,218 | +0,014 |
+
+Le shrinkage ne récupère quasiment rien (Spearman moyen reste ~0, bien
+en dessous du seuil 0,6 fixé par le prompt, et même en dessous du
+0,446 obtenu avec le split unique H1/H2 de §2.32 — un seul fold sur 4
+montre une vraie stabilité). **Verdict : le classement par paire n'est
+PAS structurellement récupérable à cet effectif** (631 trades / 14
+paires ≈ 45 trades/paire en moyenne, ~11/paire par fold — le shrinkage
+neutralise le bruit des faibles effectifs mais ne peut pas créer un
+signal de qualité de paire qui n'est pas mesurable à cette taille
+d'échantillon). Piste classement-de-paires fermée pour l'instant, pas
+de nouvelle tentative sans un effectif par paire significativement plus
+grand.
+
+**Section 4 — critère alternatif : comparer le RR PLANIFIÉ du trade
+(`rr_tp1`, connu au moment du signal) au lieu du rang historique de la
+paire.** Mécanisme "any-RR" : au blocage-corrélation avec exactement une
+position ouverte conflictuelle, admet le signal bloqué si son RR
+planifié est strictement supérieur à celui de la position occupante
+(suivi via un tracker `_open_meta_rr` séparé, `acc['open_positions']`
+inchangé pour ne rien casser dans `process_trade_mf`). "any-RR-hybrid"
+ajoute le quartile de paire (brut, §2.32) comme départage en cas
+d'égalité exacte de RR — **testé strictement identique à any-RR à
+n=300 aux deux plafonds** (égalités exactes de RR planifié quasi
+inexistantes, valeurs continues) : le départage hérité de la Section 3
+(cassée) ne pèse donc de facto pas sur le résultat.
+
+n=300 (screening), même référence RunC/F rr135/corr080 :
+
+| Config | Plafond | Profit moyen | Δ vs REF | solde_neg | hit_ceiling | Année1<0 |
+|---|---|---|---|---|---|---|
+| REF | 1000$ | 5 915 946$ | — | 0,33% | 2,00% | 28,00% |
+| **any-RR / any-RR-hybrid** | 1000$ | **6 473 770$** | **+9,43%** | 0,33% | **0,33%** | **25,67%** |
+| REF | 3000$ | 5 919 687$ | — | 0,33% | 1,00% | 28,00% |
+| **any-RR / any-RR-hybrid** | 3000$ | **6 494 857$** | **+9,71%** | **0,00%** | 0,33% | **25,67%** |
+
+**any-RR dominait déjà "any" (classement de paires, §2.32) sur les 4
+axes aux deux plafonds à n=300** — règle du prompt respectée,
+confirmation n=600 engagée.
+
+**Confirmation n=600** (848s→840s, cascade check 4 axes complet) :
+
+| Config | Plafond | Profit moyen | solde_negatif_annee4 | hit_ceiling | Année1<0 |
+|---|---|---|---|---|---|
+| REF | 1000$ | 5 836 643$ | 0,50% | 1,50% | 30,50% |
+| **any-RR** | 1000$ | **6 399 549$ (+9,65%)** | **0,17% (mieux)** | **0,50% (mieux)** | **28,17% (mieux)** |
+| REF | 3000$ | 5 847 908$ | 0,33% | 0,67% | 30,50% |
+| **any-RR** | 3000$ | **6 410 360$ (+9,62%)** | **0,00% (mieux)** | **0,17% (mieux)** | **28,17% (mieux)** |
+
+**🔴 Verdict : DOMINANCE STRICTE confirmée n=600 sur les 4 axes, aux
+deux plafonds — meilleur candidat du projet à ce jour, devant "any"
+(§2.32, +8,0-8,2%) ET sans sa réserve principale.** any-RR dépasse any
+sur CHAQUE axe aux deux plafonds (ex. année1<0 28,17% vs 29,17%,
+solde_neg identique ou meilleur, hit_ceiling meilleur), tout en
+s'appuyant uniquement sur une information connue au moment du trade
+(RR planifié du signal) — **aucune dépendance à un historique de paire
+non stable**, contrairement à any qui restait exposé à l'échec de
+validation de la Section 3 ci-dessus. Ce n'est donc plus un "+6 à +8%
+selon la fiabilité du classement" mais un **+9,6-9,7% confirmé sans
+réserve de ce type**. Réserve résiduelle identique à §2.32 (limite de
+modélisation : PnL de la position coupée non recalculé, borne HAUTE de
+l'effet réel — commune à tout mécanisme de coupe anticipée dans ce
+projet, cf. §2.28). **PAS ENCORE ADOPTÉ dans la référence officielle
+§1.8** — décision utilisateur d'adoption toujours en attente (même
+convention que la bascule Blueberry, nécessite régénération complète de
+la cascade), mais **any-RR devrait remplacer any comme candidat proposé
+si adoption il y a**.
+
+### 2.34 Sizing modulé par le RR planifié — REJETÉ (08/16)
+
+**Principe testé** : any-RR a prouvé que le RR planifié du signal
+(information connue au moment du trade) est exploitable pour le
+ROUTAGE (quel signal admettre en cas de blocage-corrélation). Ce
+chantier teste s'il peut aussi informer la TAILLE de position — plus le
+RR planifié est élevé, plus le risque% est (marginalement) augmenté.
+
+**3 fonctions de scaling testées** (`chantier_rr_sizing_2026-08-16.py`,
+suivi par git), toutes bornées à un multiplicateur max **×1,30** (borne
+prudente, bas de la fourchette ×1,3-1,5) :
+- **(a) linéaire** : ×1,00 à RR=1,35 → ×1,30 à RR=3,0 (plafond de
+  construction du payoff trailing).
+- **(b) palier** (3 tranches à la main) : RR<1,75→×1,00 ;
+  1,75≤RR<2,50→×1,15 ; RR≥2,50→×1,30.
+- **(c) quantile** (quartiles de la population actuelle, évite un seuil
+  choisi à la main) : Q1(<1,587)→×1,00 ; Q2(<1,889)→×1,10 ;
+  Q3(<2,318)→×1,20 ; Q4→×1,30.
+
+**Contrainte dure vérifiée AVANT tout lancement** : risque max par
+trade = base_risk×1,30 = 1,90%×1,30=2,47% (funded) ou
+1,75%×1,30=2,275% (éval GFT), vs DD journalier le plus strict de la
+flotte actuellement utilisée (**4,0%**, Blueberry_Prime2Step/
+GFT_2Step_GOAT/FundedNext_StellarLite, `engine_multiformat.FORMATS`) —
+marge ≥1,53pt (≥38% relatif), y compris cumulé avec le DD-distance-
+sizing V2 déjà en place (qui ne fait que RÉDUIRE le risque, jamais
+l'augmenter — aucun risque de compounding vers le haut). Marge
+confirmée suffisante, gating respecté avant le run.
+
+**Résultat n=300 (screening), any-RR + bascule Blueberry actifs, 4
+plafonds, comparé au COMBINÉ n=600 déjà confirmé (§1.8
+`registre_parametres_projet.md`)** :
+
+| Plafond | Variant | Profit | Δ vs COMBINÉ | solde_neg | hit_ceiling | Année1<0 |
+|---|---|---|---|---|---|---|
+| 960$/1000$ | COMBINÉ (réf., n=600) | 6 752 310$ | — | 0,17% | 0,50-0,67% | 24,33% |
+| 960$/1000$ | linear | 6 384-6 440k$ | -4,6 à -5,5% | **1,3-2,7% (pire)** | **3,0-5,7% (pire)** | **26,7% (pire)** |
+| 960$/1000$ | palier | 6 241-6 294k$ | -6,8 à -7,6% | **2,0-3,3% (pire)** | **3,3-6,3% (pire)** | **28,3% (pire)** |
+| 960$/1000$ | quantile | 6 445-6 516k$ | -3,5 à -4,6% | **1,7-3,3% (pire)** | **3,3-6,0% (pire)** | **27,0-27,3% (pire)** |
+| 3000$/5000$ | COMBINÉ (réf., n=600) | 7 080 725$ | — | 0,00% | 0,00% | 13,83% |
+| 3000$/5000$ | linear | 6 907 876$ | -2,44% | 0,00% (=) | 0,00% (=) | 12,67% (mieux) |
+| 3000$/5000$ | palier | 6 815 255$ | -3,75% | 0,00% (=) | 0,00% (=) | 13,33% (mieux) |
+| 3000$/5000$ | quantile | 7 039 869$ | -0,57% | 0,00% (=) | 0,00% (=) | 13,67% (≈) |
+
+**Verdict : REJETÉ, aucune variante ne domine ni n'égale le COMBINÉ sur
+les 4 axes à aucun plafond — gating n=600 du prompt non déclenché (pas
+de lancement de confirmation).** À 960$/1000$ : les 3 variantes sont
+PIRES sur les 4 axes simultanément (profit -3,5 à -7,6%, solde_neg et
+hit_ceiling nettement dégradés, année1<0 pire) — un résultat sans
+ambiguïté. À 3000$/5000$ : profit toujours pire (-0,6 à -3,75%),
+année1<0 légèrement meilleur, solde_neg/hit_ceiling inchangés — pas une
+dominance, un arbitrage négatif net.
+
+**Mécanisme identifié (pas juste constaté)** : le RR planifié n'est PAS
+corrélé à l'EV réalisée dans cette population — corrélation de Pearson
+rr_tp1/r_trailing = **0,006** (quasi nulle), et corrélation rr_tp1/
+winrate = **-0,108** (légèrement NÉGATIVE, RR élevé → winrate plus
+faible, cohérent avec un objectif de prix plus loin à atteindre). EV
+moyen par tranche de RR NON monotone : [1,35-1,75]→+1,042R,
+[1,75-2,50]→+0,723R, [2,50-3,0]→+0,953R — pas d'ordre croissant. Le
+succès d'any-RR (§2.33) vient du MÉCANISME DE SÉLECTION au moment d'un
+conflit (admettre un signal plutôt qu'un autre, tous deux déjà filtrés
+RR≥1,35), pas d'un pouvoir prédictif intrinsèque du RR sur l'EV — sizer
+dessus ajoute donc de la variance (risque plus grand sur des trades pas
+spécialement meilleurs) sans edge compensatoire, cohérent avec la
+dégradation mesurée. **Chantier fermé, ne pas retester le RR comme
+signal de sizing sans une nouvelle piste structurelle (ex. un score
+composite RR+ADX/ATR, ou une transformation non-linéaire justifiée par
+un mécanisme économique, pas juste "RR élevé = plus confiant").**
+
+### 2.35 Sizing/routage basé sur rr_tp2 (queue haute) — CONFIRMÉ n=600, statut différencié par plafond (08/16)
+
+**Correction de méthode vs §2.34** : le test précédent caractérisait
+`rr_tp1` (plafonné structurellement à 3,0), pas `rr_tp2` — pas la bonne
+variable pour tester un effet de queue. Ce chantier corrige le tir.
+
+**Étape 0 — anti-lookahead (bloquant, vérifié avant tout calcul)** :
+`tp2_init` est extrait de la page du signal Lutessia **au même moment**
+que `prix_entree`/`stop_loss_init`/`tp1_init` (`scraper.py:240-268`,
+fonction `fetch_signal_detail`, même parsing `_parse_price`) — PAS
+déterminé après coup via la confirmation de continuation H1
+(`payoff_bucket`, qui ne détermine que le RÉSULTAT réalisé utilisé,
+`r_trailing` vs `r_realiste`, une question séparée). **Aucun
+lookahead — piste valide.**
+
+**Étape 1 — rr_tp2 recalculé depuis les niveaux de prix bruts**
+(`(tp2_init-prix_entree).abs()/(prix_entree-stop_loss_init).abs()`) :
+écart max vs colonne existante = 3,6e-15 (bruit flottant, confirmé
+identique). **rr_tp2 n'est PAS plafonné comme rr_tp1** : distribution
+1,74 à 30,4 (médiane 5,08, P75=6,78, P90=8,82) — n avec rr_tp2≥3/4/5/6 =
+570/435/325/217 (échantillons larges, contrairement à rr_tp1).
+
+**Étape 2 — caractérisation EV par tranche** : tranches non-
+chevauchantes montrent une tendance monotone croissante
+((1,35-3]→+0,50R … (8,100]→+1,69R) — la tranche **rr_tp2>8 (n=96)** est
+la seule dont l'IC95% bootstrap (5000 itérations) **exclut l'EV
+globale** (+0,89R) : IC=[+0,91,+2,55]. Stress-test de stabilité (split
+H1/H2 + 4 blocs k-fold, gratuit avant d'engager le calcul coûteux) :
+**direction constante dans TOUTES les sous-périodes** (H1 : queue à
++0,31R vs baseline H1 +0,11R ; H2 : queue à +3,25R vs baseline H2
++1,68R ; les 4 blocs k-fold montrent tous EV(queue)>EV(bloc)) — contraste
+net avec le classement de paires (§2.32/2.33) dont la direction
+s'inversait en H2. Corrélation Pearson rr_tp2/r_trailing=0,123 (faible
+mais non nulle, très supérieure au 0,006 de rr_tp1 §2.34). Seuil
+retenu : **rr_tp2>8**.
+
+**Contrainte dure (marge ≥30% sous DD journalier strict 4,0%, côté
+funded 1,90%)** — vérifiée pour chaque multiplicateur avant lancement,
+affichée explicitement au runtime (`chantier_rrtp2_sizing_2026-08-
+16.py`) : ×1,2/×1,3 conformes (43,0%/38,3%) ; ×1,5/×1,6/×1,75/×1,9 **NE
+respectent PAS la marge ≥30%** (28,8%/24,0%/16,9%/9,8%) — testés quand
+même sur demande explicite utilisateur, marge affichée à chaque run,
+pas cachée. Aucun ne dépasse le DD journalier lui-même (contrairement à
+×3,0 en §2.34, qui aurait été un dépassement direct).
+
+**Deux variantes testées** : **A** = routage any-RR inchangé (rr_tp1),
+sizing seul module par rr_tp2>8. **B** = routage ET sizing tous deux
+sur rr_tp2>8 (remplace rr_tp1 comme critère de routage flotte, la
+population d'entrée RR≥1,35 reste inchangée). n=300 screening (1000$/
+3000$, 6 multiplicateurs pour A ; 3 pour B) puis n=600 confirmation du
+meilleur candidat (B ×1,6, gagnant net aux deux variantes) sur les 4
+plafonds :
+
+| Plafond | Profit (B×1,6, n=600) | Δ vs COMBINÉ | solde_neg | hit_ceiling | Année1<0 |
+|---|---|---|---|---|---|
+| 960$ | 7 811 075$ | **+15,68%** | 0,17% (=) | **1,67% (vs 0,67%, pire)** | 24,50% (≈) |
+| 1000$ | 7 812 088$ | **+15,70%** | 0,17% (=) | **1,00% (vs 0,50%, pire)** | 24,50% (≈) |
+| 3000$ | 8 206 650$ | **+15,90%** | 0,00% (=) | 0,00% (=) | **13,17% (mieux)** |
+| 5000$ | 8 206 650$ | **+15,90%** | 0,00% (=) | 0,00% (=) | **13,17% (mieux)** |
+
+**🔴 Correction n=300→n=600** : le gain apparent sur année1<0 à
+960$/1000$ observé en screening (22-24%) NE SE CONFIRME PAS à n=600
+(24,50%, essentiellement identique au COMBINÉ 24,33%) — même leçon de
+bruit d'échantillonnage déjà rencontrée deux fois dans ce chantier
+(plancher Run E, calibration seuil Blueberry).
+
+**Verdict différencié, PAS un statut unique** :
+- **3000$/5000$ : DOMINANCE STRICTE confirmée n=600** — +15,9% de
+  profit par-dessus le COMBINÉ déjà lui-même très supérieur à la
+  référence pure, tous les autres axes égaux ou meilleurs. **Candidat
+  prêt sans réserve à ces plafonds.**
+- **960$/1000$ : un arbitrage, PAS une dominance** — +15,7% de profit
+  contre un hit_ceiling qui DOUBLE (0,5-0,67%→1,0-1,67%) et un
+  année1<0 inchangé (pas de compensation). Décision selon tolérance au
+  risque personnelle, pas un candidat automatique à ces plafonds.
+
+**PAS ENCORE ADOPTÉ dans la référence officielle §1.8** — décision
+utilisateur en attente, même convention que les leviers précédents.
+Fichier : `chantier_rrtp2_sizing_2026-08-16.py` (suivi par git).
+
+**✅ Vérification finale post-adoption-proposée (08/16,
+`chantier_rrtp2_stability_verification_2026-08-16.py`, suivi par git)**
+— 3 points demandés avant adoption définitive, tous confirmés :
+1. **Anti-lookahead** : `scraper.py:239-246` (`tp_divs =
+   detail_soup.select("div.sy-tp")`, `tp1_init`/`tp2_init` =
+   `tp_divs[0]`/`tp_divs[1]`) — tp2 extrait du même bloc DOM, même
+   fonction (`fetch_signal_detail`), même instant que `prix_entree`/
+   `stop_loss_init`/`tp1_init`. Aucune dérivation du prix atteint après
+   coup.
+2. **Stabilité temporelle chiffrée** : Pearson(rr_tp2, r_trailing) par
+   fold — H1=+0,047, H2=+0,225, bloc0=+0,045, bloc1=+0,064,
+   bloc2=+0,220, bloc3=+0,219 (moyenne 4 blocs=+0,137). EV(queue>8) >
+   EV(reste) dans **6/6 sous-périodes indépendantes** (2 moitiés + 4
+   blocs), y compris bloc0 où l'environnement global est négatif
+   (-0,096R) mais où la queue reste relativement meilleure (+0,032R vs
+   -0,120R). **STABLE**, contraste net avec le classement de paires
+   (§1), dont la direction s'inversait en H2.
+3. **Table complète** (n=631 couverts intégralement, tranches non-
+   chevauchantes) : croissance monotone (1,73-3]→+0,50R … (8-30,4]→
+   +1,69R — **seule la tranche >8 (n=96) sort de l'IC95% de l'EV
+   globale**, confirmant la coupure exacte déjà retenue.
+
+**Verdict : les 3 points confirment — §2.35 adopté sans réserve**,
+dominance stricte à 3000$/5000$ et arbitrage documenté à 960$/1000$
+inchangés par rapport à la proposition initiale.
+
+**✅ Dernière vérification (08/16) : chevauchement de population et
+mécanisme du rebond de winrate** — deux derniers points avant adoption
+définitive, tous deux propres :
+1. **Chevauchement** : tail rr_tp2>8 (n=96) vs bloqués-corrélation
+   (Section 0, mécanisme réellement adopté par any-RR) = **10,4%**
+   (proche du taux de base 7,0%) — axe très majoritairement
+   indépendant. Vs quartile 1 de paires (classement REJETÉ pour
+   instabilité, §1/§3, non adopté) = 35,4% — dans la zone signalée,
+   mais sans conséquence puisque le mécanisme source n'est pas dans la
+   cascade officielle.
+2. **Rebond de winrate (35,3%→44,8%)** : aucun confondant trouvé
+   (composition paires diversifiée, asset_class/timeframe/score_force
+   identiques entre tranches, rebond présent aussi bien en JPY
+   qu'en non-JPY). Mécanisme identifié : cible TP2 réellement plus
+   lointaine (corrélation rr_tp2/distance_TP2%=+0,45), PAS un stop-loss
+   artificiellement resserré (distance_SL% quasi non corrélée au
+   winrate, -0,06). Effet large-spectre, pas un artefact de
+   construction du ratio.
+
+**Aucune part de gain à requalifier comme redondante — §2.35 reste
+confirmé adopté sans réserve.**
+
+### 2.36 Sizing continu/paliers étendus sur rr_tp2 — REJETÉ, portée précise (08/17)
+
+Suite à §2.35 (seuil simple rr_tp2≥8→×1,6, adopté) : test de 3 candidats de
+sizing gradué sur une plage plus large de la distribution, add-on isolé sur
+la référence de travail (§1.8+§2.35), n=300, 4 plafonds. Fichiers :
+`chantier_A_rr_sizing_diagnostic_2026-08-17.py` (diagnostic),
+`chantier_A_rr_sizing_2026-08-17.py` (screening, suivi par git).
+
+**Diagnostic (Étape 0)** : déciles rr_tp2 non monotones sur l'ensemble de
+la plage (Spearman global +0,024, quasi nul) — signal fiable concentré
+dans les 3 derniers déciles (rr_tp2 >~6,46 : EV +1,198R/+1,350R/+1,973R,
+croissant) ; déciles 1-7 sans tendance (+0,266R à +0,945R).
+
+**3 candidats testés, tous plafonnés à ×1,6** (marge 24,0%, déjà acceptée
+en §2.35, aucune nouvelle violation) :
+
+| Plafond | REF (§2.35) | A1 palier 2 niv. (1,3-1,6 sur [6,5;8[/[8;+inf[) | A2 rampe continue (1,0→1,6 sur [6;15]) | A3 paliers 10 déciles (1,0→1,6) |
+|---|---|---|---|---|
+| 960$/1000$ | 7 909 560$/7 911 585$ | -6,19%/-5,68% | -6,28%/-5,99% | -24,82%/-23,55% |
+| 3000$/5000$ | 8 334 629$ | -3,63% | -6,31% | -20,28% |
+
+Autres axes (solde_neg/hit_ceiling/année1<0) égaux ou pires pour les 3
+candidats, aucune compensation. **Verdict : REJETÉS, aucun ne bat REF à
+aucun plafond.** Même A1 (ciblant précisément le "pré-tail" prometteur au
+diagnostic brut par décile) perd -3,6 à -6,2% — la promesse apparente du
+diagnostic par décile ne s'est pas traduite en gain simulé, confirmant que
+le seuil simple >8 capture correctement le seul segment stable. Stress-test
+H1/H2+k-fold non lancé (aucun candidat n'a passé le screening).
+
+**🔴 Portée EXACTE du rejet, à ne pas généraliser** (vérifié par citation
+de code, `chantier_A_rr_sizing_2026-08-17.py`) : les 3 candidats
+n'appliquent JAMAIS de multiplicateur <1,0× — `make_size_func_step2`
+(:109-115, `return 1.0` sous le seuil bas) ; `make_size_func_ramp`
+(:119-126, `1.0 + (max_mult-1.0)*frac` avec frac∈[0,1], plancher exact
+1,0) ; `make_size_func_decile_full` (:130-132,
+`mults = np.linspace(1.0, max_mult, 10)`, le décile le plus bas reçoit
+exactement 1,0×). **Ce qui est rejeté = la famille "boost gradué ≥1,0×
+étendu ou lissé sur plus de la distribution". PAS TESTÉ = sizing
+asymétrique avec réduction (<1,0×) sur les segments faibles** — chantier
+distinct en cours (Section A-bis, downsizing temporel/conditionnel).
+
+### 2.37 GFT Instant en comptes extra parallèles — REJETÉ, portée précise (08/17)
+
+Add-on isolé sur la référence de travail (§1.8+§2.35) : comptes GFT
+"extra" (croissance, `process_extra_account`) basculés du format classique
+vers `GFT_InstantGOAT` au lieu du classique, n=300, 4 plafonds. Fichier :
+`chantier_B_gft_instant_parallel_2026-08-17.py` (suivi par git).
+
+| Plafond | REF | B (GFT Instant parallèle) | Δ profit |
+|---|---|---|---|
+| 960$ | 7 909 560$ | 7 674 995$ | -2,97% |
+| 1000$ | 7 911 585$ | 7 676 320$ | -2,98% |
+| 3000$/5000$ | 8 334 629$ | 8 097 701$ | -2,84% |
+
+solde_neg/hit_ceiling inchangés ; année1<0 légèrement amélioré (+0,6 à
++1,0pt, insuffisant). Mécanisme confirmé : `gft_breaks_moy` triple
+(42-44→118-124/4ans), porté à 91-92% par `gft_instant_breaks_moy`
+(108-113) — DD 6% trailing structurellement trop serré, confirmé en
+contexte flotte réelle (cohérent avec §6.2/§6.3, compte isolé).
+
+**🔴 Portée EXACTE du rejet, à ne pas généraliser** : la stratégie
+appliquée aux comptes Instant est la stratégie CLASSIQUE rejouée à
+l'identique (même population RR≥1,35, même routage any-RR/rr_tp2, même
+risque de base) sur un format dont le DD (6% trailing) est structurellement
+différent du format classique (10% statique). **Ce qui est rejeté =
+"stratégie classique inchangée sur comptes Instant". PAS TESTÉ = une
+stratégie spécifiquement adaptée à la contrainte 6% trailing** — chantier
+distinct en cours (Section B, diagnostic du mode de casse + candidats
+adaptés).
+
+### 2.38 Recherche de variable de segmentation alternative à RR — AUCUNE variable exploitable trouvée (08/17)
+
+Suite à §2.36 (aucun segment RR négatif même à granularité fine) : recherche
+d'une variable DIFFÉRENTE de RR pour du sizing/segmentation EV.
+
+**Étape 0 — inventaire** : `score_force` EXCLU (déjà testé exactement comme
+base de sizing, §2.1 mécanisme b, "Force non exploitable"). ATR ratio EXCLU
+(§2.6 "quasi neutre", déjà testé comme sizing, malgré moteur ancien jamais
+recalculé). Retenues (jamais testées comme base de sizing EV, seulement
+comme filtre ou confondant) : ADX(14) à l'entrée (couverture ~52%), session
+horaire UTC (couverture 100%), asset_class (100%), distance_SL% (100%).
+distance_TP2% écartée explicitement (corrélée +0,45 à rr_tp2, trop proche
+de "RR sous une autre forme").
+
+**Étape 2-3 — EV par segment + garde-fou out-of-sample**
+(`chantier_segmentation_variables_2026-08-17.py`) :
+- Session horaire (3 blocs et 6 tranches) : aucun segment sous l'IC95%.
+- **asset_class : inutilisable — une seule catégorie dans toute la
+  population** ("FX/Indices", aucune variance).
+- ADX(14) : quintiles non-monotones (1,34R à 2,29R), Pearson=+0,037 quasi
+  nul, aucun signal (confirme §2.13/§2.31).
+- **distance_SL% ((entrée-SL)/entrée×100) : seul candidat à passer le
+  garde-fou.** Segment >0,235% (quintiles 4-5, n=252, 40% de la
+  population) SOUS la moyenne locale dans **6/6 sous-périodes** (H1/H2 +
+  4 blocs k-fold) — aussi stable que le tail rr_tp2 déjà adopté. Quasi
+  indépendant de rr_tp2 (Pearson=-0,15, chevauchement 16/252 avec le
+  segment déjà boosté).
+
+**Étape 4 — chiffrage flotte** (`chantier_segmentation_fleet_test_2026-08-17.py`,
+n=300, 4 plafonds, downsizing ×0,5/×0,8 sur le segment distance_SL%>0,235,
+boost rr_tp2≥8→×1,6 maintenu) : **REJETÉ à tous les plafonds** — coût de
+profit -2,7% à -3,7%, non compensé par les gains modestes sur les axes de
+risque (réels à 960$/1000$, marginaux à 3000$/5000$ où REF est déjà proche
+de l'optimum).
+
+**Conclusion : aucune variable actuellement capturée dans le pipeline ne
+porte un signal de segmentation EV exploitable pour du sizing**, même
+quand elle est statistiquement stable out-of-sample (distance_SL%
+prouve que "stable" ≠ "économiquement exploitable" — le segment reste EV
+positive, sans surreprésentation dans les pertes, §2.38bis). Capturer une
+nouvelle donnée à la source serait nécessaire pour rouvrir cette
+direction. Fermé.
+
+### 2.38bis Downsizing temporel/conditionnel (Section A-bis) — hypothèse causale RÉFUTÉE, rien construit (08/17)
+
+Piste distincte : downsizing TEMPORAIRE (fenêtre année1/seuil réserve,
+analogue V2) sur le(s) segment(s) faible(s) en EV, plutôt que permanent.
+Rationnel à vérifier avant construction : les segments faibles
+contribuent-ils de façon disproportionnée aux PERTES (fréquence+magnitude),
+pas juste à un profit moyen plus bas ?
+
+**Résultat (même diagnostic que §2.36)** : perte moyenne=perte
+max=-1,000R pour TOUS les déciles (sortie en stop plein, aucune variation
+de magnitude possible par construction). Ratio contribution-aux-pertes/
+poids-population entre 0,85 et 1,14 pour tous les déciles — **aucune
+surreprésentation notable** (seuil 1,2 jamais atteint).
+
+**L'hypothèse ne tient pas empiriquement — mécanisme NON construit**,
+conformément à la consigne explicite ("si aucune surreprésentation, dis-le
+avant de perdre du temps à construire"). Fermé, sauf nouvelle piste de
+justification causale.
+
+### 2.39 Doublon même paire (2 signaux simultanés) — FERMÉ, statu quo optimal (08/17)
+
+Contexte : observation terrain (2 positions GBP/JPY simultanées, signal 2
+validé pendant signal 1 actif). Étape 0 vérifiée par citation de code AVANT
+toute construction de candidat, comme demandé (`chantier_positioncap_
+blocking_diagnostic_2026-08-17.py`, suivi par git) :
+
+- **Frictions (spread/commission)** : `pnl = trade["outcome_r"] *
+  risk_amount` (`engine_multiformat.py:331`) est purement proportionnel à
+  la taille — **aucun terme de spread/commission en $ dans le moteur**
+  (`feasible_risk_pct`, `scaling_simulation.py:121-147`, ne gère que
+  l'arrondi de lot/marge).
+- **Risque d'échec de parsing/exécution** : identifié (`app.py` logge des
+  échecs réels en production via `failed_emails.log`) mais **non modélisé
+  dans le moteur de simulation** — angle mort réel mais UNIFORME sur toute
+  la population, pas spécifique au cas doublon.
+- **Blocage plafond spécifique au doublon même paire** : taux global de
+  blocage plafond = 1,91% (n=300, pile actuelle) ; part causée par un
+  doublon même ticker = 10% des blocages, soit **0,19% de tous les trades
+  offerts**.
+
+**Verdict : ARRÊT à l'Étape 0** — les 3 composantes sont nulles/
+proportionnelles, non modélisées mais uniformes, ou négligeables (0,19%).
+Statu quo (2 trades séparés) = optimal théorique. Aucun candidat construit.
+
+**Condition de réouverture explicite** : si le risque d'échec de parsing/
+exécution est un jour quantifié et s'avère non négligeable — actuellement
+un angle mort connu mais non chiffré, pas un risque écarté par la mesure.
+
+### 2.40 Plafond de positions (3→6) × risque par trade réduit — REJETÉ, effet INVERSE de l'hypothèse (08/17)
+
+Hypothèse testée : répartir le même risque agrégé pire-cas sur plus de
+positions plus petites réduirait la variance (hit_ceiling/solde_neg/
+année1<0) sans changer l'EV. n=300, 4 plafonds, risque agrégé pire-cas
+maintenu ~constant (3,75-3,76%), `chantier_sectionB_poscap_risk_
+2026-08-17.py` (suivi par git) :
+
+| Config | Δ profit (tous plafonds) | Δ année1<0 |
+|---|---|---|
+| V1 (4 positions × 0,94%) | -17,7% à -18,0% | pire (+1,0 à +1,3pt) |
+| V2 (5 positions × 0,75%) | -32,7% à -33,1% | pire (+3,3pt) |
+| V3 (6 positions × 0,625%) | -44,2% à -44,9% | pire (+3,7 à +5,7pt) |
+
+solde_neg/hit_ceiling s'améliorent marginalement (REF déjà proche de 0%,
+peu de marge pour un gain visible).
+
+**Raison** : réduire le risque par trade ralentit la progression vers
+l'objectif de challenge (% fixe du palier), retardant le financement de la
+flotte — effet déjà identifié comme dominant dans ce projet (vitesse de
+financement), qui écrase tout bénéfice de diversification attendu.
+Composition des slots au-delà de l'ancien plafond 3 mesurée séparément :
+24,4% doublons même paire, 75,6% paires nouvelles.
+
+**Verdict : REJETÉ sans ambiguïté, les 3 variantes, tous plafonds. Fermé.**
+
+**Condition de réouverture** : aucune identifiée à ce jour — effet inverse
+net et monotone (V1<V2<V3 en dégradation), pas un cas limite ou une
+question de calibration.
+
+### 2.41 Piste A (BBx2, 2 comptes Blueberry) — statut différencié par plafond, réouverture d'un ancien rejet (08/17)
+
+Ancienne piste (pré-08/12, ancien §2.15, sous une pile de paramètres
+antérieure au rebuild RR≥1,35/corr0,80 et à §1.8+§2.35) : confirmée à
+3000$, rejetée à 1000$ à l'époque. Re-testée à l'identique (2e compte day0
+SANS scaling de risque) sous la pile actuelle, n=300 (4 plafonds) puis
+stress-test H1/H2+4 blocs k-fold puis n=600+cascade (aucune inversion sur
+les 3 tests). Fichiers : `chantier_pisteAB_bbx2_bbgft_2026-08-17.py`
+(screening), `chantier_stresstest_pisteAB_2026-08-17.py` (stress-test),
+`chantier_n600_pisteAB_2026-08-17.py` (confirmation, tous suivis par git).
+
+| Plafond | Statut |
+|---|---|
+| **5000$** | **Dominance stricte confirmée n=600.** Profit 8 487 070$ vs REF 8 206 650$ (**+3,42%**), solde_neg=0%(=), hit_ceiling=0%(=), année1<0 10,00% vs 13,17% (**-3,17pt**). |
+| 3000$ | PAS dominant en screening n=300 (hit_ceiling 0%→12,67%) — verdict CHANGÉ vs l'ancienne mesure pré-08/12, qui ne voyait pas cet effet. Jamais envoyé en confirmation n=600 à ce plafond. |
+| 960$/1000$ | Rejeté (hit_ceiling explose, comme à l'ancienne mesure). |
+
+**✅ 5000$ : GO technique** — PAS ENCORE intégré à la référence officielle
+§1.8, décision d'adoption séparée en attente (même convention que les
+leviers précédents).
+
+**Condition de réouverture pour 3000$** : lancer la confirmation n=600 à ce
+plafond précis si 3000$ redevient le plafond personnel pertinent (le
+screening n=300 seul n'est pas suffisant pour trancher, cf. §2.35 où
+l'écart n=300→n=600 s'est déjà avéré significatif).
+
+### 2.42 Piste B (BB+GFT jour0, bootstrap parallèle) — statut différencié par plafond, réouverture d'un ancien rejet (08/17)
+
+Ancienne piste (pré-08/12, ancien §2.6/§2.41 sous la numérotation
+antérieure, pile de paramètres antérieure au rebuild RR≥1,35/corr0,80 et à
+§1.8+§2.35) : arbitrage à 3000$, rejetée à 1000$ à l'époque. Re-testée à
+l'identique sous la pile actuelle, même protocole que §2.41 (n=300 → 
+stress-test H1/H2+4 blocs k-fold → n=600+cascade, aucune inversion).
+Fichiers : identiques à §2.41.
+
+| Plafond | Statut |
+|---|---|
+| **5000$** | **Dominance stricte confirmée n=600.** Profit 8 324 100$ vs REF 8 206 650$ (**+1,43%**), solde_neg=0%(=), hit_ceiling=0%(=), année1<0 10,17% vs 13,17% (**-3,00pt**). |
+| 3000$ | **Arbitrage chiffré, PAS de verdict tranché.** +113 934$ de profit (+1,39%) contre hit_ceiling 0%→3,50% (+21 runs/600) et année1<0 13,17%→10,17% (-18 runs/600, amélioré malgré le coût hit_ceiling). |
+| 960$/1000$ | Rejeté. |
+
+**✅ 5000$ : GO technique** — PAS ENCORE intégré à la référence officielle
+§1.8, décision d'adoption séparée en attente.
+
+**🟡 3000$ : en attente de décision utilisateur explicite** sur l'arbitrage
+(+113 934$ vs +21 runs/600 touchant le plafond) — à mettre à jour dans ce
+registre une fois la décision prise, pas un rejet ni une adoption par
+défaut.
+
+### 2.43 Re-tests de Piste C (fonds d'urgence) et Piste D (contrarian) sous la pile actuelle (08/17)
+
+Suite directe de §2.41/§2.42 — même exercice de réouverture appliqué à 2
+autres anciennes pistes pré-08/12, sous la pile actuelle (RR≥1,35/corr0,80,
+risque éval 1,25%/funded 1,90%, §1.8+§2.35 actifs).
+
+**Piste C (fonds d'urgence 10%/7j/N2)** — ancien §2.39 (numérotation
+antérieure) : rejetée à 1000$, candidat n=300 seul à 3000$ (jamais
+confirmé n=600) à l'époque. Re-testée à l'identique, n=300, 4 plafonds
+(`chantier_pisteC_fonds_urgence_2026-08-17.py`, suivi par git) :
+
+| Plafond | Δ profit | Δ hit_ceiling |
+|---|---|---|
+| 960$/1000$ | -0,22% | ÷2 (1,33%→0,67% à 1000$) |
+| 3000$/5000$ | -0,28% | 0%(=, REF déjà optimal — rien à gagner, contrairement à l'ancienne mesure) |
+
+**Verdict : trop faible pour prioriser, PAS un rejet définitif.** N=600
+jamais lancé. Disponible sur demande séparée si l'utilisateur le souhaite.
+
+**Piste D (contrarian RR 0,75-1,25)** — ancien §2.47 (numérotation
+antérieure) : marchait aux deux plafonds testés à l'époque (+1,80%/+2,09%
+profit), marquée "candidat prioritaire n=600+cascade", jamais reprise
+depuis. Reconstruite par portage sous la pile actuelle, population
+contrarian vérifiée identique (n=311 trades, 0,75≤rr_tp1<1,25),
+`chantier_pisteD_contrarian_2026-08-17.py` (suivi par git) :
+
+| Plafond | Δ profit | Δ année1<0 |
+|---|---|---|
+| 960$/1000$ | **-15,9% à -16,4% (effondrement)** — inversion complète vs ancien +1,80% sous l'ancienne pile | -5,0pt (seul axe positif) |
+| 3000$/5000$ | +0,43% (dominance légère, magnitude réduite vs ancien +2,09%) | -0,67pt |
+
+**Verdict : rejeté net à 960$/1000$ ; candidat faible mais pas prioritaire
+à 3000$/5000$.** N=600 jamais lancé. Disponible sur demande séparée.
+
+**🔴 Note de méthode à consigner explicitement** : ces deux pistes avaient
+été testées et jugées sous une pile de paramètres antérieure (avant le
+rebuild RR≥1,35/corr0,80 du 08/12, avant §1.8+§2.35). Le re-test illustre
+directement le principe #1 du projet — **un rejet (ou une confirmation)
+n'est valable que sous la config exacte dans laquelle il a été prononcé,
+jamais à généraliser sans re-test.** Cohérent avec l'inversion déjà
+observée en §2.41 (BBx2@3000$) et le déplacement de verdict en §2.42
+(Piste C).
+
+### 2.44 Piste B (BB+GFT jour0) — ouverture GFT différée (T>0 au lieu de jour0), résultat PRÉLIMINAIRE 2-4 mois (08/17)
+
+Suite de §2.42 — question posée : le mécanisme BB+GFT jour0 est-il
+structurellement lié à T=0, ou peut-il être simulé comme une ouverture
+GFT différée à un instant T ultérieur (négociation en cours pour faire
+passer le plafond personnel de 3000$ à 5000$) ?
+
+**Étape 0 — lecture de code, pas de simulation** : NON structurellement
+lié à T=0. `acc["active"]` est un booléen activable à n'importe quel
+instant via `handle_cost_hybrid()` (respecte le plafond), pas un flag figé
+à l'initialisation. Précédent trouvé : `etape_r_piste_a_delayed_start_
+2026-08-10.py` implémentait déjà un trigger différé (jours de survie ou
+seuil de réserve) sous l'ANCIENNE pile (pré-08/12) — jamais porté sous la
+pile actuelle, jamais testé avec un délai en mois.
+
+**Portage sous la pile actuelle** (`chantier_pisteB_delayed_start_
+2026-08-17.py`, suivi par git) : GFT reste un compte normal (inactif)
+jusqu'à T=X mois puis s'ouvre via `handle_cost_hybrid` (comme
+`open_group()`, PAS un coût jour0 inconditionnel) ; no-op si le trigger
+normal de croissance (réserve≥25000$) a déjà ouvert GFT avant T. n=300,
+plafonds 3000$/5000$ (bb_threshold=0, régime déjà adopté à ces plafonds) :
+
+| Config | Profit moyen | Δ vs REF | Hit_ceiling@3000$ | Hit_ceiling@5000$ | Année1<0 |
+|---|---|---|---|---|---|
+| REF (sans GFT parallèle) | 8 334 629$ | — | 0,00% | 0,00% | 11,67% |
+| Jour0 (baseline §2.42) | 8 455 883$/8 459 335$ | **+1,45%/+1,50%** | 2,67% | 0,00% | 9,00% (-2,67pt) |
+| Délai 2 mois | 8 363 019$ (identique aux 2 plafonds) | +0,34% | 0,00%(=) | 0,00%(=) | 10,67% (-1,00pt) |
+| Délai 4 mois | 8 340 794$ (identique aux 2 plafonds) | +0,07% (quasi nul) | 0,00%(=) | 0,00%(=) | 11,00% (-0,67pt) |
+
+**Constat** : le bénéfice de BB+GFT n'est pas linéaire dans le temps — il
+est concentré dans les tout premiers jours/semaines (mécanisme = tête de
+pont de trésorerie AVANT le déblocage de la flotte). À 2 mois, il ne reste
+plus que ~23% du gain de profit du jour0 ; à 4 mois, ~5% seulement
+(quasiment retombé à zéro). Le coût en hit_ceiling à 3000$ (2,67% pour
+jour0) disparaît en revanche complètement dès 2 mois de délai.
+
+**Statut : PRÉLIMINAIRE, n=300 screening seul (pas de stress-test H1/H2+
+k-fold, pas de n=600), granularité mensuelle jugée trop grossière pour la
+vraie fenêtre de décision utilisateur (négociation financeur 1-3
+semaines, pas 2-4 mois) — chantier complémentaire à granularité semaine
+en cours (résultat à consigner séparément une fois obtenu). Ce résultat
+2-4 mois reste correct et exploitable tel quel (ne PAS le re-mesurer),
+juste insuffisant seul pour trancher la décision réelle.**
+
+**Condition de réouverture / suite** : granularité fine 1-4 semaines
+(même méthode, même fichier, paramètre `gft_delay_days`) — voir §2.44bis
+ci-dessous (résultat obtenu le même jour).
+
+### 2.44bis Piste B (BB+GFT jour0) — ouverture différée, granularité SEMAINE (fenêtre de décision réelle) (08/17)
+
+Suite immédiate de §2.44 : la fenêtre de décision réelle utilisateur est
+de 1 à 3 semaines (négociation en cours avec le financeur pour passer le
+plafond personnel de 3000$ à 5000$), pas 2-4 mois — la granularité
+mensuelle était trop grossière pour informer cette décision. Même
+mécanisme, même fichier (`chantier_pisteB_delayed_start_2026-08-17.py`,
+paramètre `gft_delay_days` au lieu de `gft_delay_months`, précision
+exacte en jours), n=300, plafonds 3000$/5000$ :
+
+| Config | Profit moyen | Δ vs REF (8 334 629$) | Hit_ceiling@3000$ | Hit_ceiling@5000$ | Année1<0 |
+|---|---|---|---|---|---|
+| Jour0 (rappel §2.42/§2.44) | 8 455 883$/8 459 335$ | +1,45%/+1,50% | 2,67% | 0,00% | 9,00% (-2,67pt) |
+| **Délai 1 semaine** | 8 432 150$/8 432 080$ | **+1,17%** | **0,33%** | 0,00%(=) | 9,33% (-2,34pt) |
+| **Délai 2 semaines** | 8 407 338$/8 407 268$ | **+0,87%** | 0,33% | 0,00%(=) | 9,33% (-2,34pt) |
+| **Délai 3 semaines** | 8 393 273$/8 393 259$ | **+0,70%** | 0,33% | 0,00%(=) | 10,00% (-1,67pt) |
+| **Délai 4 semaines** | 8 390 855$ (identique aux 2 plafonds) | **+0,67%** | 0,00%(=) | 0,00%(=) | 10,00% (-1,67pt) |
+| *(rappel §2.44)* Délai 2 mois | 8 363 019$ | +0,34% | 0,00%(=) | 0,00%(=) | 10,67% (-1,00pt) |
+| *(rappel §2.44)* Délai 4 mois | 8 340 794$ | +0,07% | 0,00%(=) | 0,00%(=) | 11,00% (-0,67pt) |
+
+**Constat révisé — la décroissance est BEAUCOUP moins abrupte à l'échelle
+des semaines que ne le suggérait le point à 2 mois seul** : à 1 semaine,
+~78% du gain jour0 est conservé (+1,17% sur +1,45-1,50%) ; à 4 semaines
+(~1 mois), encore ~45% (+0,67%). La chute à ~23% n'intervient qu'entre 1
+et 2 mois — hors de la fenêtre de négociation réelle. **Le coût en
+hit_ceiling@3000$ (2,67% pour jour0), lui, s'effondre presque
+immédiatement** : 0,33% dès 1 semaine de délai (÷8), 0,00% dès 4 semaines
+— l'essentiel du risque de plafond du jour0 disparaît bien plus vite que
+le profit.
+
+**Verdict opérationnel** : dans la fenêtre réelle de négociation (1-3
+semaines), "lancer maintenant sans BB+GFT et ajouter GFT dès que la
+négociation aboutit" retient la MAJORITÉ du gain jour0 (70-78% à
+1-2 semaines) tout en évitant l'essentiel du risque hit_ceiling@3000$ —
+un compromis nettement plus favorable que ce que suggérait le point à 2
+mois pris isolément. Si la négociation traîne au-delà de 4-6 semaines,
+l'intérêt continue de s'éroder mais reste positif (+0,67% encore à 4
+semaines).
+
+**Statut : PRÉLIMINAIRE, n=300 screening seul** (pas de stress-test
+H1/H2+k-fold, pas de n=600) — suffisant pour une décision de calendrier
+immédiate, mais à confirmer en n=600+stress-test avant adoption formelle
+si ce chemin (lancement différé) est retenu comme la stratégie réelle.
+
+**Condition de réouverture** : n=600+stress-test H1/H2+k-fold sur le(s)
+délai(s) retenu(s) (probablement 1-2 semaines vu la fenêtre réelle) avant
+toute décision définitive ; affiner à J+3/J+5/J+10 si la négociation
+aboutit plus vite que prévu et qu'une granularité encore plus fine devient
+utile.
+
+### 2.45 Risque Instant mal appliqué — 2e erreur de prémisse dans §1.8, CORRIGÉ n=600 (08/17-18)
+
+**Découverte** : Blueberry Instant Elite/Lite ne bénéficient PAS de
+l'exemption Prime sur le risque par trade — ils sont soumis à un cap réel
+de **1,5%/trade, calculé sur la taille INITIALE du compte (fixe, ne bouge
+jamais même si le solde grossit)**. Seul Prime en est exempté. 2e erreur
+de prémisse découverte dans le chantier §1.8, après le bug de cadence
+Blueberry 7j du 08/16 (`registre_parametres_projet.md` §1.8, correction
+Run F).
+
+**Vérification par citation de code (moteur backant §1.8)** : `format_def()`
+(`engine_multiformat.py:46-55`) n'a **aucun champ risque-par-trade** — seuls
+`dd_daily_pct`/`dd_max_pct`/`dd_max_mode`/`lock_after_pct` existent. Le
+risque réellement appliqué à un compte Blueberry Instant funded est le
+risque flotte global, identique à Prime (`chantier_cascade_combined_
+bb_switch_any_rr_2026-08-16.py:55,451` : `FLEET_RISK=1,90` ;
+`base_r = fleet_risk if acc["phase"] == "funded" else base_risk`, aucune
+branche Instant). Le moteur autorisait donc 1,90% (potentiellement ×0,5 si
+DD-distance V2 actif, jamais un cap absolu) au lieu du vrai plafond 1,5%.
+
+**Calcul déjà correct sur la taille initiale** (vérifié séparément,
+question explicite de l'utilisateur) : `risk_amount = eff_risk/100 *
+acc["palier"]` (`engine_multiformat.py:330`) — `acc["palier"]` ne grossit
+JAMAIS dans ce moteur (recherche exhaustive de toute assignation
+`acc["palier"] = ...`, seule occurrence trouvée = remise à `base_palier`
+sur réouverture, jamais une augmentation). Le clamp `r=min(r,1,5%)` capture
+donc automatiquement "1,5% de la taille initiale figée" par construction,
+sans logique supplémentaire nécessaire.
+
+**Correctif** : clamp `r=min(r,BB_INSTANT_RISK_CAP=1,5)` appliqué aux
+trades Blueberry Instant, APRÈS tout autre multiplicateur (DD-distance V2
+inclus), intégré en dur (pas un flag optionnel) dans
+`chantier_S1_8_officiel_n600_risque_corrige_2026-08-17.py` (copie figée de
+`chantier_cascade_combined_bb_switch_any_rr_2026-08-16.py`, script backant
+la référence officielle). 99,9-100,0% des trades Instant sont affectés à
+tous les plafonds (~2,58-2,83M trades échantillonnés n=600) — le DD-distance
+V2 ne fait quasiment jamais retomber le risque sous 1,5% de lui-même.
+
+**Stress-test H1/H2+4 blocs k-fold** (`chantier_S1_8_stresstest_risque_
+instant_2026-08-17.py`, n=100, 2 régimes de plafond représentatifs
+960$/3000$, avant tout n=600, même protocole que §2.35/§2.41-42) : 10/12
+sous-périodes confirment la dominance (profit MIEUX, direction constante).
+Les 2 exceptions (toutes deux "bloc1", aux deux régimes) sont un artefact
+de bruit sur une base REF quasi nulle (347$/965$ contre des millions dans
+les autres sous-périodes, delta absolu de seulement -606$/-5522$) — année1<0
+s'améliore malgré tout dans ce même bloc (-9 à -16pt) — pas une inversion
+économique réelle du mécanisme sous-jacent.
+
+**✅ Confirmation n=600+cascade, chiffres avant/après correction, 4 plafonds** :
+
+| Plafond | REF | COMBINÉ non corrigé (ancien, était dans le registre) | COMBINÉ corrigé (nouveau, adopté) | Écart |
+|---|---|---|---|---|
+| 960$/1000$ | 5 835 876$/5 836 643$ | 6 752 310$ (+15,7%) | **6 417 256$ (+9,95-9,96%)** | **-335 054$ (-4,96%)** |
+| 3000$/5000$ | 5 900 859$/5 848 265$ | 7 080 725$ (+20,0-21,1%) | **6 693 474$ (+13,44-14,45%)** | **-387 251$ (-5,47%)** |
+
+Autres axes après correction : solde_neg/hit_ceiling **inchangés** à tous
+les plafonds. Année1<0 légèrement **mieux** à 960$/1000$ (24,00% vs
+24,33% avant correction) mais légèrement **dégradé** à 3000$/5000$
+(15,67% vs 13,83% avant correction, +1,84pt) — reste très inférieur à REF
+(28,83-30,50%), la dominance globale n'est pas remise en cause.
+
+**Verdict : dominance stricte sur les 4 axes, aux 4 plafonds — CONFIRMÉE
+n=600 après correction.** Environ 33-37% du gain de profit annoncé par
+l'ancien tableau non corrigé s'évapore (le gain réel retenu est ~63-69% du
+gain brut original selon le plafond) — cohérent entre n=300 (screening,
+mêmes proportions) et n=600 (confirmation). **Ce tableau remplace
+définitivement les $ précédemment affichés pour §1.8 dans
+`registre_parametres_projet.md` §1.8** — décision d'adoption officielle
+de §1.8 dans son ensemble toujours séparée et en attente (statut inchangé
+par cette correction).
+
+**Condition de réouverture** : aucune à ce stade — correction validée
+n=300→n=600 avec stress-test, cohérente aux deux échelles. Rouvrir
+seulement si une 3e composante du produit Instant s'avère mal modélisée
+(ex. le plancher de trailing qui ne se réinitialise jamais après un
+retrait, signalé non modélisé dans `engine_multiformat.py:148` mais jamais
+creusé).
+
+### 2.45bis Pivot Instant à taille réduite (5k$/10k$) — mitige le coût du jour0 aux plafonds serrés, N'AMÉLIORE PAS le plafond réel 3000$ (08/18)
+
+Suite directe de §2.45 : le pivot (1er compte Blueberry, jour0) ouvre à
+25k$ dans le moteur actuel (coût réel 800$ en Instant Elite avec
+bb_seuil=0 adopté à 3000$/5000$) — écart significatif avec un budget
+utilisateur initialement prévu autour du prix Prime (165$). Question :
+un pivot Instant Elite à taille RÉDUITE (5k$/10k$, coût 200$/400$)
+capture-t-il encore l'avantage structurel d'Instant (financé dès jour0) à
+moindre coût d'entrée, et cela suffit-il à faire basculer le verdict
+"Blueberry-adaptatif" REJETÉ en 08/09 (`registre_parametres_projet.md`
+ligne 681, rejet motivé par "trade au risque flotte dès jour 0, pas de
+phase protectrice" — sous l'ANCIENNE pile pré-08/12 et SANS le correctif
+de risque 1,5% ; les deux conditions du rejet ont changé depuis) ?
+
+4 configs statiques pour le pivot (format+palier FIXES toute sa vie, y
+compris après casse — pas de bascule dynamique sur le pivot spécifiquement,
+seulement sur les comptes extra/croissance qui gardent le mécanisme S1.8
+standard), risque 1,5%/trade déjà intégré dès le départ, n=300, 4 plafonds
+(`chantier_pivot_instant_taille_reduite_2026-08-18.py`, suivi par git) :
+
+| Config | Coût réel | Profit@960-1000$ | Profit@3000-5000$ | Hit_ceiling@960-1000$ | Année1<0@960-1000$ |
+|---|---|---|---|---|---|
+| Prime25k | 165$ | 6 489 695$ | 6 534 951$/6 510 591$ | 0,33% | 21,67% |
+| InstantElite5k | 200$ | 6 490 660$ (≈0%) | 6 491 257$/6 512 070$ (≈0%) | 0,67% | 19,67% |
+| InstantElite10k | 400$ | 6 590 213$ (+1,55%) | 6 589 757$/6 610 414$ (+0,84%/+1,53%) | 1,33% | 17,33% |
+| InstantElite25k | 800$ | 6 688 902$ (+3,07%) | **6 791 917$ (+3,93%/+4,32%)** | **3,33%** | 14,67%/14,00% |
+
+**À 3000$/5000$ (plafond réel) : InstantElite25k reste strictement
+optimal** — meilleur profit, solde_neg/hit_ceiling à 0,00%=, aucun coût de
+risque supplémentaire (le régime bb_seuil=0 le rend déjà sûr à ce
+plafond). Les variantes réduites n'apportent RIEN à ce plafond — elles ne
+sacrifient que du profit sans gain de sécurité, puisqu'il n'y a rien à
+mitiger.
+
+**Le levier taille-réduite n'est utile qu'aux plafonds serrés
+(960$/1000$)** — là où InstantElite25k jour0 dégrade solde_neg (0,33%→
+2,00%, non montré au-dessus) et hit_ceiling (0,33%→3,33%), les versions
+5k/10k atténuent fortement ce coût (hit_ceiling 0,67%/1,33% au lieu de
+3,33%) tout en gardant une partie du gain de profit — mais **ne renversent
+PAS franchement le rejet "Blueberry-adaptatif" de 08/09** : même mitigé,
+le risque reste non-nul vs Prime, cohérent avec le choix actuel §1.8 de
+garder bb_seuil=5000$ (rester classique) à ces plafonds plutôt qu'une
+taille intermédiaire.
+
+**Verdict : pas un levier de performance à 3000$/5000$ (déjà optimal en
+25k$), mais un filet de sécurité budgétaire valide** si la trésorerie
+disponible au lancement est plus proche de 200-400$ que de 800$ —
+InstantElite5k coûte à peine plus que Prime (200$ vs 165$) pour un profit
+quasi identique et un année1<0 légèrement meilleur. Décision purement
+liée à la trésorerie réelle disponible cette semaine, pas à un arbitrage
+de performance.
+
+**Condition de réouverture** : si le plafond personnel réel change
+significativement vers le bas (redevient pertinent aux plafonds serrés
+960$/1000$ où le levier a un effet réel) ; n=600 pas lancé, candidat pas
+assez fort à 3000$/5000$ pour le justifier.
+
+### 2.46 Filtre forex-only — bug de population CORRIGÉ, impact sur A et B chiffré (08/18)
+
+**Découverte** (partie du chantier "amélioration Stratégie B") :
+`build_extended_population()` (`rr_threshold_test.py:47`, fonction
+utilisée par TOUTE construction de population du projet, A comme B)
+appliquait un filtre **forex-only codé en dur** (`FOREX_PATTERN.match
+(ticker)`), totalement indépendant de tout critère RR ou du whitelist
+scraper (`scraper.py:82-98`, qui lui inclut bien 5 indices via
+`TARGET_INDEX_KEYWORDS`). Vérifié par citation de code et git log
+(aucun commit n'a jamais documenté ce filtre comme un choix
+méthodologique) : **321 trades indices scrapés avec succès (DAX40/
+S&P500/NASDAQ100/DJ30, `historique_lutessia_15k_force.csv`) étaient
+silencieusement éliminés avant toute simulation du projet.** DJ30 (53
+lignes) s'est avéré structurellement inutilisable en plus (rr_tp1=NaN
+sur toutes ses lignes, bug de parsing distinct, non corrigé ici).
+
+**Correctif appliqué** : `rr_threshold_test.py:43-61` — remplace le
+filtre `FOREX_PATTERN` par un critère de mappabilité réelle
+(`ticker_to_yahoo_symbol(t) is not None`, couvre forex ET les 3 indices
+gérés par `INDEX_KEYWORD_MAP`). DJ30 reste exclu naturellement (échoue
+déjà le filtre rr_tp1 en amont). Propage automatiquement à toute
+construction de population future (plus besoin de re-derniver
+manuellement).
+
+**Impact mesuré (même méthodologie EV/trailing que le reste du
+projet)** :
+
+| Population | n avant | n après | Δ volume | Winrate | EV |
+|---|---|---|---|---|---|
+| A (RR≥1,35, référence) | 631 | **742** | **+17,6%** | 39,5%→39,9% (+0,4pt) | +0,893R→+0,900R (+0,7% relatif) |
+| B (1,00≤RR<1,35) | 401 | **460** | **+14,7%** | 49,6%→49,6% (≈0) | +0,801R→+0,781R (-2,4% relatif) |
+
+**Qualité d'edge quasi inchangée, volume réellement augmenté** — les 111
+trades indices ajoutés à A ont une EV propre (+0,934R) très proche du
+forex (+0,893R), d'où la dilution de l'effet sur winrate/EV à l'échelle
+de 631-742 trades. Stress-test H1/H2+4 blocs sur A élargi
+(`chantier_reference_A_indices_2026-08-18.py`) : **aucune inversion de
+direction imputable aux indices** — la seule sous-période limite (bloc0,
+EV globale -0,009R quasi nulle) est un régime de marché difficile
+préexistant dans le forex seul (-0,082R), et les indices y sont même
+stabilisateurs (+0,402R). Comportement typique d'une vraie
+diversification, pas le profil d'échec du classement de paires
+(§2.32/§2.33, inversion H2).
+
+**Limite non résolue** : le diagnostic "bloqué par corrélation" sur B
+(§2.44bis/récent, n=16, Δ=+0,668R) n'est PAS recalculable avec les
+indices — `correlation_matrix.csv` ne couvre que les 14 paires FX,
+aucune donnée de corrélation indices↔indices ou indices↔forex. Tâche
+séparée si utile.
+
+**Voir aussi `registre_parametres_projet.md` §1.8bis** pour l'impact
+détaillé sur la référence officielle A (volume/EV/stress-test complet) —
+ce §2.46 se concentre sur B et le correctif lui-même.
+
+**Condition de réouverture / suite** : Tâche de faisabilité d'exécution
+live (le setup MT5/broker actuel peut-il réellement trader ces indices ?)
+et construction de la matrice de corrélation indices en cours au moment
+de la rédaction — statut à mettre à jour une fois ces deux points tranchés.
+
+**✅ Suite (même jour)** : faisabilité live tranchée NON (§2.47), matrice
+de corrélation construite (19×19, `extend_correlation_matrix_indices_
+2026-08-18.py`) — voir §2.47 pour le routage optimal des indices vers B.
+
+### 2.47 Routage indices vers B — "tout indices→B" bat le routage naturel par RR, effet régime-dépendant (08/18)
+
+Suite de §2.46. Deux prérequis tranchés avant simulation flotte :
+
+**Faisabilité d'exécution live : NON.** Deux blocages distincts dans
+`app.py`, vérifiés par citation de code (pas supposé) : (1) whitelist à
+l'entrée du parsing live (`app.py:225`, `if ticker not in scraper.
+TARGET_FOREX_TICKERS`) — tout signal indice serait classé
+`"hors_perimetre"` avant même d'atteindre MT5 ; (2) `mt5_symbol = ticker.
+replace("/", "")` (`app.py:479`) produirait un symbole broker invalide
+pour un ticker indice (aucun mapping ticker→symbole broker n'existe côté
+live, contrairement à `ticker_to_yahoo_symbol` côté backtesting). Il
+faudrait étendre le whitelist ET construire un vrai mapping vérifié
+contre le Market Watch réel du broker (noms variables selon courtier :
+GER40/DE40, US500/SPX500, USTEC/NAS100...) — non fait, chantier
+purement décisionnel sur le moteur de simulation.
+
+**Matrice de corrélation étendue** (`extend_correlation_matrix_indices_
+2026-08-18.py`, backup de l'ancienne conservé) : 14×14→19×19 (14 FX + 5
+labels indices). Vérification : 2 labels du même sous-jacent (ex. "DAX40
+FULL0926"/"DAX40 PERF INDEX") donnent 1,0000 exactement (même série de
+prix assignée). Indices↔forex faible partout (max +0,161) — jamais
+bloqués par une position forex. **NASDAQ100↔S&P500 = +0,954** (>seuil
+0,80, any-RR s'applique réellement). DAX40↔NASDAQ100/S&P500 ≈ 0,000
+(probable artefact des heures H1 qui se chevauchent peu Europe/US,
+signalé pas creusé).
+
+**Comparaison flotte réelle (B en isolation, protocole §2.55, stack
+actuel complet S1.8+S2.35+correctif risque Instant+matrice étendue),
+n=300, 4 plafonds — 2 populations candidates :**
+- "routage naturel" : B forex (401) + indices RR<1,35 seulement (59) = 460
+- "tout_indices" : B forex (401) + TOUS les indices, indépendamment du RR (170) = 571
+
+| Plafond | naturel (profit/solde_neg/hit_ceiling/année1<0) | tout_indices | Δ profit | Δ année1<0 |
+|---|---|---|---|---|
+| 960$ | 1 557 560$/10,67%/5,00%/72,67% | 2 277 650$/5,00%/4,00%/57,67% | **+46,2%** | **-15,00pt** |
+| 1000$ | 1 569 324$/10,00%/3,00%/72,67% | 2 293 468$/4,67%/3,00%/57,67% | **+46,1%** | **-15,00pt** |
+| 3000$/5000$ | 1 765 023$/8,00%/0,00%/56,33% | 2 521 095$/3,00%/0,00%/41,67% | **+42,8%** | **-14,66pt** |
+
+**Dominance nette et cohérente sur les 4 axes, à tous les plafonds.**
+Feasibilité d'exécution (marge/lot) NON modélisée pour les indices dans
+ce test (aucune spec broker réelle recherchée, contrainte désactivée —
+distinct de la faisabilité d'EXÉCUTION déjà tranchée NON ci-dessus, cf.
+`chantier_strategie_b_isolation_indices_2026-08-18.py` docstring) —
+l'économie du trade (R réalisé) vient des données historiques réelles,
+inchangée par cette simplification.
+
+**Stress-test H1/H2+4 blocs (n=100, `chantier_strategie_b_isolation_
+stresstest_2026-08-18.py`) — effet RÉGIME-DÉPENDANT, pas uniforme** :
+
+| Sous-période | Δ profit tout_indices vs naturel | Année1<0 (nat/tout) | Direction |
+|---|---|---|---|
+| H1 | -760,9% | 100%/100% | INVERSION |
+| H2 | +38,8% | 14%/6% | OK |
+| bloc0 | -94,6% | 100%/99% | INVERSION |
+| bloc1 | -46,8% | 100%/100% | INVERSION |
+| bloc2 | +79,4% | 20%/17% | OK |
+| bloc3 | +80,3% | 13%/6% | OK |
+
+**Pas du bruit — motif net et cohérent** : la 1ère moitié chronologique
+(H1/bloc0/bloc1) est un régime où B s'effondre totalement quel que soit
+le scénario (année1<0=100% des deux côtés) ; dans ce régime, plus de
+volume (tout_indices) aggrave marginalement une perte déjà totale
+(mécanisme cohérent : plus de tentatives de challenge = plus de frais
+engagés quand l'edge ne compense pas assez vite, déjà vu ailleurs dans
+ce projet). La 2e moitié (H2/bloc2/bloc3) est un régime où B fonctionne,
+et là plus de volume aide nettement (+38-80%).
+
+**Verdict : direction claire en faveur de "tout indices→B"** — le
+routage par RR (approprié pour A) n'est pas le bon critère pour B, qui
+est frequency-starved avant tout (cohérent avec §2.55). Le gain agrégé
+vient entièrement des périodes où B est déjà viable ; dans les périodes
+où B échoue de toute façon, l'effet est délétère mais de faible ampleur
+absolue (dizaines de milliers $ sur un échec déjà total). **PAS un
+signal d'alarme sur le sens global, mais une nuance réelle à garder.**
+
+**Statut : n=300 + stress-test fait, PAS de n=600.** Bug de méthode
+trouvé et corrigé en cours de route : double-comptage des indices RR<1,35
+dans la population "naturel" (`build_population_with_trailing` inclut
+désormais les indices automatiquement depuis le correctif §2.46, il
+fallait explicitement les retirer avant de les rajouter manuellement) —
+n=519/630 avant correction, n=460/571 après, corrigé dans les 2 scripts
+avant tout résultat rapporté.
+
+**Condition de réouverture** : n=600+cascade si adoption sérieusement
+envisagée ; faisabilité d'exécution live (whitelist+mapping broker) à
+construire séparément si ce candidat devient prioritaire — actuellement
+un exercice décisionnel sur le moteur de simulation uniquement, pas
+déployable.
+
 ## 3. Hors périmètre (fleet-architecture, pas l'edge)
 
 Scripts trouvés pendant cet audit mais volontairement EXCLUS de ce
@@ -881,3 +2494,46 @@ proches) :
    les 721 trades. Une source de bougies plus profonde (Dukascopy,
    déjà utilisée pour le slippage §2.11) permettrait de retester sur
    la population complète si jugé utile.
+9. ✅ *(RÉSOLU/REJETÉ 08/15)* Plafond de 3 positions simultanées (§2.28) —
+   cap=4 et swap RR-préventif (X=1,5/2,0/3,0) tous deux rejetés, n=300,
+   volume du problème marginal (0,8% de la population bloquée par le
+   cap, EV négative sur ces cas). Section 4 non engagée (gating du
+   prompt respecté). Fermé.
+10. ✅ *(RÉSOLU/SUPERSEDÉ 08/16)* Échange par corrélation, variante "any"
+    (§2.32, classement de paires) — CONFIRMÉ n=600 (+8,0-8,2% profit,
+    4 axes) mais **remplacé par "any-RR" (§2.33, critère RR planifié du
+    trade)**, CONFIRMÉ n=600 **+9,6-9,7% profit, dominance stricte 4 axes,
+    supérieur à any sur CHAQUE axe, sans la réserve classement-de-paires**
+    (§2.33 a aussi tenté de fiabiliser le classement par shrinkage —
+    ÉCHEC documenté, Spearman moyen k-fold ~0, piste fermée).
+    **✅ RÉSOLU/INTÉGRÉ 08/16** — cascade groupée avec la bascule
+    Blueberry Instant régénérée dans le même moteur/seed
+    (`registre_parametres_projet.md` §1.8, proposition 08/16) :
+    dominance stricte 4 axes aux 4 plafonds testés (960$/1000$/3000$/
+    5000$), effet légèrement SUPER-ADDITIF vs la somme des deux effets
+    isolés (+0,4 à +0,9pt selon le plafond, pas de cannibalisation).
+    En marge de cette intégration, découverte d'une dérive méthodologique
+    préexistante (cadence Blueberry 14j appliquée par erreur au lieu du
+    7j officiel à 3000$ dans les moteurs hérités depuis
+    `chantier_position_cap_2026-08-15.py`, donc aussi dans §2.28/§2.32/
+    §2.33 ci-dessus) — corrigée dans le moteur de la cascade groupée et
+    vérifiée (REF@3000$ corrigé = 5 900 859$, correspond exactement à la
+    référence officielle 08/12). Les $ absolus cités à 3000$/5000$ dans
+    §2.28/§2.32/§2.33 sont donc sous-estimés d'environ 0,9%, mais les
+    verdicts relatifs (comparaisons A/B internes cohérentes) restent
+    valides. PAS ENCORE ADOPTÉ dans la référence officielle §1.8 —
+    décision utilisateur finale en attente (proposition prête,
+    tableau complet et décomposition disponibles).
+11. 🟡 *(ouvert 08/17)* Suites directes des rejets §2.36/§2.37, portée
+    précisément délimitée (pas des re-tests de la même famille) :
+    - **Downsizing temporel/conditionnel sur segment(s) RR faible(s)**
+      (analogue V2, fenêtre année1/seuil réserve) — distinct du boost
+      gradué ≥1,0× rejeté en §2.36. Étape 0 (surreprésentation
+      pertes/casses par segment) à faire avant toute construction.
+    - **Sizing asymétrique multi-niveaux permanent** (boost ×1,6 maintenu
+      + downsizing ×0,5/×0,8 sur segment(s) faibles) — distinct des 3
+      candidats "plancher 1,0×" rejetés en §2.36.
+    - **GFT Instant, stratégie adaptée à la contrainte 6% trailing**
+      (risque réduit ciblé/filtre RR resserré/exclusion paires
+      dangereuses, informé par un diagnostic du mode de casse) — distinct
+      de la stratégie classique rejouée à l'identique rejetée en §2.37.
