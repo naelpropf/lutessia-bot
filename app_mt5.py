@@ -51,6 +51,36 @@ class MT5Account:
     login: int
     password: str
     server: str
+    # Suffixe que CE broker ajoute aux noms de symboles (ex: BlueBerry expose "EURGBP"
+    # sous "EURGBP.pi", pas le nom brut utilisé par Pepperstone) -- constaté le 10/08 :
+    # un trade EUR/GBP pris sur compte_1 (Pepperstone, pas de suffixe) mais ignoré en
+    # silence sur compte_blueberry ("Symbole introuvable"), le nom brut n'existant tout
+    # simplement pas chez ce broker. Vide par défaut (comportement inchangé pour un
+    # broker sans suffixe). Configuré via MT5_SYMBOL_SUFFIX{suffix} dans .env.
+    symbol_suffix: str = ""
+    # Overrides PAR COMPTE des réglages globaux (None = utiliser le défaut global,
+    # cf. RISK_PCT_PER_TRADE ici et account_router.MAX_POSITIONS_PER_ACCOUNT).
+    # Ajouté le 15/08 pour compte_blueberry : ce compte sert à collecter un maximum
+    # de données d'exécution (pas un vrai objectif de profit/challenge), donc pas de
+    # plafond de positions (max_positions=None : jamais bloqué par account_router) --
+    # mais en contrepartie un risque par trade réduit (0.25% au lieu de 0.5%) pour ne
+    # pas cumuler un risque total démesuré avec beaucoup plus de positions ouvertes
+    # simultanément. Configurables via MT5_MAX_POSITIONS{suffix}/MT5_RISK_PCT{suffix}.
+    max_positions: int | None = None
+    risk_pct: float | None = None
+
+    def to_mt5_symbol(self, ticker):
+        """Convertit un ticker Lutessia ('EUR/GBP') en nom de symbole MT5 pour CE
+        compte précis (ex: 'EURGBP' ou 'EURGBP.pi' selon le broker)."""
+        return ticker.replace("/", "") + self.symbol_suffix
+
+    def strip_symbol_suffix(self, mt5_symbol):
+        """Inverse de to_mt5_symbol : retire le suffixe de CE broker s'il est présent,
+        pour ramener un symbole MT5 réel (ex: position ouverte) à sa forme brute
+        comparable à un ticker Lutessia sans '/' (ex: 'EURGBP.pi' -> 'EURGBP')."""
+        if self.symbol_suffix and mt5_symbol.endswith(self.symbol_suffix):
+            return mt5_symbol[: -len(self.symbol_suffix)]
+        return mt5_symbol
 
 
 def _load_single_account(suffix, default_account_id):
@@ -58,10 +88,17 @@ def _load_single_account(suffix, default_account_id):
     password = os.environ.get(f"MT5_PASSWORD{suffix}")
     server = os.environ.get(f"MT5_SERVER{suffix}")
     account_id = os.environ.get(f"MT5_ACCOUNT_ID{suffix}", default_account_id)
+    symbol_suffix = os.environ.get(f"MT5_SYMBOL_SUFFIX{suffix}", "")
+    max_positions_raw = os.environ.get(f"MT5_MAX_POSITIONS{suffix}")
+    max_positions = int(max_positions_raw) if max_positions_raw else None
+    risk_pct_raw = os.environ.get(f"MT5_RISK_PCT{suffix}")
+    risk_pct = float(risk_pct_raw) if risk_pct_raw else None
 
     if not login or not password or not server:
         return None
-    return MT5Account(account_id=account_id, login=int(login), password=password, server=server)
+    return MT5Account(account_id=account_id, login=int(login), password=password,
+                       server=server, symbol_suffix=symbol_suffix,
+                       max_positions=max_positions, risk_pct=risk_pct)
 
 
 def load_accounts():
@@ -87,35 +124,64 @@ def load_accounts():
     return accounts
 
 
+def get_validated_account_info(account):
+    """mt5.account_info() pour le compte demandé, mais en vérifiant que la lecture est
+    fiable avant de la renvoyer -- retourne None si elle ne l'est jamais devenue.
+
+    Deux garanties, PAS une simple lecture brute :
+      1. info.login correspond bien au compte demandé (terminal partagé entre tous
+         les comptes de la flotte copytrade -- constaté le 06/08 : mt5.initialize()
+         peut retourner True sans avoir réellement basculé de compte).
+      2. Les données ne sont pas un objet "placeholder" -- balance=equity=0.0 --
+         renvoyé juste après une bascule/connexion, le temps que le terminal
+         synchronise réellement le compte (constaté le 12/08 puis de nouveau le
+         16/08 : probable collision entre app.py et monitor.py interrogeant le même
+         terminal partagé au même moment). Sans ce contrôle, check_drawdown()
+         calculait un drawdown proche de 100% sur une équité fantôme et mettait le
+         compte en pause automatique à tort -- y compris un WEEK-END, marchés
+         fermés, où une vraie variation d'équité de cette ampleur est impossible.
+
+    Utilisée par connect() ET par tout appelant qui a besoin d'une lecture fraîche
+    a posteriori (check_drawdown, check_drawdown_warning) -- une bascule réussie ne
+    garantit pas qu'un account_info() ultérieur, quelques instants plus tard, ne
+    retombera pas sur la même lecture fantôme."""
+    info = mt5.account_info()
+    for _ in range(10):
+        if info is not None and info.login == account.login and (info.balance != 0 or info.equity != 0):
+            return info
+        time.sleep(0.2)
+        info = mt5.account_info()
+    return None
+
+
 def connect(account):
     """Connecte le terminal MT5 local au compte donné. Retourne True/False.
 
-    Vérifie explicitement, après coup, que le compte réellement actif (account_info().login)
-    correspond bien à celui demandé -- constaté empiriquement le 2026-08-06 : quand le
-    terminal est déjà connecté à un autre compte (partagé entre tous les comptes de la
-    flotte copytrade), mt5.initialize(login=..., server=...) peut retourner True sans
-    avoir réellement basculé de compte, laissant silencieusement la session précédente
-    active. Sans cette vérification, la flotte à plusieurs comptes pourrait exécuter un
-    ordre en croyant être sur un compte alors qu'elle est restée sur un autre (doublon,
-    mauvaise taille de position calculée sur le mauvais capital initial). Si le premier
-    essai n'a pas basculé, on force un mt5.login() explicite avant d'abandonner."""
+    Vérifie explicitement, après coup, que le compte réellement actif correspond bien
+    à celui demandé ET que ses données sont fiables (cf. get_validated_account_info)
+    avant de rendre la main -- sans quoi la flotte à plusieurs comptes pourrait
+    exécuter un ordre en croyant être sur un compte alors qu'elle est restée sur un
+    autre (doublon, mauvaise taille de position calculée sur le mauvais capital
+    initial). Si le premier essai n'a pas basculé, on force un mt5.login() explicite
+    avant d'abandonner."""
     if not mt5.initialize(login=account.login, password=account.password, server=account.server):
         print(f"[MT5] Échec de connexion au compte {account.account_id} : {mt5.last_error()}")
         return False
 
-    info = mt5.account_info()
-    if info is None or info.login != account.login:
-        if not mt5.login(login=account.login, password=account.password, server=account.server):
-            print(f"[MT5] Échec de bascule vers le compte {account.account_id} : {mt5.last_error()}")
-            return False
-        info = mt5.account_info()
-        if info is None or info.login != account.login:
-            actual = info.login if info else None
-            print(f"[MT5] Échec de bascule vers le compte {account.account_id} : "
-                  f"compte actif resté {actual} après tentative de connexion.")
-            return False
+    if get_validated_account_info(account) is not None:
+        return True
 
-    return True
+    if not mt5.login(login=account.login, password=account.password, server=account.server):
+        print(f"[MT5] Échec de bascule vers le compte {account.account_id} : {mt5.last_error()}")
+        return False
+
+    if get_validated_account_info(account) is not None:
+        return True
+
+    actual = mt5.account_info().login if mt5.account_info() else None
+    print(f"[MT5] Échec de bascule vers le compte {account.account_id} : "
+          f"compte actif resté {actual} (ou données jamais fiabilisées) après tentative de connexion.")
+    return False
 
 
 def disconnect():
@@ -157,12 +223,17 @@ def _ensure_symbol_visible(symbol):
         time.sleep(0.2)
 
 
-def calculate_position_size(account, symbol, sl_price, risk_pct=RISK_PCT_PER_TRADE):
+def calculate_position_size(account, symbol, sl_price, risk_pct=None):
     """Taille de position (en lots) pour risquer risk_pct% du capital INITIAL fixe du
     compte (get_initial_capital — jamais l'équité courante), si le SL est touché.
+    risk_pct : si non fourni par l'appelant, utilise account.risk_pct (override par
+    compte, cf. MT5Account) s'il est défini, sinon RISK_PCT_PER_TRADE global.
     Retourne None si le calcul est impossible (symbole/cotation introuvable, capital
     initial inconnu, distance SL nulle...) — l'appelant doit alors ignorer le signal
     plutôt que d'exécuter avec une taille par défaut arbitraire."""
+    if risk_pct is None:
+        risk_pct = account.risk_pct if account.risk_pct is not None else RISK_PCT_PER_TRADE
+
     initial_capital = get_initial_capital(account)
     if not initial_capital:
         print(f"[risk] Capital initial introuvable pour {account.account_id}.")
@@ -371,7 +442,7 @@ def check_drawdown(account):
     Retourne (drawdown_pct, just_paused). Ne déclenche aucune alerte ici : ce module
     reste un client MT5 pur, sans dépendance à Telegram — c'est à l'appelant (app.py)
     de notifier si just_paused est True."""
-    info = mt5.account_info()
+    info = get_validated_account_info(account)
     if info is None:
         return None, False
 
@@ -406,7 +477,7 @@ def check_drawdown_warning(account):
     signal informatif appelé depuis monitor.py, pas un contrôle de risque dur (déjà
     couvert par check_drawdown()/is_account_paused()).
     Retourne (drawdown_pct, should_warn)."""
-    info = mt5.account_info()
+    info = get_validated_account_info(account)
     if info is None:
         return None, False
 
