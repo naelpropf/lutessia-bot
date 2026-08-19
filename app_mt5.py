@@ -309,7 +309,28 @@ def place_market_order(symbol, direction, sl, tp, volume, comment="lutessia-bot"
         print(f"[MT5] Échec d'exécution ({result.retcode}) : {result.comment}")
         return False, None, None, result
 
-    return True, result.price, result.order, result
+    fill_price = _resolve_real_fill_price(result)
+    return True, fill_price, result.order, result
+
+
+def _resolve_real_fill_price(result):
+    """result.price (prix de la REQUÊTE envoyée à order_send, pas forcément le prix
+    réel d'exécution) s'est avéré valoir 0.0 sur TOUS les trades BlueBerry -- constaté
+    le 19/08 en analysant trades_reels.csv (prix_entree=0.0 sur les 5 trades BlueBerry,
+    RR calculés donc faux). Cause : sur ce broker, le ticket de deal diffère du ticket
+    d'ordre/position (contrairement à Pepperstone où ils coïncident), et result.price
+    n'est pas fiable. On récupère le VRAI prix depuis le deal exécuté en historique
+    (position=result.order, pas ticket= -- justement à cause de ce décalage de ticket),
+    avec repli sur result.price si l'historique n'est pas encore synchronisé (délai
+    possible entre order_send() et l'apparition du deal en historique)."""
+    for _ in range(10):
+        deals = mt5.history_deals_get(position=result.order)
+        if deals:
+            return deals[0].price
+        time.sleep(0.2)
+    print(f"[MT5] Deal introuvable en historique pour l'ordre {result.order} : "
+          f"repli sur result.price ({result.price}), peut être 0.0/peu fiable.")
+    return result.price
 
 
 def get_open_position_raw(ticket):
