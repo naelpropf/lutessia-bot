@@ -2494,11 +2494,14 @@ proches) :
    les 721 trades. Une source de bougies plus profonde (Dukascopy,
    déjà utilisée pour le slippage §2.11) permettrait de retester sur
    la population complète si jugé utile.
-9. ✅ *(RÉSOLU/REJETÉ 08/15)* Plafond de 3 positions simultanées (§2.28) —
-   cap=4 et swap RR-préventif (X=1,5/2,0/3,0) tous deux rejetés, n=300,
-   volume du problème marginal (0,8% de la population bloquée par le
-   cap, EV négative sur ces cas). Section 4 non engagée (gating du
-   prompt respecté). Fermé.
+9. 🟡 *(RÉOUVERT 08/19-20, §6.4)* Plafond de positions simultanées (§2.28) —
+   verdict "Fermé" du 08/15 valable pour A SEULE uniquement (0,8% de la
+   population bloquée par le cap à l'époque). Sous Config2-AB (population
+   B+métaux, fréquence 171,6% de A), le cap est bien plus contraignant
+   (6,4% bloqué, EV du segment bloqué SUPÉRIEURE à la moyenne prise) —
+   cap=4/5 testés n=600, gains de profit significatifs (+8,4%/+10,8%
+   cumulés) à risque quasi neutre. PAS ADOPTÉ (jamais testé sur la
+   population de lancement réelle B_tradable ni stress-testé), voir §7#1.
 10. ✅ *(RÉSOLU/SUPERSEDÉ 08/16)* Échange par corrélation, variante "any"
     (§2.32, classement de paires) — CONFIRMÉ n=600 (+8,0-8,2% profit,
     4 axes) mais **remplacé par "any-RR" (§2.33, critère RR planifié du
@@ -2537,3 +2540,455 @@ proches) :
       (risque réduit ciblé/filtre RR resserré/exclusion paires
       dangereuses, informé par un diagnostic du mode de casse) — distinct
       de la stratégie classique rejouée à l'identique rejetée en §2.37.
+12. ✅ *(RÉSOLU/ADOPTÉ 08/19, §5.9)* Trailing 0,10×SL sur B (au lieu de
+    0,15× hérité de A) — dominance stricte n=600, 4 axes, 4 plafonds.
+13. 🟡 *(ouvert 08/19, §5)* Diagnostic corrélation sur B (n=31, §5.2) —
+    signal statistiquement solide (IC95% bootstrap positif, shrinkage
+    résistant), mais AUCUN mécanisme actionnable trouvé qui capture une
+    part significative du gisement (+0,99R) — any-RR simple ≈nul, marge
+    RR minimale pas mûre (§5.7), priorité ciblée NASDAQ100/S&P500 jamais
+    testée en Monte Carlo. Piste ouverte, à reprendre avec une idée de
+    mécanisme différente.
+14. ✅ *(RÉSOLU/SUPERSEDÉ 08/19-20, §6.2)* Risque par trade recalibré pour B —
+    le moteur A+B PARALLÈLE manquant a été construit
+    (`chantier_ab_metaux_cascade_officiel_2026-08-19.py`, 2 flottes à 5
+    firms, réserve séparée/plafond combiné, validé contre S1.8). N'a pas
+    directement recalculé le risque par trade de B isolément, mais rend
+    la question largement caduque : la décision de lancement (§6.5) est
+    passée à B seule (Config0 tradable) puis A par seuil de trésorerie,
+    pas A+B simultané avec risque à recalibrer séparément.
+15. 🟡 *(ouvert 08/19, §5.4)* Géométrie de trade B (stop large -32%/TP1
+    proche +18% vs A en médiane, §5.4) jamais exploitée par un mécanisme
+    concret — seulement diagnostiquée par la caractérisation structurelle.
+    Piste réellement spécifique à B (pas transposée de A), jamais testée.
+
+---
+
+## 5. Session 2026-08-19 — maturation complète de Stratégie B
+
+Objectif : faire grandir B (571 trades, forex[1,00;1,35)+tout-indices) au
+niveau de A pour permettre un lancement à 2 comptes en parallèle. Détails
+complets et scripts : `session_handoff_2026-08-19.md`. Population de
+référence tout au long : B=571 (tout-indices→B déjà adopté), A=742/853
+selon reconstruction (RR≥1,35, indices inclus).
+
+### 5.1 Trailing post-TP2 — 0,10×SL ADOPTÉ, dominance stricte n=600
+
+Sweep 0,10/0,15/0,20/0,25×SL sur B (117 trades à continuation confirmée,
+bug corrigé en route : filtre `rr_tp1>=1.0` trop strict excluait 13
+trades à RR=1,00 pile par artefact flottant). **0,10× domine en EV
+statique de façon monotone sur toute la plage** (+0,89% vs 0,15× actuel).
+Slippage-robuste (delta constant +0,0398R jusqu'à 5 pips testés,
+décalage parallèle mathématique — voir limite methodo ci-dessous).
+Décomposé forex seul (n=86) / indices seul (n=31) : les deux confirment
+indépendamment 0,10×>0,15×, pas un artefact de composition.
+
+**Monte Carlo fleet, n=300 puis n=600, 4 plafonds** (`chantier_b6_
+montecarlo_2026-08-19.py`) :
+
+| Plafond | Δ profit | solde_neg | hit_ceiling | année1<0 |
+|---|---|---|---|---|
+| 960$ | **+2,65%** | 6,17%→5,67% | 4,17%→4,00% | 56,33%→55,83% |
+| 1000$ | **+2,60%** | 5,50%→5,00% | 2,83%=2,83% | 56,33%→55,83% |
+| 3000$/5000$ | **+2,20%** | 4,00%→3,50% | 0,00%=0,00% | 42,17%→42,00% |
+
+**Dominance stricte confirmée n=600, 4 axes, 4 plafonds, sans exception.**
+**Verdict : ADOPTABLE.** Réserve méthodologique non résolue : le modèle
+de slippage testé est un décalage UNIFORME par trade, ne capture pas un
+risque de gap/slippage catastrophique ponctuel plus fréquent en
+exécution réelle sur un trail serré — signalé, pas quantifiable avec les
+données disponibles.
+
+### 5.2 Diagnostic corrélation sur B — signal solide (n=31), mécanisme actionnable non trouvé
+
+Repris de la session 08/18 (n=16, Δ=+0,668R, jugé fragile). Avec la
+population B élargie (571, matrice 19×19 déjà construite, réutilisée
+sans recalcul) : **n=31**, EV bloqués=+1,7099R vs EV admis=+0,7238R,
+**Δ=+0,9861R**. Bootstrap IC95% (5000 itérations) = [+0,81 ; +2,68]R,
+P(moyenne>0)=100%. Retrait top 3/5 outliers : reste positif (+1,10R/
++0,84R). **Shrinkage bayésien** (formule §3.16-08/16, k=10/20/30/50) :
+reste positif même à k=50 (+1,15R shrinké, delta +0,43R vs admis).
+Stress-test H1/H2+4blocs : 4/6 cohérent (2 inversions H1/bloc1, régime
+difficile déjà connu).
+
+**Fiche d'identité complète des 31 trades** (`chantier_b5_1_fiche_
+identite_2026-08-19.py`) : tous à conflit SIMPLE (aucun conflit multiple,
+catégorie "C" vide). Catégorie A (RR bloqué>occupant, théoriquement
+capturable par any-RR) = 16/31 (54,1% du delta), catégorie B (RR
+bloqué≤occupant) = 15/31 (45,9%). **Dominé à ~26% par le seul couple
+NASDAQ100-MINI/S&P500-MINI** (corrélation 0,954) — bloqué 8/31 fois
+(surreprésenté ~4,3× son poids réel dans B), occupant 8/31 fois
+(surreprésenté ~4,1×). Session Asie surreprésentée (45,2% des blocages
+vs 34,0% de base). 13/31 cas où l'occupant a perdu, dont 5/31 (16,1%)
+où le bloqué aurait aussi gagné (cas de valeur perdue le plus net).
+
+**Trace dynamique du mécanisme any-RR déjà en production** : 15 swaps
+réels au total sur toute la population (pas 3 comme le comptage net
++3 trades le suggérait) — **8/15 à gain NET NUL** (occupant évincé aussi
+perdant, -1,00R vs -1,00R), **2/15 à gain NÉGATIF** (occupant évincé
+aurait gagné), seuls **5/15 à gain net positif**, pour un total de
++3,930R sur toute la population. Explique pourquoi any-RR capture si
+peu (+0,01R mesuré séparément) malgré un signal statistique fort en
+amont : le RR planifié est un proxy bruité du résultat réalisé.
+
+**2 mécanismes proposés, non testés en Monte Carlo** :
+1. Marge RR minimale sur le swap — voir §5.7, jugé PAS MÛR.
+2. Priorité ciblée NASDAQ100-MINI>S&P500-MINI (EV propre +0,967R vs
+   +0,628R dans B, n=34/36) — **jamais testé en Monte Carlo, fragile**
+   (comparaison à 2 échantillons modestes, non stress-testée).
+
+**Verdict : signal exploitable statistiquement, AUCUN mécanisme
+actionnable ne capture une part significative du gisement à ce jour.**
+Piste ouverte (§4#13).
+
+### 5.3 Leviers transposés de A — Force, JPY-JPY, rr_tp2
+
+**Score Force sur indices de B** (`chantier_b4_a_force_indices_2026-08-19.py`) :
+déjà testé et rejeté sur forex (§2.1, r=+0,026/+0,072, non significatif).
+Reconfirmé sur B forex actuel (r=-0,086/-0,025, non significatif). Sur
+indices B seuls (n=170) : r=+0,081 (victoire)/+0,125 (R), **toujours non
+significatif** (p=0,291/0,104). Stress-test 6 sous-périodes : aucune
+significative (p entre 0,053 et 0,786). **REJETÉ, pas de signal
+spécifique aux indices.**
+
+**Règle JPY-JPY** (`is_jpy()`, `scaling_simulation.py:78-79`, utilisée
+dans `monte_carlo_simulation.py:83`) : re-testée sur B (`chantier_b4_b_
+jpy_rule_2026-08-19.py`). Diagnostic historique direct (10 duos JPY-JPY,
+même méthode que §2.60/08/12) : max DD flottant combiné = **1,32%** sur B
+forex (même ordre que le 1,53% déjà confirmé sur A en 08/12), identique
+sur B complet (indices jamais JPY par construction, `is_jpy()` retourne
+False pour les 5 labels indices — vérifié par citation directe).
+Corrélation JPY↔indices max = 0,156 (loin du seuil 0,80, pas de risque de
+sous-exclusion cachée). **CONFIRMÉ : la règle tient sur B, aucune
+adaptation nécessaire pour les indices.**
+
+**Mécanisme rr_tp2** (`chantier_b4_c_rrtp2_diagnostic_2026-08-19.py`) :
+rejeté en sizing/routage sur B en session précédente (échec stress-test
+H1). Corrélation rr_tp2↔distance_TP2% recalculée fraîchement : A=+0,266,
+B=+0,201 (ratio 0,76, comparable, pas d'effondrement structurel — note :
+ce +0,266 sur A ne retrouve pas le +0,45 historique cité en §2.35/08-16,
+population/définition probablement différente à l'époque, non
+réconcilié). Sweep de seuils sur B : delta EV positif et substantiel à
+TOUS les seuils testés (+0,66R à +1,30R), pas un signal plat. **Mais le
+stress-test échoue systématiquement dans les mêmes sous-périodes
+(H1/bloc0/bloc1) quel que soit le seuil essayé (>7,5 comme >8,0)**,
+toujours avec un échantillon fin (n=13-26) dans ces sous-périodes
+précisément. **Verdict : ni rejet structurel confirmé ni seuil mal
+calibré — probablement un problème de volume de données dans les
+périodes difficiles, pas une preuve d'inversion réelle du mécanisme. Pas
+fermé, à rouvrir avec plus de données.**
+
+### 5.4 Caractérisation structurelle complète A vs B
+
+8 axes comparés (`chantier_b4_e_caracterisation_2026-08-19.py`), A=853,
+B=571, indices inclus des deux côtés. Résumé des divergences notables :
+
+- **Composition actifs** : B légèrement plus indices (29,8% vs 26,0%) ;
+  recomposition au sein du forex (CHF/JPY 5,4%→3,3%, GBP/JPY 5,7%→4,2%,
+  EUR/GBP 5,0%→6,5%).
+- **rr_tp1** : B beaucoup plus concentré près de son plancher (skew
+  +2,29 vs +0,57 sur A) — B n'est pas homogène dans sa propre bande.
+- **Distances SL/TP1/TP2%** : **divergence structurelle majeure** — B a
+  des stops PLUS LARGES (+18% en médiane) et un TP1 PLUS PROCHE (-32%
+  en médiane) que A. Pas juste "A avec un seuil RR plus bas" — une
+  géométrie de trade différente.
+- **Score Force** : distributions statistiquement indiscernables (KS
+  p=0,104).
+- **Durée de vie** : médiane proche (~8h) mais traîne beaucoup plus
+  lourde sur B (skew 13,3 vs 6,6 sur A_fx).
+- **Session horaire, ADX à l'entrée** : pas de divergence notable.
+
+**3 hypothèses formulées, testées en §5.6** (segmentation interne rr_tp1,
+sizing distance_SL%, timeout traîne longue).
+
+### 5.5 Risque par trade recalibré pour B — DIFFÉRÉ, moteur A+B manquant
+
+Nécessite une comparaison n=600 "scénario 2 comptes A+B en parallèle" qui
+suppose un moteur à 2 flux de signaux indépendants + réserve de cash
+partagée — **n'existe pas dans le code actuel** (les scripts B actuels
+substituent B à A dans la même flotte, ils ne font pas tourner les deux
+ensemble). Décision utilisateur : différer après les autres points de ce
+chantier. **Jamais construit, jamais testé.** Chantier d'ingénierie
+séparé si repris.
+
+### 5.6 Segmentation EV 4 variables + 3 hypothèses structurelles (Chantier E)
+
+**Segmentation initiale** (`chantier_b_ev3_segmentation_2026-08-19.py`) :
+session horaire = bruit, asset_class = 1 seule catégorie (non
+discriminant, vérifié sur le CSV source), distance_SL% signalé en coupe
+simple mais **non stable en stress-test sur B** (4/6 et 3/6 inversions
+selon quintile — contraste avec A où cette variable était le seul
+candidat stable), **ADX(14)>32,27 = signal net, stress-testé 6/6 SANS
+EXCEPTION** (couverture 48%, n=274/571).
+
+**3 hypothèses de la caractérisation structurelle testées** (`chantier_
+b5_6_hypotheses_e_2026-08-19.py`) :
+1. Segmentation interne rr_tp1 (§5.4) : quintiles non monotones (forme en
+   U), seuil rr_tp1≤1,25 le plus stable trouvé (5/6, voir §5.8).
+2. Sizing par distance_SL% : **REJETÉ** — et la prémisse structurelle
+   elle-même invalidée : `risk_amount = risk_pct% × palier`
+   (`engine_multiformat.py:329-330`) déjà normalisé indépendamment de
+   distance_SL%, l'hypothèse "stop plus large = risque $ plus élevé" ne
+   s'applique pas au moteur actuel.
+3. Timeout sur la traîne longue de durée : **REJETÉ nettement**.
+   Pearson(durée,R)=+0,018 (p=0,665, aucune corrélation). La traîne
+   longue (>P90) a en fait une EV PLUS HAUTE, effet inverse à
+   l'hypothèse dû à un artefact de confusion temporelle (aucun trade à
+   traîne longue dans les sous-périodes difficiles H0/bloc1). **Ne pas
+   poursuivre un mécanisme de timeout sur B.**
+
+**Décomposition forex/indices** (`chantier_b5_5_decomposition_2026-08-19.py`) :
+trailing 0,10× et ADX>32,27 confirmés indépendamment sur B-forex ET
+B-indices — aucun des deux signaux n'est un artefact de composition
+(ADX même plus marqué côté indices : EV 0,406R vs 2,048R, n=22/58).
+
+### 5.7 K-fold marge RR minimale sur swap corrélation — PAS MÛR
+
+Sweep de marge (1,00 à 1,50×) sur les 15 événements de swap réels de B :
+marge=1,20 double quasi le gain net statique (+3,93R→+6,42R, filtre le
+pire swap négatif, garde 13/15 événements). **Stress-test H1/H2+4blocs :
+2/6 sous-périodes NÉGATIVES (H1, bloc0), 4/6 positives** — motif cohérent
+avec le régime difficile déjà connu ailleurs, mais **seulement 2 à 8
+événements par sous-période, non tranchable statistiquement**. **Verdict :
+amélioration statique réelle, PAS MÛR pour Monte Carlo faute de volume.**
+Exclu du Monte Carlo fleet §5.9.
+
+### 5.8 K-fold segmentation rr_tp1≤1,25 — MÛR, sizing ×0,7 retenu
+
+Détail 6 sous-périodes (n=51-182 chacune, échantillons solides) :
+**5/6 cohérent** (1 seule inversion, bloc3). Seuils voisins testés :
+1,20→3/6 (delta=-0,032R), **1,25→5/6 (delta=-0,087R)**, 1,30→3/6
+(delta=+0,014R, signe même inversé) — **1,25 est un pic isolé de
+stabilité**, pas un point sur une pente monotone (réserve légitime sur
+la sensibilité au seuil exact, signal probablement réel mais pas
+définitivement prouvé indépendant du choix de coupure).
+
+**Mécanisme retenu : sizing réduit ×0,7 (PAS exclusion)** — le segment
+reste positif (+0,78R en coupe complète), l'exclure coûterait 63% du
+volume de B (déjà frequency-starved). **Verdict : MÛR pour Monte Carlo.**
+
+### 5.9 Monte Carlo fleet des leviers B mûrs — 1 seul adopté, découverte méthodologique majeure
+
+n=300 puis n=600, 4 plafonds, isolation stricte (`chantier_b6_
+montecarlo_2026-08-19.py`, copie figée du moteur `chantier_strategie_b_
+isolation_indices_2026-08-18.py`, size_func modifié pour recevoir le
+trade entier au lieu de rr_tp2 seul) :
+
+| Levier | Δ profit (3 plafonds) | Verdict fleet |
+|---|---|---|
+| **Trailing 0,10×** | +2,04% à +2,65% | ✅ **DOMINANCE STRICTE n=600** (§5.1) |
+| Filtre ADX>32,27 | **-5,07% à -7,34%** | ❌ **REJETÉ** (exclut 9,6% du volume, coûte plus en fréquence perdue que ça n'économise en qualité) |
+| Sizing rr_tp1≤1,25 ×0,7 | **-14,59% à -16,05%** | ❌ **REJETÉ** (coût profit sévère) |
+| Marge RR minimale | — | Non testé (pas mûr, §5.7) |
+
+**Découverte méthodologique la plus importante de la session** : ADX et
+rr_tp1-sizing sont TOUS DEUX des signaux statistiques propres et
+stress-testés (6/6 et 5/6 respectivement) qui **échouent au niveau
+flotte** — confirme qu'un signal statistique confirmé n'implique PAS une
+confirmation fleet sur une population frequency-starved comme B (réduire
+le volume, même sur un segment statistiquement plus faible, coûte plus
+en fréquence perdue que le gain de qualité). **Aucune cascade testée**
+(un seul levier validé sur 4, il en faut ≥2 selon la règle du prompt).
+
+**Bilan final Stratégie B (toute la session)** : trailing 0,10× ADOPTABLE,
+tout le reste rejeté au niveau fleet ou non mûr. B reste un chantier
+ouvert avant un lancement A+B en parallèle (risque recalibré §5.5
+bloquant, mécanisme corrélation §5.2 non trouvé).
+
+---
+
+## 6. Session 2026-08-19 soir/2026-08-20 — gisement métaux confirmé, moteur cascade A/B corrigé, lancement séquentiel B→A tranché
+
+### 6.1 Gisement or/argent — EV confirmée, deux périmètres à ne pas confondre
+
+Pipeline durée+trailing complet construit pour la première fois pour l'or/argent
+(`or_argent_population_2026-08-19.py`, `gold_silver_yahoo_mapping_2026-08-19.py`).
+
+| Périmètre | n | EV poolée | Usage |
+|---|---|---|---|
+| Pool complet (14 tickers GOLD/SILVER × 7 devises) | 934 | **+1,066R** | Population B Config0/Config2 complète |
+| Sous-ensemble tradable Blueberry 5k$ (7 tickers : XAUUSD/GBP/EUR/AUD, XAGAUD/EUR/USD) | 480 | **+1,164R** | Population de lancement réelle (B_tradable) |
+| ⚠️ **Ancienne mesure — NE JAMAIS RÉUTILISER** | — | +0,342R | Approximation sans trailing, obsolète, périmètre non documenté |
+
+Le sous-ensemble tradable a une EV **légèrement supérieure** au pool complet (les 7
+tickers non listés sur Blueberry — CHF/CAD/NZD — ont l'EV la plus faible, +0,962R) :
+restreindre aux tickers exécutables ne coûte aucune qualité, seulement ~48,6% de
+volume (934→480 trades métaux, 1505→1051 trades B total).
+
+Couverture durée réelle (bougies H1) : 323/934 (34,6%) globalement, mais **0% avant
+la fenêtre Yahoo de 730j** (~2024-07/08) — donc 100% fallback médiane sur toute
+sous-période antérieure à cette date (bloc1/bloc2 du stress-test notamment). Testé
+en robustesse (scale ×0,5-2,0 sur la durée fallback) : conclusions qualitatives
+inchangées, mais écarts quantitatifs précis (ex. bloc1 29% vs 92%) sensibles à
+cette hypothèse — ne jamais citer au point de pourcentage près sur ces
+sous-périodes.
+
+### 6.2 Moteur cascade double-flotte A/B officiel construit et validé
+
+`chantier_ab_metaux_cascade_officiel_2026-08-19.py` — premier moteur combinant DEUX
+flottes complètes à 5 firms (pas le moteur réduit 2-comptes utilisé jusqu'ici),
+résout le point ouvert §4#14 (moteur A+B parallèle manquant). Base :
+`dual_trader_2026-08-11.py` (architecture double-flotte, réserve séparée/plafond
+personnel combiné) + mécaniques S1.8 à jour portées depuis
+`chantier_S1_8_regen_population_2026-08-19.py` (bascule Blueberry Instant/Classic
+dynamique, cap risque Instant 1,5%, any-RR).
+
+**3 bugs trouvés et corrigés pendant la construction** (validation par comparaison
+directe au module S1.8 authentique sur séquence de trades identique — résultats
+identiques au $ près une fois corrigés) :
+1. **`ALPHA_POST`/`BETA_POST` de A réutilisé pour B** — chaque tirage MC forçait le
+   winrate de B vers ~40% (calibré sur A) au lieu de son vrai ~50,6%. Dérivation
+   propre à la population B+métaux+routage : **Beta(762, 745)**, n=1505, winrate
+   50,56% (`registre_parametres_projet.md` §9.6 documente le bug général et la
+   dérivation 276/297 pour le périmètre B SANS métaux, n=571 — **périmètre
+   DIFFÉRENT**, ne pas confondre). Pour la population B_tradable (1051 trades,
+   métaux tradable Blueberry only) : **Beta(533, 520)**, winrate 50,62%.
+2. **Ancrage calendaire commun appliqué même en mode A-seule** — décalait A de
+   284,5 jours dans un préfixe de blocs vides (B démarre 2021-04, A 2022-01/02),
+   gonflant `année1<0`. Corrigé : l'ancrage commun ne s'applique que si B
+   participe réellement à la simulation.
+3. **Ordonnancement des mécanismes de croissance** — portés depuis
+   `dual_trader_2026-08-11.py` qui les exécutait avant le trade de l'événement, pas
+   après comme S1.8 officiel. Corrigé pour matcher exactement l'ordre S1.8.
+
+**Résultats sweep n=600, 4 plafonds, corrigés (A-seule vs Config2-AB pool complet
+métaux)** :
+
+| Plafond | A-seule profit | Config2-AB profit | A-seule solde_nég | Config2-AB solde_nég | corr(A,B) |
+|---|---|---|---|---|---|
+| 960$ | 6,82M$ | 18,98M$ | 0,83% | 4,67% | 0,60 |
+| 1000$ | 6,83M$ | 19,77M$ | 0,50% | 3,33% | 0,63 |
+| 3000$ | 7,09M$ | 21,65M$ | 0,50% | 1,33% | 0,65 |
+| 5000$ | 7,12M$ | 22,00M$ | 0,17% | 0,17% | 0,68 |
+
+`hit_ceiling` enfin discriminant (45%→3% selon plafond, jamais collé à 100% comme
+dans le moteur réduit). Point de vigilance corrélation A/B confirmé réel (0,60-0,68,
+positive, croît avec le plafond) mais l'inversion de signe observée en bloc1 dans
+un run intermédiaire buggé (-0,36) **ne se reproduit pas** une fois les 3 bugs
+corrigés — corrélation reste positive dans toutes les sous-périodes stress-testées
+(0,11 à 0,58 selon régime).
+
+### 6.3 ADX>32,27 et rr_tp1≤1,25-sizing — rejet reconfirmé, mécanismes causaux identifiés
+
+Suite directe de §5.9 (rejet mesuré à fréquence B contrainte, 76,7% de A). Retesté
+sous Config2 (fréquence B métaux+routage = 171,6% de A) : **rejet confirmé, la
+contrainte de fréquence n'était pas la seule cause**. Mécanismes causaux distincts
+identifiés par investigation (citations de code, session du 19/08 soir) :
+
+- **ADX** : le segment exclu (adx>32,27) est statistiquement plus faible en
+  moyenne/winrate MAIS **sur-représenté dans la queue de distribution** (×1,65 au
+  top 5% par R alors qu'il ne pèse que 9,7% de la population) — couper ce segment
+  ampute une part disproportionnée des gains extrêmes qui portent 44,8% du profit
+  total en Monte Carlo.
+- **rr_tp1-sizing** : le downsize ×0,7 touche 42,2% de la population mais
+  n'affecte QUE le payoff, pas l'occupation de slot — `engine_multiformat.py:324`
+  teste le plafond de positions AVANT tout calcul de risque, donc un trade
+  downsizé occupe un slot pendant tout son `hold_seconds` exactement comme un
+  trade plein, sans jamais libérer de capacité pour un meilleur trade. Contraste
+  avec l'exclusion (ADX), qui retire le trade AVANT génération d'événement et
+  libère réellement de la capacité.
+
+**Leçon méthodologique généralisée (à appliquer à tout futur levier de sizing)** :
+sous un cap de positions serré (`MAX_POSITIONS`), un sizing-réduit (garde le trade,
+réduit juste le risque) sur un segment LARGE de la population peut coûter plus en
+capacité perdue qu'il ne rapporte en qualité — même avec un écart d'EV brut propre
+et statistiquement significatif. Un levier de sizing doit être jugé sur sa PORTÉE
+(% de population touchée) autant que sur son écart d'EV, et comparé explicitement à
+la variante "exclusion pure" du même segment (qui libère de la capacité, contrairement
+au sizing).
+
+### 6.4 MAX_POSITIONS — cap réouvert pour B, sweep effectué sur Config2-AB uniquement
+
+Contredit partiellement le point §4#9 ("Fermé" 08/15, testé sur A seule) : **le
+cap est nettement plus contraignant pour B Config2** que pour A. Replay 1-compte
+chronologique (même méthode que §2.28) :
+
+| Population | % bloqué par le cap | EV segment bloqué vs EV moyenne prise |
+|---|---|---|
+| A seule (post-fix, 742 trades) | 2,6% | +1,82R vs +0,80R (positif, cohérent avec le rejet §2.28) |
+| B Config2 (1505 trades) | **6,4%** | **+1,83R vs +0,82R** (segment bloqué MEILLEUR que la moyenne prise) |
+
+Sweep MAX_POSITIONS∈{3,4,5} sur Config2-AB (n=600, 3000$/5000$, moteur cascade
+officiel corrigé) :
+
+| Cap | Profit@3000$ | Profit@5000$ | cap_bloqué (B) |
+|---|---|---|---|
+| 3 (référence) | 21,65M$ | 22,00M$ | 6,4% |
+| 4 | 23,46M$ (+8,4%) | 23,80M$ (+8,2%) | 1,0% |
+| 5 | 24,03M$ (+2,4% vs 4) | 24,34M$ (+2,4% vs 4) | 0,1% |
+
+Rendements décroissants nets (gain 3→4 » gain 4→5), cohérent avec `cap_bloqué` qui
+s'approche de 0%. **PAS ADOPTÉ** — testé uniquement sur Config2-AB (pool métaux
+complet), jamais sur B_tradable seule (population de lancement réelle) ni
+confirmé en stress-test. Point ouvert, voir §7.
+
+### 6.5 Lancement séquentiel B→A — décision actée
+
+**Décision** : lancer **B_tradable seule en premier** (Config0, 1051 trades — 571
+forex/indices rr_tp1<1,35 + 480 métaux tradable Blueberry), PAS A. Confirmé sur
+tous les axes de risque, y compris en régime catastrophique (bloc1 : B_tradable
+29-40% solde_négatif selon hypothèse de durée vs A-seule 92%, bloc2 : 32-38% vs
+60-61%) — pas juste sur le profit moyen.
+
+**A s'ouvre ensuite via seuil de trésorerie de B**, mécanisme construit sur mesure
+(`try_sequential_activation`, `chantier_ab_metaux_cascade_officiel_2026-08-19.py`)
+— PAS une réutilisation de `try_gft_delayed_trigger` (déclencheur temporel,
+`chantier_pisteB_delayed_start_2026-08-17.py:413-417`), adapté du mécanisme de
+seuil de réserve `pending_group_trigger` déjà utilisé pour débloquer les groupes
+de firms. Capital de A décaissé au déclenchement réel (`handle_cost_hybrid`), PAS
+pré-engagé à t=0 — vérifié par citation de code.
+
+Sweep de seuils {2000$, 3000$, 5000$, 8000$, 12000$}, n=600, 3000$/5000$ : **tous
+quasi équivalents** (17,74M$-18,03M$, <2% d'écart sur toute la plage), **seuil
+3000$ légèrement en tête** (année1<0 le plus bas). L'essentiel du gain vient
+d'ouvrir A à UN MOMENT OU UN AUTRE (vs B_tradable seule pour toujours, 10,23M$),
+pas du réglage fin du seuil.
+
+**Comparaison directe Config2-jour0 vs Séquentiel-3000$** (même population 7
+tickers, mêmes fenêtres bloc1/bloc2 vérifiées identiques au calcul près) :
+hypothèse de départ ("jour0 protège mieux en régime dégradé") **NON CONFIRMÉE** —
+écarts de ~2pp dans les deux sens selon la sous-période (bloc1 : jour0 37% vs
+séquentiel 39% ; bloc2 : jour0 52% vs **séquentiel 50%**, séquentiel légèrement
+meilleur). **Le seuil 3000$ préserve à la fois l'économie de trésorerie ET la
+protection de régime** — pas un compromis entre les deux.
+
+**Recommandation opérationnelle** : ouvrir B_tradable (Config0, 7 tickers) en
+premier ; ouvrir A quand la trésorerie de B atteint ~3000$ ; router les métaux
+B→A dès l'ouverture de A (overflow actif, décision utilisateur).
+
+### 6.6 Leçon méthodologique — fenêtres de sous-période non alignées entre scénarios
+
+Bug trouvé en cours de session (pas dans le moteur, dans les scripts d'ANALYSE) :
+`date_subperiods_single()` (moteur single-fleet, scénarios de lancement solo)
+calculait les bornes de bloc1-4/H1-H2 à partir des dates propres à CHAQUE
+population testée, au lieu d'une grille calendaire commune. Résultat : comparer
+"bloc2 de B_tradable" à "bloc2 d'A-seule" comparait deux **régimes de marché
+différents** (fenêtres décalées de ~7 mois), pas la même période. Corrigé
+(`common_calendar_bounds()`, ancrage sur `pop_A_config0 ∪ pop_B_config0`
+14-tickers, identique à `date_subperiods()` du moteur double-flotte déjà correct).
+**Vigilance pour tout futur script single-fleet comparant plusieurs scénarios par
+sous-période : toujours vérifier/imposer une grille calendaire commune, ne jamais
+laisser chaque scénario calculer ses propres bornes indépendamment.**
+
+---
+
+## 7. Points ouverts pour la prochaine session (19-20/08)
+
+1. 🔴 *(ouvert)* MAX_POSITIONS∈{4,5} testé UNIQUEMENT sur Config2-AB (§6.4) —
+   jamais sur B_tradable seule (la population de lancement réellement décidée,
+   §6.5). Le mécanisme causal (cap_bloqué élevé + EV du segment bloqué positive)
+   devrait transposer, mais non vérifié. À faire avant d'adopter un cap>3 pour de
+   bon.
+2. 🟡 *(ouvert)* Reconnaissance copper/autres matières premières Blueberry — risque
+   de parsing sur des noms de contrats futures datés (pattern jamais vérifié pour
+   ces instruments, contrairement à GOLD/SILVER dont le mapping est validé §6.1).
+   À vérifier avant tout scraping/pipeline sur d'autres matières premières.
+3. ✅ *(clos par cette session, contrairement à une première formulation)*
+   `ALPHA_POST_B`/`BETA_POST_B` POUR LA POPULATION B_TRADABLE SPÉCIFIQUEMENT —
+   déjà dérivé et vérifié séparément (Beta(533,520), §6.2 point 1), pas juste
+   hérité du périmètre sans métaux (276/297) ni du pool complet (762/745). Les 3
+   dérivations sont distinctes et documentées, aucune confusion résiduelle connue.
+4. 🟡 *(ouvert)* Stress-test MAX_POSITIONS∈{4,5} — non fait (dépend du point 1).
+5. 🟡 *(ouvert)* Cascade combinant plusieurs leviers adoptés cette session-ci et
+   les précédentes (trailing 0,10× B + Config2/lancement séquentiel + éventuel
+   MAX_POSITIONS>3) — jamais testée ensemble, seulement isolément.

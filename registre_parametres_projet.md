@@ -4448,3 +4448,196 @@ projet (vitesse de financement), qui écrase tout bénéfice de
 diversification. Composition des slots au-delà de l'ancien plafond 3 :
 24,4% doublons même paire, 75,6% paires nouvelles (mesuré séparément).
 **REJETÉ sans ambiguïté, les 3 variantes, tous plafonds. Fermé.**
+
+## 9. Session 2026-08-19 — 5 points en attente clos (double-comptage indices, DD post-objectif, staggered unlock, pivot Instant, plafond capital)
+
+Détails complets : `session_handoff_2026-08-19.md`. Tous testés n=600 +
+stress-test H1/H2+4blocs sauf indication contraire.
+
+### 9.1 Bug double-comptage tout-indices→B — n'a PAS contaminé les chiffres déjà cités, routage reconfirmé n=600
+
+Vérifié par timestamps fichiers (les scripts qui ont produit les chiffres
+EV +0,934R/+0,648R et les tables A 631→742/B 401→460 ont tourné et
+sauvegardé AVANT que le patch introduisant le bug n'existe sur disque) ET
+par recalcul direct depuis les CSV sauvegardés — **aucune correction à
+apporter à ces chiffres déjà consignés en §1.8bis**.
+
+Le bug lui-même (trouvé dans `chantier_strategie_b_isolation_indices_
+2026-08-18.py`, corrigé avant tout résultat publié) n'affecte que le
+routage tout-indices→B, reconfirmé ici n=600+cascade+stress-test :
+
+| Plafond | naturel | tout_indices | Δ profit | Δ année1<0 |
+|---|---|---|---|---|
+| 960$/1000$ | ~1 545-1 550k$ | ~2 221-2 233k$ | **+43,7% / +44,1%** | -13,84pt |
+| 3000$/5000$ | 1 726k$ | 2 440k$ | **+41,3%** | -13,83pt |
+
+Cohérent avec le n=300 (+42,8-46,2%). **Nuance nouvelle au n=600** :
+hit_ceiling se dégrade légèrement à 960$/1000$ (+0,3 à +0,5pt, absent du
+n=300) — dominance n'est plus stricte sur cet axe précis à ces plafonds,
+à garder en tête avant adoption finale de §2.47.
+
+### 9.2 DD inutile post-objectif de phase — confirmé, effet mesuré, PAS ENCORE stress-testé
+
+Citation exacte (`engine_multiformat.py:375-388`) : une fois la cible de
+phase atteinte, si `min_days` (jours DISTINCTS avec au moins un trade,
+pas calendaires) n'est pas encore satisfait, le compte continue à
+recevoir tous les signaux au risque plein — aucun mécanisme de pause
+n'existe. Quantifié n=600, 4 plafonds (variante "risque quasi nul pendant
+la fenêtre" vs REF) :
+
+| Plafond | Δ profit | Δ année1<0 |
+|---|---|---|
+| 960$/1000$ | **+0,49%** | -0,50pt |
+| 3000$/5000$ | **+0,43%** | -1,33pt |
+
+261 498 trades concernés sur 2400 runs, 8 casses directement dans cette
+fenêtre. Effet petit mais cohérent aux 4 plafonds sans exception.
+**PAS stress-testé H1/H2+4blocs** (faute de temps, effet jugé trop petit
+pour être suspect mais reste à faire avant toute adoption formelle).
+
+### 9.3 Staggered unlock — n'est PAS un candidat, c'est déjà le comportement REF actif, valeur reconfirmée n=600
+
+`ei.seq_grouped_multi(1000, 15000, 25000, 25000)` (etape_e_fleet_
+integration.py:144-151) EST le mécanisme échelonné déjà en usage dans
+tous les scripts backant §1.8 — pas un levier séparé à activer. Valeur
+ajoutée vs comparateur "groupé" historique (seuil unique 30000$, ancien
+DEFAULT_RESERVE pré-08/08) reconfirmée n=600+stress-test :
+
+| Plafond | Δ profit | Δ année1<0 |
+|---|---|---|
+| 960$/1000$ | **+5,73%** | -9,50pt |
+| 3000$/5000$ | **+7,51%** | -16,33pt |
+
+Cohérent avec l'historique 08/08 (+7,2%/+7,8%). Stress-test H1/H2+4blocs :
+2/6 sous-périodes en inversion (H1, bloc0 — régime difficile déjà connu
+pour d'autres leviers), 4/6 cohérentes. Rien à changer.
+
+### 9.4 Pivot Instant 5k$/10k$ clarifié n=600 — InstantElite25k reste optimal, nuance structurelle nouvelle
+
+| Config | Profit@3000$ | Profit@5000$ | vs Prime25k | vs InstantElite25k (REF) |
+|---|---|---|---|---|
+| Prime25k | 6 459 445$ | 6 429 909$ | — | — |
+| InstantElite5k | 6 440 699$ | 6 451 105$ | -0,29% / +0,33% (bruit) | -4,00% / -3,85% |
+| InstantElite10k | 6 537 675$ | 6 548 004$ | **+1,21% / +1,84%** | -2,56% / -2,40% |
+| InstantElite25k (REF) | 6 709 267$ | 6 709 267$ | +3,88%/+4,34% | — |
+
+Confirme le n=300 déjà consigné (§2.45bis) : à 3000$/5000$, InstantElite25k
+strictement optimal. **Nuance nouvelle détectée au n=600** (absente du
+n=300 original, qui ne couvrait pas cette colonne à ces plafonds) :
+solde_neg et hit_ceiling passent de 0,00% à 0,17% pour 5k/10k — coût
+structurel léger mais réel, jusqu'ici non documenté à 3000$/5000$.
+
+### 9.5 Balayage plafond capital 10k$-200k$ — plateau confirmé déjà atteint avant 10k$, pas de n=600 nécessaire
+
+n=300, 9 paliers (10k/20k/30k/40k/50k/75k/100k/150k/200k) : **profit
+identique au dollar près sur toute la plage** (6 809 976$ partout,
+hit_ceiling=0,00% à chaque palier, 0 variation sur 2700 tirages). Pas
+d'ambiguïté statistique à trancher (contrairement à un effet marginal
+proche d'un seuil) — n=600 jugé inutile. Confirme et affine le point
+ouvert de la session 08/17 : le vrai plateau est **avant 10 000$**, dans
+la zone 2000-2500$ déjà identifiée, pas au-delà.
+
+**Condition de réouverture (les 5 points)** : aucune pour 9.1/9.3/9.5
+(confirmations propres). 9.2 nécessite un stress-test H1/H2+4blocs avant
+adoption formelle. 9.4 reste "pas utile à 3000$/5000$" mais le coût
+structurel nouveau (0,17%) doit être ajouté à toute décision future sur
+5k/10k à des plafonds plus serrés.
+
+### 9.6 🔴 BUG confirmé (08/19) — `ALPHA_POST`/`BETA_POST` de la Stratégie A réutilisé tel quel pour la Stratégie B dans les MC flotte B6 — dérivation posée, **PAS ENCORE corrigé dans le code**
+
+**Constat.** `ALPHA_POST, BETA_POST = 260, 388` (`etape_e_fleet_
+integration.py:100`) pilote `wr_draw = rng_wr.betavariate(ALPHA_POST,
+BETA_POST)` dans `run_propagated()` — un tirage de winrate cible que
+`build_flexible_population_with_rr()` force ensuite sur CHAQUE run Monte
+Carlo, en re-labellisant gagnants/perdants de la population fournie.
+`chantier_b6_montecarlo_2026-08-19.py:625-626` importe ce module
+(`import etape_e_fleet_integration as ei`) et appelle `run_propagated()`
+avec `pop_v` = `build_pop_B_variant(...)`, donc une population **Stratégie
+B** (rr_tp1<1,35 + tout_indices) — mais `ei.ALPHA_POST`/`ei.BETA_POST`
+n'ont jamais été recalculés pour B, ils restent ceux calibrés sur A.
+
+**Dérivation reconstituée de 260/388 (Stratégie A).** Aucun commentaire
+dans le code ; retrouvé par recoupement avec la ligne "Ancienne pop.
+encore utilisée par les sims flotte (646 trades) | 646 | 40,09%" du
+tableau §comparaison-populations (cf. aussi
+[[project_backtest_analyzer_live_bug]] / [[project_pop721_impact_measured]])
+: le fichier `historique_lutessia_15k.csv` **figé au 27/07** (646 trades
+filtrés statut terminal, avant l'extension 646→721→631(RR≥1,35)→742 du
+08/18) donne wins=259/losses=387 (winrate 40,09%). Avec un prior uniforme
+Beta(1,1) — pas le Jeffreys(0,5;0,5) documenté en §2.29, un autre choix de
+prior pour un autre usage — posterior = Beta(259+1, 387+1) = **Beta(260,
+388)**. Confirmé exactement : 260+388=648=646+2 (les 2 pseudo-observations
+du prior uniforme), moyenne 260/648=40,12%≈40,09% observé. **Donc 260/388
+est déjà un chiffre PÉRIMÉ pour A elle-même** (population gelée au 27/07,
+jamais mise à jour vers les 742 trades actuels) — un second problème,
+distinct de la réutilisation sur B, non traité ici (déjà tracé dans
+[[project_backtest_analyzer_live_bug]]).
+
+**Calcul de l'équivalent B, même méthodologie (prior Beta(1,1) + wins/
+losses observés), sur la population EXACTE que construit
+`build_pop_B_variant()`** (source `historique_lutessia_15k_force.csv`,
+courant/non figé — reproduit hors bougies H1, `statut_final` et `rr_tp1`
+venant directement du CSV source, indépendants du calcul de continuation
+TP1→TP2) :
+- Volet forex (`rr_tp1` ∈ [0,75 ; 1,35[, non-index, ticker mappable) :
+  n=401
+- Volet indices (`tout_indices` — DAX40/S&P500/NASDAQ100, AUCUN filtre
+  rr_tp1, cf. `load_index_population_with_payoff`) : n=170
+- **Total B (b6) : n=571, wins=275, losses=296, winrate=48,16%**
+- → **ALPHA_POST_B, BETA_POST_B = 276, 297** (moyenne 48,17%)
+
+**⚠️ Écart NON résolu avec une autre mesure B citée cette session** :
+`chantier_gold_silver_pop_B_config0_2026-08-19.csv` donne n=1505 (761
+`OBJECTIF ATTEINT`/744 `INVALIDÉE`), winrate=50,56% — près de 3x plus
+grand que les n=571 ci-dessus. Écart expliqué a priori par le périmètre :
+ce CSV vient de la session métaux/routage A↔B du 08/19 soir
+([[project_session_2026-08-19_soir3_metaux_routage]], "Config 2 routing
+gagne", **pas encore intégré au registre**) qui ajoute or/argent et
+probablement une règle de routage différente — **`build_pop_B_variant()`
+dans b6 n'inclut PAS les métaux**. Les deux chiffres mesurent donc deux
+définitions différentes de "Stratégie B", pas la même population vue
+sous deux angles. **Tant que le périmètre officiel de B (avec ou sans
+métaux/nouveau routage) n'est pas tranché, appliquer 276/297 corrige le
+bug de réutilisation d'A mais peut lui-même devenir périmé dès que
+métaux+routage sont adoptés** — retour ici obligatoire à ce moment-là.
+
+**Portée du bug** : tous les runs `chantier_b6_montecarlo_2026-08-19.py`
+et tout script import qui appelle `run_propagated()`/`build_flexible_
+population_with_rr()` sur une population B avec `ei.ALPHA_POST/BETA_POST`
+non substitués — déclassement systématique d'environ 40,1%→48,2%
+observé, soit ~8pt de winrate sous-tiré à chaque tirage (pas 10,5pt comme
+l'estimation initiale au doigt mouillé, qui comparait à tort au 50,6% du
+périmètre métaux plutôt qu'aux 48,2% du périmètre b6 réel).
+
+**Statut : CORRIGÉ (08/19)**, arbitrage utilisateur explicite en faveur
+du périmètre b6 actuel (sans métaux) plutôt que d'attendre l'intégration
+métaux/routage. `ALPHA_POST_B, BETA_POST_B = 276, 297` ajouté dans
+`chantier_b6_montecarlo_2026-08-19.py` (juste après `INDEX_KEYWORDS`),
+et `wr_draw = rng_wr.betavariate(ei.ALPHA_POST, ei.BETA_POST)` (ligne
+625) remplacé par `betavariate(ALPHA_POST_B, BETA_POST_B)`. Seul point
+d'appel de `run_propagated()` dans ce fichier, toujours sur `pop_v` issu
+de `build_pop_B_variant()` — aucun autre call site à corriger dans ce
+script. **Aucun run déjà publié dans ce registre ne s'appuyait sur ce
+script** (chantier_b6_montecarlo_2026-08-19.py n'a pas encore de
+résultats consignés ailleurs dans ce fichier), donc rien à invalider
+rétroactivement. **Point de réouverture** : si le périmètre métaux/
+routage (08-19 soir) est adopté plus tard, recalculer ALPHA_POST_B/
+BETA_POST_B sur la nouvelle population B officielle. Script de
+vérification : `compute_alpha_beta_b.py` (scratchpad de session, non
+committé).
+
+**✅ RÉOUVERTURE RÉSOLUE (08/19-20 soir/nuit)** — le périmètre métaux/
+routage a été adopté (Config2, puis décision de lancement séquentiel
+B→A, `registre_strategie_trading.md` §6). Deux nouvelles dérivations
+distinctes, MÊME méthode (Beta(1,1) + wins/losses observés), documentées
+dans `registre_strategie_trading.md` §6.2 :
+- Population B Config0/Config2 complète (571 forex/indices + 934 métaux
+  14 tickers, n=1505) : **ALPHA_POST_B_METAUX=762, BETA_POST_B_METAUX=745**
+  (winrate 50,56%).
+- Population B_tradable (571 forex/indices + 480 métaux 7 tickers
+  réellement tradables sur le compte Blueberry de lancement, n=1051,
+  population RETENUE pour le lancement) : **ALPHA_POST_B_TRADABLE=533,
+  BETA_POST_B_TRADABLE=520** (winrate 50,62%).
+Bug corrigé dans `chantier_ab_metaux_cascade_officiel_2026-08-19.py` (pas
+dans `chantier_b6_montecarlo_2026-08-19.py`, qui reste sur 276/297 pour
+son propre périmètre sans métaux, toujours correct pour son usage).
