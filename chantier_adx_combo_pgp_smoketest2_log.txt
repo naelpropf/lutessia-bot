@@ -1,0 +1,123 @@
+[REF] population n=1248 wins=624 losses=624 -> Beta(625,625) winrate=50.00%
+[verif] 677/1248 trades identifies comme metaux (jamais ADX-filtres) -- 571 forex/indices (filtrables)
+B_tradable : 571 forex/indices | 677 metaux (jamais filtres)
+Calcul ADX(14) forex/indices (formule inchangee, meme cache Yahoo H1 que le retest 19-20/08)...
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+  ^GDAXI : cache local suffisant (4541 bougies, depuis 2024-07-30 07:00:00)
+  ^GSPC : cache local suffisant (3486 bougies, depuis 2024-07-30 13:30:00)
+  ^NDX : cache local suffisant (3486 bougies, depuis 2024-07-30 13:30:00)
+[verif] ADX couvert (fx/indices) : 274/571 (48.0%)
+[verif] Trades fx/indices exclus (adx_at_entry>32.268) : 55/571
+[verif] Population ADX-fx-only : 1193/1248 (55 exclus, tous forex/indices)
+[ADX-fx-only] population n=1193 wins=606 losses=587 -> Beta(607,588) winrate=50.80%
+
+==============================================================================
+REF (sequential_threshold=None, n=5)
+==============================================================================
+Population étendue (rr_tp1 >= 1.35, forex+indices mappés, terminaux) : 742 trades
+Chargement/complément des bougies H1 pour 17 tickers...
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+  ^GDAXI : cache local suffisant (4541 bougies, depuis 2024-07-30 07:00:00)
+  ^GSPC : cache local suffisant (3486 bougies, depuis 2024-07-30 13:30:00)
+  ^NDX : cache local suffisant (3486 bougies, depuis 2024-07-30 13:30:00)
+Durées réelles vérifiées (bougies H1) : 377/742 (50.8%) — durée médiane de repli : 0 days 07:45:55
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+  ^GDAXI : cache local suffisant (4541 bougies, depuis 2024-07-30 07:00:00)
+  ^GSPC : cache local suffisant (3486 bougies, depuis 2024-07-30 13:30:00)
+  ^NDX : cache local suffisant (3486 bougies, depuis 2024-07-30 13:30:00)
+Population étendue (rr_tp1 >= 1.35, forex+indices mappés, terminaux) : 742 trades
+Chargement/complément des bougies H1 pour 17 tickers...
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+  ^GDAXI : cache local suffisant (4541 bougies, depuis 2024-07-30 07:00:00)
+  ^GSPC : cache local suffisant (3486 bougies, depuis 2024-07-30 13:30:00)
+  ^NDX : cache local suffisant (3486 bougies, depuis 2024-07-30 13:30:00)
+Durées réelles vérifiées (bougies H1) : 377/742 (50.8%) — durée médiane de repli : 0 days 07:45:55
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+  ^GDAXI : cache local suffisant (4541 bougies, depuis 2024-07-30 07:00:00)
+  ^GSPC : cache local suffisant (3486 bougies, depuis 2024-07-30 13:30:00)
+  ^NDX : cache local suffisant (3486 bougies, depuis 2024-07-30 13:30:00)
+Traceback (most recent call last):
+  File "chantier_adx_combo_stack_pgp_2026-08-20.py", line 135, in <module>
+    main()
+  File "chantier_adx_combo_stack_pgp_2026-08-20.py", line 101, in main
+    df = run_config(pop_v, a_v, b_v, seq_th, n_sims, ceilings)
+  File "chantier_adx_combo_stack_2026-08-20.py", line 60, in run_config
+    sequential_b_threshold=sequential_threshold)
+  File "chantier_ab_metaux_cascade_officiel_2026-08-19.py", line 846, in run_n_sims
+    sequential_b_threshold=sequential_b_threshold)
+  File "chantier_ab_metaux_cascade_officiel_2026-08-19.py", line 717, in run_dual_ab
+    process_one_account(tid, gname, acc, fmt_eff, trade, now)
+  File "chantier_ab_metaux_cascade_officiel_2026-08-19.py", line 492, in process_one_account
+    cost_override=0.0)
+  File "chantier_S1_8_regen_population_2026-08-19.py", line 165, in process_trade_corr_swap_rr
+    split_flat=split_flat, reserve_share=reserve_share, cost_override=cost_override)
+  File "C:\Users\Saidi Amina\Documents\Prop firm\lutessia bot\engine_multiformat.py", line 329, in process_trade_mf
+    eff_risk, _ = eng.feasible_risk_pct(trade["ticker"], trade["sl_distance"], acc["palier"], risk_pct, market_data)
+  File "C:\Users\Saidi Amina\Documents\Prop firm\lutessia bot\scaling_simulation.py", line 130, in feasible_risk_pct
+    m = market_data[ticker]
+KeyError: 'PALLADIUM'
