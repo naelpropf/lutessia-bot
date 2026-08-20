@@ -13,6 +13,9 @@ venv/
 # Exception : matrice de corrélation calculée (référence pour account_router.py),
 # pas une donnée de backtest/log — utile de la versionner.
 !correlation_matrix.csv
+# Exception : population B_tradable finale (gold/silver + palladium/platine),
+# nécessaire à la reprise du pipeline ailleurs — pas une donnée de backtest jetable.
+!chantier_gold_silver_pop_B_tradable_pgp_2026-08-20.csv
 
 # Cache de bougies H1 (Yahoo Finance) et logs d'exécution
 yfinance_cache/
