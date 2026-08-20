@@ -1,0 +1,29 @@
+Reconstruction population baseline + ADX-fx-only (cache CSV si deja fait)...
+[baseline] B_tradable n=1051 wins=532 losses=519 -> Beta(533,520) winrate=50.62%
+B_tradable : 571 forex/indices | 480 metaux (jamais filtres)
+Calcul ADX(14) forex/indices (formule inchangee, meme cache Yahoo H1 que le retest 19-20/08)...
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+  ^GDAXI : cache local suffisant (4541 bougies, depuis 2024-07-30 07:00:00)
+  ^GSPC : cache local suffisant (3486 bougies, depuis 2024-07-30 13:30:00)
+  ^NDX : cache local suffisant (3486 bougies, depuis 2024-07-30 13:30:00)
+[verif] ADX couvert (fx/indices) : 274/571 (48.0%)
+[verif] Trades fx/indices exclus (adx_at_entry>32.268) : 55/571
+[verif] Population ADX-fx-only : 996/1051 (55 exclus, tous forex/indices)
+[adx_fx_only] population n=996 wins=514 losses=482 -> Beta(515,483) winrate=51.61%
+
+==============================================================================
+REF (sequential_threshold=None, n=600, plafond=3000$)
+==============================================================================

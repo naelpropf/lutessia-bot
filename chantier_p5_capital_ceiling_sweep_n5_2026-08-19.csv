@@ -1,0 +1,4 @@
+config,ceiling,bb_threshold,use_any_rr,n,profit_moyen,profit_median,solde_negatif_annee4,hit_ceiling_pct,annee1_neg,annee1_neg_pre,annee1_neg_post,bb_instant_opens_moy,bb_classic_opens_moy,corr_swap_admits_moy,instant_trades_total,instant_risk_capped_pct
+ceiling_10000,10000.0,0.0,True,5,7230368.875203254,8330776.781955131,0.0,0.0,0.0,0.0,0.0,9.4,0.0,494.2,23676,99.98732894069944
+ceiling_50000,50000.0,0.0,True,5,7230368.875203254,8330776.781955131,0.0,0.0,0.0,0.0,0.0,9.4,0.0,494.2,23676,99.98732894069944
+ceiling_200000,200000.0,0.0,True,5,7230368.875203254,8330776.781955131,0.0,0.0,0.0,0.0,0.0,9.4,0.0,494.2,23676,99.98732894069944

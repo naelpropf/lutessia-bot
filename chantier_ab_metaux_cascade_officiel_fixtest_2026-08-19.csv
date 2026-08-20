@@ -1,0 +1,3 @@
+config,ceiling,n,profit_moyen,profit_median,solde_negatif_annee4,hit_ceiling_pct,annee1_neg,overflow_to_A_moy,corr_PnL_A_B
+A_seul_sans_metaux,3000.0,5,7137508.853879346,7783434.971429221,0.0,0.0,0.0,0.0,
+Config2_AB_metaux,3000.0,5,21495314.08260988,22174811.592216942,0.0,20.0,0.0,6443.2,0.6594274306572109

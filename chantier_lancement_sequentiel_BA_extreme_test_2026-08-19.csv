@@ -1,0 +1,3 @@
+config,ceiling,n,profit_moyen,profit_median,solde_negatif_annee4,hit_ceiling_pct,annee1_neg,overflow_to_A_moy,corr_PnL_A_B,seuil_declenchement
+Sequentiel_seuil1,3000.0,20,16912536.539991297,16104620.32003554,0.0,5.0,10.0,1638.25,0.1902179938589539,1.0
+Sequentiel_seuil999999999,3000.0,20,9353375.015321072,10075521.279752664,0.0,0.0,10.0,1638.25,7.340710110959238e-17,999999999.0

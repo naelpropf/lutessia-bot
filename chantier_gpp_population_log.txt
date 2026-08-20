@@ -1,0 +1,24 @@
+Population gaz/palladium/platine (rr_tp1 >= 1.0, resolus) : 280 trades, 3 tickers
+  NG=F : cache local suffisant (11150 bougies, depuis 2024-08-21 11:00:00)
+  PA=F : cache local suffisant (11437 bougies, depuis 2024-08-21 11:00:00)
+  PL=F : cache local suffisant (11452 bougies, depuis 2024-08-21 11:00:00)
+Durées réelles vérifiées (bougies H1) : 145/280 (51.8%) — durée médiane de repli : 0 days 07:28:51
+
+Trades OBJECTIF ATTEINT : 124
+hors_couverture_historique      60
+tp1_avant_tp2                   59
+meme_bougie                      4
+tp2_non_atteint_dans_fenetre     1
+Name: case, dtype: int64
+
+Buckets payoff :
+continuation_confirmee        63
+hors_couverture               60
+continuation_non_confirmee     1
+Name: payoff_bucket, dtype: int64
+EV payoff realiste : +1.0677 R
+
+[trailing 0.1] trades trailes effectivement : 63/63
+EV réaliste (sans trailing) = +1.0677 R | EV avec trailing = +1.1719 R (delta +0.1042 R)
+
+Sauvegarde : gaz_palladium_platine_population_trailing_2026-08-20.csv (280 trades)

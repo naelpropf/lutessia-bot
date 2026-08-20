@@ -1,0 +1,4 @@
+config,ceiling,bb_threshold,use_any_rr,n,profit_moyen,profit_median,solde_negatif_annee4,hit_ceiling_pct,annee1_neg,annee1_neg_pre,annee1_neg_post,bb_instant_opens_moy,bb_classic_opens_moy,corr_swap_admits_moy,instant_trades_total,instant_risk_capped_pct
+REF (rr135corr080 seul),5000.0,,False,600,6318413.316902687,6105066.7797624115,0.33333333333333337,0.5,23.666666666666668,7.166666666666667,16.5,0.0,69.535,0.0,0,
+"COMBINE_original (bb_th=0 + any-RR, risque NON corrige)",5000.0,0.0,True,600,7825713.149988937,7499047.343022771,0.0,0.0,10.666666666666668,1.0,9.666666666666666,11.181666666666667,0.0,487.505,3348147,0.0
+"COMBINE_corrige (bb_th=0 + any-RR, cap 1,5% Instant)",5000.0,0.0,True,600,7388277.131539673,7094108.588206482,0.0,0.0,11.666666666666666,0.6666666666666667,11.0,10.188333333333333,0.0,486.1066666666667,3340713,99.95833224823562

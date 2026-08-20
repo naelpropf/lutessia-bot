@@ -1,0 +1,149 @@
+Population étendue (rr_tp1 >= 1.35, forex+indices mappés, terminaux) : 742 trades
+Chargement/complément des bougies H1 pour 17 tickers...
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+  ^GDAXI : cache local suffisant (4541 bougies, depuis 2024-07-30 07:00:00)
+  ^GSPC : cache local suffisant (3486 bougies, depuis 2024-07-30 13:30:00)
+  ^NDX : cache local suffisant (3486 bougies, depuis 2024-07-30 13:30:00)
+Durées réelles vérifiées (bougies H1) : 377/742 (50.8%) — durée médiane de repli : 0 days 07:45:55
+
+====================================================================================================
+VÉRIFICATION CONTINUATION TP1->TP2 (seuil rr_tp1 >= 1.35, dataset actuel complet)
+====================================================================================================
+Trades OBJECTIF ATTEINT (= TP1 touché) : 296
+  hors_couverture_historique       :  137 ( 46.3%)
+  tp1_avant_tp2                    :  137 ( 46.3%)
+  tp2_non_atteint_dans_fenetre     :   12 (  4.1%)
+  meme_bougie                      :    7 (  2.4%)
+  tp1_non_detecte                  :    3 (  1.0%)
+
+Regroupement en 3 catégories (règle de payoff) :
+  continuation_confirmee       :  144 ( 48.6%)
+  continuation_non_confirmee   :   15 (  5.1%)
+  hors_couverture              :  137 ( 46.3%)
+
+[AVERTISSEMENT] Le bloc 'hors_couverture' (trades antérieurs à la fenêtre H1 Yahoo, ~730 jours) est traité en payoff rr_tp1 PAR PRUDENCE, faute de preuve -- ce n'est PAS une vérification que TP2 n'a pas été atteint. Sur les cas où la donnée EST disponible, le taux de continuation réel vers TP2 est nettement plus élevé (cf. tableau ci-dessus).
+
+EV sur POPULATION BRUTE (742 trades, avant plafond/corrélation) :
+  Payoff rr_tp1 systématique (ancienne convention)   : +0.168 R
+  Payoff rr_tp2 systématique (substitution naïve)    : +1.639 R
+  Payoff RÉALISTE (ce module)                        : +0.823 R
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+  ^GDAXI : cache local suffisant (4541 bougies, depuis 2024-07-30 07:00:00)
+  ^GSPC : cache local suffisant (3486 bougies, depuis 2024-07-30 13:30:00)
+  ^NDX : cache local suffisant (3486 bougies, depuis 2024-07-30 13:30:00)
+[fixed 0.15] EV réaliste (sans trailing) = +0.8234 R | EV avec trailing = +0.8995 R (delta +0.0761 R)
+Population : 742 trades, horizon reel = 4.49 ans
+27 blocs de 2 mois construits.
+
+=== ETAPE 2 : verification de capacite ===
+Tickers forex avec market_data (capacite reelle testable) : 14
+Tickers indices SANS market_data (aucune clef de capacite dans forex_market_data.json) : ['DAX40 FULL0926', 'DAX40 PERF INDEX', 'NASDAQ100 - MINI NASDAQ100 FULL0926', 'NASDAQ100 INDEX', 'S&P500 - MINI S&P500 FULL0926']
+
+-- Forex : feasible_risk_pct reel, was_reduced = capacite/marge a bride le risque cible --
+  capital=  250,000$ risque=1.0% : 0/631 trades forex avec risque bride par capacite/marge (0.0%)
+  capital=  250,000$ risque=2.0% : 3/631 trades forex avec risque bride par capacite/marge (0.5%)
+  capital=  250,000$ risque=3.0% : 60/631 trades forex avec risque bride par capacite/marge (9.5%)
+  capital=  500,000$ risque=1.0% : 1/631 trades forex avec risque bride par capacite/marge (0.2%)
+  capital=  500,000$ risque=2.0% : 78/631 trades forex avec risque bride par capacite/marge (12.4%)
+  capital=  500,000$ risque=3.0% : 264/631 trades forex avec risque bride par capacite/marge (41.8%)
+  capital=1,000,000$ risque=1.0% : 78/631 trades forex avec risque bride par capacite/marge (12.4%)
+  capital=1,000,000$ risque=2.0% : 397/631 trades forex avec risque bride par capacite/marge (62.9%)
+  capital=1,000,000$ risque=3.0% : 502/631 trades forex avec risque bride par capacite/marge (79.6%)
+
+-- Indices : pas de clamp integre au moteur, sanity-check manuel (ordre de grandeur) --
+  Profondeur de marche des futures indiciels (E-mini S&P500/NASDAQ100, DAX40) : plusieurs
+  dizaines de milliards $ de volume notionnel quotidien -- une exposition de quelques
+  dizaines de milliers de $ de risque par trade (1-3% de 250k-1M$) est negligeable devant
+  cette profondeur. Le CFD retail (pas le future) a une limite pratique differente : le
+  plafond de LOT du broker, pas la liquidite du marche sous-jacent -- a verifier au cas par
+  cas cote broker, ne peut pas etre affirme generiquement ici (cf. reponse precedente).
+
+=== ETAPE 3 : sweep Monte Carlo (2000 runs/combinaison, horizon=4.49 ans) ===
+  capital=  250,000$ risque= 0.5% any-RR=False rr2-sizing=False | CAGR p10/p50/p90= +41.6/ +67.2/ +92.9% DD p50/p90= 13.9/ 20.3% ruine=  0.0% calmar_p50= 4.96 (8s)
+  capital=  250,000$ risque= 0.5% any-RR=False rr2-sizing=True  | CAGR p10/p50/p90= +49.9/ +78.1/+103.6% DD p50/p90= 14.4/ 21.3% ruine=  0.0% calmar_p50= 5.50 (8s)
+  capital=  250,000$ risque= 0.5% any-RR=True  rr2-sizing=False | CAGR p10/p50/p90= +46.2/ +75.2/+103.4% DD p50/p90= 12.7/ 19.3% ruine=  0.0% calmar_p50= 5.94 (9s)
+  capital=  250,000$ risque= 0.5% any-RR=True  rr2-sizing=True  | CAGR p10/p50/p90= +55.3/ +86.4/+114.4% DD p50/p90= 13.2/ 19.9% ruine=  0.0% calmar_p50= 6.49 (10s)
+  capital=  250,000$ risque= 1.0% any-RR=False rr2-sizing=False | CAGR p10/p50/p90= +79.0/+110.8/+140.3% DD p50/p90= 21.7/ 33.3% ruine=  0.1% calmar_p50= 5.13 (8s)
+  capital=  250,000$ risque= 1.0% any-RR=False rr2-sizing=True  | CAGR p10/p50/p90= +85.8/+117.6/+148.7% DD p50/p90= 21.4/ 34.2% ruine=  0.1% calmar_p50= 5.45 (8s)
+  capital=  250,000$ risque= 1.0% any-RR=True  rr2-sizing=False | CAGR p10/p50/p90= +86.2/+120.1/+153.2% DD p50/p90= 20.2/ 31.4% ruine=  0.0% calmar_p50= 6.02 (9s)
+  capital=  250,000$ risque= 1.0% any-RR=True  rr2-sizing=True  | CAGR p10/p50/p90= +93.2/+127.9/+165.1% DD p50/p90= 20.1/ 32.2% ruine=  0.0% calmar_p50= 6.35 (10s)
+  capital=  250,000$ risque= 1.5% any-RR=False rr2-sizing=False | CAGR p10/p50/p90= +95.8/+133.0/+169.1% DD p50/p90= 24.3/ 43.0% ruine=  0.7% calmar_p50= 5.27 (8s)
+  capital=  250,000$ risque= 1.5% any-RR=False rr2-sizing=True  | CAGR p10/p50/p90=+102.3/+140.1/+181.0% DD p50/p90= 25.1/ 44.0% ruine=  0.8% calmar_p50= 5.52 (9s)
+  capital=  250,000$ risque= 1.5% any-RR=True  rr2-sizing=False | CAGR p10/p50/p90=+104.3/+143.2/+187.5% DD p50/p90= 23.6/ 40.6% ruine=  0.5% calmar_p50= 6.02 (9s)
+  capital=  250,000$ risque= 1.5% any-RR=True  rr2-sizing=True  | CAGR p10/p50/p90=+111.3/+153.1/+204.5% DD p50/p90= 23.7/ 41.2% ruine=  0.5% calmar_p50= 6.37 (10s)
+  capital=  250,000$ risque= 2.0% any-RR=False rr2-sizing=False | CAGR p10/p50/p90=+108.0/+149.7/+196.6% DD p50/p90= 27.8/ 50.7% ruine=  2.2% calmar_p50= 5.33 (8s)
+  capital=  250,000$ risque= 2.0% any-RR=False rr2-sizing=True  | CAGR p10/p50/p90=+115.1/+158.8/+212.3% DD p50/p90= 28.1/ 51.3% ruine=  2.5% calmar_p50= 5.56 (8s)
+  capital=  250,000$ risque= 2.0% any-RR=True  rr2-sizing=False | CAGR p10/p50/p90=+116.2/+162.4/+222.6% DD p50/p90= 26.4/ 47.7% ruine=  1.9% calmar_p50= 6.02 (10s)
+  capital=  250,000$ risque= 2.0% any-RR=True  rr2-sizing=True  | CAGR p10/p50/p90=+123.7/+175.4/+248.0% DD p50/p90= 27.0/ 48.5% ruine=  1.9% calmar_p50= 6.46 (13s)
+  capital=  250,000$ risque= 3.0% any-RR=False rr2-sizing=False | CAGR p10/p50/p90=+125.6/+180.4/+256.0% DD p50/p90= 32.5/ 61.7% ruine=  7.1% calmar_p50= 5.40 (8s)
+  capital=  250,000$ risque= 3.0% any-RR=False rr2-sizing=True  | CAGR p10/p50/p90=+133.6/+193.8/+284.7% DD p50/p90= 33.5/ 62.4% ruine=  7.3% calmar_p50= 5.71 (8s)
+  capital=  250,000$ risque= 3.0% any-RR=True  rr2-sizing=False | CAGR p10/p50/p90=+134.5/+200.2/+297.8% DD p50/p90= 31.9/ 58.6% ruine=  6.8% calmar_p50= 6.14 (9s)
+  capital=  250,000$ risque= 3.0% any-RR=True  rr2-sizing=True  | CAGR p10/p50/p90=+143.5/+221.7/+346.6% DD p50/p90= 33.5/ 59.4% ruine=  7.3% calmar_p50= 6.62 (10s)
+  capital=  500,000$ risque= 0.5% any-RR=False rr2-sizing=False | CAGR p10/p50/p90= +40.9/ +62.1/ +81.7% DD p50/p90= 13.4/ 19.9% ruine=  0.0% calmar_p50= 4.72 (7s)
+  capital=  500,000$ risque= 0.5% any-RR=False rr2-sizing=True  | CAGR p10/p50/p90= +47.1/ +68.5/ +88.3% DD p50/p90= 13.8/ 20.5% ruine=  0.0% calmar_p50= 5.04 (8s)
+  capital=  500,000$ risque= 0.5% any-RR=True  rr2-sizing=False | CAGR p10/p50/p90= +45.3/ +68.9/ +90.0% DD p50/p90= 12.3/ 18.6% ruine=  0.0% calmar_p50= 5.59 (10s)
+  capital=  500,000$ risque= 0.5% any-RR=True  rr2-sizing=True  | CAGR p10/p50/p90= +51.6/ +75.5/ +97.3% DD p50/p90= 12.6/ 19.0% ruine=  0.0% calmar_p50= 5.98 (9s)
+  capital=  500,000$ risque= 1.0% any-RR=False rr2-sizing=False | CAGR p10/p50/p90= +65.9/ +91.5/+116.0% DD p50/p90= 19.4/ 31.6% ruine=  0.1% calmar_p50= 4.64 (8s)
+  capital=  500,000$ risque= 1.0% any-RR=False rr2-sizing=True  | CAGR p10/p50/p90= +70.1/ +96.1/+121.9% DD p50/p90= 19.3/ 32.3% ruine=  0.1% calmar_p50= 4.86 (8s)
+  capital=  500,000$ risque= 1.0% any-RR=True  rr2-sizing=False | CAGR p10/p50/p90= +71.7/ +98.8/+127.2% DD p50/p90= 18.0/ 30.0% ruine=  0.0% calmar_p50= 5.39 (10s)
+  capital=  500,000$ risque= 1.0% any-RR=True  rr2-sizing=True  | CAGR p10/p50/p90= +76.4/+104.8/+136.7% DD p50/p90= 18.2/ 30.6% ruine=  0.0% calmar_p50= 5.65 (10s)
+  capital=  500,000$ risque= 1.5% any-RR=False rr2-sizing=False | CAGR p10/p50/p90= +77.6/+108.1/+139.7% DD p50/p90= 22.3/ 40.8% ruine=  0.7% calmar_p50= 4.74 (8s)
+  capital=  500,000$ risque= 1.5% any-RR=False rr2-sizing=True  | CAGR p10/p50/p90= +82.5/+114.1/+148.7% DD p50/p90= 22.7/ 41.3% ruine=  0.8% calmar_p50= 4.91 (8s)
+  capital=  500,000$ risque= 1.5% any-RR=True  rr2-sizing=False | CAGR p10/p50/p90= +84.8/+116.8/+156.0% DD p50/p90= 21.5/ 38.3% ruine=  0.5% calmar_p50= 5.42 (10s)
+  capital=  500,000$ risque= 1.5% any-RR=True  rr2-sizing=True  | CAGR p10/p50/p90= +89.0/+124.9/+170.4% DD p50/p90= 21.8/ 38.8% ruine=  0.5% calmar_p50= 5.75 (10s)
+  capital=  500,000$ risque= 2.0% any-RR=False rr2-sizing=False | CAGR p10/p50/p90= +86.9/+121.5/+163.2% DD p50/p90= 24.9/ 47.8% ruine=  2.1% calmar_p50= 4.79 (8s)
+  capital=  500,000$ risque= 2.0% any-RR=False rr2-sizing=True  | CAGR p10/p50/p90= +92.2/+128.6/+177.0% DD p50/p90= 25.3/ 48.6% ruine=  2.4% calmar_p50= 5.05 (8s)
+  capital=  500,000$ risque= 2.0% any-RR=True  rr2-sizing=False | CAGR p10/p50/p90= +92.6/+133.1/+185.8% DD p50/p90= 24.4/ 44.9% ruine=  1.6% calmar_p50= 5.39 (10s)
+  capital=  500,000$ risque= 2.0% any-RR=True  rr2-sizing=True  | CAGR p10/p50/p90= +98.5/+144.3/+208.3% DD p50/p90= 24.6/ 45.8% ruine=  1.9% calmar_p50= 5.81 (13s)
+  capital=  500,000$ risque= 3.0% any-RR=False rr2-sizing=False | CAGR p10/p50/p90=+101.6/+148.6/+215.1% DD p50/p90= 29.8/ 58.3% ruine=  7.1% calmar_p50= 4.86 (8s)
+  capital=  500,000$ risque= 3.0% any-RR=False rr2-sizing=True  | CAGR p10/p50/p90=+108.5/+160.7/+240.9% DD p50/p90= 30.5/ 58.8% ruine=  7.2% calmar_p50= 5.19 (8s)
+  capital=  500,000$ risque= 3.0% any-RR=True  rr2-sizing=False | CAGR p10/p50/p90=+107.9/+166.7/+253.2% DD p50/p90= 29.6/ 54.9% ruine=  6.7% calmar_p50= 5.50 (9s)
+  capital=  500,000$ risque= 3.0% any-RR=True  rr2-sizing=True  | CAGR p10/p50/p90=+116.5/+186.3/+296.4% DD p50/p90= 30.5/ 55.6% ruine=  6.5% calmar_p50= 5.96 (10s)
+  capital=1,000,000$ risque= 0.5% any-RR=False rr2-sizing=False | CAGR p10/p50/p90= +37.2/ +53.2/ +68.4% DD p50/p90= 12.6/ 18.9% ruine=  0.0% calmar_p50= 4.30 (8s)
+  capital=1,000,000$ risque= 0.5% any-RR=False rr2-sizing=True  | CAGR p10/p50/p90= +40.7/ +56.6/ +72.3% DD p50/p90= 12.7/ 19.4% ruine=  0.0% calmar_p50= 4.50 (8s)
+  capital=1,000,000$ risque= 0.5% any-RR=True  rr2-sizing=False | CAGR p10/p50/p90= +40.9/ +58.6/ +75.6% DD p50/p90= 11.5/ 17.6% ruine=  0.0% calmar_p50= 5.09 (11s)
+  capital=1,000,000$ risque= 0.5% any-RR=True  rr2-sizing=True  | CAGR p10/p50/p90= +44.4/ +62.4/ +80.2% DD p50/p90= 11.7/ 18.1% ruine=  0.0% calmar_p50= 5.37 (10s)
+  capital=1,000,000$ risque= 1.0% any-RR=False rr2-sizing=False | CAGR p10/p50/p90= +52.2/ +73.1/ +93.2% DD p50/p90= 17.0/ 29.8% ruine=  0.1% calmar_p50= 4.20 (8s)
+  capital=1,000,000$ risque= 1.0% any-RR=False rr2-sizing=True  | CAGR p10/p50/p90= +55.1/ +76.5/ +97.9% DD p50/p90= 17.2/ 30.2% ruine=  0.1% calmar_p50= 4.33 (8s)
+  capital=1,000,000$ risque= 1.0% any-RR=True  rr2-sizing=False | CAGR p10/p50/p90= +56.8/ +79.1/+103.4% DD p50/p90= 16.2/ 27.8% ruine=  0.0% calmar_p50= 4.79 (10s)
+  capital=1,000,000$ risque= 1.0% any-RR=True  rr2-sizing=True  | CAGR p10/p50/p90= +60.1/ +84.1/+110.9% DD p50/p90= 16.4/ 28.4% ruine=  0.0% calmar_p50= 5.06 (10s)
+  capital=1,000,000$ risque= 1.5% any-RR=False rr2-sizing=False | CAGR p10/p50/p90= +60.9/ +85.8/+113.2% DD p50/p90= 19.6/ 37.4% ruine=  0.6% calmar_p50= 4.28 (8s)
+  capital=1,000,000$ risque= 1.5% any-RR=False rr2-sizing=True  | CAGR p10/p50/p90= +64.4/ +90.6/+120.9% DD p50/p90= 19.8/ 38.2% ruine=  0.6% calmar_p50= 4.47 (9s)
+  capital=1,000,000$ risque= 1.5% any-RR=True  rr2-sizing=False | CAGR p10/p50/p90= +65.4/ +93.6/+127.7% DD p50/p90= 18.9/ 35.1% ruine=  0.5% calmar_p50= 4.88 (10s)
+  capital=1,000,000$ risque= 1.5% any-RR=True  rr2-sizing=True  | CAGR p10/p50/p90= +69.1/+100.5/+140.6% DD p50/p90= 19.2/ 35.7% ruine=  0.4% calmar_p50= 5.25 (10s)
+  capital=1,000,000$ risque= 2.0% any-RR=False rr2-sizing=False | CAGR p10/p50/p90= +67.7/ +97.1/+134.1% DD p50/p90= 21.9/ 43.1% ruine=  2.0% calmar_p50= 4.36 (8s)
+  capital=1,000,000$ risque= 2.0% any-RR=False rr2-sizing=True  | CAGR p10/p50/p90= +71.5/+104.2/+147.1% DD p50/p90= 22.3/ 43.6% ruine=  1.8% calmar_p50= 4.59 (8s)
+  capital=1,000,000$ risque= 2.0% any-RR=True  rr2-sizing=False | CAGR p10/p50/p90= +72.1/+107.6/+154.0% DD p50/p90= 21.3/ 40.8% ruine=  1.4% calmar_p50= 4.95 (9s)
+  capital=1,000,000$ risque= 2.0% any-RR=True  rr2-sizing=True  | CAGR p10/p50/p90= +77.7/+117.7/+174.9% DD p50/p90= 21.7/ 41.5% ruine=  1.4% calmar_p50= 5.34 (10s)
+  capital=1,000,000$ risque= 3.0% any-RR=False rr2-sizing=False | CAGR p10/p50/p90= +79.9/+122.6/+181.7% DD p50/p90= 27.2/ 51.2% ruine=  5.3% calmar_p50= 4.43 (8s)
+  capital=1,000,000$ risque= 3.0% any-RR=False rr2-sizing=True  | CAGR p10/p50/p90= +86.3/+133.1/+205.8% DD p50/p90= 27.9/ 52.0% ruine=  5.5% calmar_p50= 4.70 (8s)
+  capital=1,000,000$ risque= 3.0% any-RR=True  rr2-sizing=False | CAGR p10/p50/p90= +86.0/+138.4/+215.9% DD p50/p90= 27.0/ 48.8% ruine=  4.2% calmar_p50= 5.00 (10s)
+  capital=1,000,000$ risque= 3.0% any-RR=True  rr2-sizing=True  | CAGR p10/p50/p90= +93.9/+157.0/+255.3% DD p50/p90= 28.0/ 49.3% ruine=  4.6% calmar_p50= 5.49 (11s)
+
+Resultats sauvegardes : capital_personnel_sweep_2026-08-19.csv

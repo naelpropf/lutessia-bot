@@ -1,0 +1,2 @@
+label,n,profit_moyen,profit_median,solde_negatif,annee1_neg,overflow_to_A_moy,hit_ceiling_960,hit_ceiling_1000,hit_ceiling_3000,hit_ceiling_5000
+config_baseline,5,256673.53974353764,232759.911918197,0.0,0.0,0.0,100.0,100.0,100.0,100.0
