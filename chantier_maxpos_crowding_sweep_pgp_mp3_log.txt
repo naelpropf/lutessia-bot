@@ -1,0 +1,117 @@
+[COMBO pop] n=1193 wins=606 losses=587 -> Beta(607,588)
+[metal_set corrige] 14 -> 16 tickers (PALLADIUM/PLATINUM ajoutes)
+
+==============================================================================
+MAX_POSITIONS=3 (n=600)
+==============================================================================
+Population étendue (rr_tp1 >= 1.35, forex+indices mappés, terminaux) : 742 trades
+Chargement/complément des bougies H1 pour 17 tickers...
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+  ^GDAXI : cache local suffisant (4541 bougies, depuis 2024-07-30 07:00:00)
+  ^GSPC : cache local suffisant (3486 bougies, depuis 2024-07-30 13:30:00)
+  ^NDX : cache local suffisant (3486 bougies, depuis 2024-07-30 13:30:00)
+Durées réelles vérifiées (bougies H1) : 377/742 (50.8%) — durée médiane de repli : 0 days 07:45:55
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+  ^GDAXI : cache local suffisant (4541 bougies, depuis 2024-07-30 07:00:00)
+  ^GSPC : cache local suffisant (3486 bougies, depuis 2024-07-30 13:30:00)
+  ^NDX : cache local suffisant (3486 bougies, depuis 2024-07-30 13:30:00)
+Population étendue (rr_tp1 >= 1.35, forex+indices mappés, terminaux) : 742 trades
+Chargement/complément des bougies H1 pour 17 tickers...
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+  ^GDAXI : cache local suffisant (4541 bougies, depuis 2024-07-30 07:00:00)
+  ^GSPC : cache local suffisant (3486 bougies, depuis 2024-07-30 13:30:00)
+  ^NDX : cache local suffisant (3486 bougies, depuis 2024-07-30 13:30:00)
+Durées réelles vérifiées (bougies H1) : 377/742 (50.8%) — durée médiane de repli : 0 days 07:45:55
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : cache local suffisant (12325 bougies, depuis 2024-07-30 06:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  GBPUSD=X : cache local suffisant (12326 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+  ^GDAXI : cache local suffisant (4541 bougies, depuis 2024-07-30 07:00:00)
+  ^GSPC : cache local suffisant (3486 bougies, depuis 2024-07-30 13:30:00)
+  ^NDX : cache local suffisant (3486 bougies, depuis 2024-07-30 13:30:00)
+  [full MP=3 plafond=3000$] profit_moy=+19,754,617$ cap_blocked_moy=1073.7 cap_rate=4.25% annee1<0=5.67% (1056s)
+  [full MP=3 plafond=5000$] profit_moy=+20,034,511$ cap_blocked_moy=1073.7 cap_rate=4.25% annee1<0=5.67% (1006s)
+  [H1 MP=3 plafond=3000$] profit_moy=+854,441$ cap_blocked_moy=37.3 cap_rate=0.36% annee1<0=39.33% (379s)
+  [H1 MP=3 plafond=5000$] profit_moy=+858,968$ cap_blocked_moy=37.3 cap_rate=0.36% annee1<0=39.33% (394s)
+  [H2 MP=3 plafond=3000$] profit_moy=+20,803,385$ cap_blocked_moy=995.4 cap_rate=7.28% annee1<0=0.00% (565s)
+  [H2 MP=3 plafond=5000$] profit_moy=+20,803,385$ cap_blocked_moy=995.4 cap_rate=7.28% annee1<0=0.00% (562s)
+  [bloc1 MP=3 plafond=3000$] profit_moy=+382,362$ cap_blocked_moy=0.0 cap_rate=0.00% annee1<0=39.83% (116s)
+  [bloc1 MP=3 plafond=5000$] profit_moy=+382,362$ cap_blocked_moy=0.0 cap_rate=0.00% annee1<0=39.83% (120s)
+  [bloc2 MP=3 plafond=3000$] profit_moy=+187,169$ cap_blocked_moy=31.2 cap_rate=0.62% annee1<0=42.17% (224s)
+  [bloc2 MP=3 plafond=5000$] profit_moy=+186,841$ cap_blocked_moy=31.2 cap_rate=0.62% annee1<0=42.33% (220s)
+  [bloc3 MP=3 plafond=3000$] profit_moy=+6,573,695$ cap_blocked_moy=354.8 cap_rate=6.17% annee1<0=2.00% (244s)
+  [bloc3 MP=3 plafond=5000$] profit_moy=+6,573,695$ cap_blocked_moy=354.8 cap_rate=6.17% annee1<0=2.00% (236s)
+  [bloc4 MP=3 plafond=3000$] profit_moy=+11,928,422$ cap_blocked_moy=628.5 cap_rate=8.76% annee1<0=0.00% (330s)
+  [bloc4 MP=3 plafond=5000$] profit_moy=+11,928,422$ cap_blocked_moy=628.5 cap_rate=8.76% annee1<0=0.00% (317s)
+[MAX_POSITIONS=3] termine.
+
+Sauvegarde : chantier_maxpos_crowding_sweep_pgp_mp3_2026-08-20.csv
+
+==============================================================================
+CROWDING (cap_blocked_rate_pct, trader B, MAX_POSITIONS=3)
+==============================================================================
+-- plafond=3000$ --
+  [full] cap_blocked_moy=1073.7 cap_rate=4.25% profit_moy=+19,754,617$
+  [H1] cap_blocked_moy=37.3 cap_rate=0.36% profit_moy=+854,441$
+  [H2] cap_blocked_moy=995.4 cap_rate=7.28% profit_moy=+20,803,385$
+  [bloc1] cap_blocked_moy=0.0 cap_rate=0.00% profit_moy=+382,362$
+  [bloc2] cap_blocked_moy=31.2 cap_rate=0.62% profit_moy=+187,169$
+  [bloc3] cap_blocked_moy=354.8 cap_rate=6.17% profit_moy=+6,573,695$
+  [bloc4] cap_blocked_moy=628.5 cap_rate=8.76% profit_moy=+11,928,422$
+-- plafond=5000$ --
+  [full] cap_blocked_moy=1073.7 cap_rate=4.25% profit_moy=+20,034,511$
+  [H1] cap_blocked_moy=37.3 cap_rate=0.36% profit_moy=+858,968$
+  [H2] cap_blocked_moy=995.4 cap_rate=7.28% profit_moy=+20,803,385$
+  [bloc1] cap_blocked_moy=0.0 cap_rate=0.00% profit_moy=+382,362$
+  [bloc2] cap_blocked_moy=31.2 cap_rate=0.62% profit_moy=+186,841$
+  [bloc3] cap_blocked_moy=354.8 cap_rate=6.17% profit_moy=+6,573,695$
+  [bloc4] cap_blocked_moy=628.5 cap_rate=8.76% profit_moy=+11,928,422$
