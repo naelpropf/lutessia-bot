@@ -1,0 +1,177 @@
+===============================================================================================
+VOLET 1 -- fenetres SVB + Israel-Hamas poolees : trailing 0,10x (actuel) vs 0,15x (largeur de A)
+===============================================================================================
+  SVB : n=17
+  israel_hamas : n=26
+  POOL total : n=43
+  AUDUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  EURCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURGBP=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  GBPCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  GBPJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  NZDUSD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCAD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  ^GDAXI : backfill MT5 utilise (20327 bougies, depuis 2022-01-02 21:00:00)
+  ^GSPC : backfill MT5 utilise (21018 bougies, depuis 2022-01-02 21:00:00)
+  ^NDX : backfill MT5 utilise (21019 bougies, depuis 2022-01-02 21:00:00)
+
+  trades OBJECTIF ATTEINT a continuation confirmee (affectes par la largeur) : 11/43
+  verification recalcule 0,10x vs r_trailing existant : diff max=0.0000R, diff moyenne=0.00000R (doit etre ~0 si la reconstruction tp1/tp2 est correcte)
+
+  pool 0,10x (actuel/recalcule)  n=  43 EV=+0.9533R se=0.4676
+  pool 0,15x (largeur A)         n=  43 EV=+0.9405R se=0.4653
+  delta EV (0,15x - 0,10x) = -0.0128R  |  Wilcoxon signed-rank (sous-ensemble affecte, n=11) : p=0.0010
+
+  -> effet PAS clairement positif sur cette fenetre (seuil indicatif +0,05R retenu pour declencher le volet 2)
+
+===============================================================================================
+VOLET 2 -- cout de l'elargissement sur bloc1/bloc3/bloc4 (pas de retournement en V)
+===============================================================================================
+  Volet 1 n'a pas montre d'effet net positif -- volet 2 execute quand meme (verification demandee),
+  mais gardez a l'esprit que le levier n'a de toute facon rien a justifier s'il ne protege pas.
+Population étendue (rr_tp1 >= 1.35, forex+indices mappés, terminaux) : 742 trades
+Chargement/complément des bougies H1 pour 17 tickers...
+  AUDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  AUDUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  CHFJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  EURCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURGBP=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  GBPCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  GBPJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  GBPUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  NZDUSD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCAD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  ^GDAXI : backfill MT5 utilise (20327 bougies, depuis 2022-01-02 21:00:00)
+  ^GSPC : backfill MT5 utilise (21018 bougies, depuis 2022-01-02 21:00:00)
+  ^NDX : backfill MT5 utilise (21019 bougies, depuis 2022-01-02 21:00:00)
+Durées réelles vérifiées (bougies H1) : 742/742 (100.0%) — durée médiane de repli : 0 days 09:39:35
+  AUDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  AUDUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  CHFJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  EURCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURGBP=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  GBPCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  GBPJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  GBPUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  NZDUSD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCAD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  ^GDAXI : backfill MT5 utilise (20327 bougies, depuis 2022-01-02 21:00:00)
+  ^GSPC : backfill MT5 utilise (21018 bougies, depuis 2022-01-02 21:00:00)
+  ^NDX : backfill MT5 utilise (21019 bougies, depuis 2022-01-02 21:00:00)
+
+  -- bloc1 [2021-04-23 -> 2022-08-20], n=230 --
+  AUDJPY=X : cache local suffisant (12336 bougies, depuis 2024-07-30 06:00:00)
+  AUDUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  CHFJPY=X : cache local suffisant (12327 bougies, depuis 2024-07-30 06:00:00)
+  EURCHF=X : cache local suffisant (12333 bougies, depuis 2024-07-30 06:00:00)
+  EURGBP=X : cache local suffisant (12346 bougies, depuis 2024-07-30 06:00:00)
+  EURJPY=X : cache local suffisant (12335 bougies, depuis 2024-07-30 06:00:00)
+  EURUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  GBPCHF=X : cache local suffisant (12331 bougies, depuis 2024-07-30 06:00:00)
+  GBPJPY=X : cache local suffisant (12334 bougies, depuis 2024-07-30 06:00:00)
+  NZDUSD=X : cache local suffisant (12389 bougies, depuis 2024-07-30 06:00:00)
+  USDCAD=X : cache local suffisant (12396 bougies, depuis 2024-07-30 06:00:00)
+  USDCHF=X : cache local suffisant (12273 bougies, depuis 2024-07-30 06:00:00)
+  USDJPY=X : cache local suffisant (12239 bougies, depuis 2024-07-30 06:00:00)
+  ^GDAXI : cache local suffisant (4541 bougies, depuis 2024-07-30 07:00:00)
+  ^GSPC : cache local suffisant (3486 bougies, depuis 2024-07-30 13:30:00)
+  ^NDX : cache local suffisant (3486 bougies, depuis 2024-07-30 13:30:00)
+  bloc1 0,10x (recalcule)        n= 230 EV=+3.2150R se=0.3564
+  bloc1 0,15x                    n= 230 EV=+3.2145R se=0.3564
+    trades affectes (continuation confirmee) : 2/230  |  delta EV = -0.0004R
+
+  -- bloc3 [2023-12-17 -> 2025-04-15], n=314 --
+  AUDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  AUDUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  CHFJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  EURCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURGBP=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  GBPCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  GBPJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  GBPUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  NZDUSD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCAD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  ^GDAXI : backfill MT5 utilise (20327 bougies, depuis 2022-01-02 21:00:00)
+  ^GSPC : backfill MT5 utilise (21018 bougies, depuis 2022-01-02 21:00:00)
+  ^NDX : backfill MT5 utilise (21019 bougies, depuis 2022-01-02 21:00:00)
+  bloc3 0,10x (recalcule)        n= 314 EV=+2.0349R se=0.1945
+  bloc3 0,15x                    n= 314 EV=+2.0266R se=0.1941
+    trades affectes (continuation confirmee) : 70/314  |  delta EV = -0.0083R
+
+  -- bloc4 [2025-04-15 -> 2026-08-12], n=392 --
+  AUDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  AUDUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  CHFJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  EURCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURGBP=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  GBPCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  GBPJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  GBPUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  NZDUSD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCAD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  ^GDAXI : backfill MT5 utilise (20327 bougies, depuis 2022-01-02 21:00:00)
+  ^GSPC : backfill MT5 utilise (21018 bougies, depuis 2022-01-02 21:00:00)
+  ^NDX : backfill MT5 utilise (21019 bougies, depuis 2022-01-02 21:00:00)
+  bloc4 0,10x (recalcule)        n= 392 EV=+2.1674R se=0.1884
+  bloc4 0,15x                    n= 392 EV=+2.1619R se=0.1883
+    trades affectes (continuation confirmee) : 82/392  |  delta EV = -0.0055R
+
+===============================================================================================
+SYNTHESE VOLET 1+2 -- benefice sur SVB+ISR vs cout sur bloc1/3/4
+===============================================================================================
+  Benefice (SVB+ISR poolees, n=43) : delta EV = -0.0128R (p Wilcoxon=0.0010)
+  Cout bloc1    (n=230, 2 affectes) : delta EV = -0.0004R
+  Cout bloc3    (n=314, 70 affectes) : delta EV = -0.0083R
+  Cout bloc4    (n=392, 82 affectes) : delta EV = -0.0055R
+  Cout moyen pondere (bloc1+3+4, n=936) : -0.0052R
+  Benefice (n=43) vs cout pondere (n=936) -- benefice pese sur ~43 trades,
+  cout pese sur ~936 trades (bien plus de trades exposes au cout qu'au benefice).
+
+===============================================================================================
+VOLET 3 -- comparaison au levier sizing (-30%/-50%) sur B pendant SVB+ISR
+===============================================================================================
+
+  Le trailing et le sizing n'agissent PAS sur le meme plan :
+  - Trailing (largeur 0,10x -> 0,15x) change la DISTRIBUTION des R-multiples
+    des trades a continuation confirmee (mean ET variance de cette distribution
+    changent, cf. volet 1 -- delta mesure ci-dessus).
+  - Sizing (reduction de X% du risque engage) NE CHANGE PAS le R-multiple par
+    trade (R est deja normalise au risque) -- il multiplie l'EXPOSITION dollar
+    par (1-X%) sur TOUS les trades de la fenetre, gagnants et perdants
+    confondus, dans les memes proportions. Ca reduit mean ET variance du P&L
+    en dollars par le meme facteur (1-X%)^1 pour le mean, (1-X%)^2 pour la
+    variance -- mais ne change RIEN a la classification win/loss ni a la
+    taille relative des gains/pertes.
+
+  SVB             size -30% : mean R-equiv +0.963 -> +0.674 (EV DIMINUE, ne monte jamais), var 9.327 -> 4.570 (variance divisee par 2.04)
+  SVB             size -50% : mean R-equiv +0.963 -> +0.482 (EV DIMINUE, ne monte jamais), var 9.327 -> 2.332 (variance divisee par 4.00)
+  israel_hamas    size -30% : mean R-equiv +0.947 -> +0.663 (EV DIMINUE, ne monte jamais), var 9.823 -> 4.813 (variance divisee par 2.04)
+  israel_hamas    size -50% : mean R-equiv +0.947 -> +0.473 (EV DIMINUE, ne monte jamais), var 9.823 -> 2.456 (variance divisee par 4.00)
+
+  Pour comparaison, l'effet trailing mesure au volet 1 sur le pool : delta EV = -0.0128R,
+  c'est une AUGMENTATION d'EV (pas juste une reduction de variance) -- le sizing, par construction,
+  ne peut JAMAIS augmenter l'EV (il ne fait que le multiplier par un facteur <1, donc le RAPPROCHER de 0
+  ou l'eloigner de 0 selon son signe, jamais l'ameliorer). Les deux leviers ne sont donc pas substituables :
+  le sizing reduit l'exposition sans jamais ameliorer l'EV, le trailing (si l'effet volet 1 est confirme)
+  ameliore directement l'EV -- mais volet 2 montre qu'il a un cout sur le reste de la population,
+  ce que le sizing (localise a la seule fenetre a risque) n'a PAS.

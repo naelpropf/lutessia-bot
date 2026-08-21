@@ -1,0 +1,78 @@
+
+==========================================================================================
+ETAPE 2 -- distribution confluence_n gagnants vs perdants (Mann-Whitney U)
+==========================================================================================
+
+  bloc1 (n=57, wins=31, losses=26)
+    distribution confluence_n gagnants : {2.0: 2, 3.0: 8, 4.0: 21}
+    distribution confluence_n perdants  : {0.0: 1, 2.0: 4, 3.0: 5, 4.0: 16}
+    moyenne gagnants=3.613  moyenne perdants=3.346
+    Mann-Whitney U : U=444.0  p=0.4424
+    Chi2 independance (confluence_n x win/loss) : chi2=2.616 dof=3 p=0.4547
+    table :
+r_trailing    False  True
+confluence_n             
+0.0               1     0
+2.0               4     2
+3.0               5     8
+4.0              16    21
+
+  bloc2 (n=160, wins=69, losses=91)
+    distribution confluence_n gagnants : {1.0: 2, 2.0: 5, 3.0: 18, 4.0: 44}
+    distribution confluence_n perdants  : {0.0: 4, 1.0: 7, 2.0: 9, 3.0: 11, 4.0: 60}
+    moyenne gagnants=3.507  moyenne perdants=3.275
+    Mann-Whitney U : U=3235.5  p=0.6979
+    Chi2 independance (confluence_n x win/loss) : chi2=9.221 dof=4 p=0.0558
+    table :
+r_trailing    False  True
+confluence_n             
+0.0               4     0
+1.0               7     2
+2.0               9     5
+3.0              11    18
+4.0              60    44
+
+==========================================================================================
+ETAPE 3 -- confluence_n moyenne par mois, bloc1+bloc2 (2021-04 -> 2023-12)
+==========================================================================================
+  moyenne globale confluence_n (bloc1+bloc2) = 3.406 (std=0.977)
+  seuil 'desaccord eleve' explo = moyenne mensuelle < 2.428 (1 std sous la moyenne globale)
+
+    2022-02  n=  1  conf_moy=4.00  winrate=  0.0%  EV=-1.000R
+    2022-03  n= 10  conf_moy=3.50  winrate= 70.0%  EV=+2.799R
+    2022-04  n=  9  conf_moy=3.67  winrate= 44.4%  EV=+1.742R
+    2022-05  n= 10  conf_moy=3.20  winrate= 80.0%  EV=+3.754R
+    2022-06  n=  9  conf_moy=3.67  winrate= 33.3%  EV=+0.181R
+    2022-07  n= 11  conf_moy=3.18  winrate= 36.4%  EV=+0.708R
+    2022-08  n= 12  conf_moy=3.08  winrate= 58.3%  EV=+4.754R
+    2022-09  n= 11  conf_moy=3.55  winrate= 63.6%  EV=+3.628R
+    2022-10  n=  9  conf_moy=3.11  winrate= 55.6%  EV=+1.552R
+    2022-11  n=  4  conf_moy=2.75  winrate= 25.0%  EV=+0.087R
+    2022-12  n=  8  conf_moy=3.25  winrate= 75.0%  EV=+1.925R
+    2023-01  n= 10  conf_moy=3.10  winrate= 40.0%  EV=+0.986R
+    2023-02  n=  8  conf_moy=3.88  winrate= 12.5%  EV=-0.264R
+    2023-03  n= 22  conf_moy=3.05  winrate= 50.0%  EV=+1.364R
+    2023-04  n= 14  conf_moy=3.86  winrate= 14.3%  EV=-0.073R
+    2023-05  n= 14  conf_moy=3.86  winrate= 35.7%  EV=+0.671R
+    2023-06  n=  8  conf_moy=3.50  winrate= 75.0%  EV=+2.121R
+    2023-07  n=  6  conf_moy=4.00  winrate= 16.7%  EV=+0.348R
+    2023-08  n=  9  conf_moy=3.67  winrate= 55.6%  EV=+2.250R
+    2023-09  n=  5  conf_moy=4.00  winrate= 60.0%  EV=+2.306R
+    2023-10  n= 19  conf_moy=3.21  winrate= 21.1%  EV=+0.041R
+    2023-11  n=  6  conf_moy=3.00  winrate= 66.7%  EV=+2.926R
+    2023-12  n=  2  conf_moy=2.50  winrate=100.0%  EV=+5.157R
+
+==========================================================================================
+ETAPE 4 -- mois de desaccord eleve vs fenetres macro connues
+==========================================================================================
+  0 mois identifies en desaccord eleve (n>=3, conf_moy < 2.43) :
+
+==========================================================================================
+ETAPE 5 -- winrate/EV des mois de desaccord eleve vs reste bloc1+bloc2
+==========================================================================================
+  Aucun mois de desaccord eleve identifie (seuil 1 std) -- pas de comparaison mensuelle possible.
+
+  Complement (niveau trade, pas mensuel) : confluence_n<=1/4 vs >=2/4, bloc1+bloc2
+    confluence_n<=1/4                   n=  14 wins=   2 winrate= 14.29% EV=-0.2914R se=0.5363
+    confluence_n>=2/4                   n= 203 wins=  98 winrate= 48.28% EV=+1.7044R se=0.2453
+    Welch t-test EV <=1/4 vs >=2/4 : t=-3.384 p=0.0031

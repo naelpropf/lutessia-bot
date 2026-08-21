@@ -1,0 +1,58 @@
+==========================================================================================
+LEVIER : S2_35  (n_sims=600, ceilings=[1000.0, 3000.0])
+==========================================================================================
+Population étendue (rr_tp1 >= 1.35, forex+indices mappés, terminaux) : 742 trades
+Chargement/complément des bougies H1 pour 17 tickers...
+  AUDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  AUDUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  CHFJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  EURCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURGBP=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  GBPCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  GBPJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  GBPUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  NZDUSD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCAD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  ^GDAXI : backfill MT5 utilise (20327 bougies, depuis 2022-01-02 21:00:00)
+  ^GSPC : backfill MT5 utilise (21018 bougies, depuis 2022-01-02 21:00:00)
+  ^NDX : backfill MT5 utilise (21019 bougies, depuis 2022-01-02 21:00:00)
+Durées réelles vérifiées (bougies H1) : 742/742 (100.0%) — durée médiane de repli : 0 days 09:39:35
+  AUDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  AUDUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  CHFJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  EURCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURGBP=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  GBPCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  GBPJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  GBPUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  NZDUSD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCAD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  ^GDAXI : backfill MT5 utilise (20327 bougies, depuis 2022-01-02 21:00:00)
+  ^GSPC : backfill MT5 utilise (21018 bougies, depuis 2022-01-02 21:00:00)
+  ^NDX : backfill MT5 utilise (21019 bougies, depuis 2022-01-02 21:00:00)
+[verif] population (RR>=1.35, corrigee aujourd'hui) : 742 trades, 2022-01-31 17:18:35 -> 2026-07-30 03:16:26
+[FULL c=1000 c=1000$] profit_moy=+16,522,222$ solde_neg=0.33% hit_ceiling=0.33% annee1<0=0.67% n=600 (786s)
+[FULL_moins_S2_35 c=1000 c=1000$] profit_moy=+20,848,237$ solde_neg=0.00% hit_ceiling=0.83% annee1<0=0.33% n=600 (763s)
+  -> apport du levier S2_35 a 1000$ : delta profit = -20.75% (FULL vs FULL-moins-S2_35), delta solde_neg = +0.33pts, delta annee1<0 = +0.33pts
+[FULL c=3000 c=3000$] profit_moy=+17,013,250$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=0.00% n=600 (649s)
+[FULL_moins_S2_35 c=3000 c=3000$] profit_moy=+21,418,704$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=0.17% n=600 (645s)
+  -> apport du levier S2_35 a 3000$ : delta profit = -20.57% (FULL vs FULL-moins-S2_35), delta solde_neg = +0.00pts, delta annee1<0 = -0.17pts
+
+==========================================================================================
+STRESS-TEST S2_35 -- sous-population bloc1+bloc2 SEULE (100% exposee au bug, < 2023-12-17)
+==========================================================================================
+[verif] sous-population bloc1+bloc2 : 280 trades
+[BLOC12_FULL c=1000 c=1000$] profit_moy=+6,573,319$ solde_neg=0.17% hit_ceiling=0.33% annee1<0=0.33% n=600 (219s)
+[BLOC12_moins_S2_35 c=1000 c=1000$] profit_moy=+9,003,475$ solde_neg=1.17% hit_ceiling=1.83% annee1<0=1.17% n=600 (203s)
+  -> [bloc1+2 seul] apport du levier S2_35 a 1000$ : delta profit = -26.99%, delta solde_neg = -1.00pts, delta annee1<0 = -0.83pts
+[BLOC12_FULL c=3000 c=3000$] profit_moy=+6,995,034$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=0.00% n=600 (194s)
+[BLOC12_moins_S2_35 c=3000 c=3000$] profit_moy=+9,601,125$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=0.00% n=600 (131s)
+  -> [bloc1+2 seul] apport du levier S2_35 a 3000$ : delta profit = -27.14%, delta solde_neg = +0.00pts, delta annee1<0 = +0.00pts

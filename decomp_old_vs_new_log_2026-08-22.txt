@@ -1,0 +1,7 @@
+=== A OLD (pre-fix) ===
+[bloc1 c=3000$] profit_moy=-19,092$ solde_neg_an4=90.00% n=80 EV=+0.2678R (3s)
+[bloc2 c=3000$] profit_moy=+69,502$ solde_neg_an4=53.00% n=200 EV=+0.0003R (15s)
+
+=== B OLD (pre-fix) ===
+[bloc1 c=3000$] profit_moy=+172,809$ solde_neg_an4=35.00% n=230 EV=+0.3661R (22s)
+[bloc2 c=3000$] profit_moy=+179,957$ solde_neg_an4=38.00% n=311 EV=+0.0102R (31s)

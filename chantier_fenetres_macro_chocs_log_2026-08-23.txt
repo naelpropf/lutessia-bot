@@ -1,0 +1,195 @@
+Population étendue (rr_tp1 >= 1.35, forex+indices mappés, terminaux) : 742 trades
+Chargement/complément des bougies H1 pour 17 tickers...
+  AUDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  AUDUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  CHFJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  EURCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURGBP=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  GBPCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  GBPJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  GBPUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  NZDUSD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCAD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  ^GDAXI : backfill MT5 utilise (20327 bougies, depuis 2022-01-02 21:00:00)
+  ^GSPC : backfill MT5 utilise (21018 bougies, depuis 2022-01-02 21:00:00)
+  ^NDX : backfill MT5 utilise (21019 bougies, depuis 2022-01-02 21:00:00)
+Durées réelles vérifiées (bougies H1) : 742/742 (100.0%) — durée médiane de repli : 0 days 09:39:35
+  AUDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  AUDUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  CHFJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  EURCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURGBP=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  GBPCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  GBPJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  GBPUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  NZDUSD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCAD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  ^GDAXI : backfill MT5 utilise (20327 bougies, depuis 2022-01-02 21:00:00)
+  ^GSPC : backfill MT5 utilise (21018 bougies, depuis 2022-01-02 21:00:00)
+  ^NDX : backfill MT5 utilise (21019 bougies, depuis 2022-01-02 21:00:00)
+Bloc edges (communs A/B) : [Timestamp('2021-04-23 12:43:32'), Timestamp('2022-08-20 17:22:34.250000'), Timestamp('2023-12-17 22:01:36.500000'), Timestamp('2025-04-15 02:40:38.750000'), Timestamp('2026-08-12 07:19:41')]
+
+###############################################################################################
+# Population A (0.15x trailing) (n=742, 2022-01-31 17:18:35 -> 2026-07-30 03:16:26)
+###############################################################################################
+  bloc1 ENTIER (reference)                 n=  80 wins=  34 winrate= 42.50% EV=+2.4532R se=0.5923
+  bloc2 ENTIER (reference)                 n= 200 wins=  68 winrate= 34.00% EV=+1.5843R se=0.2965
+
+  fenetre 1_SVB [2023-03-08->2023-03-24]   n=  11 wins=   5 winrate= 45.45% EV=+2.4054R se=1.3766
+    vs bloc2 ENTIER (reference) : EV=+1.5843R (delta +0.8211R)
+    statuts : {'INVALIDÉE': 6, 'OBJECTIF ATTEINT': 5}
+    duree de detention (h) : median=4.3 p25=2.5 p75=35.5
+    parmi OBJECTIF ATTEINT (n=5) : 5 ont couru nettement au-dela de TP1 (r_trailing > 1.5x rr_tp1), 0 coupes pres de TP1 (r_trailing <= 1.1x rr_tp1)
+      date_creation                              ticker   rr_tp1  r_trailing
+2023-03-16 16:39:10                             GBP/CHF 2.692308   12.434615
+2023-03-22 13:33:27                             EUR/USD 1.769231    3.021795
+2023-03-22 17:36:21                             EUR/GBP 2.461538    3.919231
+2023-03-23 00:30:53                             GBP/USD 1.708333    5.708333
+2023-03-23 05:53:10 NASDAQ100 - MINI NASDAQ100 FULL0926 1.426990    7.375813
+
+  fenetre 2_debt_ceiling_fitch [2023-05-15->2023-08-15] n=  36 wins=  17 winrate= 47.22% EV=+2.1950R se=0.6687
+    vs bloc2 ENTIER (reference) : EV=+1.5843R (delta +0.6106R)
+    statuts : {'INVALIDÉE': 19, 'OBJECTIF ATTEINT': 17}
+    duree de detention (h) : median=8.5 p25=3.2 p75=17.7
+    parmi OBJECTIF ATTEINT (n=17) : 15 ont couru nettement au-dela de TP1 (r_trailing > 1.5x rr_tp1), 0 coupes pres de TP1 (r_trailing <= 1.1x rr_tp1)
+      date_creation          ticker   rr_tp1  r_trailing
+2023-05-15 18:35:23 NASDAQ100 INDEX 1.734887    2.859350
+2023-05-16 20:30:13         USD/JPY 1.507463    2.891791
+2023-05-24 12:32:26         USD/CAD 1.388889    5.066667
+2023-05-24 20:50:33         EUR/JPY 1.629032    9.308065
+2023-06-07 10:32:28         USD/CAD 1.541667    4.495833
+2023-06-08 17:35:01         EUR/GBP 1.818182    8.495455
+2023-06-15 12:33:15         EUR/USD 1.365854    3.425610
+2023-06-16 05:30:02         USD/JPY 2.400000    3.667143
+2023-06-16 11:32:35         GBP/JPY 1.566038   14.599057
+2023-06-27 02:30:02         EUR/JPY 1.381579    5.398684
+2023-07-10 09:58:52         USD/CHF 2.407407    4.661111
+2023-07-10 12:33:04         EUR/JPY 1.538462    5.367949
+2023-07-11 00:30:09         GBP/USD 2.000000    6.955556
+2023-07-20 05:29:55         GBP/JPY 1.777778    6.038889
+2023-08-10 00:30:02         USD/JPY 2.487805    8.632927
+
+  fenetre 3_ukraine_oil_shock [2022-02-24->2022-04-15] n=  22 wins=  14 winrate= 63.64% EV=+4.9677R se=1.5703
+    vs bloc1 ENTIER (reference) : EV=+2.4532R (delta +2.5145R)
+    statuts : {'OBJECTIF ATTEINT': 14, 'INVALIDÉE': 8}
+    duree de detention (h) : median=21.9 p25=14.3 p75=53.6
+    parmi OBJECTIF ATTEINT (n=14) : 13 ont couru nettement au-dela de TP1 (r_trailing > 1.5x rr_tp1), 1 coupes pres de TP1 (r_trailing <= 1.1x rr_tp1)
+      date_creation                        ticker   rr_tp1  r_trailing
+2022-03-07 17:46:23 S&P500 - MINI S&P500 FULL0926 1.372705    2.878955
+2022-03-10 22:40:21                       USD/JPY 2.900000   10.215000
+2022-03-14 06:40:30                       EUR/JPY 2.000000   12.120000
+2022-03-18 03:40:01                       CHF/JPY 2.125000    4.296875
+2022-03-18 16:48:11                       USD/CHF 2.153846    7.803846
+2022-03-21 19:46:11                       AUD/JPY 2.290909    4.522727
+2022-03-23 23:31:03                       CHF/JPY 2.153846   14.576923
+2022-03-25 14:52:23                       GBP/JPY 1.491228   30.450000
+2022-03-25 18:36:56                       AUD/JPY 1.872093    5.750000
+2022-04-06 04:40:05                       GBP/CHF 2.173913    7.067391
+2022-04-08 02:40:13                       NZD/USD 2.166667    3.822222
+2022-04-10 21:40:04                       EUR/JPY 1.551724    4.025862
+2022-04-11 13:41:49                       USD/CAD 1.476190    7.497619
+
+  fenetre 4_israel_hamas [2023-10-07->2023-11-15] n=  16 wins=   7 winrate= 43.75% EV=+1.5868R se=0.8112
+    vs bloc2 ENTIER (reference) : EV=+1.5843R (delta +0.0025R)
+    statuts : {'INVALIDÉE': 9, 'OBJECTIF ATTEINT': 7}
+    duree de detention (h) : median=12.6 p25=5.1 p75=84.2
+    parmi OBJECTIF ATTEINT (n=7) : 6 ont couru nettement au-dela de TP1 (r_trailing > 1.5x rr_tp1), 1 coupes pres de TP1 (r_trailing <= 1.1x rr_tp1)
+      date_creation           ticker   rr_tp1  r_trailing
+2023-11-08 16:56:21          CHF/JPY 1.375887    4.946454
+2023-11-10 21:25:40          EUR/CHF 1.400000    3.940000
+2023-11-13 20:30:58          EUR/JPY 1.914894    4.962766
+2023-11-13 21:26:04          CHF/JPY 2.166667    5.391667
+2023-11-14 03:25:15          EUR/CHF 1.473684    6.981579
+2023-11-14 08:26:54 DAX40 PERF INDEX 1.973023    6.675623
+
+###############################################################################################
+# Population B_tradable_pgp (n=1248, 0.10x trailing) (n=1248, 2021-04-23 12:43:32 -> 2026-08-12 07:19:41)
+###############################################################################################
+  bloc1 ENTIER (reference)                 n= 230 wins= 121 winrate= 52.61% EV=+3.2150R se=0.3564
+  bloc2 ENTIER (reference)                 n= 311 wins= 131 winrate= 42.12% EV=+1.9766R se=0.2616
+
+  fenetre 1_SVB [2023-03-08->2023-03-24]   n=  17 wins=   6 winrate= 35.29% EV=+0.9635R se=0.7407
+    vs bloc2 ENTIER (reference) : EV=+1.9766R (delta -1.0131R)
+    statuts : {'INVALIDÉE': 11, 'OBJECTIF ATTEINT': 6}
+    duree de detention (h) : median=8.5 p25=8.5 p75=20.7
+    parmi OBJECTIF ATTEINT (n=6) : 5 ont couru nettement au-dela de TP1 (r_trailing > 1.5x rr_tp1), 0 coupes pres de TP1 (r_trailing <= 1.1x rr_tp1)
+      date_creation                              ticker   rr_tp1  r_trailing
+2023-03-09 19:36:38       S&P500 - MINI S&P500 FULL0926 1.284585    5.797628
+2023-03-13 14:38:51                             AUD/USD 1.090909    1.706061
+2023-03-19 23:30:33                             EUR/CHF 1.000000    4.925000
+2023-03-21 20:31:10                             GBP/JPY 1.086957    5.973913
+2023-03-23 05:53:10 NASDAQ100 - MINI NASDAQ100 FULL0926 1.426990    7.425813
+
+  fenetre 2_debt_ceiling_fitch [2023-05-15->2023-08-15] n=  40 wins=  18 winrate= 45.00% EV=+1.9330R se=0.6527
+    vs bloc2 ENTIER (reference) : EV=+1.9766R (delta -0.0436R)
+    statuts : {'INVALIDÉE': 22, 'OBJECTIF ATTEINT': 18}
+    duree de detention (h) : median=8.5 p25=8.5 p75=8.6
+    parmi OBJECTIF ATTEINT (n=18) : 17 ont couru nettement au-dela de TP1 (r_trailing > 1.5x rr_tp1), 0 coupes pres de TP1 (r_trailing <= 1.1x rr_tp1)
+      date_creation                        ticker   rr_tp1  r_trailing
+2023-05-15 18:35:23               NASDAQ100 INDEX 1.734887    2.909350
+2023-05-18 15:38:03                       AUD/JPY 1.041667    6.141667
+2023-05-24 15:38:23                  SILVER - USD 1.444444   11.611111
+2023-05-26 15:09:22 S&P500 - MINI S&P500 FULL0926 1.324389    3.072171
+2023-05-31 14:37:38                  SILVER - AUD 1.208333    6.412500
+2023-06-15 07:32:11                       AUD/USD 1.166667    2.779167
+2023-06-16 05:29:45                     PALLADIUM 1.007326    2.439377
+2023-06-21 13:32:21                       EUR/GBP 1.350000    4.840000
+2023-06-23 02:30:18                       GBP/USD 1.000000    3.779167
+2023-06-28 04:29:29                       AUD/USD 1.314286    2.131429
+2023-06-29 15:38:38                       USD/CHF 1.187500    1.962500
+2023-07-11 04:29:59                  SILVER - AUD 1.111111   10.177778
+2023-07-11 20:29:50                       AUD/USD 1.266667    7.086667
+2023-07-12 05:29:49                      PLATINUM 1.936000   16.240000
+2023-08-01 16:35:45                       EUR/CHF 1.000000    5.570000
+2023-08-10 00:29:52                       AUD/JPY 1.062500    5.437500
+2023-08-11 08:32:59                       GBP/JPY 1.081633    3.251020
+
+  fenetre 3_ukraine_oil_shock [2022-02-24->2022-04-15] n=  33 wins=  21 winrate= 63.64% EV=+4.1233R se=0.9255
+    vs bloc1 ENTIER (reference) : EV=+3.2150R (delta +0.9083R)
+    statuts : {'OBJECTIF ATTEINT': 21, 'INVALIDÉE': 12}
+    duree de detention (h) : median=8.6 p25=8.5 p75=8.6
+    parmi OBJECTIF ATTEINT (n=21) : 20 ont couru nettement au-dela de TP1 (r_trailing > 1.5x rr_tp1), 1 coupes pres de TP1 (r_trailing <= 1.1x rr_tp1)
+      date_creation                              ticker   rr_tp1  r_trailing
+2022-02-24 00:39:15                          GOLD - EUR 1.569298    4.688659
+2022-02-28 12:42:18 NASDAQ100 - MINI NASDAQ100 FULL0926 1.044060    4.249961
+2022-03-01 14:19:56                          GOLD - USD 1.390394    2.816042
+2022-03-04 01:39:51                        SILVER - EUR 1.769231    8.188731
+2022-03-07 17:46:23       S&P500 - MINI S&P500 FULL0926 1.372705    2.928955
+2022-03-08 12:42:09                            PLATINUM 1.330435   10.158261
+2022-03-08 12:42:12                          GOLD - AUD 2.717151   10.659278
+2022-03-11 11:33:32                             USD/CHF 1.000000    1.727500
+2022-03-14 09:33:26                          GOLD - USD 2.007463    8.410448
+2022-03-15 15:48:06                      DAX40 FULL0926 1.070707    3.861010
+2022-03-21 23:41:35                             EUR/JPY 1.135593    3.505085
+2022-03-24 00:30:31                          GOLD - EUR 1.711281   14.531733
+2022-03-24 12:33:24                             USD/JPY 1.346154   15.615385
+2022-03-27 22:32:17                             USD/JPY 1.088235    2.313725
+2022-04-08 17:36:36                        SILVER - AUD 2.142857    9.928172
+2022-04-08 17:36:49                        SILVER - USD 1.071429    4.614286
+2022-04-11 07:42:09                        SILVER - USD 1.200000    7.690000
+2022-04-12 03:40:15                          GOLD - USD 1.328235   10.518824
+2022-04-12 05:40:07                          GOLD - GBP 1.747899    5.392439
+2022-04-14 22:40:09                        SILVER - AUD 2.555556   15.235269
+
+  fenetre 4_israel_hamas [2023-10-07->2023-11-15] n=  26 wins=   9 winrate= 34.62% EV=+0.9467R se=0.6147
+    vs bloc2 ENTIER (reference) : EV=+1.9766R (delta -1.0299R)
+    statuts : {'INVALIDÉE': 17, 'OBJECTIF ATTEINT': 9}
+    duree de detention (h) : median=8.5 p25=8.5 p75=20.7
+    parmi OBJECTIF ATTEINT (n=9) : 8 ont couru nettement au-dela de TP1 (r_trailing > 1.5x rr_tp1), 1 coupes pres de TP1 (r_trailing <= 1.1x rr_tp1)
+      date_creation           ticker   rr_tp1  r_trailing
+2023-10-12 14:57:14          USD/CAD 1.350000    3.558333
+2023-10-17 22:40:45       GOLD - GBP 1.244214    3.745172
+2023-10-18 08:27:01       GOLD - AUD 1.775782    4.818308
+2023-10-18 22:25:56          EUR/GBP 1.300000    5.770000
+2023-10-20 07:26:36     SILVER - AUD 1.272727   10.400000
+2023-11-09 22:24:29          EUR/GBP 1.181818    2.695455
+2023-11-13 19:31:36  NASDAQ100 INDEX 1.237081    2.408885
+2023-11-14 08:26:54 DAX40 PERF INDEX 1.973023    6.725623

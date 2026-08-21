@@ -1,0 +1,140 @@
+Population étendue (rr_tp1 >= 1.35, forex+indices mappés, terminaux) : 742 trades
+Chargement/complément des bougies H1 pour 17 tickers...
+  AUDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  AUDUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  CHFJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  EURCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURGBP=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  GBPCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  GBPJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  GBPUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  NZDUSD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCAD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  ^GDAXI : backfill MT5 utilise (20327 bougies, depuis 2022-01-02 21:00:00)
+  ^GSPC : backfill MT5 utilise (21018 bougies, depuis 2022-01-02 21:00:00)
+  ^NDX : backfill MT5 utilise (21019 bougies, depuis 2022-01-02 21:00:00)
+Durées réelles vérifiées (bougies H1) : 742/742 (100.0%) — durée médiane de repli : 0 days 09:39:35
+  AUDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  AUDUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  CHFJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  EURCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURGBP=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  GBPCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  GBPJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  GBPUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  NZDUSD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCAD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  ^GDAXI : backfill MT5 utilise (20327 bougies, depuis 2022-01-02 21:00:00)
+  ^GSPC : backfill MT5 utilise (21018 bougies, depuis 2022-01-02 21:00:00)
+  ^NDX : backfill MT5 utilise (21019 bougies, depuis 2022-01-02 21:00:00)
+Bloc edges (communs A/B, deja etablis cette session) : [Timestamp('2021-04-23 12:43:32'), Timestamp('2022-08-20 17:22:34.250000'), Timestamp('2023-12-17 22:01:36.500000'), Timestamp('2025-04-15 02:40:38.750000'), Timestamp('2026-08-12 07:19:41')]
+
+===============================================================================================
+POPULATION B_tradable_pgp (n=1248, 2021-04-23 12:43:32 -> 2026-08-12 07:19:41)
+===============================================================================================
+
+  -- B_tradable_pgp GLOBAL (n=1248) --
+    t-test 1 echantillon H0:EV=0 vs H1:EV>0 : t=18.877, p(unilateral)=0.000000, SIGNIFICATIF (p<0.05)
+    raw        point=+2.2797R  CI95%[block-bootstrap, 33 blocs, 5000 iter]=[+1.9940, +2.5859]  EXCLUT 0 (signif.)
+    winsor5    point=+2.0802R  CI95%[block-bootstrap, 33 blocs, 5000 iter]=[+1.8118, +2.3540]  EXCLUT 0 (signif.)
+    winsor10   point=+1.9108R  CI95%[block-bootstrap, 33 blocs, 5000 iter]=[+1.6478, +2.1816]  EXCLUT 0 (signif.)
+    trim5      point=+1.8034R  CI95%[block-bootstrap, 33 blocs, 5000 iter]=[+1.5446, +2.0754]  EXCLUT 0 (signif.)
+    trim10     point=+1.5446R  CI95%[block-bootstrap, 33 blocs, 5000 iter]=[+1.2873, +1.8122]  EXCLUT 0 (signif.)
+
+  -- B_tradable_pgp bloc1 (n=230) --
+    t-test 1 echantillon H0:EV=0 vs H1:EV>0 : t=9.022, p(unilateral)=0.000000, SIGNIFICATIF (p<0.05)
+    raw        point=+3.2150R  CI95%[block-bootstrap, 9 blocs, 5000 iter]=[+2.4135, +4.1855]  EXCLUT 0 (signif.)
+    winsor5    point=+2.9210R  CI95%[block-bootstrap, 9 blocs, 5000 iter]=[+2.1433, +3.8357]  EXCLUT 0 (signif.)
+    winsor10   point=+2.7050R  CI95%[block-bootstrap, 9 blocs, 5000 iter]=[+1.9919, +3.5480]  EXCLUT 0 (signif.)
+    trim5      point=+2.6029R  CI95%[block-bootstrap, 9 blocs, 5000 iter]=[+1.8516, +3.4948]  EXCLUT 0 (signif.)
+    trim10     point=+2.2767R  CI95%[block-bootstrap, 9 blocs, 5000 iter]=[+1.5587, +3.2027]  EXCLUT 0 (signif.)
+
+  -- B_tradable_pgp bloc2 (n=311) --
+    t-test 1 echantillon H0:EV=0 vs H1:EV>0 : t=7.557, p(unilateral)=0.000000, SIGNIFICATIF (p<0.05)
+    raw        point=+1.9766R  CI95%[block-bootstrap, 8 blocs, 5000 iter]=[+1.2709, +2.7068]  EXCLUT 0 (signif.)
+    winsor5    point=+1.6884R  CI95%[block-bootstrap, 8 blocs, 5000 iter]=[+1.0715, +2.3732]  EXCLUT 0 (signif.)
+    winsor10   point=+1.4897R  CI95%[block-bootstrap, 8 blocs, 5000 iter]=[+0.9532, +2.0873]  EXCLUT 0 (signif.)
+    trim5      point=+1.3787R  CI95%[block-bootstrap, 8 blocs, 5000 iter]=[+0.8117, +1.9620]  EXCLUT 0 (signif.)
+    trim10     point=+1.0607R  CI95%[block-bootstrap, 8 blocs, 5000 iter]=[+0.5148, +1.6086]  EXCLUT 0 (signif.)
+
+  -- B_tradable_pgp bloc3 (n=314) --
+    t-test 1 echantillon H0:EV=0 vs H1:EV>0 : t=10.463, p(unilateral)=0.000000, SIGNIFICATIF (p<0.05)
+    raw        point=+2.0349R  CI95%[block-bootstrap, 9 blocs, 5000 iter]=[+1.7498, +2.4178]  EXCLUT 0 (signif.)
+    winsor5    point=+1.9277R  CI95%[block-bootstrap, 9 blocs, 5000 iter]=[+1.6212, +2.3334]  EXCLUT 0 (signif.)
+    winsor10   point=+1.7742R  CI95%[block-bootstrap, 9 blocs, 5000 iter]=[+1.4790, +2.1705]  EXCLUT 0 (signif.)
+    trim5      point=+1.7400R  CI95%[block-bootstrap, 9 blocs, 5000 iter]=[+1.4172, +2.1547]  EXCLUT 0 (signif.)
+    trim10     point=+1.5445R  CI95%[block-bootstrap, 9 blocs, 5000 iter]=[+1.2095, +1.9901]  EXCLUT 0 (signif.)
+
+  -- B_tradable_pgp bloc4 (n=392) --
+    t-test 1 echantillon H0:EV=0 vs H1:EV>0 : t=11.504, p(unilateral)=0.000000, SIGNIFICATIF (p<0.05)
+    raw        point=+2.1674R  CI95%[block-bootstrap, 9 blocs, 5000 iter]=[+1.7499, +2.5093]  EXCLUT 0 (signif.)
+    winsor5    point=+2.0393R  CI95%[block-bootstrap, 9 blocs, 5000 iter]=[+1.6175, +2.4087]  EXCLUT 0 (signif.)
+    winsor10   point=+1.8705R  CI95%[block-bootstrap, 9 blocs, 5000 iter]=[+1.4740, +2.2497]  EXCLUT 0 (signif.)
+    trim5      point=+1.8062R  CI95%[block-bootstrap, 9 blocs, 5000 iter]=[+1.3793, +2.1626]  EXCLUT 0 (signif.)
+    trim10     point=+1.5738R  CI95%[block-bootstrap, 9 blocs, 5000 iter]=[+1.1238, +1.9536]  EXCLUT 0 (signif.)
+
+===============================================================================================
+POPULATION A_seule (n=742, 2022-01-31 17:18:35 -> 2026-07-30 03:16:26)
+===============================================================================================
+
+  -- A_seule GLOBAL (n=742) --
+    t-test 1 echantillon H0:EV=0 vs H1:EV>0 : t=12.118, p(unilateral)=0.000000, SIGNIFICATIF (p<0.05)
+    raw        point=+1.7844R  CI95%[block-bootstrap, 28 blocs, 5000 iter]=[+1.4848, +2.0851]  EXCLUT 0 (signif.)
+    winsor5    point=+1.6466R  CI95%[block-bootstrap, 28 blocs, 5000 iter]=[+1.3604, +1.9381]  EXCLUT 0 (signif.)
+    winsor10   point=+1.4969R  CI95%[block-bootstrap, 28 blocs, 5000 iter]=[+1.2048, +1.7888]  EXCLUT 0 (signif.)
+    trim5      point=+1.3544R  CI95%[block-bootstrap, 28 blocs, 5000 iter]=[+1.0572, +1.6664]  EXCLUT 0 (signif.)
+    trim10     point=+1.0604R  CI95%[block-bootstrap, 28 blocs, 5000 iter]=[+0.7434, +1.3933]  EXCLUT 0 (signif.)
+
+  -- A_seule bloc1 (n=80) --
+    t-test 1 echantillon H0:EV=0 vs H1:EV>0 : t=4.141, p(unilateral)=0.000043, SIGNIFICATIF (p<0.05)
+    raw        point=+2.4532R  CI95%[block-bootstrap, 4 blocs, 5000 iter]=[+1.5522, +3.0764]  EXCLUT 0 (signif.)
+    winsor5    point=+2.1173R  CI95%[block-bootstrap, 4 blocs, 5000 iter]=[+1.4827, +2.6355]  EXCLUT 0 (signif.)
+    winsor10   point=+2.0141R  CI95%[block-bootstrap, 4 blocs, 5000 iter]=[+1.4671, +2.4909]  EXCLUT 0 (signif.)
+    trim5      point=+1.8153R  CI95%[block-bootstrap, 4 blocs, 5000 iter]=[+1.1911, +2.2847]  EXCLUT 0 (signif.)
+    trim10     point=+1.4551R  CI95%[block-bootstrap, 4 blocs, 5000 iter]=[+0.6492, +2.0631]  EXCLUT 0 (signif.)
+
+  -- A_seule bloc2 (n=200) --
+    t-test 1 echantillon H0:EV=0 vs H1:EV>0 : t=5.344, p(unilateral)=0.000000, SIGNIFICATIF (p<0.05)
+    raw        point=+1.5843R  CI95%[block-bootstrap, 8 blocs, 5000 iter]=[+0.8417, +2.3267]  EXCLUT 0 (signif.)
+    winsor5    point=+1.4213R  CI95%[block-bootstrap, 8 blocs, 5000 iter]=[+0.7044, +2.1341]  EXCLUT 0 (signif.)
+    winsor10   point=+1.2142R  CI95%[block-bootstrap, 8 blocs, 5000 iter]=[+0.4975, +1.9812]  EXCLUT 0 (signif.)
+    trim5      point=+1.0697R  CI95%[block-bootstrap, 8 blocs, 5000 iter]=[+0.3373, +1.8581]  EXCLUT 0 (signif.)
+    trim10     point=+0.7208R  CI95%[block-bootstrap, 8 blocs, 5000 iter]=[-0.0561, +1.5585]  inclut 0 (non signif.)
+
+  -- A_seule bloc3 (n=205) --
+    t-test 1 echantillon H0:EV=0 vs H1:EV>0 : t=6.826, p(unilateral)=0.000000, SIGNIFICATIF (p<0.05)
+    raw        point=+1.8263R  CI95%[block-bootstrap, 9 blocs, 5000 iter]=[+1.0583, +2.4167]  EXCLUT 0 (signif.)
+    winsor5    point=+1.7499R  CI95%[block-bootstrap, 9 blocs, 5000 iter]=[+0.9619, +2.3613]  EXCLUT 0 (signif.)
+    winsor10   point=+1.6406R  CI95%[block-bootstrap, 9 blocs, 5000 iter]=[+0.7855, +2.2301]  EXCLUT 0 (signif.)
+    trim5      point=+1.4759R  CI95%[block-bootstrap, 9 blocs, 5000 iter]=[+0.6930, +2.1189]  EXCLUT 0 (signif.)
+    trim10     point=+1.1969R  CI95%[block-bootstrap, 9 blocs, 5000 iter]=[+0.3805, +1.8642]  EXCLUT 0 (signif.)
+
+  -- A_seule bloc4 (n=257) --
+    t-test 1 echantillon H0:EV=0 vs H1:EV>0 : t=7.741, p(unilateral)=0.000000, SIGNIFICATIF (p<0.05)
+    raw        point=+1.6984R  CI95%[block-bootstrap, 8 blocs, 5000 iter]=[+1.3895, +2.0231]  EXCLUT 0 (signif.)
+    winsor5    point=+1.6025R  CI95%[block-bootstrap, 8 blocs, 5000 iter]=[+1.2750, +1.9585]  EXCLUT 0 (signif.)
+    winsor10   point=+1.4779R  CI95%[block-bootstrap, 8 blocs, 5000 iter]=[+1.1664, +1.8488]  EXCLUT 0 (signif.)
+    trim5      point=+1.3841R  CI95%[block-bootstrap, 8 blocs, 5000 iter]=[+1.0478, +1.7468]  EXCLUT 0 (signif.)
+    trim10     point=+1.1478R  CI95%[block-bootstrap, 8 blocs, 5000 iter]=[+0.7983, +1.5429]  EXCLUT 0 (signif.)
+
+===============================================================================================
+SYNTHESE
+===============================================================================================
+  B_tradable_pgp GLOBAL  n=1248 EV_brut=+2.280R p(t-test)=0.00000 | CI_brut_excl0=OUI CI_winsor10_excl0=OUI CI_trim10_excl0=OUI
+  B_tradable_pgp bloc1   n= 230 EV_brut=+3.215R p(t-test)=0.00000 | CI_brut_excl0=OUI CI_winsor10_excl0=OUI CI_trim10_excl0=OUI
+  B_tradable_pgp bloc2   n= 311 EV_brut=+1.977R p(t-test)=0.00000 | CI_brut_excl0=OUI CI_winsor10_excl0=OUI CI_trim10_excl0=OUI
+  B_tradable_pgp bloc3   n= 314 EV_brut=+2.035R p(t-test)=0.00000 | CI_brut_excl0=OUI CI_winsor10_excl0=OUI CI_trim10_excl0=OUI
+  B_tradable_pgp bloc4   n= 392 EV_brut=+2.167R p(t-test)=0.00000 | CI_brut_excl0=OUI CI_winsor10_excl0=OUI CI_trim10_excl0=OUI
+  A_seule GLOBAL         n= 742 EV_brut=+1.784R p(t-test)=0.00000 | CI_brut_excl0=OUI CI_winsor10_excl0=OUI CI_trim10_excl0=OUI
+  A_seule bloc1          n=  80 EV_brut=+2.453R p(t-test)=0.00004 | CI_brut_excl0=OUI CI_winsor10_excl0=OUI CI_trim10_excl0=OUI
+  A_seule bloc2          n= 200 EV_brut=+1.584R p(t-test)=0.00000 | CI_brut_excl0=OUI CI_winsor10_excl0=OUI CI_trim10_excl0=non
+  A_seule bloc3          n= 205 EV_brut=+1.826R p(t-test)=0.00000 | CI_brut_excl0=OUI CI_winsor10_excl0=OUI CI_trim10_excl0=OUI
+  A_seule bloc4          n= 257 EV_brut=+1.698R p(t-test)=0.00000 | CI_brut_excl0=OUI CI_winsor10_excl0=OUI CI_trim10_excl0=OUI

@@ -1,0 +1,14 @@
+Trades PALLADIUM gagnants avec vraies bougies H1 natives (>=2023-02-01) : 40
+
+n=40
+EV H1 (reference)      : +7.2123R
+EV H4 synthetique      : +7.3842R
+Delta moyen (H4-H1)    : +0.1719R
+Delta median (H4-H1)   : +0.0000R
+Delta abs moyen        : 0.2953R
+% trades ou H4 < H1    : 2.5%
+% trades ou H4 > H1    : 25.0%
+% trades identiques    : 72.5%
+
+Repartition case_h1 : {'tp1_avant_tp2': 36, 'meme_bougie': 4}
+Repartition case_h4 : {'tp1_avant_tp2': 36, 'meme_bougie': 4}

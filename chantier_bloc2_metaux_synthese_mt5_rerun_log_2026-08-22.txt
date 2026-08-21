@@ -1,0 +1,47 @@
+===============================================================================================
+ETAPE A -- validation synthese MT5 sur fenetre de recouvrement (reel vs synthetique)
+===============================================================================================
+  GOLD-GBP (XAUGBP.pi) : n_recouvrement=13625 ecart_moyen=+0.008% ecart_abs_moyen=0.015% ecart_median=+0.005% max_abs=1.848%
+  GOLD-EUR (XAUEUR.pi) : n_recouvrement=13632 ecart_moyen=+0.005% ecart_abs_moyen=0.012% ecart_median=+0.003% max_abs=1.697%
+  GOLD-AUD (XAUAUD.pi) : n_recouvrement=13632 ecart_moyen=+0.008% ecart_abs_moyen=0.019% ecart_median=+0.004% max_abs=2.129%
+  SILVER-AUD (XAGAUD.pi) : n_recouvrement=13623 ecart_moyen=+0.008% ecart_abs_moyen=0.031% ecart_median=+0.001% max_abs=3.381%
+  SILVER-EUR (XAGEUR.pi) : n_recouvrement=13626 ecart_moyen=-0.000% ecart_abs_moyen=0.021% ecart_median=-0.002% max_abs=2.375%
+
+===============================================================================================
+ETAPE B -- exposition residuelle par ticker, bloc1/bloc2
+===============================================================================================
+
+-- bloc1 --
+  GOLD - AUD   n_gagnants=  5  resolus=  5 (100.0%)  non_resolus=  0 (  0.0%)
+  GOLD - EUR   n_gagnants=  8  resolus=  8 (100.0%)  non_resolus=  0 (  0.0%)
+  GOLD - GBP   n_gagnants= 10  resolus= 10 (100.0%)  non_resolus=  0 (  0.0%)
+  GOLD - USD   n_gagnants=  8  resolus=  8 (100.0%)  non_resolus=  0 (  0.0%)
+  PALLADIUM    n_gagnants=  4  resolus=  4 (100.0%)  non_resolus=  0 (  0.0%)
+  PLATINUM     n_gagnants= 10  resolus= 10 (100.0%)  non_resolus=  0 (  0.0%)
+  SILVER - AUD n_gagnants= 13  resolus= 13 (100.0%)  non_resolus=  0 (  0.0%)
+  SILVER - EUR n_gagnants= 15  resolus= 15 (100.0%)  non_resolus=  0 (  0.0%)
+  SILVER - USD n_gagnants= 10  resolus= 10 (100.0%)  non_resolus=  0 (  0.0%)
+
+-- bloc2 --
+  GOLD - AUD   n_gagnants=  1  resolus=  1 (100.0%)  non_resolus=  0 (  0.0%)
+  GOLD - EUR   n_gagnants=  1  resolus=  1 (100.0%)  non_resolus=  0 (  0.0%)
+  GOLD - GBP   n_gagnants=  5  resolus=  5 (100.0%)  non_resolus=  0 (  0.0%)
+  GOLD - USD   n_gagnants=  5  resolus=  5 (100.0%)  non_resolus=  0 (  0.0%)
+  PALLADIUM    n_gagnants= 10  resolus= 10 (100.0%)  non_resolus=  0 (  0.0%)
+  PLATINUM     n_gagnants=  9  resolus=  9 (100.0%)  non_resolus=  0 (  0.0%)
+  SILVER - AUD n_gagnants= 10  resolus= 10 (100.0%)  non_resolus=  0 (  0.0%)
+  SILVER - EUR n_gagnants= 15  resolus= 15 (100.0%)  non_resolus=  0 (  0.0%)
+  SILVER - USD n_gagnants=  6  resolus=  6 (100.0%)  non_resolus=  0 (  0.0%)
+
+===============================================================================================
+ETAPE B (bonus) -- verif gap Platinum vs bloc3
+===============================================================================================
+  bloc3 PLATINUM gagnants=5 non_resolus_par_le_gap=0
+
+===============================================================================================
+RESUME GLOBAL -- ancien EV stocke vs nouveau (meilleure donnee dispo), par bloc
+===============================================================================================
+  bloc1: n=159 winrate=52.20% EV_ancien=+0.4024R EV_nouveau=+3.7047R delta=+3.3023R
+  bloc2: n=151 winrate=41.06% EV_ancien=+0.0417R EV_nouveau=+2.6416R delta=+2.5999R
+  bloc3: n=165 winrate=54.55% EV_ancien=+1.5291R EV_nouveau=+2.3839R delta=+0.8548R
+  bloc4: n=201 winrate=56.72% EV_ancien=+2.6112R EV_nouveau=+2.7269R delta=+0.1158R

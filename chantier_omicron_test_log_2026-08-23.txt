@@ -1,0 +1,85 @@
+Population étendue (rr_tp1 >= 1.35, forex+indices mappés, terminaux) : 742 trades
+Chargement/complément des bougies H1 pour 17 tickers...
+  AUDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  AUDUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  CHFJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  EURCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURGBP=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  GBPCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  GBPJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  GBPUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  NZDUSD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCAD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  ^GDAXI : backfill MT5 utilise (20327 bougies, depuis 2022-01-02 21:00:00)
+  ^GSPC : backfill MT5 utilise (21018 bougies, depuis 2022-01-02 21:00:00)
+  ^NDX : backfill MT5 utilise (21019 bougies, depuis 2022-01-02 21:00:00)
+Durées réelles vérifiées (bougies H1) : 742/742 (100.0%) — durée médiane de repli : 0 days 09:39:35
+  AUDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  AUDUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  CHFJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  EURCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURGBP=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  GBPCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  GBPJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  GBPUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  NZDUSD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCAD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  ^GDAXI : backfill MT5 utilise (20327 bougies, depuis 2022-01-02 21:00:00)
+  ^GSPC : backfill MT5 utilise (21018 bougies, depuis 2022-01-02 21:00:00)
+  ^NDX : backfill MT5 utilise (21019 bougies, depuis 2022-01-02 21:00:00)
+Bloc edges (communs A/B) : [Timestamp('2021-04-23 12:43:32'), Timestamp('2022-08-20 17:22:34.250000'), Timestamp('2023-12-17 22:01:36.500000'), Timestamp('2025-04-15 02:40:38.750000'), Timestamp('2026-08-12 07:19:41')]
+Fenetre Omicron testee : ('5_omicron', '2021-11-24', '2022-01-07')
+
+===============================================================================================
+VERIFICATION COUVERTURE DE DONNEES (la fenetre est-elle meme couverte ?)
+===============================================================================================
+  pop A   : min=2022-01-31 17:18:35  (fenetre commence 2021-11-24)
+  pop B   : min=2021-04-23 12:43:32  (fenetre commence 2021-11-24)
+
+###############################################################################################
+# Population A (0.15x trailing) (n=742, 2022-01-31 17:18:35 -> 2026-07-30 03:16:26)
+###############################################################################################
+  bloc1 ENTIER (reference)                 n=  80 wins=  34 winrate= 42.50% EV=+2.4532R se=0.5923
+
+  fenetre 5_omicron [2021-11-24->2022-01-07] n=   0 wins=   0 winrate=   nan% EV=+nanR se=nan
+    (aucun trade dans la fenetre)
+
+###############################################################################################
+# Population B_tradable_pgp (n=1248, 0.10x trailing) (n=1248, 2021-04-23 12:43:32 -> 2026-08-12 07:19:41)
+###############################################################################################
+  bloc1 ENTIER (reference)                 n= 230 wins= 121 winrate= 52.61% EV=+3.2150R se=0.3564
+
+  fenetre 5_omicron [2021-11-24->2022-01-07] n=  15 wins=   8 winrate= 53.33% EV=+5.7300R se=2.5484
+    vs bloc1 ENTIER (reference) : EV=+3.2150R (delta +2.5150R)
+    z (approx, se combinees) = +0.977
+    statuts : {'OBJECTIF ATTEINT': 8, 'INVALIDÉE': 7}
+    duree de detention (h) : median=8.6 p25=8.6 p75=8.6
+    parmi OBJECTIF ATTEINT (n=8) : 8 ont couru nettement au-dela de TP1 (r_trailing > 1.5x rr_tp1), 0 coupes pres de TP1 (r_trailing <= 1.1x rr_tp1)
+      date_creation       ticker   rr_tp1  r_trailing
+2021-12-01 15:38:26 SILVER - EUR 1.100000    4.311207
+2021-12-02 09:33:03   GOLD - USD 1.090677    6.000894
+2021-12-03 11:32:42 SILVER - EUR 1.666667   34.678737
+2021-12-10 11:32:40    PALLADIUM 1.181537    5.348322
+2021-12-22 09:32:34 SILVER - EUR 2.000000    6.178898
+2021-12-22 15:38:54 SILVER - USD 2.000000   19.575000
+2021-12-27 20:36:17 SILVER - EUR 2.000000    8.561383
+2021-12-28 07:30:30 SILVER - AUD 1.833333    8.295005
+
+===============================================================================================
+SYNTHESE -- comparaison au pattern des 4 chocs deja testes
+===============================================================================================
+Rappel (chantier_fenetres_macro_chocs_log_2026-08-23.txt) :
+  SVB            : A delta=+0.82R | B delta=-1.01R  (A resiste, B souffre)
+  Dette US/Fitch : A delta=+0.61R | B delta=-0.04R  (neutre les 2)
+  Ukraine        : A delta=+2.51R | B delta=+0.91R  (positif les 2)
+  Israel-Hamas   : A delta=+0.00R | B delta=-1.03R  (A neutre, B souffre)
+  Omicron (NOUVEAU) : A delta=+nanR (n=0) | B delta=+2.51R (n=15)
+

@@ -1,0 +1,16 @@
+Population : B_seule_tradable_pgp_corrige, n=1248, prior Beta(625,625)
+Duree pleine population (reference pour toutes les trajectoires) : 1937 jours
+[verif] winrate observe = 50.00%, P10 block-bootstrap = 48.02%
+[verif] bloc2 seul : n=311, winrate=42.12%, EV=+1.9766R
+
+===============================================================================================
+SCENARIO : REF
+===============================================================================================
+[REF c=960 c=960$] profit_moy=+34,781,471$ profit_med=+35,894,502$ solde_neg_an4=3.50% annee1<0=3.50% n=600 (642s)
+[REF c=1000 c=1000$] profit_moy=+34,846,538$ profit_med=+35,907,733$ solde_neg_an4=3.33% annee1<0=3.33% n=600 (387s)
+[REF c=3000 c=3000$] profit_moy=+36,444,474$ profit_med=+36,626,432$ solde_neg_an4=0.17% annee1<0=0.17% n=600 (364s)
+[REF c=5000 c=5000$] profit_moy=+36,500,151$ profit_med=+36,626,432$ solde_neg_an4=0.00% annee1<0=0.00% n=600 (350s)
+
+===============================================================================================
+SCENARIO : winrate_P10
+===============================================================================================

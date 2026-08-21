@@ -1,0 +1,72 @@
+Population totale (571) chargee, repartition blocs :
+bloc4    192
+bloc2    160
+bloc3    149
+bloc1     70
+Name: bloc, dtype: int64
+
+[compute_signals] 13/571 trades sans historique suffisant (< 42 bougies avant entree) -- signaux=None
+
+558/571 trades avec signaux calculables (historique H1 suffisant).
+
+==========================================================================================
+ETAPE 4 -- bloc2 (reference fraiche + filtres confluence)
+==========================================================================================
+  bloc2 REFERENCE (571, brut)  n= 160 wins=  69 losses=  91 winrate= 43.12% EV=+1.3490R se=0.2503
+  bloc2 reference (signaux calculables) n= 160 wins=  69 losses=  91 winrate= 43.12% EV=+1.3490R se=0.2503
+  bloc2 confluence>=2/4 KEPT   n= 147 wins=  67 losses=  80 winrate= 45.58% EV=+1.4892R se=0.2649
+  bloc2 confluence>=2/4 EXCLUDED n=  13 wins=   2 losses=  11 winrate= 15.38% EV=-0.2369R se=0.5763
+    Welch t-test EV kept vs excluded : t=2.721 p=0.0142
+    Welch t-test EV kept vs bloc2 baseline (brut) : t=0.385 p=0.7006
+
+  bloc2 confluence>=3/4 KEPT   n= 133 wins=  62 losses=  71 winrate= 46.62% EV=+1.4902R se=0.2747
+  bloc2 confluence>=3/4 EXCLUDED n=  27 wins=   7 losses=  20 winrate= 25.93% EV=+0.6531R se=0.6004
+    Welch t-test EV kept vs excluded : t=1.268 p=0.2126
+    Welch t-test EV kept vs bloc2 baseline (brut) : t=0.380 p=0.7041
+
+  bloc2 confluence>=4/4 KEPT   n= 104 wins=  44 losses=  60 winrate= 42.31% EV=+1.2969R se=0.3162
+  bloc2 confluence>=4/4 EXCLUDED n=  56 wins=  25 losses=  31 winrate= 44.64% EV=+1.4456R se=0.4114
+    Welch t-test EV kept vs excluded : t=-0.286 p=0.7751
+    Welch t-test EV kept vs bloc2 baseline (brut) : t=-0.129 p=0.8975
+
+
+==========================================================================================
+ETAPE 5 -- controle bloc1/bloc3/bloc4 (meme regle, seuil 3/4)
+==========================================================================================
+  bloc1 baseline (571, brut)   n=  70 wins=  38 losses=  32 winrate= 54.29% EV=+2.1629R se=0.4706
+  bloc1 confluence>=2/4 KEPT (1.8% filtres) n=  56 wins=  31 losses=  25 winrate= 55.36% EV=+2.2692R se=0.5515
+  bloc1 confluence>=3/4 KEPT (12.3% filtres) n=  50 wins=  29 losses=  21 winrate= 58.00% EV=+2.4532R se=0.5999
+  bloc1 confluence>=4/4 KEPT (35.1% filtres) n=  37 wins=  21 losses=  16 winrate= 56.76% EV=+2.6259R se=0.7601
+
+  bloc3 baseline (571, brut)   n= 149 wins=  75 losses=  74 winrate= 50.34% EV=+1.6484R se=0.2554
+  bloc3 confluence>=2/4 KEPT (8.1% filtres) n= 137 wins=  72 losses=  65 winrate= 52.55% EV=+1.7817R se=0.2696
+  bloc3 confluence>=3/4 KEPT (16.8% filtres) n= 124 wins=  67 losses=  57 winrate= 54.03% EV=+1.8404R se=0.2804
+  bloc3 confluence>=4/4 KEPT (28.9% filtres) n= 106 wins=  59 losses=  47 winrate= 55.66% EV=+1.9308R se=0.3055
+
+  bloc4 baseline (571, brut)   n= 192 wins=  92 losses= 100 winrate= 47.92% EV=+1.5822R se=0.2290
+  bloc4 confluence>=2/4 KEPT (9.4% filtres) n= 174 wins=  85 losses=  89 winrate= 48.85% EV=+1.6715R se=0.2442
+  bloc4 confluence>=3/4 KEPT (15.6% filtres) n= 162 wins=  79 losses=  83 winrate= 48.77% EV=+1.6632R se=0.2522
+  bloc4 confluence>=4/4 KEPT (32.3% filtres) n= 130 wins=  69 losses=  61 winrate= 53.08% EV=+1.9473R se=0.2903
+
+
+==========================================================================================
+ETAPE 6 (bonus) -- desaccord EMA court/long, trades EXCLUS de bloc2 (seuil 3/4)
+==========================================================================================
+16/27 trades exclus (seuil 3/4) ont EMA court et EMA long en désaccord franc (achat vs vente).
+      date_creation                              ticker direction sig_ema_short sig_ema_long sig_macd_short sig_macd_long  r_trailing
+2022-08-31 19:35:28                             EUR/USD     achat         achat        vente          achat         vente   -1.000000
+2022-09-08 22:29:39                             EUR/USD     achat         achat        vente          vente         achat    9.157143
+2022-09-09 08:32:27 NASDAQ100 - MINI NASDAQ100 FULL0926     achat         achat        vente          achat         vente    4.746812
+2022-10-11 23:30:47                             GBP/CHF     vente         achat        vente          vente         achat   -1.000000
+2022-11-08 21:29:45                             EUR/CHF     achat         vente        achat          vente         vente   -1.000000
+2022-12-29 20:34:23                             CHF/JPY     achat         achat        vente          vente         vente   -1.000000
+2023-01-05 12:31:49                             AUD/USD     achat         vente        achat          achat         vente   -1.000000
+2023-03-13 14:38:51                             AUD/USD     achat         achat        vente          vente         vente    1.706061
+2023-03-23 05:53:10 NASDAQ100 - MINI NASDAQ100 FULL0926     achat         achat        vente          achat         vente    7.425813
+2023-06-01 21:29:49                             EUR/CHF     achat         vente        achat          vente         achat   -1.000000
+2023-10-19 09:44:55                    DAX40 PERF INDEX     vente         achat        vente          achat         achat   -1.000000
+2023-10-19 12:46:08                      DAX40 FULL0926     vente         achat        vente          achat         achat   -1.000000
+2023-10-23 16:50:34                      DAX40 FULL0926     vente         achat        vente          achat         achat   -1.000000
+2023-11-01 19:51:42                             USD/CHF     achat         vente        achat          achat         vente   -1.000000
+2023-11-13 19:31:36                     NASDAQ100 INDEX     achat         vente        achat          achat         vente    2.408885
+2023-12-06 08:28:06                    DAX40 PERF INDEX     achat         vente        achat          vente         vente    6.214872

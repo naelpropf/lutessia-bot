@@ -68,9 +68,14 @@ BLOC_EDGES = pd.to_datetime([
 
 
 def load_population():
-    pop = pd.read_csv("chantier_gold_silver_pop_B_config0_tradable_2026-08-19.csv")
+    # MAJ 2026-08-22 : source remplacee par la population B corrigee (fix
+    # r_trailing df261dc + backfill metaux complet + regen forex/indices,
+    # cf. session_handoff_2026-08-22.md). L'ancien fichier config0_tradable
+    # (2026-08-19/20) predatait ces deux corrections -- c'est la donnee
+    # "incomplete" sur laquelle piste 2 avait ete rejetee la premiere fois.
+    pop = pd.read_csv("chantier_gold_silver_pop_B_tradable_pgp_2026-08-20.csv")
     pop["date_creation"] = pd.to_datetime(pop["date_creation"])
-    metal_kw = ["GOLD", "SILVER"]
+    metal_kw = ["GOLD", "SILVER", "PALLADIUM", "PLATINUM"]
     is_metal = pop["ticker"].str.contains("|".join(metal_kw), case=False, na=False)
     pop = pop[~is_metal].reset_index(drop=True)
     assert len(pop) == 571, f"n inattendu : {len(pop)} (attendu 571)"

@@ -1,0 +1,96 @@
+Fenetre midterm 2022 : [2022-08-18 -> 2022-11-08]
+  composition : forex=21, indices=6, metaux(tous)=33, dont or/argent=25
+Population étendue (rr_tp1 >= 1.35, forex+indices mappés, terminaux) : 742 trades
+Chargement/complément des bougies H1 pour 17 tickers...
+  AUDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  AUDUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  CHFJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  EURCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURGBP=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  GBPCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  GBPJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  GBPUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  NZDUSD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCAD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  ^GDAXI : backfill MT5 utilise (20327 bougies, depuis 2022-01-02 21:00:00)
+  ^GSPC : backfill MT5 utilise (21018 bougies, depuis 2022-01-02 21:00:00)
+  ^NDX : backfill MT5 utilise (21019 bougies, depuis 2022-01-02 21:00:00)
+Durées réelles vérifiées (bougies H1) : 742/742 (100.0%) — durée médiane de repli : 0 days 09:39:35
+  AUDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  AUDUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  CHFJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  EURCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURGBP=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  GBPCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  GBPJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  GBPUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  NZDUSD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCAD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  ^GDAXI : backfill MT5 utilise (20327 bougies, depuis 2022-01-02 21:00:00)
+  ^GSPC : backfill MT5 utilise (21018 bougies, depuis 2022-01-02 21:00:00)
+  ^NDX : backfill MT5 utilise (21019 bougies, depuis 2022-01-02 21:00:00)
+bloc2 (regime commun A/B) : [2022-08-20 -> 2023-12-17]
+
+===============================================================================================
+QUESTION 1 -- fenetre midterm forex vs RESTE de la population forex (donnees r_trailing corrigees)
+===============================================================================================
+  fenetre midterm (forex, corrige)       n=  21 EV=+2.1349R se=0.8540 winrate= 52.38%
+  reste population forex (baseline)      n= 380 EV=+1.6023R se=0.1653 winrate= 49.21%
+    fenetre vs baseline forex : Welch t-test p=0.5467  |  Mann-Whitney p=0.6346
+
+  delta EV = +0.5326R  (rappel original pre-fix : p=0,0105, mecanisme 'gains plafonnes')
+  -> ECART A DISPARU (artefact confirme) sur donnees corrigees (seuil 0,05, Welch p=0.5467, MW p=0.6346)
+
+===============================================================================================
+QUESTION 2 -- fenetre midterm vs RESTE DE BLOC2 (meme regime macro, sans effet midterm)
+===============================================================================================
+  reste de bloc2 (bloc2 moins fenetre midterm) : [2022-11-08 13:32:50 -> 2023-12-14 03:25:31]
+
+  -- FOREX --
+  midterm forex                          n=  21 EV=+2.1349R se=0.8540 winrate= 52.38%
+  reste bloc2 forex                      n=  91 EV=+1.0504R se=0.2737 winrate= 42.86%
+    midterm forex vs reste bloc2 forex : Welch t-test p=0.2382  |  Mann-Whitney p=0.3065
+  delta EV (midterm - reste bloc2) = +1.0845R
+
+  -- INDICES (n attendu tres faible, chiffre quand meme) --
+  midterm indices                        n=   6 EV=+5.3304R se=2.4859 winrate= 66.67%
+  reste bloc2 indices                    n=  42 EV=+1.0341R se=0.4621 winrate= 35.71%
+    midterm indices vs reste bloc2 indices : Welch t-test p=0.1462  |  Mann-Whitney p=0.0543
+  delta EV (midterm - reste bloc2) = +4.2962R
+
+  -> FOREX : INDISCERNABLE de bloc2 -- effet midterm = redite du regime bloc2 (Welch p=0.2382, MW p=0.3065)
+  -> INDICES : n trop faible (6) pour conclure quoi que ce soit formellement, chiffre pour memoire seulement
+
+===============================================================================================
+QUESTION 3 -- or/argent sur la fenetre midterm 2022 (jamais teste empiriquement avant)
+===============================================================================================
+  midterm or/argent                      n=  25 EV=+3.9257R se=1.5238 winrate= 48.00%
+  reste population or/argent (baseline global) n= 455 EV=+2.8795R se=0.2187 winrate= 53.85%
+  reste bloc2 or/argent                  n=  79 EV=+2.2642R se=0.5384 winrate= 39.24%
+
+    midterm or/argent vs baseline global or/argent : Welch t-test p=0.5030  |  Mann-Whitney p=0.7895
+    midterm or/argent vs reste bloc2 or/argent : Welch t-test p=0.3121  |  Mann-Whitney p=0.4745
+
+  delta vs baseline global = +1.0462R  |  delta vs reste bloc2 = +1.6614R
+  -> thèse or=meilleur actif midterm NON confirmee empiriquement sur nos donnees (n=25, trop petit de toute facon pour un verdict ferme)
+
+===============================================================================================
+SYNTHESE -- ce qu'il reste de la these 'effet midterm specifique'
+===============================================================================================
+  Q1 (vs baseline global forex, comparable au test original pre-fix) : delta=+0.5326R, Welch p=0.5467, MW p=0.6346
+  Q2 (vs reste de bloc2, forex) : delta=+1.0845R, Welch p=0.2382, MW p=0.3065
+  Q2 (vs reste de bloc2, indices, n=6) : delta=+4.2962R (indicatif seulement)
+  Q3 (or/argent, n=25) : vs baseline global delta=+1.0462R (p=0.5030), vs reste bloc2 delta=+1.6614R (p=0.3121)
+
+  LIMITE STRUCTURELLE (rappel explicite) : un seul cycle midterm US couvert par les donnees
+  (2018 hors couverture historique du signal Lutessia) -- meme un resultat propre et significatif
+  au sens frequentiste (n=21-60 TRADES) reste un indice qualitatif sur n=1 CYCLE, pas une regle
+  validee : on ne peut pas construire de distribution d'echantillonnage inter-cycles avec un seul cycle.

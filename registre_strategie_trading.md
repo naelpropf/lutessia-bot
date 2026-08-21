@@ -2970,6 +2970,74 @@ différents** (fenêtres décalées de ~7 mois), pas la même période. Corrigé
 sous-période : toujours vérifier/imposer une grille calendaire commune, ne jamais
 laisser chaque scénario calculer ses propres bornes indépendamment.**
 
+### 6.7 Pas de coupure indices sur la fenêtre midterm US 2026 (mi-août → 3 novembre) — décision actée (08/23)
+
+**Annule/remplace** une "coupure indices pendant la fenêtre midterm" évoquée
+en session du 21/08 mais **jamais formalisée dans ce registre** (aucune
+trace trouvée par recherche systématique — confirmé avant d'écrire cette
+entrée).
+
+**Contexte** : un test interne antérieur (session 21/08, script jamais
+commité au repo) avait mesuré un écart EV significatif défavorable sur une
+fenêtre forex "midterm US 2022" (18/08→08/11/2022, p=0,0105, mécanisme
+apparent "gains plafonnés"). Ce test datait d'AVANT la correction du bug
+r_trailing (commit `df261dc`, 21/08 soir) et portait sur une fenêtre
+entièrement contenue dans bloc1/bloc2 — la portion 100% exposée au bug
+(plafonnement artificiel du gain trailing pour tout trade antérieur à la
+limite yfinance de 730j). Le mécanisme trouvé à l'époque est la signature
+exacte du bug. Rejoué le 23/08 sur données corrigées
+(`chantier_midterm2022_retest_2026-08-23.py`) :
+
+- **Forex** (n=21) vs reste de bloc2 (n=91) : EV midterm=+2,13R vs
+  +1,05R, delta=+1,08R, **Welch p=0,24 / Mann-Whitney p=0,31** —
+  indiscernable du régime bloc2, pas de signal défavorable.
+- **Indices** (n=6) vs reste de bloc2 (n=42) : EV midterm=+5,33R vs
+  +1,03R, delta=+4,30R, **Mann-Whitney p=0,054** (limite, non
+  significatif uniquement du fait de n=6) — direction favorable, pas
+  défavorable.
+- **Or/argent** (n=25) vs reste de bloc2 (n=79) : EV midterm=+3,93R vs
+  +2,26R, delta=+1,66R, **p=0,31-0,50** — non significatif, direction
+  favorable.
+- Vs baseline global (plutôt que reste de bloc2 seul), même verdict sur
+  les trois classes d'actifs : le résultat original (p=0,0105,
+  défavorable) a disparu ET s'est inversé de signe post-correction.
+
+**DÉCISION ACTÉE** : pas de coupure indices pour la fenêtre midterm US
+2026 (mi-août → 3 novembre 2026). Indices tradables sur toute la fenêtre,
+au même titre que forex et métaux.
+
+**Rationale consignée explicitement** : la littérature externe (chop
+pré-midterm) reste un risque qualitatif valide en soi, mais le seul test
+chiffré sur données propres du projet ne le soutient pas — la direction
+disponible (non significative, n=6 sur indices) pointe vers une EV
+favorable, pas défavorable. Décision prise en connaissance de cette
+incertitude statistique (n=6 est petit), jugée acceptable au vu de la
+marge d'EV mesurée (+4,30R indicatif).
+
+**Limite structurelle rappelée** : un seul cycle midterm US couvert par
+les données du projet (2018 hors couverture historique du signal
+Lutessia) — même ce résultat propre reste un indice qualitatif sur n=1
+cycle électoral, pas une règle statistiquement validée au sens
+fréquentiste standard (impossible de construire une distribution
+d'échantillonnage inter-cycles avec un seul cycle observé).
+
+**CONDITION DE RÉOUVERTURE EXPLICITE** — cette décision doit être
+reconsidérée si :
+  (a) le monitoring live (une fois les comptes lancés) montre une
+      sous-performance des trades indices spécifiquement sur la fenêtre
+      27/08→03/11/2026, par rapport aux bandes p10/p50/p90 Monte Carlo
+      établies (méthode du 18-19/08) ;
+  (b) un choc macro externe majeur et inattendu (hors whipsaw Fed déjà
+      anticipé, Jackson Hole/FOMC) survient sur la fenêtre ;
+  (c) un futur re-test avec plus de puissance statistique (cycles
+      midterm supplémentaires accumulés dans le temps) infirme le
+      signal directionnel favorable observé ici.
+
+Scripts/logs : `chantier_midterm2022_retest_2026-08-23.py`,
+`chantier_midterm2022_retest_log_2026-08-23.txt`,
+`chantier_midterm2022_retest_detail_2026-08-23.csv`. Mémoire projet :
+`project_midterm2022_retest_artifact_confirmed_2026-08-23.md`.
+
 ---
 
 ## 7. Points ouverts pour la prochaine session (19-20/08)
