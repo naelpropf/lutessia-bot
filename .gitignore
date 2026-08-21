@@ -20,6 +20,11 @@ venv/
 # pour combler le trou Yahoo Finance (>730j) — donnée de référence longue durée,
 # pas un résultat de run jetable.
 !data/mt5_h1_backfill/*.csv
+# Exception : historique brut des signaux scrapés Lutessia (source de TOUTES
+# les populations dérivées du projet, ex. build_realistic_payoff_population)
+# — donnée source foundationnelle, pas un résultat de run jetable. Oubli
+# corrigé 2026-08-23 (absence bloquait la reprise du pipeline sur le VPS).
+!historique_lutessia_15k_force.csv
 
 # Cache de bougies H1 (Yahoo Finance) et logs d'exécution
 yfinance_cache/
