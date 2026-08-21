@@ -14,3 +14,55 @@ SCENARIO : REF
 ===============================================================================================
 SCENARIO : winrate_P10
 ===============================================================================================
+[winrate_P10 c=960 c=960$] profit_moy=+31,895,915$ profit_med=+32,900,968$ solde_neg_an4=3.17% annee1<0=3.17% n=600 (384s)
+[winrate_P10 c=1000 c=1000$] profit_moy=+31,895,910$ profit_med=+32,900,968$ solde_neg_an4=3.17% annee1<0=3.17% n=600 (321s)
+[winrate_P10 c=3000 c=3000$] profit_moy=+33,338,625$ profit_med=+33,467,024$ solde_neg_an4=0.17% annee1<0=0.17% n=600 (363s)
+[winrate_P10 c=5000 c=5000$] profit_moy=+33,397,680$ profit_med=+33,477,577$ solde_neg_an4=0.00% annee1<0=0.00% n=600 (340s)
+
+===============================================================================================
+SCENARIO : EV_-30pct
+===============================================================================================
+[EV_-30pct c=960 c=960$] profit_moy=+20,407,345$ profit_med=+21,000,357$ solde_neg_an4=3.17% annee1<0=3.17% n=600 (388s)
+[EV_-30pct c=1000 c=1000$] profit_moy=+20,440,170$ profit_med=+21,000,357$ solde_neg_an4=3.00% annee1<0=3.00% n=600 (314s)
+[EV_-30pct c=3000 c=3000$] profit_moy=+21,432,368$ profit_med=+21,537,900$ solde_neg_an4=0.17% annee1<0=0.17% n=600 (315s)
+[EV_-30pct c=5000 c=5000$] profit_moy=+21,462,745$ profit_med=+21,537,900$ solde_neg_an4=0.00% annee1<0=0.00% n=600 (318s)
+
+===============================================================================================
+SCENARIO : EV_-50pct
+===============================================================================================
+[EV_-50pct c=960 c=960$] profit_moy=+11,089,918$ profit_med=+11,252,310$ solde_neg_an4=0.83% annee1<0=1.83% n=600 (326s)
+[EV_-50pct c=1000 c=1000$] profit_moy=+11,104,804$ profit_med=+11,252,310$ solde_neg_an4=0.67% annee1<0=1.83% n=600 (319s)
+[EV_-50pct c=3000 c=3000$] profit_moy=+11,431,530$ profit_med=+11,518,588$ solde_neg_an4=0.17% annee1<0=0.67% n=600 (316s)
+[EV_-50pct c=5000 c=5000$] profit_moy=+11,446,955$ profit_med=+11,518,588$ solde_neg_an4=0.00% annee1<0=0.50% n=600 (316s)
+
+===============================================================================================
+SCENARIO : bloc2_replay
+===============================================================================================
+[bloc2_replay c=960 c=960$] profit_moy=+46,460,343$ profit_med=+46,793,077$ solde_neg_an4=0.33% annee1<0=0.33% n=600 (265s)
+[bloc2_replay c=1000 c=1000$] profit_moy=+46,460,340$ profit_med=+46,793,077$ solde_neg_an4=0.33% annee1<0=0.33% n=600 (265s)
+[bloc2_replay c=3000 c=3000$] profit_moy=+47,170,361$ profit_med=+47,430,090$ solde_neg_an4=0.00% annee1<0=0.00% n=600 (1069s)
+[bloc2_replay c=5000 c=5000$] profit_moy=+47,170,361$ profit_med=+47,430,090$ solde_neg_an4=0.00% annee1<0=0.00% n=600 (289s)
+
+===============================================================================================
+SYNTHESE -- solde_negatif%/annee1<0%/profit par scenario x plafond
+===============================================================================================
+  REF            c=960$ : profit_moy=+34,781,471$ (vs REF +34,781,471$, +0.0%) solde_neg=3.50% (REF 3.50%) annee1<0=3.50% (REF 3.50%)
+  REF            c=1000$ : profit_moy=+34,846,538$ (vs REF +34,846,538$, +0.0%) solde_neg=3.33% (REF 3.33%) annee1<0=3.33% (REF 3.33%)
+  REF            c=3000$ : profit_moy=+36,444,474$ (vs REF +36,444,474$, +0.0%) solde_neg=0.17% (REF 0.17%) annee1<0=0.17% (REF 0.17%)
+  REF            c=5000$ : profit_moy=+36,500,151$ (vs REF +36,500,151$, +0.0%) solde_neg=0.00% (REF 0.00%) annee1<0=0.00% (REF 0.00%)
+  winrate_P10    c=960$ : profit_moy=+31,895,915$ (vs REF +34,781,471$, -8.3%) solde_neg=3.17% (REF 3.50%) annee1<0=3.17% (REF 3.50%)
+  winrate_P10    c=1000$ : profit_moy=+31,895,910$ (vs REF +34,846,538$, -8.5%) solde_neg=3.17% (REF 3.33%) annee1<0=3.17% (REF 3.33%)
+  winrate_P10    c=3000$ : profit_moy=+33,338,625$ (vs REF +36,444,474$, -8.5%) solde_neg=0.17% (REF 0.17%) annee1<0=0.17% (REF 0.17%)
+  winrate_P10    c=5000$ : profit_moy=+33,397,680$ (vs REF +36,500,151$, -8.5%) solde_neg=0.00% (REF 0.00%) annee1<0=0.00% (REF 0.00%)
+  EV_-30pct      c=960$ : profit_moy=+20,407,345$ (vs REF +34,781,471$, -41.3%) solde_neg=3.17% (REF 3.50%) annee1<0=3.17% (REF 3.50%)
+  EV_-30pct      c=1000$ : profit_moy=+20,440,170$ (vs REF +34,846,538$, -41.3%) solde_neg=3.00% (REF 3.33%) annee1<0=3.00% (REF 3.33%)
+  EV_-30pct      c=3000$ : profit_moy=+21,432,368$ (vs REF +36,444,474$, -41.2%) solde_neg=0.17% (REF 0.17%) annee1<0=0.17% (REF 0.17%)
+  EV_-30pct      c=5000$ : profit_moy=+21,462,745$ (vs REF +36,500,151$, -41.2%) solde_neg=0.00% (REF 0.00%) annee1<0=0.00% (REF 0.00%)
+  EV_-50pct      c=960$ : profit_moy=+11,089,918$ (vs REF +34,781,471$, -68.1%) solde_neg=0.83% (REF 3.50%) annee1<0=1.83% (REF 3.50%)
+  EV_-50pct      c=1000$ : profit_moy=+11,104,804$ (vs REF +34,846,538$, -68.1%) solde_neg=0.67% (REF 3.33%) annee1<0=1.83% (REF 3.33%)
+  EV_-50pct      c=3000$ : profit_moy=+11,431,530$ (vs REF +36,444,474$, -68.6%) solde_neg=0.17% (REF 0.17%) annee1<0=0.67% (REF 0.17%)
+  EV_-50pct      c=5000$ : profit_moy=+11,446,955$ (vs REF +36,500,151$, -68.6%) solde_neg=0.00% (REF 0.00%) annee1<0=0.50% (REF 0.00%)
+  bloc2_replay   c=960$ : profit_moy=+46,460,343$ (vs REF +34,781,471$, +33.6%) solde_neg=0.33% (REF 3.50%) annee1<0=0.33% (REF 3.50%)
+  bloc2_replay   c=1000$ : profit_moy=+46,460,340$ (vs REF +34,846,538$, +33.3%) solde_neg=0.33% (REF 3.33%) annee1<0=0.33% (REF 3.33%)
+  bloc2_replay   c=3000$ : profit_moy=+47,170,361$ (vs REF +36,444,474$, +29.4%) solde_neg=0.00% (REF 0.17%) annee1<0=0.00% (REF 0.17%)
+  bloc2_replay   c=5000$ : profit_moy=+47,170,361$ (vs REF +36,500,151$, +29.2%) solde_neg=0.00% (REF 0.00%) annee1<0=0.00% (REF 0.00%)
