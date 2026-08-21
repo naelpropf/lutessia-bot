@@ -19,10 +19,14 @@ la valeur "case" retournée par analyze_trade se répartit en :
   - "tp1_non_detecte"              : TP1 lui-même introuvable dans les bougies malgré le statut
                                      (anomalie de données rare) -> continuation NON confirmée (on ne
                                      peut même pas confirmer TP1, donc certainement pas TP2)
-  - "hors_couverture_historique"   : trade antérieur à la fenêtre H1 Yahoo disponible (~730 jours)
+  - "hors_couverture_historique"   : trade antérieur à la fenêtre H1 disponible (rétrospectif)
                                      -> continuation NON VÉRIFIABLE (traité en NON confirmée, par
                                      prudence -- PAS une preuve que TP2 n'a pas été atteint, juste
                                      une absence de données)
+  - "resolution_incertaine_horizon_insuffisant" : symétrique PROSPECTIF du cas ci-dessus (trade
+                                     trop récent, fenêtre H1 après l'entrée pas encore assez
+                                     longue pour conclure) -- même traitement conservateur
+                                     (project_rtrailing_bug_scope_validated_2026-08-21)
 
 Règle de payoff réaliste retenue :
   - Trade OBJECTIF ATTEINT, continuation confirmée (tp1_avant_tp2 / meme_bougie) : R = rr_tp2
@@ -42,7 +46,8 @@ MIN_RR_TP1 = 1.5
 
 CONTINUATION_CONFIRMED_CASES = {"tp1_avant_tp2", "meme_bougie"}
 CONTINUATION_NOT_CONFIRMED_CASES = {"tp2_non_atteint_dans_fenetre", "tp1_non_detecte"}
-OUT_OF_COVERAGE_CASES = {"hors_couverture_historique", "pas_de_donnees"}
+OUT_OF_COVERAGE_CASES = {"hors_couverture_historique", "pas_de_donnees",
+                         "resolution_incertaine_horizon_insuffisant"}
 
 
 def build_realistic_payoff_population(min_rr=MIN_RR_TP1, verbose=True):

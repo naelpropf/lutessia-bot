@@ -26,6 +26,53 @@ CSV_PATH = "historique_lutessia.csv"
 MIN_RR = 2.0
 CACHE_DIR = Path("yfinance_cache")
 
+# Meme valeur que trailing_stop_variants.MAX_HORIZON_ABS (30j) -- duree max
+# realiste de detention d'une position, reutilisee ici comme garde-fou
+# PROSPECTIF (cf. analyze_trade) : symetrique du garde-fou retrospectif
+# hors_couverture_historique deja existant. project_rtrailing_bug_scope_
+# validated_2026-08-21.
+MAX_HORIZON_ABS = dt.timedelta(days=30)
+
+# Backfill MT5 (compte Blueberry Prime Phase 1, collecte 2026-08-21,
+# session_handoff_2026-08-21_mt5_h1_backfill_request.md) -- couverture
+# 2022-01-02->2026-08-20, source PRIMAIRE quand disponible : corrige le
+# plafonnement systematique de r_trailing sur tout trade anterieur au cutoff
+# yfinance (~730j). yfinance reste le fallback pour tout symbole non couvert
+# (metaux notamment, backfill pas encore fait -- cf. project_rtrailing_bug_
+# scope_validated_2026-08-21 §B).
+MT5_BACKFILL_DIR = Path("data/mt5_h1_backfill")
+MT5_BACKFILL_DATE = "2026-08-21"
+YAHOO_TO_MT5_BACKFILL = {
+    "AUDJPY=X": ["AUDJPY.pi"], "AUDUSD=X": ["AUDUSD.pi"], "CHFJPY=X": ["CHFJPY.pi"],
+    "EURCHF=X": ["EURCHF.pi"], "EURGBP=X": ["EURGBP.pi"], "EURJPY=X": ["EURJPY.pi"],
+    "EURUSD=X": ["EURUSD.pi"], "GBPCHF=X": ["GBPCHF.pi"], "GBPJPY=X": ["GBPJPY.pi"],
+    "GBPUSD=X": ["GBPUSD.pi"], "NZDUSD=X": ["NZDUSD.pi"], "USDCAD=X": ["USDCAD.pi"],
+    "USDCHF=X": ["USDCHF.pi"], "USDJPY=X": ["USDJPY.pi"],
+    "^GDAXI": ["GER30.p", "GER40.p"], "^NDX": ["NAS100.p"], "^GSPC": ["SP500.p"],
+}
+_mt5_backfill_cache = {}
+
+
+def _load_mt5_backfill(symbol):
+    if symbol in _mt5_backfill_cache:
+        return _mt5_backfill_cache[symbol]
+    files = YAHOO_TO_MT5_BACKFILL.get(symbol)
+    if not files:
+        _mt5_backfill_cache[symbol] = None
+        return None
+    dfs = []
+    for f in files:
+        path = MT5_BACKFILL_DIR / f"mt5_h1_backfill_{f}_{MT5_BACKFILL_DATE}.csv"
+        if not path.exists():
+            _mt5_backfill_cache[symbol] = None
+            return None
+        d = pd.read_csv(path, usecols=["datetime", "open", "high", "low", "close"])
+        d["datetime"] = pd.to_datetime(d["datetime"])
+        dfs.append(d)
+    df = pd.concat(dfs, ignore_index=True).drop_duplicates(subset="datetime").sort_values("datetime").reset_index(drop=True)
+    _mt5_backfill_cache[symbol] = df
+    return df
+
 # Écart entre deux bougies H1 consécutives au-delà duquel on considère qu'il s'agit
 # d'une fermeture de marché (week-end forex, jour férié) plutôt que d'un trou de
 # données ponctuel — sert à détecter les gaps de week-end pour compute_weekend_gap_cost.
@@ -66,6 +113,11 @@ YFINANCE_MAX_LOOKBACK_DAYS = 729
 
 
 def fetch_h1_history(symbol, start_dt, end_dt):
+    mt5_df = _load_mt5_backfill(symbol)
+    if mt5_df is not None and not mt5_df.empty and mt5_df["datetime"].min() <= start_dt + dt.timedelta(days=2):
+        print(f"  {symbol} : backfill MT5 utilise ({len(mt5_df)} bougies, depuis {mt5_df['datetime'].min()})")
+        return mt5_df[(mt5_df["datetime"] >= start_dt) & (mt5_df["datetime"] <= end_dt)].reset_index(drop=True)
+
     CACHE_DIR.mkdir(exist_ok=True)
     cache_file = CACHE_DIR / (re.sub(r"[^A-Za-z0-9]", "_", symbol) + ".csv")
 
@@ -196,7 +248,18 @@ def analyze_trade(row, candles):
         if tp1_time is None:
             result["case"] = "tp1_non_detecte"
         elif tp2_time is None:
-            result["case"] = "tp2_non_atteint_dans_fenetre"
+            latest_candle = window["datetime"].max()
+            if pd.isna(latest_candle) or latest_candle < creation + MAX_HORIZON_ABS:
+                # Garde-fou PROSPECTIF (symetrique de hors_couverture_historique,
+                # cf. project_rtrailing_bug_scope_validated_2026-08-21) : le trade
+                # n'a pas encore eu le temps de se resoudre au moment du calcul --
+                # conclure "tp2 jamais atteint" ici serait aussi trompeur que
+                # hors_couverture_historique en debut de fenetre. MAX_HORIZON_ABS
+                # = meme constante que trailing_stop_variants.py (30j), deja
+                # etablie comme duree max realiste de detention d'une position.
+                result["case"] = "resolution_incertaine_horizon_insuffisant"
+            else:
+                result["case"] = "tp2_non_atteint_dans_fenetre"
         elif tp1_time == tp2_time:
             result["case"] = "meme_bougie"
         elif tp2_time > tp1_time:
