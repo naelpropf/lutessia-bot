@@ -1,0 +1,67 @@
+[verif] population B_tradable_pgp : 1248 trades, 2021-04-23 12:43:32 -> 2026-08-12 07:19:41
+[verif] sous-population B bloc1+bloc2 : 541 trades
+==========================================================================================
+LEVIER : V2 sur B_tradable_pgp (n_sims=300, ceilings=[1000.0, 3000.0])
+==========================================================================================
+[B_FULL_V2 c=1000 c=1000$] profit_moy=+21,305,455$ solde_neg=4.00% hit_ceiling=6.00% annee1<0=4.33% n=300 (107s)
+[B_FULL_moins_V2 c=1000 c=1000$] profit_moy=+21,313,684$ solde_neg=4.00% hit_ceiling=5.00% annee1<0=4.33% n=300 (101s)
+  -> [B seule] apport du levier V2 a 1000$ : delta profit = -0.04% (FULL vs FULL-moins-V2), delta solde_neg = +0.00pts, delta annee1<0 = +0.00pts
+[B_FULL_V2 c=3000 c=3000$] profit_moy=+22,405,475$ solde_neg=0.67% hit_ceiling=0.67% annee1<0=0.67% n=300 (102s)
+[B_FULL_moins_V2 c=3000 c=3000$] profit_moy=+22,496,329$ solde_neg=0.33% hit_ceiling=0.33% annee1<0=0.33% n=300 (105s)
+  -> [B seule] apport du levier V2 a 3000$ : delta profit = -0.40% (FULL vs FULL-moins-V2), delta solde_neg = +0.33pts, delta annee1<0 = +0.33pts
+==========================================================================================
+LEVIER : S1_8 sur B_tradable_pgp (n_sims=300, ceilings=[1000.0, 3000.0])
+==========================================================================================
+[B_FULL_S1_8 c=1000 c=1000$] profit_moy=+21,305,455$ solde_neg=4.00% hit_ceiling=6.00% annee1<0=4.33% n=300 (100s)
+[B_FULL_moins_S1_8 c=1000 c=1000$] profit_moy=+19,018,797$ solde_neg=4.67% hit_ceiling=6.00% annee1<0=4.67% n=300 (81s)
+  -> [B seule] apport du levier S1_8 a 1000$ : delta profit = +12.02% (FULL vs FULL-moins-S1_8), delta solde_neg = -0.67pts, delta annee1<0 = -0.33pts
+[B_FULL_S1_8 c=3000 c=3000$] profit_moy=+22,405,475$ solde_neg=0.67% hit_ceiling=0.67% annee1<0=0.67% n=300 (105s)
+[B_FULL_moins_S1_8 c=3000 c=3000$] profit_moy=+20,111,606$ solde_neg=0.00% hit_ceiling=0.33% annee1<0=0.33% n=300 (85s)
+  -> [B seule] apport du levier S1_8 a 3000$ : delta profit = +11.41% (FULL vs FULL-moins-S1_8), delta solde_neg = +0.67pts, delta annee1<0 = +0.33pts
+
+==========================================================================================
+STRESS-TEST S1_8 -- B_tradable_pgp bloc1+bloc2 SEULE (< 2023-12-17)
+==========================================================================================
+[B_BLOC12_FULL_S1_8 c=1000 c=1000$] profit_moy=+13,495,015$ solde_neg=0.33% hit_ceiling=0.33% annee1<0=0.33% n=300 (43s)
+[B_BLOC12_moins_S1_8 c=1000 c=1000$] profit_moy=+12,752,345$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=0.67% n=300 (37s)
+  -> [B bloc1+2 seul] apport du levier S1_8 a 1000$ : delta profit = +5.82%, delta solde_neg = +0.33pts, delta annee1<0 = -0.33pts
+[B_BLOC12_FULL_S1_8 c=3000 c=3000$] profit_moy=+13,925,638$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=0.00% n=300 (46s)
+[B_BLOC12_moins_S1_8 c=3000 c=3000$] profit_moy=+12,838,563$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=0.33% n=300 (39s)
+  -> [B bloc1+2 seul] apport du levier S1_8 a 3000$ : delta profit = +8.47%, delta solde_neg = +0.00pts, delta annee1<0 = -0.33pts
+==========================================================================================
+LEVIER : FTMO_GoatGuard sur B_tradable_pgp (n_sims=300, ceilings=[1000.0, 3000.0])
+==========================================================================================
+[B_FULL_FTMO_GoatGuard c=1000 c=1000$] profit_moy=+21,305,455$ solde_neg=4.00% hit_ceiling=6.00% annee1<0=4.33% n=300 (101s)
+[B_FULL_moins_FTMO_GoatGuard c=1000 c=1000$] profit_moy=+21,094,634$ solde_neg=4.00% hit_ceiling=6.00% annee1<0=4.33% n=300 (99s)
+  -> [B seule] apport du levier FTMO_GoatGuard a 1000$ : delta profit = +1.00% (FULL vs FULL-moins-FTMO_GoatGuard), delta solde_neg = +0.00pts, delta annee1<0 = +0.00pts
+[B_FULL_FTMO_GoatGuard c=3000 c=3000$] profit_moy=+22,405,475$ solde_neg=0.67% hit_ceiling=0.67% annee1<0=0.67% n=300 (104s)
+[B_FULL_moins_FTMO_GoatGuard c=3000 c=3000$] profit_moy=+22,184,903$ solde_neg=0.67% hit_ceiling=0.67% annee1<0=0.67% n=300 (100s)
+  -> [B seule] apport du levier FTMO_GoatGuard a 3000$ : delta profit = +0.99% (FULL vs FULL-moins-FTMO_GoatGuard), delta solde_neg = +0.00pts, delta annee1<0 = +0.00pts
+==========================================================================================
+LEVIER : payout sur B_tradable_pgp (n_sims=300, ceilings=[1000.0, 3000.0])
+==========================================================================================
+[B_FULL_payout c=1000 c=1000$] profit_moy=+21,305,455$ solde_neg=4.00% hit_ceiling=6.00% annee1<0=4.33% n=300 (101s)
+[B_FULL_moins_payout c=1000 c=1000$] profit_moy=+21,806,805$ solde_neg=4.33% hit_ceiling=5.00% annee1<0=4.33% n=300 (91s)
+  -> [B seule] apport du levier payout a 1000$ : delta profit = -2.30% (FULL vs FULL-moins-payout), delta solde_neg = -0.33pts, delta annee1<0 = +0.00pts
+[B_FULL_payout c=3000 c=3000$] profit_moy=+22,405,475$ solde_neg=0.67% hit_ceiling=0.67% annee1<0=0.67% n=300 (99s)
+[B_FULL_moins_payout c=3000 c=3000$] profit_moy=+23,001,012$ solde_neg=0.67% hit_ceiling=1.00% annee1<0=0.67% n=300 (95s)
+  -> [B seule] apport du levier payout a 3000$ : delta profit = -2.59% (FULL vs FULL-moins-payout), delta solde_neg = +0.00pts, delta annee1<0 = +0.00pts
+==========================================================================================
+LEVIER : S2_35 sur B_tradable_pgp (n_sims=300, ceilings=[1000.0, 3000.0])
+==========================================================================================
+[B_FULL_S2_35 c=1000 c=1000$] profit_moy=+21,305,455$ solde_neg=4.00% hit_ceiling=6.00% annee1<0=4.33% n=300 (96s)
+[B_FULL_moins_S2_35 c=1000 c=1000$] profit_moy=+21,866,405$ solde_neg=4.33% hit_ceiling=5.67% annee1<0=4.67% n=300 (96s)
+  -> [B seule] apport du levier S2_35 a 1000$ : delta profit = -2.57% (FULL vs FULL-moins-S2_35), delta solde_neg = -0.33pts, delta annee1<0 = -0.33pts
+[B_FULL_S2_35 c=3000 c=3000$] profit_moy=+22,405,475$ solde_neg=0.67% hit_ceiling=0.67% annee1<0=0.67% n=300 (98s)
+[B_FULL_moins_S2_35 c=3000 c=3000$] profit_moy=+23,119,087$ solde_neg=0.67% hit_ceiling=0.67% annee1<0=0.67% n=300 (105s)
+  -> [B seule] apport du levier S2_35 a 3000$ : delta profit = -3.09% (FULL vs FULL-moins-S2_35), delta solde_neg = +0.00pts, delta annee1<0 = +0.00pts
+
+==========================================================================================
+STRESS-TEST S2_35 -- B_tradable_pgp bloc1+bloc2 SEULE (< 2023-12-17)
+==========================================================================================
+[B_BLOC12_FULL_S2_35 c=1000 c=1000$] profit_moy=+13,495,015$ solde_neg=0.33% hit_ceiling=0.33% annee1<0=0.33% n=300 (45s)
+[B_BLOC12_moins_S2_35 c=1000 c=1000$] profit_moy=+14,351,199$ solde_neg=0.00% hit_ceiling=0.67% annee1<0=0.00% n=300 (44s)
+  -> [B bloc1+2 seul] apport du levier S2_35 a 1000$ : delta profit = -5.97%, delta solde_neg = +0.33pts, delta annee1<0 = +0.33pts
+[B_BLOC12_FULL_S2_35 c=3000 c=3000$] profit_moy=+13,925,638$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=0.00% n=300 (42s)
+[B_BLOC12_moins_S2_35 c=3000 c=3000$] profit_moy=+14,811,820$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=0.00% n=300 (44s)
+  -> [B bloc1+2 seul] apport du levier S2_35 a 3000$ : delta profit = -5.98%, delta solde_neg = +0.00pts, delta annee1<0 = +0.00pts

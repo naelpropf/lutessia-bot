@@ -1,0 +1,104 @@
+Population étendue (rr_tp1 >= 1.35, forex+indices mappés, terminaux) : 742 trades
+Chargement/complément des bougies H1 pour 17 tickers...
+  AUDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  AUDUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  CHFJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  EURCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURGBP=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  GBPCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  GBPJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  GBPUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  NZDUSD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCAD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  ^GDAXI : backfill MT5 utilise (20327 bougies, depuis 2022-01-02 21:00:00)
+  ^GSPC : backfill MT5 utilise (21018 bougies, depuis 2022-01-02 21:00:00)
+  ^NDX : backfill MT5 utilise (21019 bougies, depuis 2022-01-02 21:00:00)
+Durées réelles vérifiées (bougies H1) : 742/742 (100.0%) — durée médiane de repli : 0 days 09:39:35
+  AUDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  AUDUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  CHFJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  EURCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURGBP=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  GBPCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  GBPJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  GBPUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  NZDUSD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCAD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  ^GDAXI : backfill MT5 utilise (20327 bougies, depuis 2022-01-02 21:00:00)
+  ^GSPC : backfill MT5 utilise (21018 bougies, depuis 2022-01-02 21:00:00)
+  ^NDX : backfill MT5 utilise (21019 bougies, depuis 2022-01-02 21:00:00)
+[verif] population A_seule (RR>=1.35, corrigee) : 742 trades, 2022-01-31 17:18:35 -> 2026-07-30 03:16:26
+[verif] sous-population bloc1+bloc2 : 280 trades
+==========================================================================================
+LEVIER : V2 sur A_seule REFIXED cap Blueberry (n_sims=300, ceilings=[1000.0, 3000.0])
+==========================================================================================
+[FIXED_FULL_V2 c=1000 c=1000$] profit_moy=+15,735,576$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=0.33% n=300 (68s)
+[FIXED_FULL_moins_V2 c=1000 c=1000$] profit_moy=+15,746,391$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=0.33% n=300 (67s)
+  -> apport du levier V2 a 1000$ (cap actif) : delta profit = -0.07% delta solde_neg = +0.00pts, delta annee1<0 = +0.00pts
+[FIXED_FULL_V2 c=3000 c=3000$] profit_moy=+16,120,556$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=0.33% n=300 (64s)
+[FIXED_FULL_moins_V2 c=3000 c=3000$] profit_moy=+16,124,786$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=0.33% n=300 (62s)
+  -> apport du levier V2 a 3000$ (cap actif) : delta profit = -0.03% delta solde_neg = +0.00pts, delta annee1<0 = +0.00pts
+==========================================================================================
+LEVIER : S1_8 sur A_seule REFIXED cap Blueberry (n_sims=300, ceilings=[1000.0, 3000.0])
+==========================================================================================
+[FIXED_FULL_S1_8 c=1000 c=1000$] profit_moy=+15,735,576$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=0.33% n=300 (63s)
+[FIXED_FULL_moins_S1_8 c=1000 c=1000$] profit_moy=+14,867,116$ solde_neg=0.33% hit_ceiling=1.33% annee1<0=1.00% n=300 (53s)
+  -> apport du levier S1_8 a 1000$ (cap actif) : delta profit = +5.84% delta solde_neg = -0.33pts, delta annee1<0 = -0.67pts
+[FIXED_FULL_S1_8 c=3000 c=3000$] profit_moy=+16,120,556$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=0.33% n=300 (64s)
+[FIXED_FULL_moins_S1_8 c=3000 c=3000$] profit_moy=+15,064,308$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=0.67% n=300 (52s)
+  -> apport du levier S1_8 a 3000$ (cap actif) : delta profit = +7.01% delta solde_neg = +0.00pts, delta annee1<0 = -0.33pts
+
+==========================================================================================
+STRESS-TEST S1_8 REFIXED -- bloc1+bloc2 SEUL (< 2023-12-17)
+==========================================================================================
+[FIXED_BLOC12_FULL_S1_8 c=1000 c=1000$] profit_moy=+6,195,432$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=0.33% n=300 (23s)
+[FIXED_BLOC12_moins_S1_8 c=1000 c=1000$] profit_moy=+6,201,540$ solde_neg=0.00% hit_ceiling=2.33% annee1<0=1.67% n=300 (18s)
+  -> [bloc1+2 seul, cap actif] apport du levier S1_8 a 1000$ : delta profit = -0.10%, delta solde_neg = +0.00pts, delta annee1<0 = -1.33pts
+[FIXED_BLOC12_FULL_S1_8 c=3000 c=3000$] profit_moy=+6,568,445$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=0.00% n=300 (23s)
+[FIXED_BLOC12_moins_S1_8 c=3000 c=3000$] profit_moy=+6,349,718$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=1.33% n=300 (18s)
+  -> [bloc1+2 seul, cap actif] apport du levier S1_8 a 3000$ : delta profit = +3.44%, delta solde_neg = +0.00pts, delta annee1<0 = -1.33pts
+==========================================================================================
+LEVIER : FTMO_GoatGuard sur A_seule REFIXED cap Blueberry (n_sims=300, ceilings=[1000.0, 3000.0])
+==========================================================================================
+[FIXED_FULL_FTMO_GoatGuard c=1000 c=1000$] profit_moy=+15,735,576$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=0.33% n=300 (65s)
+[FIXED_FULL_moins_FTMO_GoatGuard c=1000 c=1000$] profit_moy=+15,531,613$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=0.33% n=300 (62s)
+  -> apport du levier FTMO_GoatGuard a 1000$ (cap actif) : delta profit = +1.31% delta solde_neg = +0.00pts, delta annee1<0 = +0.00pts
+[FIXED_FULL_FTMO_GoatGuard c=3000 c=3000$] profit_moy=+16,120,556$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=0.33% n=300 (64s)
+[FIXED_FULL_moins_FTMO_GoatGuard c=3000 c=3000$] profit_moy=+15,910,814$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=0.00% n=300 (64s)
+  -> apport du levier FTMO_GoatGuard a 3000$ (cap actif) : delta profit = +1.32% delta solde_neg = +0.00pts, delta annee1<0 = +0.33pts
+==========================================================================================
+LEVIER : payout sur A_seule REFIXED cap Blueberry (n_sims=300, ceilings=[1000.0, 3000.0])
+==========================================================================================
+[FIXED_FULL_payout c=1000 c=1000$] profit_moy=+15,735,576$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=0.33% n=300 (64s)
+[FIXED_FULL_moins_payout c=1000 c=1000$] profit_moy=+16,083,779$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=0.33% n=300 (62s)
+  -> apport du levier payout a 1000$ (cap actif) : delta profit = -2.16% delta solde_neg = +0.00pts, delta annee1<0 = +0.00pts
+[FIXED_FULL_payout c=3000 c=3000$] profit_moy=+16,120,556$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=0.33% n=300 (64s)
+[FIXED_FULL_moins_payout c=3000 c=3000$] profit_moy=+16,457,570$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=0.33% n=300 (62s)
+  -> apport du levier payout a 3000$ (cap actif) : delta profit = -2.05% delta solde_neg = +0.00pts, delta annee1<0 = +0.00pts
+==========================================================================================
+LEVIER : S2_35 sur A_seule REFIXED cap Blueberry (n_sims=300, ceilings=[1000.0, 3000.0])
+==========================================================================================
+[FIXED_FULL_S2_35 c=1000 c=1000$] profit_moy=+15,735,576$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=0.33% n=300 (63s)
+[FIXED_FULL_moins_S2_35 c=1000 c=1000$] profit_moy=+19,183,019$ solde_neg=0.00% hit_ceiling=0.67% annee1<0=0.33% n=300 (63s)
+  -> apport du levier S2_35 a 1000$ (cap actif) : delta profit = -17.97% delta solde_neg = +0.00pts, delta annee1<0 = +0.00pts
+[FIXED_FULL_S2_35 c=3000 c=3000$] profit_moy=+16,120,556$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=0.33% n=300 (64s)
+[FIXED_FULL_moins_S2_35 c=3000 c=3000$] profit_moy=+19,627,492$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=0.33% n=300 (63s)
+  -> apport du levier S2_35 a 3000$ (cap actif) : delta profit = -17.87% delta solde_neg = +0.00pts, delta annee1<0 = +0.00pts
+
+==========================================================================================
+STRESS-TEST S2_35 REFIXED -- bloc1+bloc2 SEUL (< 2023-12-17)
+==========================================================================================
+[FIXED_BLOC12_FULL_S2_35 c=1000 c=1000$] profit_moy=+6,195,432$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=0.33% n=300 (21s)
+[FIXED_BLOC12_moins_S2_35 c=1000 c=1000$] profit_moy=+8,059,694$ solde_neg=1.00% hit_ceiling=1.67% annee1<0=1.00% n=300 (22s)
+  -> [bloc1+2 seul, cap actif] apport du levier S2_35 a 1000$ : delta profit = -23.13%, delta solde_neg = -1.00pts, delta annee1<0 = -0.67pts
+[FIXED_BLOC12_FULL_S2_35 c=3000 c=3000$] profit_moy=+6,568,445$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=0.00% n=300 (23s)
+[FIXED_BLOC12_moins_S2_35 c=3000 c=3000$] profit_moy=+8,537,327$ solde_neg=0.00% hit_ceiling=0.00% annee1<0=0.00% n=300 (24s)
+  -> [bloc1+2 seul, cap actif] apport du levier S2_35 a 3000$ : delta profit = -23.06%, delta solde_neg = +0.00pts, delta annee1<0 = +0.00pts

@@ -1,0 +1,18 @@
+[verif] population B_tradable_pgp : 1248 trades
+==========================================================================================
+SWEEP RISQUE B_tradable_pgp (n_sims=300, grille=[0.75, 1.0, 1.25, 1.5, 1.75, 1.9, 2.25], ceilings=[1000.0, 3000.0])
+==========================================================================================
+[B_tradable_pgp_risk0.75 risk=0.75% c=1000$] profit_moy=+13,809,206$ profit_median=+14,009,242$ solde_neg=3.00% annee1<0=3.00% n=300 (98s)
+[B_tradable_pgp_risk1.00 risk=1.00% c=1000$] profit_moy=+18,178,041$ profit_median=+18,566,377$ solde_neg=3.33% annee1<0=3.33% n=300 (100s)
+[B_tradable_pgp_risk1.25 risk=1.25% c=1000$] profit_moy=+21,587,572$ profit_median=+21,996,629$ solde_neg=3.33% annee1<0=3.33% n=300 (98s)
+[B_tradable_pgp_risk1.50 risk=1.50% c=1000$] profit_moy=+22,457,372$ profit_median=+23,394,379$ solde_neg=5.67% annee1<0=5.67% n=300 (100s)
+[B_tradable_pgp_risk1.75 risk=1.75% c=1000$] profit_moy=+20,208,339$ profit_median=+20,646,481$ solde_neg=5.33% annee1<0=5.67% n=300 (97s)
+[B_tradable_pgp_risk1.90 risk=1.90% c=1000$] profit_moy=+21,323,850$ profit_median=+21,739,734$ solde_neg=6.00% annee1<0=6.67% n=300 (95s)
+[B_tradable_pgp_risk2.25 risk=2.25% c=1000$] profit_moy=+12,404,199$ profit_median=+16,050,773$ solde_neg=36.00% annee1<0=36.67% n=300 (75s)
+[B_tradable_pgp_risk0.75 risk=0.75% c=3000$] profit_moy=+14,569,225$ profit_median=+14,440,314$ solde_neg=0.00% annee1<0=0.00% n=300 (99s)
+[B_tradable_pgp_risk1.00 risk=1.00% c=3000$] profit_moy=+19,116,247$ profit_median=+18,973,778$ solde_neg=0.33% annee1<0=0.33% n=300 (97s)
+[B_tradable_pgp_risk1.25 risk=1.25% c=3000$] profit_moy=+22,749,120$ profit_median=+22,535,250$ solde_neg=0.00% annee1<0=0.00% n=300 (98s)
+[B_tradable_pgp_risk1.50 risk=1.50% c=3000$] profit_moy=+24,102,922$ profit_median=+24,020,528$ solde_neg=0.67% annee1<0=0.67% n=300 (104s)
+[B_tradable_pgp_risk1.75 risk=1.75% c=3000$] profit_moy=+21,571,406$ profit_median=+21,396,258$ solde_neg=0.67% annee1<0=1.00% n=300 (106s)
+[B_tradable_pgp_risk1.90 risk=1.90% c=3000$] profit_moy=+22,936,259$ profit_median=+22,643,941$ solde_neg=0.67% annee1<0=1.00% n=300 (103s)
+[B_tradable_pgp_risk2.25 risk=2.25% c=3000$] profit_moy=+19,281,643$ profit_median=+18,954,343$ solde_neg=0.33% annee1<0=0.67% n=300 (105s)
