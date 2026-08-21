@@ -292,6 +292,60 @@ tableau comme LA nouvelle référence officielle (remplaçant le tableau
 08/12 ci-dessous) et régénérer les leviers dérivés qui en dépendent
 (comme fait le 08/12 pour RR1,35/corr0,80, §2.63).
 
+**✅ ADOPTÉ (décision utilisateur, 2026-08-23)** — §1.8 (cascade BB
+Instant + any-RR) devient officiellement la référence, après re-test sur
+données r_trailing corrigées (fix commit `df261dc`, backfill MT5/
+Dukascopy/TradingView complet bloc1/bloc2). Ce re-test a lui-même
+traversé DEUX corrections avant les chiffres retenus ci-dessous :
+
+1. **Premier passage (`chantier_5leviers_revalidation_2026-08-23.py`,
+   n=600, session du 23/08)** : dominance apparemment RENFORCÉE par la
+   correction r_trailing — profit +11,97%/+13,73% (1000$/3000$,
+   population complète), et **+6,65%/+10,64% sur le sous-échantillon
+   bloc1+2 seul** (n=280, la portion 100% exposée au bug), présenté à
+   l'époque comme confirmant une "vigilance maximale" — mécanisme
+   invoqué : le fix corrigerait justement les gros gagnants que §1.8
+   exploite via la bascule Instant.
+2. **🔴 Bug moteur découvert ensuite** : ce premier passage réutilisait
+   `chantier_rrtp2_sizing_2026-08-16.py` comme moteur (seul script de la
+   lignée exposant `size_func`/`routing_field`), qui **date d'AVANT le
+   correctif du cap Blueberry Instant 1,5%/trade décrit plus haut dans
+   cette même section (08/17-18)** et n'avait jamais été repatché — le
+   cap réel n'était donc PAS actif pendant ce premier re-test, gonflant
+   artificiellement l'apport mesuré du levier (même mécanisme de biais
+   que celui déjà documenté ci-dessus pour le tableau n=600 08/17
+   original).
+
+**Chiffres retenus après correction du cap** (`chantier_5leviers_
+revalidation_fixed_2026-08-23.py`, **n=300 screening — PAS ENCORE
+reconfirmé à n=600**, cap Blueberry Instant 1,5%/trade actif) :
+- Population complète : **+5,84% / +7,01%** (1000$/3000$) — direction
+  inchangée (toujours net positif), mais nettement plus modeste que le
+  premier passage (+11,97%/+13,73%).
+- **Sous-échantillon bloc1+2 seul (n=280) : -0,10% / +3,44%** — PAS
+  +6,65%/+10,64% comme annoncé au premier passage. **La robustesse de
+  §1.8 sur ce sous-échantillon spécifiquement n'est donc PLUS établie
+  avec la marge initialement annoncée** : à 1000$, l'apport en profit
+  est même LÉGÈREMENT NÉGATIF (quasi neutre), à 3000$ un gain modeste
+  (+3,44%) subsiste. L'axe risque (année1<0) reste lui favorable à §1.8
+  sur ce sous-échantillon (-1,33pt aux deux plafonds) — c'est
+  l'argument qui justifie encore l'adoption sur cette portion, PAS le
+  profit.
+
+**Ce qui ne change pas** : la direction d'adoption reste POSITIVE sur la
+population complète (profit ET risque) — §1.8 est confirmé, la décision
+d'adoption est actée. Ce qui change : l'affirmation "dominance confirmée
+MÊME sur la portion la plus exposée au bug" (formulée au premier passage,
+avant découverte du bug de cap) doit être **révisée** — sur bloc1+2
+spécifiquement, l'effet est désormais quasi neutre en profit, pas une
+dominance forte. **Reconfirmation à n=600 (niveau verdict) pas encore
+faite avec le cap actif** — à faire avant de citer ces chiffres comme
+acquis au même niveau que le reste de ce tableau.
+
+Logs : `log_5leviers_A_refixed_n300_2026-08-23.txt`, scripts
+`chantier_5leviers_revalidation_2026-08-23.py` (buggé, cap absent) et
+`chantier_5leviers_revalidation_fixed_2026-08-23.py` (corrigé).
+
 ---
 
 **🕰️ Référence 08/12 ci-dessous (RR≥1,35/corr0,80 seul, sans les deux

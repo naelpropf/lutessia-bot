@@ -1776,6 +1776,39 @@ définitive, tous deux propres :
 **Aucune part de gain à requalifier comme redondante — §2.35 reste
 confirmé adopté sans réserve.**
 
+**✅ ADOPTÉ formellement (décision utilisateur, 2026-08-23)** — re-testé
+sur données r_trailing corrigées (fix `df261dc`, backfill complet bloc1/
+bloc2), avec la même mésaventure de cap Blueberry que §1.8
+(`registre_parametres_projet.md` §1.8) : un premier passage
+(`chantier_5leviers_revalidation_2026-08-23.py`, n=600) tournait sur un
+moteur (`chantier_rrtp2_sizing_2026-08-16.py`) antérieur au correctif du
+cap Blueberry Instant 1,5%/trade (08/17-18) et jamais repatché — cap
+absent, apport de §2.35 gonflé artificiellement à +25,9%/+26,2%
+(population complète) et +37,0%/+37,3% (bloc1+2 seul).
+
+**Chiffres retenus après correction du cap** (`chantier_5leviers_
+revalidation_fixed_2026-08-23.py`, **n=300 screening — pas encore
+reconfirmé à n=600**, cap actif) :
+- Population complète : **+21,8% / +21,9%** (1000$/3000$) — toujours net
+  positif et substantiel, juste plus modeste que le premier passage.
+- Bloc1+2 seul (n=280) : **+29,97% / +30,09%** — reste FORT (contrairement
+  à §1.8, dont l'effet sur ce même sous-échantillon s'effondre à quasi
+  neutre). Cohérent avec le mécanisme : §2.35 cible directement la queue
+  rr_tp2>8, indépendamment du cap Blueberry (qui concerne le risque par
+  trade sur le format Instant, pas le sizing rr_tp2 lui-même) — l'essentiel
+  de sa robustesse sur bloc1+2 vient de la correction r_trailing, pas
+  d'un artefact du cap manquant.
+
+**Direction d'adoption inchangée** (toujours dominance stricte à 3000$/
+5000$, arbitrage à 960$/1000$, cf. table ci-dessus) — seule l'AMPLEUR
+était surestimée par le bug de cap, corrigée ici. **Reconfirmation à
+n=600 (niveau verdict) avec le cap actif reste à faire** avant de citer
+ces chiffres au même niveau de confiance que le reste de cette section.
+
+Logs : `log_5leviers_A_refixed_n300_2026-08-23.txt`, scripts
+`chantier_5leviers_revalidation_2026-08-23.py` (buggé, cap absent) et
+`chantier_5leviers_revalidation_fixed_2026-08-23.py` (corrigé).
+
 ### 2.36 Sizing continu/paliers étendus sur rr_tp2 — REJETÉ, portée précise (08/17)
 
 Suite à §2.35 (seuil simple rr_tp2≥8→×1,6, adopté) : test de 3 candidats de
