@@ -1,0 +1,23 @@
+Connecte : login=5104059 server=BlueberryMarketsSVG-Live company=Blueberry Markets (SVG) LLC
+[OK] GOLD-USD -> XAUUSD.pi : n=14100 [2021-03-31 21:00:00+00:00 -> 2026-08-20 20:00:00+00:00] gaps>4j=0 couvre_2021_04_01=OUI (0.2s)
+[OK] GOLD-GBP -> XAUGBP.pi : n=13631 [2023-01-19 21:00:00+00:00 -> 2026-08-20 20:00:00+00:00] gaps>4j=0 couvre_2021_04_01=NON -- demarre 2023-01-19 (0.2s)
+[OK] GOLD-EUR -> XAUEUR.pi : n=13634 [2023-01-19 21:00:00+00:00 -> 2026-08-20 20:00:00+00:00] gaps>4j=0 couvre_2021_04_01=NON -- demarre 2023-01-19 (0.3s)
+[OK] GOLD-AUD -> XAUAUD.pi : n=13636 [2023-01-19 21:00:00+00:00 -> 2026-08-20 20:00:00+00:00] gaps>4j=0 couvre_2021_04_01=NON -- demarre 2023-01-19 (0.2s)
+[OK] SILVER-AUD -> XAGAUD.pi : n=13627 [2023-01-19 21:00:00+00:00 -> 2026-08-20 20:00:00+00:00] gaps>4j=0 couvre_2021_04_01=NON -- demarre 2023-01-19 (0.2s)
+[OK] SILVER-EUR -> XAGEUR.pi : n=13628 [2023-01-19 21:00:00+00:00 -> 2026-08-20 20:00:00+00:00] gaps>4j=0 couvre_2021_04_01=NON -- demarre 2023-01-19 (0.2s)
+[OK] SILVER-USD -> XAGUSD.pi : n=14098 [2021-03-31 21:00:00+00:00 -> 2026-08-20 20:00:00+00:00] gaps>4j=0 couvre_2021_04_01=OUI (0.2s)
+[OK] Palladium -> XPDUSD.pi : n=13715 [2023-01-19 21:00:00+00:00 -> 2026-08-20 20:00:00+00:00] gaps>4j=0 couvre_2021_04_01=NON -- demarre 2023-01-19 (0.2s)
+[OK] Platinum -> XPTUSD.pi : n=13971 [2021-03-31 21:00:00+00:00 -> 2026-08-20 20:00:00+00:00] gaps>4j=1 couvre_2021_04_01=OUI (0.3s)
+      gap : 2024-02-29 13:00:00+00:00 -> 2024-07-26 05:00:00+00:00 (147 days 16:00:00)
+
+====================================================================================================
+ticker_lutessia symbole_mt5  n_bougies                  date_min                  date_max  n_gaps_gt4j         couvre_2021_04_01 statut
+       GOLD-USD   XAUUSD.pi      14100 2021-03-31 21:00:00+00:00 2026-08-20 20:00:00+00:00            0                       OUI     OK
+       GOLD-GBP   XAUGBP.pi      13631 2023-01-19 21:00:00+00:00 2026-08-20 20:00:00+00:00            0 NON -- demarre 2023-01-19     OK
+       GOLD-EUR   XAUEUR.pi      13634 2023-01-19 21:00:00+00:00 2026-08-20 20:00:00+00:00            0 NON -- demarre 2023-01-19     OK
+       GOLD-AUD   XAUAUD.pi      13636 2023-01-19 21:00:00+00:00 2026-08-20 20:00:00+00:00            0 NON -- demarre 2023-01-19     OK
+     SILVER-AUD   XAGAUD.pi      13627 2023-01-19 21:00:00+00:00 2026-08-20 20:00:00+00:00            0 NON -- demarre 2023-01-19     OK
+     SILVER-EUR   XAGEUR.pi      13628 2023-01-19 21:00:00+00:00 2026-08-20 20:00:00+00:00            0 NON -- demarre 2023-01-19     OK
+     SILVER-USD   XAGUSD.pi      14098 2021-03-31 21:00:00+00:00 2026-08-20 20:00:00+00:00            0                       OUI     OK
+      Palladium   XPDUSD.pi      13715 2023-01-19 21:00:00+00:00 2026-08-20 20:00:00+00:00            0 NON -- demarre 2023-01-19     OK
+       Platinum   XPTUSD.pi      13971 2021-03-31 21:00:00+00:00 2026-08-20 20:00:00+00:00            1                       OUI     OK
