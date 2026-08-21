@@ -1,0 +1,15 @@
+[verif] population B_tradable_pgp : 1248 trades
+==========================================================================================
+SWEEP RISQUE B_tradable_pgp (n_sims=600, grille=[1.5, 1.75, 1.9], ceilings=[1000.0, 3000.0])
+==========================================================================================
+[B_tradable_pgp_risk1.50 eval=1.50%/funded=1.50% c=1000$] profit_moy=+22,245,587$ profit_median=+23,225,213$ solde_neg=5.50% annee1<0=5.50% n=600 (204s)
+[B_tradable_pgp_risk1.75 eval=1.75%/funded=1.75% c=1000$] profit_moy=+19,805,496$ profit_median=+20,428,281$ solde_neg=6.00% annee1<0=6.33% n=600 (207s)
+[B_tradable_pgp_risk1.90 eval=1.90%/funded=1.90% c=1000$] profit_moy=+20,863,856$ profit_median=+21,676,457$ solde_neg=6.83% annee1<0=7.33% n=600 (202s)
+[B_tradable_pgp_risk1.50 eval=1.50%/funded=1.50% c=3000$] profit_moy=+23,863,312$ profit_median=+23,891,056$ solde_neg=0.50% annee1<0=0.50% n=600 (210s)
+[B_tradable_pgp_risk1.75 eval=1.75%/funded=1.75% c=3000$] profit_moy=+21,318,076$ profit_median=+21,207,596$ solde_neg=0.50% annee1<0=0.67% n=600 (214s)
+[B_tradable_pgp_risk1.90 eval=1.90%/funded=1.90% c=3000$] profit_moy=+22,650,275$ profit_median=+22,451,616$ solde_neg=0.50% annee1<0=0.67% n=600 (210s)
+==========================================================================================
+REFERENCE ASYMETRIQUE B_tradable_pgp eval=1.25%/funded=1.90% (n_sims=600)
+==========================================================================================
+[B_tradable_pgp_REF_1.25_1.90 eval=1.25%/funded=1.90% c=1000$] profit_moy=+21,352,354$ profit_median=+22,004,661$ solde_neg=5.33% annee1<0=5.50% n=600 (194s)
+[B_tradable_pgp_REF_1.25_1.90 eval=1.25%/funded=1.90% c=3000$] profit_moy=+22,845,133$ profit_median=+22,596,926$ solde_neg=0.50% annee1<0=0.50% n=600 (211s)
