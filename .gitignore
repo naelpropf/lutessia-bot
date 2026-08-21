@@ -16,6 +16,10 @@ venv/
 # Exception : population B_tradable finale (gold/silver + palladium/platine),
 # nécessaire à la reprise du pipeline ailleurs — pas une donnée de backtest jetable.
 !chantier_gold_silver_pop_B_tradable_pgp_2026-08-20.csv
+# Exception : backfill H1 MT5 (2026-08-21) demandé par le projet de simulation
+# pour combler le trou Yahoo Finance (>730j) — donnée de référence longue durée,
+# pas un résultat de run jetable.
+!data/mt5_h1_backfill/*.csv
 
 # Cache de bougies H1 (Yahoo Finance) et logs d'exécution
 yfinance_cache/
