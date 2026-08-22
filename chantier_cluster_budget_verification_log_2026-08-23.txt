@@ -1,0 +1,116 @@
+Population B_tradable_pgp : n=1248, 2021-04-23 12:43:32 -> 2026-08-12 07:19:41
+
+==========================================================================================
+[B_tradable_pgp] Cluster 'metaux_or_argent' -- membres presents dans la population : ['GOLD - AUD', 'GOLD - EUR', 'GOLD - GBP', 'GOLD - USD', 'SILVER - AUD', 'SILVER - EUR', 'SILVER - USD']
+  n trades sur ces tickers : 480 / 1248 (38.5% de la population)
+  co-occurrences (paires de tickers differents avec fenetres qui se chevauchent) : 207
+  jours de trading distincts sur ce cluster : 346 -- 59.8% (borne haute, un jour peut avoir plusieurs co-occurrences)
+  R combine (2 positions) : moyenne=+4.545R, pire=-2.000R, meilleur=+25.754R
+  co-occurrences avec LES 2 positions perdantes simultanement (-1R chacune, pire cas reel) : 66/207 (31.9%)
+  5 pires co-occurrences (ticker1, ticker2, R1, R2, R combine) :
+    GOLD - GBP           / GOLD - AUD           : R1=-1.00 R2=-1.00 combine=-2.00
+    GOLD - AUD           / SILVER - EUR         : R1=-1.00 R2=-1.00 combine=-2.00
+    GOLD - AUD           / SILVER - EUR         : R1=-1.00 R2=-1.00 combine=-2.00
+    GOLD - AUD           / GOLD - USD           : R1=-1.00 R2=-1.00 combine=-2.00
+    GOLD - GBP           / SILVER - USD         : R1=-1.00 R2=-1.00 combine=-2.00
+
+==========================================================================================
+[B_tradable_pgp] Cluster 'fx_majors' -- membres presents dans la population : ['AUD/USD', 'EUR/USD', 'GBP/USD', 'NZD/USD', 'USD/CAD', 'USD/CHF', 'USD/JPY']
+  n trades sur ces tickers : 209 / 1248 (16.7% de la population)
+  co-occurrences (paires de tickers differents avec fenetres qui se chevauchent) : 24
+  jours de trading distincts sur ce cluster : 189 -- 12.7% (borne haute, un jour peut avoir plusieurs co-occurrences)
+  R combine (2 positions) : moyenne=+3.175R, pire=-2.000R, meilleur=+14.139R
+  co-occurrences avec LES 2 positions perdantes simultanement (-1R chacune, pire cas reel) : 5/24 (20.8%)
+  5 pires co-occurrences (ticker1, ticker2, R1, R2, R combine) :
+    GBP/USD              / USD/CAD              : R1=-1.00 R2=-1.00 combine=-2.00
+    AUD/USD              / EUR/USD              : R1=-1.00 R2=-1.00 combine=-2.00
+    USD/CAD              / NZD/USD              : R1=-1.00 R2=-1.00 combine=-2.00
+    EUR/USD              / USD/CHF              : R1=-1.00 R2=-1.00 combine=-2.00
+    GBP/USD              / NZD/USD              : R1=-1.00 R2=-1.00 combine=-2.00
+
+==========================================================================================
+[B_tradable_pgp] Cluster 'indices_us' -- membres presents dans la population : ['NASDAQ100 - MINI NASDAQ100 FULL0926', 'NASDAQ100 INDEX', 'S&P500 - MINI S&P500 FULL0926']
+  n trades sur ces tickers : 94 / 1248 (7.5% de la population)
+  co-occurrences (paires de tickers differents avec fenetres qui se chevauchent) : 19
+  jours de trading distincts sur ce cluster : 85 -- 22.4% (borne haute, un jour peut avoir plusieurs co-occurrences)
+  R combine (2 positions) : moyenne=+3.209R, pire=-2.000R, meilleur=+12.376R
+  co-occurrences avec LES 2 positions perdantes simultanement (-1R chacune, pire cas reel) : 7/19 (36.8%)
+  5 pires co-occurrences (ticker1, ticker2, R1, R2, R combine) :
+    S&P500 - MINI S&P500 FULL0926 / NASDAQ100 - MINI NASDAQ100 FULL0926 : R1=-1.00 R2=-1.00 combine=-2.00
+    S&P500 - MINI S&P500 FULL0926 / NASDAQ100 INDEX      : R1=-1.00 R2=-1.00 combine=-2.00
+    NASDAQ100 - MINI NASDAQ100 FULL0926 / NASDAQ100 INDEX      : R1=-1.00 R2=-1.00 combine=-2.00
+    NASDAQ100 INDEX      / NASDAQ100 - MINI NASDAQ100 FULL0926 : R1=-1.00 R2=-1.00 combine=-2.00
+    S&P500 - MINI S&P500 FULL0926 / NASDAQ100 - MINI NASDAQ100 FULL0926 : R1=-1.00 R2=-1.00 combine=-2.00
+Population étendue (rr_tp1 >= 1.35, forex+indices mappés, terminaux) : 742 trades
+Chargement/complément des bougies H1 pour 17 tickers...
+  AUDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  AUDUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  CHFJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  EURCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURGBP=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  GBPCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  GBPJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  GBPUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  NZDUSD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCAD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  ^GDAXI : backfill MT5 utilise (20327 bougies, depuis 2022-01-02 21:00:00)
+  ^GSPC : backfill MT5 utilise (21018 bougies, depuis 2022-01-02 21:00:00)
+  ^NDX : backfill MT5 utilise (21019 bougies, depuis 2022-01-02 21:00:00)
+Durées réelles vérifiées (bougies H1) : 742/742 (100.0%) — durée médiane de repli : 0 days 09:39:35
+  AUDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  AUDUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  CHFJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  EURCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURGBP=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  GBPCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  GBPJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  GBPUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  NZDUSD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCAD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  ^GDAXI : backfill MT5 utilise (20327 bougies, depuis 2022-01-02 21:00:00)
+  ^GSPC : backfill MT5 utilise (21018 bougies, depuis 2022-01-02 21:00:00)
+  ^NDX : backfill MT5 utilise (21019 bougies, depuis 2022-01-02 21:00:00)
+
+
+Population A : n=742, 2022-01-31 17:18:35 -> 2026-07-30 03:16:26
+
+==========================================================================================
+[A] Cluster 'metaux_or_argent' -- membres presents dans la population : []
+  n trades sur ces tickers : 0 / 742 (0.0% de la population)
+  (pas assez de trades pour chercher des chevauchements)
+
+==========================================================================================
+[A] Cluster 'fx_majors' -- membres presents dans la population : ['AUD/USD', 'EUR/USD', 'GBP/USD', 'NZD/USD', 'USD/CAD', 'USD/CHF', 'USD/JPY']
+  n trades sur ces tickers : 328 / 742 (44.2% de la population)
+  co-occurrences (paires de tickers differents avec fenetres qui se chevauchent) : 86
+  jours de trading distincts sur ce cluster : 284 -- 30.3% (borne haute, un jour peut avoir plusieurs co-occurrences)
+  R combine (2 positions) : moyenne=+3.654R, pire=-2.405R, meilleur=+19.750R
+  co-occurrences avec LES 2 positions perdantes simultanement (-1R chacune, pire cas reel) : 29/86 (33.7%)
+  5 pires co-occurrences (ticker1, ticker2, R1, R2, R combine) :
+    AUD/USD              / USD/CAD              : R1=-1.40 R2=-1.00 combine=-2.40
+    USD/CHF              / USD/JPY              : R1=-1.00 R2=-1.00 combine=-2.00
+    USD/CHF              / GBP/USD              : R1=-1.00 R2=-1.00 combine=-2.00
+    USD/JPY              / GBP/USD              : R1=-1.00 R2=-1.00 combine=-2.00
+    GBP/USD              / NZD/USD              : R1=-1.00 R2=-1.00 combine=-2.00
+
+==========================================================================================
+[A] Cluster 'indices_us' -- membres presents dans la population : ['NASDAQ100 - MINI NASDAQ100 FULL0926', 'NASDAQ100 INDEX', 'S&P500 - MINI S&P500 FULL0926']
+  n trades sur ces tickers : 58 / 742 (7.8% de la population)
+  co-occurrences (paires de tickers differents avec fenetres qui se chevauchent) : 5
+  jours de trading distincts sur ce cluster : 54 -- 9.3% (borne haute, un jour peut avoir plusieurs co-occurrences)
+  R combine (2 positions) : moyenne=+3.479R, pire=-2.000R, meilleur=+12.276R
+  co-occurrences avec LES 2 positions perdantes simultanement (-1R chacune, pire cas reel) : 3/5 (60.0%)
+  5 pires co-occurrences (ticker1, ticker2, R1, R2, R combine) :
+    S&P500 - MINI S&P500 FULL0926 / NASDAQ100 - MINI NASDAQ100 FULL0926 : R1=-1.00 R2=-1.00 combine=-2.00
+    NASDAQ100 INDEX      / NASDAQ100 - MINI NASDAQ100 FULL0926 : R1=-1.00 R2=-1.00 combine=-2.00
+    S&P500 - MINI S&P500 FULL0926 / NASDAQ100 - MINI NASDAQ100 FULL0926 : R1=-1.00 R2=-1.00 combine=-2.00
+    NASDAQ100 - MINI NASDAQ100 FULL0926 / S&P500 - MINI S&P500 FULL0926 : R1=+7.38 R2=+3.74 combine=+11.12
+    NASDAQ100 INDEX      / NASDAQ100 - MINI NASDAQ100 FULL0926 : R1=+5.99 R2=+6.29 combine=+12.28
