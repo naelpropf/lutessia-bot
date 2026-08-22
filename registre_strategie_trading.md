@@ -3073,6 +3073,53 @@ Scripts/logs : `chantier_midterm2022_retest_2026-08-23.py`,
 
 ---
 
+### 6.8 Risque de casse du pivot sous choc carry-unwind (08/24) — ce n'est PAS "les chocs sont sans danger", c'est "la composition du panier de départ compte plus que l'événement macro"
+
+**⚠️ Titre correct à préserver, contre une lecture erronée facile** : le
+résultat brut mesuré (choc forcé = risque de casse du pivot RÉDUIT, pas
+augmenté, n=600, z jusqu'à -5,82, cf.
+[[project_pivot_carryunwind_risk_2026-08-23]]) **ne veut PAS dire** "les
+chocs macro ne sont pas dangereux pour le pivot" — une citation future de
+ce type serait une lecture fausse.
+
+**Mécanisme réel** : le 1er bloc de 2 mois typique tiré au hasard dans B
+est souvent dominé par le cluster métaux fortement corrélés (or/argent/
+platine/palladium, corr 0,52-0,94, §2.35 — cf.
+[[project_s235_ab_divergence_mechanism_2026-08-23]]) — un vrai risque de
+CONCENTRATION. Le choc carry-unwind (mix équilibré 53% métaux/47% forex,
+proche de la composition moyenne de B) est accidentellement PLUS
+diversifié qu'un démarrage aléatoire moyen. Le choc dégrade bien l'EV
+brute (-1,65R/-1,79R sur A/B, confirmé le même jour,
+[[project_omicron_detail_et_carry_unwind_2026-08-23]]) — mais ce risque de
+dégradation d'EV est structurellement MOINS dangereux pour la solvabilité
+du pivot que le risque de concentration d'un panier de métaux corrélés qui
+perdent tous ensemble.
+
+**Implication pour le calendrier réel (Jackson Hole 28/08, FOMC 15-16/09)** :
+le facteur de risque n'est pas temporel ("y a-t-il un choc macro ce
+jour-là") mais COMPOSITIONNEL ("quelle est la diversification des tickers
+que Lutessia signale effectivement cette semaine-là"). Une semaine de choc
+macro à composition équilibrée est moins dangereuse pour le pivot qu'une
+semaine calme à composition concentrée métaux. La vigilance à avoir n'est
+donc pas une question de date, mais de composition mesurable en temps réel
+des tout premiers trades d'un compte qui vient d'ouvrir.
+
+**Piste structurelle ouverte par cette lecture** (notée ici, PAS testée,
+distincte des Piste 2/3 déjà closes — cf.
+[[project_piste2_confluence_retest_rejected_2026-08-22]] et
+[[project_diagnostic_chop_bloc2_diffus_2026-08-23]]) : plafonner
+l'exposition corrélée dans les tout premiers trades d'un compte qui vient
+d'ouvrir (ex. ne pas laisser 2-3 métaux du même cluster représenter la
+totalité du portefeuille initial). Moins fragile que Piste 2/3 car elle ne
+cherche pas à prédire un événement macro à l'avance — elle contrôle une
+composition mesurable en temps réel. Pas urgent, mais à garder en tête si
+le sujet du risque de lancement revient.
+
+Voir [[project_pivot_carryunwind_risk_2026-08-23]] pour le détail chiffré
+complet (8 configs, n=600).
+
+---
+
 ## 7. Points ouverts pour la prochaine session (19-20/08)
 
 1. 🔴 *(ouvert)* MAX_POSITIONS∈{4,5} testé UNIQUEMENT sur Config2-AB (§6.4) —

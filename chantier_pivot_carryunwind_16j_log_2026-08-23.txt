@@ -1,0 +1,78 @@
+Population : B_seule_tradable_pgp_corrige, n=1248 -- fenetre carry-unwind [2024-08-01->2024-08-16] : 17 trades reels
+
+===============================================================================================
+DUREE TRONQUEE=16j, CEILING=1000$
+===============================================================================================
+[baseline dur=16j c=1000$] risque_casse_PIVOT=11.00% (blueberry_breaks>0) risque_casse_autre=3.83% (breaks non-Blueberry) autre_groupe_ouvert=11.00% (total_opens>1) n_sims=600 (93s)
+[carry_unwind_force dur=16j c=1000$] risque_casse_PIVOT=0.50% (blueberry_breaks>0) risque_casse_autre=0.00% (breaks non-Blueberry) autre_groupe_ouvert=0.50% (total_opens>1) n_sims=600 (85s)
+  -> DELTA risque casse PIVOT = -10.50pts (z approx=-8.02)
+
+===============================================================================================
+DUREE TRONQUEE=16j, CEILING=3000$
+===============================================================================================
+[baseline dur=16j c=3000$] risque_casse_PIVOT=0.17% (blueberry_breaks>0) risque_casse_autre=0.17% (breaks non-Blueberry) autre_groupe_ouvert=62.50% (total_opens>1) n_sims=600 (85s)
+[carry_unwind_force dur=16j c=3000$] risque_casse_PIVOT=0.17% (blueberry_breaks>0) risque_casse_autre=0.17% (breaks non-Blueberry) autre_groupe_ouvert=68.83% (total_opens>1) n_sims=600 (85s)
+  -> DELTA risque casse PIVOT = +0.00pts (z approx=+0.00)
+
+===============================================================================================
+DUREE TRONQUEE=30j, CEILING=1000$
+===============================================================================================
+[baseline dur=30j c=1000$] risque_casse_PIVOT=21.67% (blueberry_breaks>0) risque_casse_autre=12.00% (breaks non-Blueberry) autre_groupe_ouvert=25.83% (total_opens>1) n_sims=600 (85s)
+[carry_unwind_force dur=30j c=1000$] risque_casse_PIVOT=12.00% (blueberry_breaks>0) risque_casse_autre=7.33% (breaks non-Blueberry) autre_groupe_ouvert=29.50% (total_opens>1) n_sims=600 (85s)
+  -> DELTA risque casse PIVOT = -9.67pts (z approx=-4.51)
+
+===============================================================================================
+DUREE TRONQUEE=30j, CEILING=3000$
+===============================================================================================
+[baseline dur=30j c=3000$] risque_casse_PIVOT=4.00% (blueberry_breaks>0) risque_casse_autre=4.33% (breaks non-Blueberry) autre_groupe_ouvert=94.83% (total_opens>1) n_sims=600 (85s)
+[carry_unwind_force dur=30j c=3000$] risque_casse_PIVOT=1.17% (blueberry_breaks>0) risque_casse_autre=7.17% (breaks non-Blueberry) autre_groupe_ouvert=100.00% (total_opens>1) n_sims=600 (85s)
+  -> DELTA risque casse PIVOT = -2.83pts (z approx=-3.11)
+
+===============================================================================================
+DUREE TRONQUEE=45j, CEILING=1000$
+===============================================================================================
+[baseline dur=45j c=1000$] risque_casse_PIVOT=31.17% (blueberry_breaks>0) risque_casse_autre=21.17% (breaks non-Blueberry) autre_groupe_ouvert=60.17% (total_opens>1) n_sims=600 (85s)
+[carry_unwind_force dur=45j c=1000$] risque_casse_PIVOT=17.00% (blueberry_breaks>0) risque_casse_autre=12.50% (breaks non-Blueberry) autre_groupe_ouvert=84.83% (total_opens>1) n_sims=600 (89s)
+  -> DELTA risque casse PIVOT = -14.17pts (z approx=-5.82)
+
+===============================================================================================
+DUREE TRONQUEE=45j, CEILING=3000$
+===============================================================================================
+[baseline dur=45j c=3000$] risque_casse_PIVOT=7.67% (blueberry_breaks>0) risque_casse_autre=24.50% (breaks non-Blueberry) autre_groupe_ouvert=100.00% (total_opens>1) n_sims=600 (86s)
+[carry_unwind_force dur=45j c=3000$] risque_casse_PIVOT=4.33% (blueberry_breaks>0) risque_casse_autre=19.50% (breaks non-Blueberry) autre_groupe_ouvert=100.00% (total_opens>1) n_sims=600 (86s)
+  -> DELTA risque casse PIVOT = -3.33pts (z approx=-2.44)
+
+===============================================================================================
+DUREE TRONQUEE=60j, CEILING=1000$
+===============================================================================================
+[baseline dur=60j c=1000$] risque_casse_PIVOT=39.67% (blueberry_breaks>0) risque_casse_autre=36.83% (breaks non-Blueberry) autre_groupe_ouvert=93.67% (total_opens>1) n_sims=600 (86s)
+[carry_unwind_force dur=60j c=1000$] risque_casse_PIVOT=25.00% (blueberry_breaks>0) risque_casse_autre=33.83% (breaks non-Blueberry) autre_groupe_ouvert=96.17% (total_opens>1) n_sims=600 (87s)
+  -> DELTA risque casse PIVOT = -14.67pts (z approx=-5.50)
+
+===============================================================================================
+DUREE TRONQUEE=60j, CEILING=3000$
+===============================================================================================
+[baseline dur=60j c=3000$] risque_casse_PIVOT=8.00% (blueberry_breaks>0) risque_casse_autre=44.67% (breaks non-Blueberry) autre_groupe_ouvert=100.00% (total_opens>1) n_sims=600 (87s)
+[carry_unwind_force dur=60j c=3000$] risque_casse_PIVOT=4.33% (blueberry_breaks>0) risque_casse_autre=30.33% (breaks non-Blueberry) autre_groupe_ouvert=100.00% (total_opens>1) n_sims=600 (87s)
+  -> DELTA risque casse PIVOT = -3.67pts (z approx=-2.65)
+
+===============================================================================================
+SYNTHESE
+===============================================================================================
+             label  target_duration_days  ceiling   n  pivot_break_rate  other_break_rate  other_group_opened_rate  total_opens_moy
+          baseline                    16   1000.0 600         11.000000          3.833333                11.000000         1.148333
+carry_unwind_force                    16   1000.0 600          0.500000          0.000000                 0.500000         1.010000
+          baseline                    16   3000.0 600          0.166667          0.166667                62.500000         2.365000
+carry_unwind_force                    16   3000.0 600          0.166667          0.166667                68.833333         2.375000
+          baseline                    30   1000.0 600         21.666667         12.000000                25.833333         1.526667
+carry_unwind_force                    30   1000.0 600         12.000000          7.333333                29.500000         1.480000
+          baseline                    30   3000.0 600          4.000000          4.333333                94.833333         3.975000
+carry_unwind_force                    30   3000.0 600          1.166667          7.166667               100.000000         3.698333
+          baseline                    45   1000.0 600         31.166667         21.166667                60.166667         2.806667
+carry_unwind_force                    45   1000.0 600         17.000000         12.500000                84.833333         3.781667
+          baseline                    45   3000.0 600          7.666667         24.500000               100.000000        10.153333
+carry_unwind_force                    45   3000.0 600          4.333333         19.500000               100.000000        10.341667
+          baseline                    60   1000.0 600         39.666667         36.833333                93.666667         7.346667
+carry_unwind_force                    60   1000.0 600         25.000000         33.833333                96.166667         9.078333
+          baseline                    60   3000.0 600          8.000000         44.666667               100.000000        18.908333
+carry_unwind_force                    60   3000.0 600          4.333333         30.333333               100.000000        17.133333
