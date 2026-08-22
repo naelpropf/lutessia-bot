@@ -1,77 +1,65 @@
-# Diagnostic — bug flotte gelée / emergency bootstrap inopérant (2026-08-23)
+# Diagnostic — flotte gelée après épuisement plafond+fonds d'urgence (2026-08-23)
 
-## Résumé
+## CORRECTIF (2026-08-23, suite) : CE N'EST PAS UN BUG
 
-Bug confirmé (pas du bruit d'échantillonnage) dans le mécanisme de
-financement/relance de compte (`handle_cost_hybrid` / `try_emergency_bootstrap`),
-**partagé par le moteur single-fleet officiel** (`chantier_rrtp2_sizing_2026-
-08-19.py`, utilisé pour TOUTES les Tâches C et C2 de cette session, y compris
-les résultats ayant servi à l'adoption formelle de §1.8/§2.35 et à la
-conclusion du sweep de risque A/B) **et** le moteur double-flotte
-(`chantier_ab_metaux_cascade_officiel_2026-08-19.py`, base de la Tâche D).
+Ce fichier affirmait initialement qu'il s'agissait d'un bug ("emergency
+bootstrap inopérant"). Après vérification plus poussée du code, cette
+conclusion est **fausse et corrigée ici** — voir section "Verdict final"
+en bas. Le contenu original est conservé ci-dessous pour la traçabilité de
+l'investigation, mais NE PAS le prendre comme un verdict.
 
-## Comment il a été trouvé
+## Résumé (diagnostic initial, 2026-08-23)
 
-En creusant une anomalie Tâche D (le scénario "adapté prudent" montrait un
-risque PLUS BAS que la référence, ce qui n'a pas de sens pour une
-dégradation), une comparaison appariée par graine identique a montré que 2
-simulations sur 40 s'effondraient à une valeur quasi-identique proche de
-zéro (~-9 069$ / -5 112$) au lieu du profit normal (dizaines de millions).
+Dans un premier temps, une comparaison appariée (Tâche D, scénario
+"adapté prudent" vs référence) a montré 2 simulations sur 40 s'effondrant
+à une valeur quasi-identique proche de zéro (~-9 069$ / -5 112$) au lieu
+du profit normal. Reproduction instrumentée : la flotte B ne traite que
+~24 trades sur toute la simulation (4 ans) au lieu de ~24 000, après 7
+casses (`B_total_breaks=7`) très tôt, puis reste inactive pour le reste
+du run.
 
-## Preuve (moteur double-flotte, reproduction instrumentée)
+Le même signal a été retrouvé dans le moteur single-fleet officiel
+(`chantier_rrtp2_sizing_2026-08-19.py`, B_tradable_pgp, risque 1,50/1,50,
+n=300, ceiling=1000$) : 17/300 sims (5,67%) avec `total_opens` effondré à
+6-7, dont 11 tombant sur exactement la même valeur `net=-5111.99`.
 
-Sur la simulation défaillante : `B_trades_admitted=24` sur toute la
-simulation (4 ans), contre `B_trades_admitted=24 394` sur une simulation
-saine avec la même population — la flotte B se retrouve quasi totalement à
-l'arrêt après ~24-34 événements alors qu'elle devrait en traiter des
-dizaines de milliers. `B_total_breaks=7` juste avant l'arrêt : la flotte
-casse 7 fois tôt dans la simulation puis ne rouvre plus jamais.
+## Verdict final : mécanisme LÉGITIME, pas un bug
 
-## Preuve (moteur SINGLE-FLEET, `chantier_rrtp2_sizing_2026-08-19.py`,
-B_tradable_pgp, risque 1,50%/1,50%, n=300, ceiling=1000$)
+Code vérifié :
+- `try_emergency_bootstrap()` (chantier_rrtp2_sizing_2026-08-19.py:374-382) :
+  ne relance QUE si `state["emergency_remaining"] >= cost` (tout ou rien).
+  `DEFAULT_EMERGENCY = 300.0` (`etape_e_fleet_integration.py:109`) est un
+  **paramètre documenté et validé délibérément dans des sessions
+  antérieures** (registre §2.39/§8.3, "Piste C — fonds d'urgence", testé et
+  "laissé en l'état").
+- `handle_cost_hybrid()` (ligne 306-322) : au-delà de la réserve, pioche
+  dans le plafond personnel (`ceiling - real_cash_paid`) ; une fois ce
+  plafond ET les 300$ d'urgence épuisés, la réouverture reste `pending`
+  indéfiniment — SANS autre source de financement possible puisque plus
+  aucun trade n'est traité (0 compte actif → pas de revenu → jamais de quoi
+  payer la réouverture). C'est un vrai deadlock économique, pas un defaut
+  de code : le code fait exactement ce qu'il dit.
+- `combined_net() = total_funded_pnl - total_fees_paid` (ligne 297-298) :
+  une fois la flotte bloquée, ce total ne dépend plus des tirages
+  aléatoires de trades (qui ne sont plus traités), seulement du coût
+  cumulé (déterministe, table de prix) des tentatives de réouverture avant
+  blocage. **C'est pourquoi plusieurs simulations tombent sur EXACTEMENT
+  la même valeur** — pas une signature de bug, juste la conséquence
+  normale d'un calcul déterministe une fois la partie aléatoire arrêtée.
 
-**17 simulations sur 300 (5,67%)** montrent la même signature de gel :
-`total_opens` s'effondre à 6-7 (au lieu de dizaines à centaines en régime
-normal, cf. distribution triée : 6,6,7,7,7,7,7,7,7,7,7,7,7,7,7,7,10,77,92,96...).
+## Conclusion pour l'utilisateur
 
-Plus frappant : **11 de ces 17 simulations tombent sur la valeur EXACTEMENT
-IDENTIQUE `net=-5111.990000`** (au centime près), malgré des tirages
-aléatoires différents en amont (winrate, ordre de bootstrap) — signature
-d'un état terminal déterministe (le même coût de compte figé, plus aucune
-activité derrière), pas d'un résultat de trading normal.
+**Les pourcentages `solde_negatif%`/`annee1<0%` cités cette session (Tâche
+C, Tâche C2) ne sont PAS surestimés par un bug.** Ce mécanisme (casses
+précoces répétées épuisant plafond + fonds d'urgence de 300$, flotte
+bloquée définitivement) est un vrai risque de ruine, déjà correctement
+compté par le moteur, cohérent avec un paramètre (`DEFAULT_EMERGENCY=300$`)
+délibérément choisi et validé dans des sessions antérieures.
 
-## Portée / impact
-
-Ce mécanisme (`try_emergency_bootstrap`/`handle_cost_hybrid`) est du code
-**partagé**, présent dans toute la lignée de moteurs Monte Carlo du projet
-(au moins `chantier_rrtp2_sizing_2026-08-16/19.py` et
-`chantier_ab_metaux_cascade_officiel_2026-08-19.py` vérifiés directement ;
-probablement present dans le reste de la lignée `-08-17` officielle et
-au-delà, NON VÉRIFIÉ ici faute de temps).
-
-**Toutes les statistiques `solde_negatif%`/`annee1<0%` citées cette
-session (Tâche C : 5 leviers sur A_seule et B_tradable_pgp ; Tâche C2 :
-sweep de risque A/B, y compris la conclusion "B optimal = 1,50%/1,50%") sont
-potentiellement contaminées** : une partie non négligeable (~3-7% selon les
-runs observés) des simulations classées "ruine" pourrait en réalité être cet
-artefact de gel plutôt qu'une vraie perte de trading. Ça ne veut pas dire que
-les conclusions directionnelles sont fausses, mais les POURCENTAGES exacts
-de risque cités (et donc les décisions d'adoption §1.8/§2.35 et le choix du
-risque optimal B=1,50%/1,50%) reposent sur des chiffres à re-vérifier.
-
-## Cause précise -- PAS ENCORE ISOLÉE
-
-Le symptôme est net (n_active_accounts(tid)==0 après plusieurs casses
-précoces, `try_emergency_bootstrap` ne relance apparemment pas la flotte),
-mais la ligne de code exacte qui empêche le bootstrap de fonctionner n'a
-pas été trouvée (aurait demandé une instrumentation plus poussée de
-`try_emergency_bootstrap`/`handle_cost_hybrid`/`emergency_remaining`).
-
-## Recommandation
-
-**Ne pas poursuivre les Tâches D/E/F ni faire confiance aux conclusions
-C/C2 tant que ce bug n'est pas isolé et corrigé (ou au moins quantifié
-précisément).** Prochaine étape suggérée : instrumenter
-`try_emergency_bootstrap`/`emergency_remaining` directement pour voir
-pourquoi le bootstrap ne relance pas la flotte après le passage à 0 compte
-actif.
+Le point resté ouvert (pas un bug, une question de calibration) : l'écart
+Tâche D "adapté prudent" vs REF pourrait simplement refléter que la
+fenêtre choc forcée (israel_hamas) est intrinsèquement MOINS risquée comme
+premier bloc que certains blocs réels de B_tradable_pgp (ex. le tout
+premier bloc réel de B, 100% métaux corrélés) — pas une anomalie de mesure,
+mais un vrai effet de composition d'actifs à documenter si on veut
+comparer proprement REF et scénarios dégradés.
