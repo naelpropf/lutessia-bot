@@ -1,0 +1,18 @@
+Population : B_seule_tradable_pgp_corrige, n=1248
+
+===============================================================================================
+DUREE=16j, CEILING=1000$, demarrage ALEATOIRE (pas de choc force)
+===============================================================================================
+[baseline_0.80 dur=16j c=1000$ pivot_window=0j] risque_casse_PIVOT=11.00% autre_groupe_ouvert=11.00% profit_median=-4121.99$ profit_moyen=-4169.50$ n_sims=300 (28s)
+[resserre_0.60_10j dur=16j c=1000$ pivot_window=10j] risque_casse_PIVOT=11.00% autre_groupe_ouvert=11.00% profit_median=-4121.99$ profit_moyen=-4162.35$ n_sims=300 (29s)
+  -> DELTA risque casse PIVOT = +0.00pts (z approx=+0.00) | delta profit moyen (fenetre 16j) = +7.15$ (+0.17%)
+[resserre_0.50_10j dur=16j c=1000$ pivot_window=10j] risque_casse_PIVOT=14.00% autre_groupe_ouvert=14.00% profit_median=-4121.99$ profit_moyen=-4153.05$ n_sims=300 (29s)
+  -> DELTA risque casse PIVOT = +3.00pts (z approx=+1.11) | delta profit moyen (fenetre 16j) = +16.45$ (+0.39%)
+
+===============================================================================================
+SYNTHESE
+===============================================================================================
+            label  target_duration_days  ceiling   n  pivot_window_days  pivot_break_rate  other_group_opened_rate  total_opens_moy  profit_median  profit_mean
+    baseline_0.80                    16   1000.0 300                  0              11.0                     11.0         1.153333       -4121.99 -4169.499002
+resserre_0.60_10j                    16   1000.0 300                 10              11.0                     11.0         1.110000       -4121.99 -4162.349002
+resserre_0.50_10j                    16   1000.0 300                 10              14.0                     14.0         1.140000       -4121.99 -4153.049011
