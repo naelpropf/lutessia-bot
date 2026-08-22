@@ -40,3 +40,52 @@ Durées réelles vérifiées (bougies H1) : 742/742 (100.0%) — durée médiane de repl
 ===============================================================================================
 B_tradable_pgp c=3000$
 ===============================================================================================
+[B_tradable_pgp_REF c=3000 c=3000$] profit_moy=+36,354,646$ solde_neg_an4=0.00% annee1<0=0.00% n=300 (197s)
+[B_tradable_pgp_cap_metaux_xauusd_xagusd c=3000 c=3000$] profit_moy=+36,330,819$ solde_neg_an4=0.00% annee1<0=0.00% n=300 (169s)
+  -> impact cap metaux_xauusd_xagusd   : delta profit=-0.07%, delta solde_neg=+0.00pts, delta annee1<0=+0.00pts
+[B_tradable_pgp_cap_fx_majors c=3000 c=3000$] profit_moy=+36,399,594$ solde_neg_an4=0.00% annee1<0=0.00% n=300 (165s)
+  -> impact cap fx_majors              : delta profit=+0.12%, delta solde_neg=+0.00pts, delta annee1<0=+0.00pts
+[B_tradable_pgp_cap_les_deux c=3000 c=3000$] profit_moy=+36,391,294$ solde_neg_an4=0.00% annee1<0=0.00% n=300 (163s)
+  -> impact cap les_deux               : delta profit=+0.10%, delta solde_neg=+0.00pts, delta annee1<0=+0.00pts
+
+===============================================================================================
+B_tradable_pgp c=5000$
+===============================================================================================
+[B_tradable_pgp_REF c=5000 c=5000$] profit_moy=+36,354,646$ solde_neg_an4=0.00% annee1<0=0.00% n=300 (157s)
+[B_tradable_pgp_cap_metaux_xauusd_xagusd c=5000 c=5000$] profit_moy=+36,330,819$ solde_neg_an4=0.00% annee1<0=0.00% n=300 (160s)
+  -> impact cap metaux_xauusd_xagusd   : delta profit=-0.07%, delta solde_neg=+0.00pts, delta annee1<0=+0.00pts
+[B_tradable_pgp_cap_fx_majors c=5000 c=5000$] profit_moy=+36,399,594$ solde_neg_an4=0.00% annee1<0=0.00% n=300 (163s)
+  -> impact cap fx_majors              : delta profit=+0.12%, delta solde_neg=+0.00pts, delta annee1<0=+0.00pts
+[B_tradable_pgp_cap_les_deux c=5000 c=5000$] profit_moy=+36,391,294$ solde_neg_an4=0.00% annee1<0=0.00% n=300 (165s)
+  -> impact cap les_deux               : delta profit=+0.10%, delta solde_neg=+0.00pts, delta annee1<0=+0.00pts
+
+===============================================================================================
+A c=3000$
+===============================================================================================
+[A_REF c=3000 c=3000$] profit_moy=+15,722,471$ solde_neg_an4=0.00% annee1<0=0.00% n=300 (116s)
+[A_cap_fx_majors c=3000 c=3000$] profit_moy=+16,184,564$ solde_neg_an4=0.00% annee1<0=0.00% n=300 (116s)
+  -> impact cap fx_majors              : delta profit=+2.94%, delta solde_neg=+0.00pts, delta annee1<0=+0.00pts
+
+===============================================================================================
+A c=5000$
+===============================================================================================
+[A_REF c=5000 c=5000$] profit_moy=+15,722,471$ solde_neg_an4=0.00% annee1<0=0.00% n=300 (115s)
+[A_cap_fx_majors c=5000 c=5000$] profit_moy=+16,184,564$ solde_neg_an4=0.00% annee1<0=0.00% n=300 (117s)
+  -> impact cap fx_majors              : delta profit=+2.94%, delta solde_neg=+0.00pts, delta annee1<0=+0.00pts
+
+===============================================================================================
+SYNTHESE
+===============================================================================================
+           pop  ceiling              variant  profit_moyen  solde_negatif_annee4  annee1_neg
+B_tradable_pgp   3000.0                  REF  3.635465e+07                   0.0         0.0
+B_tradable_pgp   3000.0 metaux_xauusd_xagusd  3.633082e+07                   0.0         0.0
+B_tradable_pgp   3000.0            fx_majors  3.639959e+07                   0.0         0.0
+B_tradable_pgp   3000.0             les_deux  3.639129e+07                   0.0         0.0
+B_tradable_pgp   5000.0                  REF  3.635465e+07                   0.0         0.0
+B_tradable_pgp   5000.0 metaux_xauusd_xagusd  3.633082e+07                   0.0         0.0
+B_tradable_pgp   5000.0            fx_majors  3.639959e+07                   0.0         0.0
+B_tradable_pgp   5000.0             les_deux  3.639129e+07                   0.0         0.0
+             A   3000.0                  REF  1.572247e+07                   0.0         0.0
+             A   3000.0            fx_majors  1.618456e+07                   0.0         0.0
+             A   5000.0                  REF  1.572247e+07                   0.0         0.0
+             A   5000.0            fx_majors  1.618456e+07                   0.0         0.0

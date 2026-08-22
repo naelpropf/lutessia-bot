@@ -3104,16 +3104,15 @@ semaine calme à composition concentrée métaux. La vigilance à avoir n'est
 donc pas une question de date, mais de composition mesurable en temps réel
 des tout premiers trades d'un compte qui vient d'ouvrir.
 
-**Piste structurelle ouverte par cette lecture** (notée ici, PAS testée,
-distincte des Piste 2/3 déjà closes — cf.
-[[project_piste2_confluence_retest_rejected_2026-08-22]] et
-[[project_diagnostic_chop_bloc2_diffus_2026-08-23]]) : plafonner
-l'exposition corrélée dans les tout premiers trades d'un compte qui vient
-d'ouvrir (ex. ne pas laisser 2-3 métaux du même cluster représenter la
-totalité du portefeuille initial). Moins fragile que Piste 2/3 car elle ne
-cherche pas à prédire un événement macro à l'avance — elle contrôle une
-composition mesurable en temps réel. Pas urgent, mais à garder en tête si
-le sujet du risque de lancement revient.
+**Piste structurelle ouverte par cette lecture, TESTÉE ET CLOSE (08/23,
+même session)** : plafonner l'exposition corrélée (budget de cluster
+combiné, pas par position) dans les tout premiers trades d'un compte.
+Vérifié par simulation n=300 sur les 2 clusters réels (métaux XAUUSD+
+XAGUSD, FX Majors 7 paires ; indices US déjà protégé à 100% par le
+mécanisme d'exclusion existant) : **aucun impact mesurable, ni profit ni
+risque** (delta profit -0,07% à +2,94%, delta solde_négatif%/année1<0%
+= 0,00pt partout). **Routage inter-comptes NON nécessaire** — voir
+[[project_cluster_budget_verdict_2026-08-23]] pour le détail complet.
 
 Voir [[project_pivot_carryunwind_risk_2026-08-23]] pour le détail chiffré
 complet (8 configs, n=600).
