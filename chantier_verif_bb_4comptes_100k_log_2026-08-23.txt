@@ -1,0 +1,14 @@
+Prix Instant Elite 100k corrige (ratio reel 2StepStandard 100k/25k=3.647) : 2918$
+
+--- BASELINE (bug actuel : illimite, 50k$/compte, 333$) ---
+[baseline_bug] profit_moy=+34,737,482$ annee1_neg=4.00% bb_instant_opens_moy=7.80 bb_classic_opens_moy=0.62 total_opens_moy=233.70 total_opens_max=352
+
+--- CORRIGE (max 4 comptes total, 100k$/extra, prix sourcee) ---
+[corrige_4comptes_100k] profit_moy=+33,772,956$ annee1_neg=4.00% bb_instant_opens_moy=3.94 bb_classic_opens_moy=0.62 total_opens_moy=229.84 total_opens_max=348
+
+==========================================================================================
+DELTA (corrige - baseline)
+==========================================================================================
+  delta profit_moy = -964,527$ (-2.78%)
+  delta annee1<0 = +0.00pts (4.00% -> 4.00%)
+  baseline total_opens_moy=233.70 (max=352) vs corrige total_opens_moy=229.84 (max=348)

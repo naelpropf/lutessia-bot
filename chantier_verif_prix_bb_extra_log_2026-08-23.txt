@@ -1,0 +1,6 @@
+Prix corrige estime (ratio reel sourcee 2StepStandard 50k/25k=1.853) : Instant 50k = 1482$ (vs 333$ actuel, x4.45), Classic 50k = 306$ (vs 333$ actuel)
+
+--- BASELINE (prix actuel, bug) ---
+[baseline_bug] profit_moy=+34,737,482$ annee1_neg=4.00% bb_instant_opens_moy=7.80 bb_classic_opens_moy=0.62 total_opens_moy=233.70
+
+--- CORRIGE (prix sourcee estime) ---

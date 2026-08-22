@@ -4695,3 +4695,67 @@ dans `registre_strategie_trading.md` §6.2 :
 Bug corrigé dans `chantier_ab_metaux_cascade_officiel_2026-08-19.py` (pas
 dans `chantier_b6_montecarlo_2026-08-19.py`, qui reste sur 276/297 pour
 son propre périmètre sans métaux, toujours correct pour son usage).
+
+## 10. Session 2026-08-23 — comptes Blueberry extra mal paramétrés
+
+### 10.1 🔴 BUG confirmé — comptes Blueberry "extra" modélisés illimités/50k$/333$ au lieu de 4 comptes max/100k$/~2918$, PAS ENCORE corrigé dans le code, impact mesuré négligeable
+
+Trouvé en discutant du pivot Blueberry avec l'utilisateur. Le moteur
+modélise les comptes Blueberry ouverts au-delà du pivot jour0
+(`process_extra_account`, `GROWTH_FIRMS_EXTRA`) comme :
+- **Nombre illimité** (`FIRM_MAX_ACCOUNTS["Blueberry"]=None`,
+  `etape_e_fleet_integration.py:119`), plafonné seulement par le capital
+  cumulé (`FIRM_CAPITAL_CAP["Blueberry"]=400000$`, ligne 118).
+- **Taille fixe 50 000$** (`BASE_PALIER["Blueberry"]=25000$ ×
+  `EXTRA_ACCOUNT_MULT=2.0`, `corrected_scaling_mechanism.py:56` +
+  `etape_e_fleet_integration.py:106`).
+- **Prix 333$/ouverture** — extrapolation linéaire générique (`FEE_RATIO`,
+  `engine_multiformat.py::price_for()`), faute d'entrée `{50000: ...}`
+  dans `FORMATS["Blueberry_InstantElite"]["price"]` (qui n'a que
+  `{25000: 800}`).
+
+**Confirmé par l'utilisateur (info réelle broker, absente du code)** :
+Blueberry limite réellement à **4 comptes MAX par personne** (pivot
+inclus, donc 3 comptes extra max), et **Instant Elite plafonne à
+100 000$/compte**. Le moteur était donc faux sur 3 axes à la fois (trop
+de comptes possibles, taille trop petite, prix trop bas).
+
+**Prix corrigé estimé (pas de source directe Instant Elite 100k)** : ratio
+réel sourcé `Blueberry_2StepStandard` (tradingpilot.com,
+`engine_multiformat.py:133`, table 25K=170$/50K=315$/100K=620$/
+200K=1240$, progression sous-linéaire) : ratio 100k/25k=620/170=3,647×,
+appliqué à l'ancre réelle Instant Elite 25k=800$ → **~2918$**. Estimation
+par proxy (même méthode tarifaire que le reste du projet quand la source
+directe manque), pas une source directe — à re-vérifier si le sujet
+redevient critique.
+
+**Impact mesuré (n=50, même seed, B_tradable_pgp, ceiling=1000$,
+comparaison directe avant/après correction)**, script
+`chantier_verif_bb_4comptes_100k_2026-08-23.py` :
+
+| Métrique | Bug (illimité/50k/333$) | Corrigé (4 comptes/100k/2918$) | Delta |
+|---|---|---|---|
+| Profit moyen | +34,74M$ | +33,77M$ | **-2,78%** |
+| année1<0% | 4,00% | 4,00% | **0,00pt** |
+| Ouvertures Instant/sim | 7,80 | 3,94 | -49% |
+
+**Verdict : impact négligeable, AUCUNE resimulation nécessaire.** Le
+risque année 1 (la question initiale : la flotte grossit-elle trop vite
+avec des comptes sous-pricés ?) n'est PAS affecté du tout. Seul le profit
+total 4 ans baisse légèrement (-2,78%), largement sous le seuil de
+matérialité pour remettre en cause une conclusion de cette session
+(classement pivot §9.4/9.5, verdict cluster, seuil de séquence dégradée,
+mécanisme carry-unwind — aucun ne repose sur un écart de profit de
+quelques %).
+
+**À corriger dans le moteur officiel (pas urgent, prochaine occasion qui
+touche à `process_extra_account`)** :
+1. `FIRM_MAX_ACCOUNTS["Blueberry"]` : `None` → `4`.
+2. `unit_palier` Blueberry dans `process_extra_account` : sortir du calcul
+   générique `BASE_PALIER*EXTRA_ACCOUNT_MULT` (50k), fixer à `100000`
+   spécifiquement pour Blueberry (NE PAS toucher FTMO/GFT, qui restent
+   corrects à 50k avec `EXTRA_ACCOUNT_MULT=2.0` — aucune information
+   contraire fournie pour ces firms).
+3. `FORMATS["Blueberry_InstantElite"]["price"][100000]` : ajouter ~2918$.
+
+Mémoire projet : `project_bb_extra_accounts_correction_2026-08-23.md`.
