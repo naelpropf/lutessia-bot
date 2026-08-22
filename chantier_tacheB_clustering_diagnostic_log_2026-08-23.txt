@@ -1,0 +1,34 @@
+Population : B_seule_tradable_pgp_corrige, n=1248
+[verif] duree totale pop (target_duration pour toute trajectoire) = 1936.8 jours
+
+==========================================================================================
+HYPOTHESE A -- nombre de tirages bootstrap effectifs par simulation
+==========================================================================================
+  2 mois (REF)   : pool=33 blocs (33 non-vides), tirages/simulation mesures sur 30 runs = 33 (min=33, max=33, constant=True)
+  4 mois         : pool=17 blocs (17 non-vides), tirages/simulation mesures sur 30 runs = 17 (min=17, max=17, constant=True)
+  6 mois         : pool=11 blocs (11 non-vides), tirages/simulation mesures sur 30 runs = 11 (min=11, max=11, constant=True)
+
+==========================================================================================
+HYPOTHESE B -- compensation naturelle (decomposition en sous-blocs 2 mois)
+==========================================================================================
+[reference] distribution EV blocs 2 mois (n=33, non-vides=33) : min=+0.476R P10=+1.339R median=+2.199R P90=+3.460R max=+6.527R
+
+  --- Blocs 4 mois (n=17, non-vides=17) ---
+  distribution EV bloc entier : min=+0.929R P10=+1.534R median=+2.192R P90=+3.167R max=+5.463R
+  blocs 4 mois dont l'EV entiere > EV du PIRE sous-segment (compensation) : 15/17 (88.2%)
+  5 pires sous-segments (idx_bloc, EV_pire_sous_bloc, EV_bloc_entier, compense?) :
+    bloc 4 mois #5 : pire_sous_bloc_EV=+0.476R, bloc_entier_EV=+0.929R, compense=True
+    bloc 4 mois #6 : pire_sous_bloc_EV=+1.211R, bloc_entier_EV=+1.592R, compense=True
+    bloc 4 mois #11 : pire_sous_bloc_EV=+1.270R, bloc_entier_EV=+2.049R, compense=True
+    bloc 4 mois #16 : pire_sous_bloc_EV=+1.448R, bloc_entier_EV=+1.448R, compense=False
+    bloc 4 mois #7 : pire_sous_bloc_EV=+1.582R, bloc_entier_EV=+2.212R, compense=True
+
+  --- Blocs 6 mois (n=11, non-vides=11) ---
+  distribution EV bloc entier : min=+1.251R P10=+1.674R median=+2.208R P90=+3.707R max=+3.836R
+  blocs 6 mois dont l'EV entiere > EV du PIRE sous-segment (compensation) : 11/11 (100.0%)
+  5 pires sous-segments (idx_bloc, EV_pire_sous_bloc, EV_bloc_entier, compense?) :
+    bloc 6 mois #3 : pire_sous_bloc_EV=+0.476R, bloc_entier_EV=+1.251R, compense=True
+    bloc 6 mois #4 : pire_sous_bloc_EV=+1.211R, bloc_entier_EV=+2.054R, compense=True
+    bloc 6 mois #7 : pire_sous_bloc_EV=+1.270R, bloc_entier_EV=+2.027R, compense=True
+    bloc 6 mois #10 : pire_sous_bloc_EV=+1.448R, bloc_entier_EV=+1.674R, compense=True
+    bloc 6 mois #5 : pire_sous_bloc_EV=+1.582R, bloc_entier_EV=+2.304R, compense=True

@@ -1,0 +1,153 @@
+Population étendue (rr_tp1 >= 1.35, forex+indices mappés, terminaux) : 742 trades
+Chargement/complément des bougies H1 pour 17 tickers...
+  AUDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  AUDUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  CHFJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  EURCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURGBP=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  GBPCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  GBPJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  GBPUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  NZDUSD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCAD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  ^GDAXI : backfill MT5 utilise (20327 bougies, depuis 2022-01-02 21:00:00)
+  ^GSPC : backfill MT5 utilise (21018 bougies, depuis 2022-01-02 21:00:00)
+  ^NDX : backfill MT5 utilise (21019 bougies, depuis 2022-01-02 21:00:00)
+Durées réelles vérifiées (bougies H1) : 742/742 (100.0%) — durée médiane de repli : 0 days 09:39:35
+  AUDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  AUDUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  CHFJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  EURCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURGBP=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  GBPCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  GBPJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  GBPUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  NZDUSD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCAD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  ^GDAXI : backfill MT5 utilise (20327 bougies, depuis 2022-01-02 21:00:00)
+  ^GSPC : backfill MT5 utilise (21018 bougies, depuis 2022-01-02 21:00:00)
+  ^NDX : backfill MT5 utilise (21019 bougies, depuis 2022-01-02 21:00:00)
+Bloc edges (communs A/B) : [Timestamp('2021-04-23 12:43:32'), Timestamp('2022-08-20 17:22:34.250000'), Timestamp('2023-12-17 22:01:36.500000'), Timestamp('2025-04-15 02:40:38.750000'), Timestamp('2026-08-12 07:19:41')]
+Pop A : 2022-01-31 17:18:35 -> 2026-07-30 03:16:26 (n=742)
+Pop B : 2021-04-23 12:43:32 -> 2026-08-12 07:19:41 (n=1248)
+
+===============================================================================================
+1. DETAIL COMPLET -- ancien test Omicron LARGE (2021-11-24->2022-01-07)
+===============================================================================================
+  Pop A couverture : min=2022-01-31 17:18:35 -- fenetre commence 2021-11-24 -> NON COUVERTE
+
+### B_tradable_pgp -- fenetre omicron_large_ancien ###
+  bloc1 ENTIER (reference)                 n= 230 wins= 121 winrate= 52.61% EV=+3.2150R se=0.3564
+  fenetre omicron_large_ancien [2021-11-24->2022-01-07] n=  15 wins=   8 winrate= 53.33% EV=+5.7300R se=2.5484
+    delta EV vs bloc1 ENTIER (reference) = +2.5150R
+    z (approx, se combinees) = +0.977
+
+  --- Detail complet B_tradable_pgp / omicron_large_ancien (n=15) ---
+      date_creation       ticker     statut_final   rr_tp1  r_trailing
+2021-11-30 13:32:38   GOLD - EUR        INVALIDÉE 2.796477   -1.000000
+2021-12-01 15:38:26 SILVER - EUR OBJECTIF ATTEINT 1.100000    4.311207
+2021-12-02 09:33:03   GOLD - USD OBJECTIF ATTEINT 1.090677    6.000894
+2021-12-03 11:32:42 SILVER - EUR OBJECTIF ATTEINT 1.666667   34.678737
+2021-12-09 05:31:00   GOLD - GBP        INVALIDÉE 1.197574   -1.000000
+2021-12-10 11:32:40    PALLADIUM OBJECTIF ATTEINT 1.181537    5.348322
+2021-12-22 09:32:34 SILVER - EUR OBJECTIF ATTEINT 2.000000    6.178898
+2021-12-22 15:38:54 SILVER - USD OBJECTIF ATTEINT 2.000000   19.575000
+2021-12-27 20:36:17 SILVER - EUR OBJECTIF ATTEINT 2.000000    8.561383
+2021-12-28 07:30:30 SILVER - AUD OBJECTIF ATTEINT 1.833333    8.295005
+2021-12-29 06:30:31 SILVER - EUR        INVALIDÉE 1.642857   -1.000000
+2021-12-29 06:30:33 SILVER - AUD        INVALIDÉE 1.040000   -1.000000
+2021-12-29 08:32:57 SILVER - USD        INVALIDÉE 1.000000   -1.000000
+2021-12-30 05:30:27   GOLD - AUD        INVALIDÉE 1.145455   -1.000000
+2022-01-03 10:32:33 SILVER - EUR        INVALIDÉE 1.125000   -1.000000
+    Pertes (7) : 7/7 exactement -1,00R (SL initial, mecanisme classique) -- 0 avec r_trailing != -1 (a examiner comme candidat 'echec trailing')
+    Gagnants coupes pres de TP1 (r_trailing<=1.1x rr_tp1) : 0/8
+    Welch t-test vs bloc englobant complet : t=+0.977 p=0.3443
+    Mann-Whitney U vs bloc englobant complet : U=1898.0 p=0.4933
+
+===============================================================================================
+2. NOUVEAU -- Omicron RESSERRE (2021-11-24->2021-12-10), B seule
+===============================================================================================
+
+### B_tradable_pgp -- fenetre omicron_resserre ###
+  bloc1 ENTIER (reference)                 n= 230 wins= 121 winrate= 52.61% EV=+3.2150R se=0.3564
+  fenetre omicron_resserre [2021-11-24->2021-12-10] n=   5 wins=   3 winrate= 60.00% EV=+8.5982R se=6.6692
+    delta EV vs bloc1 ENTIER (reference) = +5.3832R
+    z (approx, se combinees) = +0.806
+
+  --- Detail complet B_tradable_pgp / omicron_resserre (n=5) ---
+      date_creation       ticker     statut_final   rr_tp1  r_trailing
+2021-11-30 13:32:38   GOLD - EUR        INVALIDÉE 2.796477   -1.000000
+2021-12-01 15:38:26 SILVER - EUR OBJECTIF ATTEINT 1.100000    4.311207
+2021-12-02 09:33:03   GOLD - USD OBJECTIF ATTEINT 1.090677    6.000894
+2021-12-03 11:32:42 SILVER - EUR OBJECTIF ATTEINT 1.666667   34.678737
+2021-12-09 05:31:00   GOLD - GBP        INVALIDÉE 1.197574   -1.000000
+    Pertes (2) : 2/2 exactement -1,00R (SL initial, mecanisme classique) -- 0 avec r_trailing != -1 (a examiner comme candidat 'echec trailing')
+    Gagnants coupes pres de TP1 (r_trailing<=1.1x rr_tp1) : 0/3
+    Welch t-test vs bloc englobant complet : t=+0.806 p=0.4652
+    Mann-Whitney U vs bloc englobant complet : U=664.5 p=0.5322
+
+===============================================================================================
+3. 5e CHOC CANDIDAT -- debouclage carry trade JPY / regle de Sahm (aout 2024)
+===============================================================================================
+  Pop A couverture fenetre 2024-08-01->2024-08-16 : COUVERTE
+  Pop B couverture fenetre 2024-08-01->2024-08-16 : COUVERTE
+
+### A (0.15x trailing) -- fenetre aout2024_carry_unwind ###
+  bloc3 ENTIER (reference)                 n= 205 wins=  83 winrate= 40.49% EV=+1.8263R se=0.2676
+  fenetre aout2024_carry_unwind [2024-08-01->2024-08-16] n=   9 wins=   1 winrate= 11.11% EV=+0.1757R se=1.1757
+    delta EV vs bloc3 ENTIER (reference) = -1.6506R
+    z (approx, se combinees) = -1.369
+
+  --- Detail complet A (0.15x trailing) / aout2024_carry_unwind (n=9) ---
+      date_creation           ticker     statut_final   rr_tp1  r_trailing
+2024-08-01 16:56:57          USD/CAD        INVALIDÉE 2.825000    -1.00000
+2024-08-05 00:25:42          USD/JPY OBJECTIF ATTEINT 1.625000     9.58125
+2024-08-05 07:27:20 DAX40 PERF INDEX        INVALIDÉE 1.892517    -1.00000
+2024-08-06 12:28:06          GBP/CHF        INVALIDÉE 2.000000    -1.00000
+2024-08-08 21:24:59          AUD/JPY        INVALIDÉE 2.411765    -1.00000
+2024-08-08 21:25:12          USD/JPY        INVALIDÉE 2.612245    -1.00000
+2024-08-09 05:25:08          NZD/USD        INVALIDÉE 2.055556    -1.00000
+2024-08-14 09:27:57          AUD/JPY        INVALIDÉE 2.952381    -1.00000
+2024-08-15 20:26:12          CHF/JPY        INVALIDÉE 2.181818    -1.00000
+    Pertes (8) : 8/8 exactement -1,00R (SL initial, mecanisme classique) -- 0 avec r_trailing != -1 (a examiner comme candidat 'echec trailing')
+    Gagnants coupes pres de TP1 (r_trailing<=1.1x rr_tp1) : 0/1
+    Welch t-test vs bloc englobant complet : t=-1.369 p=0.2048
+    Mann-Whitney U vs bloc englobant complet : U=683.5 p=0.1364
+
+### B_tradable_pgp -- fenetre aout2024_carry_unwind ###
+  bloc3 ENTIER (reference)                 n= 314 wins= 165 winrate= 52.55% EV=+2.0349R se=0.1945
+  fenetre aout2024_carry_unwind [2024-08-01->2024-08-16] n=  17 wins=   5 winrate= 29.41% EV=+0.2450R se=0.5094
+    delta EV vs bloc3 ENTIER (reference) = -1.7899R
+    z (approx, se combinees) = -3.282
+
+  --- Detail complet B_tradable_pgp / aout2024_carry_unwind (n=17) ---
+      date_creation           ticker     statut_final   rr_tp1  r_trailing
+2024-08-02 02:41:16       GOLD - USD        INVALIDÉE 2.472554   -1.000000
+2024-08-02 19:32:06          NZD/USD        INVALIDÉE 1.200000   -1.000000
+2024-08-05 07:27:20 DAX40 PERF INDEX        INVALIDÉE 1.892517   -1.000000
+2024-08-06 16:32:54       GOLD - AUD        INVALIDÉE 1.050214   -1.000000
+2024-08-07 18:32:51          GBP/USD OBJECTIF ATTEINT 1.187500    4.693750
+2024-08-08 00:44:07          EUR/USD OBJECTIF ATTEINT 1.151515    2.762121
+2024-08-08 10:48:22         PLATINUM        INVALIDÉE 1.062536   -1.000000
+2024-08-09 14:35:03       GOLD - GBP        INVALIDÉE 2.167488   -1.000000
+2024-08-12 05:25:00     SILVER - EUR OBJECTIF ATTEINT 1.263158    2.542105
+2024-08-12 15:02:14       GOLD - USD OBJECTIF ATTEINT 2.152763    4.578945
+2024-08-12 16:32:36     SILVER - AUD        INVALIDÉE 1.884615   -1.000000
+2024-08-12 16:32:57     SILVER - USD        INVALIDÉE 2.300000   -1.000000
+2024-08-12 19:31:55     SILVER - EUR        INVALIDÉE 2.400000   -1.000000
+2024-08-12 20:43:55       GOLD - EUR        INVALIDÉE 2.511485   -1.000000
+2024-08-13 09:28:31          NZD/USD OBJECTIF ATTEINT 1.080000    1.588000
+2024-08-14 00:25:57        PALLADIUM        INVALIDÉE 1.779412   -1.000000
+2024-08-15 07:27:36        PALLADIUM        INVALIDÉE 1.130000   -1.000000
+    Pertes (12) : 12/12 exactement -1,00R (SL initial, mecanisme classique) -- 0 avec r_trailing != -1 (a examiner comme candidat 'echec trailing')
+    Gagnants coupes pres de TP1 (r_trailing<=1.1x rr_tp1) : 0/5
+    Welch t-test vs bloc englobant complet : t=-3.282 p=0.0036
+    Mann-Whitney U vs bloc englobant complet : U=1898.5 p=0.0332
