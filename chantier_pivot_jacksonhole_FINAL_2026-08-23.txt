@@ -1,0 +1,145 @@
+Population étendue (rr_tp1 >= 1.35, forex+indices mappés, terminaux) : 742 trades
+Chargement/complément des bougies H1 pour 17 tickers...
+  AUDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  AUDUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  CHFJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  EURCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURGBP=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  GBPCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  GBPJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  GBPUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  NZDUSD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCAD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  ^GDAXI : backfill MT5 utilise (20327 bougies, depuis 2022-01-02 21:00:00)
+  ^GSPC : backfill MT5 utilise (21018 bougies, depuis 2022-01-02 21:00:00)
+  ^NDX : backfill MT5 utilise (21019 bougies, depuis 2022-01-02 21:00:00)
+Durées réelles vérifiées (bougies H1) : 742/742 (100.0%) — durée médiane de repli : 0 days 09:39:35
+  AUDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  AUDUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  CHFJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  EURCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURGBP=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  GBPCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  GBPJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  GBPUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  NZDUSD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCAD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  ^GDAXI : backfill MT5 utilise (20327 bougies, depuis 2022-01-02 21:00:00)
+  ^GSPC : backfill MT5 utilise (21018 bougies, depuis 2022-01-02 21:00:00)
+  ^NDX : backfill MT5 utilise (21019 bougies, depuis 2022-01-02 21:00:00)
+Population étendue (rr_tp1 >= 1.35, forex+indices mappés, terminaux) : 742 trades
+Chargement/complément des bougies H1 pour 17 tickers...
+  AUDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  AUDUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  CHFJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  EURCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURGBP=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  GBPCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  GBPJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  GBPUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  NZDUSD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCAD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  ^GDAXI : backfill MT5 utilise (20327 bougies, depuis 2022-01-02 21:00:00)
+  ^GSPC : backfill MT5 utilise (21018 bougies, depuis 2022-01-02 21:00:00)
+  ^NDX : backfill MT5 utilise (21019 bougies, depuis 2022-01-02 21:00:00)
+Durées réelles vérifiées (bougies H1) : 742/742 (100.0%) — durée médiane de repli : 0 days 09:39:35
+  AUDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  AUDUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  CHFJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  EURCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURGBP=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  GBPCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  GBPJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  GBPUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  NZDUSD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCAD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  ^GDAXI : backfill MT5 utilise (20327 bougies, depuis 2022-01-02 21:00:00)
+  ^GSPC : backfill MT5 utilise (21018 bougies, depuis 2022-01-02 21:00:00)
+  ^NDX : backfill MT5 utilise (21019 bougies, depuis 2022-01-02 21:00:00)
+[verif] pop_A=742 pop_B=1248 jackson_hole=[2022-08-24->2022-09-02] n_trades=7 ceiling=1000$
+
+==========================================================================================
+REF_25k_dynamique -- BASELINE (bootstrap normal)
+==========================================================================================
+[REF_25k_dynamique_baseline] profit_moy=+56,979,912$ solde_neg=3.67% annee1<0=3.67% A_active=289/300 A_activation_month_median=1.59 B_full_structure_month_median=2.45
+
+==========================================================================================
+REF_25k_dynamique -- JACKSON HOLE force en 1er
+==========================================================================================
+[REF_25k_dynamique_jh] profit_moy=+56,044,652$ solde_neg=0.00% annee1<0=0.00% A_active=300/300 A_activation_month_median=3.43 B_full_structure_month_median=4.40
+  -> DELTA (JH - baseline) : vitesse A=+1.84mois, solde_neg=-3.67pts, profit=-1.64%
+
+==========================================================================================
+Pivot_InstantElite_2500 -- BASELINE (bootstrap normal)
+==========================================================================================
+[Pivot_InstantElite_2500_baseline] profit_moy=+58,520,192$ solde_neg=0.00% annee1<0=0.00% A_active=300/300 A_activation_month_median=2.04 B_full_structure_month_median=2.45
+
+==========================================================================================
+Pivot_InstantElite_2500 -- JACKSON HOLE force en 1er
+==========================================================================================
+[Pivot_InstantElite_2500_jh] profit_moy=+56,839,698$ solde_neg=0.00% annee1<0=0.00% A_active=300/300 A_activation_month_median=3.78 B_full_structure_month_median=4.26
+  -> DELTA (JH - baseline) : vitesse A=+1.74mois, solde_neg=+0.00pts, profit=-2.87%
+
+==========================================================================================
+Pivot_InstantElite_5000 -- BASELINE (bootstrap normal)
+==========================================================================================
+[Pivot_InstantElite_5000_baseline] profit_moy=+57,948,877$ solde_neg=0.00% annee1<0=0.00% A_active=300/300 A_activation_month_median=1.52 B_full_structure_month_median=2.06
+
+==========================================================================================
+Pivot_InstantElite_5000 -- JACKSON HOLE force en 1er
+==========================================================================================
+[Pivot_InstantElite_5000_jh] profit_moy=+56,962,748$ solde_neg=0.00% annee1<0=0.00% A_active=300/300 A_activation_month_median=3.25 B_full_structure_month_median=3.94
+  -> DELTA (JH - baseline) : vitesse A=+1.72mois, solde_neg=+0.00pts, profit=-1.70%
+
+==========================================================================================
+Pivot_InstantElite_10000 -- BASELINE (bootstrap normal)
+==========================================================================================
+[Pivot_InstantElite_10000_baseline] profit_moy=+56,882,801$ solde_neg=2.67% annee1<0=2.67% A_active=292/300 A_activation_month_median=1.03 B_full_structure_month_median=1.71
+
+==========================================================================================
+Pivot_InstantElite_10000 -- JACKSON HOLE force en 1er
+==========================================================================================
+[Pivot_InstantElite_10000_jh] profit_moy=+57,101,467$ solde_neg=0.00% annee1<0=0.00% A_active=300/300 A_activation_month_median=2.65 B_full_structure_month_median=3.33
+  -> DELTA (JH - baseline) : vitesse A=+1.62mois, solde_neg=-2.67pts, profit=+0.38%
+
+==========================================================================================
+Pivot_InstantElite_25000 -- BASELINE (bootstrap normal)
+==========================================================================================
+[Pivot_InstantElite_25000_baseline] profit_moy=+56,620,577$ solde_neg=0.00% annee1<0=0.00% A_active=300/300 A_activation_month_median=0.50 B_full_structure_month_median=1.62
+
+==========================================================================================
+Pivot_InstantElite_25000 -- JACKSON HOLE force en 1er
+==========================================================================================
+[Pivot_InstantElite_25000_jh] profit_moy=+55,602,927$ solde_neg=0.00% annee1<0=0.00% A_active=300/300 A_activation_month_median=2.02 B_full_structure_month_median=3.19
+  -> DELTA (JH - baseline) : vitesse A=+1.52mois, solde_neg=+0.00pts, profit=-1.80%
+
+===============================================================================================
+SYNTHESE
+===============================================================================================
+                            label   profit_moy  solde_neg  annee1_neg  A_activation_month_median  B_full_structure_month_median  A_never_activated_pct            variant
+       REF_25k_dynamique_baseline 5.697991e+07   3.666667    3.666667                   1.590250                       2.445674               3.666667           baseline
+             REF_25k_dynamique_jh 5.604465e+07   0.000000    0.000000                   3.431255                       4.400381               0.000000 jackson_hole_force
+ Pivot_InstantElite_2500_baseline 5.852019e+07   0.000000    0.000000                   2.039481                       2.447198               0.000000           baseline
+       Pivot_InstantElite_2500_jh 5.683970e+07   0.000000    0.000000                   3.782855                       4.264995               0.000000 jackson_hole_force
+ Pivot_InstantElite_5000_baseline 5.794888e+07   0.000000    0.000000                   1.523456                       2.062427               0.000000           baseline
+       Pivot_InstantElite_5000_jh 5.696275e+07   0.000000    0.000000                   3.245783                       3.937832               0.000000 jackson_hole_force
+Pivot_InstantElite_10000_baseline 5.688280e+07   2.666667    2.666667                   1.025049                       1.710522               2.666667           baseline
+      Pivot_InstantElite_10000_jh 5.710147e+07   0.000000    0.000000                   2.648385                       3.331290               0.000000 jackson_hole_force
+Pivot_InstantElite_25000_baseline 5.662058e+07   0.000000    0.000000                   0.500788                       1.620498               0.000000           baseline
+      Pivot_InstantElite_25000_jh 5.560293e+07   0.000000    0.000000                   2.024157                       3.186368               0.000000 jackson_hole_force
