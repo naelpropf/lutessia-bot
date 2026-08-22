@@ -230,6 +230,32 @@ simulé ici (plafond 1% ADV) dépasse ces régimes de plusieurs ordres de
 grandeur sur 12 mois** — confirmant que la limite qui rendrait ce calcul
 réaliste n'est PAS le plafond de liquidité de marché mesurable.
 
+### 3.1 Taux mensuel composé effectif implicite (dérivé des trajectoires médianes)
+
+Le taux mensuel n'est PAS constant : il s'effondre à mesure que le plafond
+de liquidité mord davantage, calculé directement à partir de la trajectoire
+médiane mois-par-mois du run n=600 (`chantier_liquidity_capacity_2026-08-23_trajectories.json`),
+pas une nouvelle estimation :
+
+| Période | Plafond 1% ADV | Plafond 3% ADV | Plafond 5% ADV | Non plafonné (réf.) |
+|---|---|---|---|---|
+| Mois 1-6 | ~83%/mois | ~83%/mois | ~83%/mois | ~83%/mois |
+| Mois 7-12 | ~73%/mois | ~80%/mois | ~83%/mois | ~87%/mois |
+| Année 2 | ~28%/mois (~1 770%/an) | ~34%/mois | ~38%/mois | ~84%/mois |
+| Année 3 | ~8,0%/mois (~152%/an) | ~9,3%/mois | ~10,0%/mois | ~85%/mois |
+| Année 4 | **~4,2%/mois (~64%/an)** | ~4,5%/mois (~70%/an) | ~4,6%/mois (~72%/an) | ~83%/mois |
+
+Le taux ne se stabilise à une valeur durable dans aucun des scénarios testés
+sur la fenêtre de 48 mois — il reste en chute (marches d'escalier au rythme
+où chaque instrument sature, pas une courbe lisse) et n'a pas convergé à la
+fin de la fenêtre testée. Même en fin de période (année 4, plafond le plus
+strict), le taux annualisé implicite (~64%/an) reste **au-dessus** du haut
+de la fourchette des grands fonds quant réels (10-36%/an, §3(c)) et
+**en-dessous** du régime additif prop-firm cité (~740-800%/an, §3(b)) — il
+n'a pas encore atteint un régime "réaliste" comparable aux fonds réels dans
+la fenêtre simulée ; à quel mois précis cela se produirait n'a pas été
+mesuré (nécessiterait de prolonger la simulation au-delà de 48 mois).
+
 ---
 
 ## 4. À partir de quel palier de capital le plafond devient-il dominant ?
