@@ -1,0 +1,730 @@
+{
+  "AUD/JPY": {
+    "atr_20": {
+      "n_obs": 17579,
+      "n_above_p90": 1758,
+      "flips": 185,
+      "flip_rate": 0.01052392058706411
+    },
+    "retstd_20": {
+      "n_obs": 17578,
+      "n_above_p90": 1758,
+      "flips": 185,
+      "flip_rate": 0.010524519285470475
+    },
+    "atr_40": {
+      "n_obs": 17559,
+      "n_above_p90": 1756,
+      "flips": 103,
+      "flip_rate": 0.005865937695768552
+    },
+    "retstd_40": {
+      "n_obs": 17558,
+      "n_above_p90": 1756,
+      "flips": 111,
+      "flip_rate": 0.006321904544936781
+    }
+  },
+  "AUD/USD": {
+    "atr_20": {
+      "n_obs": 17579,
+      "n_above_p90": 1758,
+      "flips": 317,
+      "flip_rate": 0.01803288014107742
+    },
+    "retstd_20": {
+      "n_obs": 17578,
+      "n_above_p90": 1758,
+      "flips": 201,
+      "flip_rate": 0.011434747980430083
+    },
+    "atr_40": {
+      "n_obs": 17559,
+      "n_above_p90": 1756,
+      "flips": 179,
+      "flip_rate": 0.01019420240332593
+    },
+    "retstd_40": {
+      "n_obs": 17558,
+      "n_above_p90": 1756,
+      "flips": 137,
+      "flip_rate": 0.007802711014921973
+    }
+  },
+  "CHF/JPY": {
+    "atr_20": {
+      "n_obs": 17579,
+      "n_above_p90": 1758,
+      "flips": 199,
+      "flip_rate": 0.011320325388247341
+    },
+    "retstd_20": {
+      "n_obs": 17578,
+      "n_above_p90": 1758,
+      "flips": 207,
+      "flip_rate": 0.011776083741039936
+    },
+    "atr_40": {
+      "n_obs": 17559,
+      "n_above_p90": 1756,
+      "flips": 97,
+      "flip_rate": 0.00552423258727718
+    },
+    "retstd_40": {
+      "n_obs": 17558,
+      "n_above_p90": 1756,
+      "flips": 85,
+      "flip_rate": 0.004841098074951589
+    }
+  },
+  "DAX40 FULL0926": {
+    "atr_20": {
+      "n_obs": 16587,
+      "n_above_p90": 1659,
+      "flips": 149,
+      "flip_rate": 0.008982938445770784
+    },
+    "retstd_20": {
+      "n_obs": 16586,
+      "n_above_p90": 1659,
+      "flips": 169,
+      "flip_rate": 0.010189316290847702
+    },
+    "atr_40": {
+      "n_obs": 16567,
+      "n_above_p90": 1657,
+      "flips": 77,
+      "flip_rate": 0.004647793806965655
+    },
+    "retstd_40": {
+      "n_obs": 16566,
+      "n_above_p90": 1657,
+      "flips": 115,
+      "flip_rate": 0.006941929252686225
+    }
+  },
+  "DAX40 PERF INDEX": {
+    "atr_20": {
+      "n_obs": 16587,
+      "n_above_p90": 1659,
+      "flips": 149,
+      "flip_rate": 0.008982938445770784
+    },
+    "retstd_20": {
+      "n_obs": 16586,
+      "n_above_p90": 1659,
+      "flips": 169,
+      "flip_rate": 0.010189316290847702
+    },
+    "atr_40": {
+      "n_obs": 16567,
+      "n_above_p90": 1657,
+      "flips": 77,
+      "flip_rate": 0.004647793806965655
+    },
+    "retstd_40": {
+      "n_obs": 16566,
+      "n_above_p90": 1657,
+      "flips": 115,
+      "flip_rate": 0.006941929252686225
+    }
+  },
+  "EUR/CHF": {
+    "atr_20": {
+      "n_obs": 17579,
+      "n_above_p90": 1758,
+      "flips": 191,
+      "flip_rate": 0.010865236930428353
+    },
+    "retstd_20": {
+      "n_obs": 17578,
+      "n_above_p90": 1758,
+      "flips": 215,
+      "flip_rate": 0.01223119808851974
+    },
+    "atr_40": {
+      "n_obs": 17559,
+      "n_above_p90": 1756,
+      "flips": 125,
+      "flip_rate": 0.007118856426903583
+    },
+    "retstd_40": {
+      "n_obs": 17558,
+      "n_above_p90": 1756,
+      "flips": 109,
+      "flip_rate": 0.00620799635493792
+    }
+  },
+  "EUR/GBP": {
+    "atr_20": {
+      "n_obs": 17579,
+      "n_above_p90": 1759,
+      "flips": 215,
+      "flip_rate": 0.012230502303885317
+    },
+    "retstd_20": {
+      "n_obs": 17578,
+      "n_above_p90": 1758,
+      "flips": 203,
+      "flip_rate": 0.011548526567300033
+    },
+    "atr_40": {
+      "n_obs": 17559,
+      "n_above_p90": 1756,
+      "flips": 157,
+      "flip_rate": 0.0089412836721909
+    },
+    "retstd_40": {
+      "n_obs": 17558,
+      "n_above_p90": 1756,
+      "flips": 129,
+      "flip_rate": 0.0073470782549265295
+    }
+  },
+  "EUR/JPY": {
+    "atr_20": {
+      "n_obs": 17579,
+      "n_above_p90": 1758,
+      "flips": 165,
+      "flip_rate": 0.00938619944251664
+    },
+    "retstd_20": {
+      "n_obs": 17578,
+      "n_above_p90": 1758,
+      "flips": 195,
+      "flip_rate": 0.01109341221982023
+    },
+    "atr_40": {
+      "n_obs": 17559,
+      "n_above_p90": 1756,
+      "flips": 85,
+      "flip_rate": 0.004840822370294436
+    },
+    "retstd_40": {
+      "n_obs": 17558,
+      "n_above_p90": 1756,
+      "flips": 117,
+      "flip_rate": 0.006663629114933364
+    }
+  },
+  "EUR/USD": {
+    "atr_20": {
+      "n_obs": 17579,
+      "n_above_p90": 1758,
+      "flips": 247,
+      "flip_rate": 0.014050856135161272
+    },
+    "retstd_20": {
+      "n_obs": 17578,
+      "n_above_p90": 1758,
+      "flips": 187,
+      "flip_rate": 0.010638297872340425
+    },
+    "atr_40": {
+      "n_obs": 17559,
+      "n_above_p90": 1756,
+      "flips": 141,
+      "flip_rate": 0.008030070049547242
+    },
+    "retstd_40": {
+      "n_obs": 17558,
+      "n_above_p90": 1756,
+      "flips": 99,
+      "flip_rate": 0.005638455404943616
+    }
+  },
+  "GBP/CHF": {
+    "atr_20": {
+      "n_obs": 17579,
+      "n_above_p90": 1759,
+      "flips": 221,
+      "flip_rate": 0.01257181864724956
+    },
+    "retstd_20": {
+      "n_obs": 17578,
+      "n_above_p90": 1758,
+      "flips": 191,
+      "flip_rate": 0.010865855046080328
+    },
+    "atr_40": {
+      "n_obs": 17559,
+      "n_above_p90": 1756,
+      "flips": 123,
+      "flip_rate": 0.007004954724073125
+    },
+    "retstd_40": {
+      "n_obs": 17558,
+      "n_above_p90": 1756,
+      "flips": 111,
+      "flip_rate": 0.006321904544936781
+    }
+  },
+  "GBP/JPY": {
+    "atr_20": {
+      "n_obs": 17579,
+      "n_above_p90": 1759,
+      "flips": 167,
+      "flip_rate": 0.009499971556971387
+    },
+    "retstd_20": {
+      "n_obs": 17578,
+      "n_above_p90": 1758,
+      "flips": 183,
+      "flip_rate": 0.010410740698600523
+    },
+    "atr_40": {
+      "n_obs": 17559,
+      "n_above_p90": 1756,
+      "flips": 91,
+      "flip_rate": 0.005182527478785808
+    },
+    "retstd_40": {
+      "n_obs": 17558,
+      "n_above_p90": 1756,
+      "flips": 105,
+      "flip_rate": 0.005980179974940198
+    }
+  },
+  "GBP/USD": {
+    "atr_20": {
+      "n_obs": 17579,
+      "n_above_p90": 1758,
+      "flips": 263,
+      "flip_rate": 0.014961033050799249
+    },
+    "retstd_20": {
+      "n_obs": 17578,
+      "n_above_p90": 1758,
+      "flips": 223,
+      "flip_rate": 0.012686312435999545
+    },
+    "atr_40": {
+      "n_obs": 17559,
+      "n_above_p90": 1756,
+      "flips": 163,
+      "flip_rate": 0.009282988780682271
+    },
+    "retstd_40": {
+      "n_obs": 17558,
+      "n_above_p90": 1756,
+      "flips": 113,
+      "flip_rate": 0.006435812734935642
+    }
+  },
+  "GOLD - AUD": {
+    "atr_20": {
+      "n_obs": 9837,
+      "n_above_p90": 984,
+      "flips": 92,
+      "flip_rate": 0.009352444851072481
+    },
+    "retstd_20": {
+      "n_obs": 9836,
+      "n_above_p90": 984,
+      "flips": 123,
+      "flip_rate": 0.012505083367222449
+    },
+    "atr_40": {
+      "n_obs": 9817,
+      "n_above_p90": 982,
+      "flips": 30,
+      "flip_rate": 0.003055923398186819
+    },
+    "retstd_40": {
+      "n_obs": 9816,
+      "n_above_p90": 982,
+      "flips": 60,
+      "flip_rate": 0.006112469437652812
+    }
+  },
+  "GOLD - EUR": {
+    "atr_20": {
+      "n_obs": 9835,
+      "n_above_p90": 984,
+      "flips": 64,
+      "flip_rate": 0.006507371631926792
+    },
+    "retstd_20": {
+      "n_obs": 9834,
+      "n_above_p90": 984,
+      "flips": 115,
+      "flip_rate": 0.011694122432377467
+    },
+    "atr_40": {
+      "n_obs": 9815,
+      "n_above_p90": 982,
+      "flips": 40,
+      "flip_rate": 0.004075394803871625
+    },
+    "retstd_40": {
+      "n_obs": 9814,
+      "n_above_p90": 982,
+      "flips": 52,
+      "flip_rate": 0.005298553087426126
+    }
+  },
+  "GOLD - GBP": {
+    "atr_20": {
+      "n_obs": 9832,
+      "n_above_p90": 984,
+      "flips": 70,
+      "flip_rate": 0.007119609438567941
+    },
+    "retstd_20": {
+      "n_obs": 9831,
+      "n_above_p90": 984,
+      "flips": 107,
+      "flip_rate": 0.010883938561692605
+    },
+    "atr_40": {
+      "n_obs": 9812,
+      "n_above_p90": 982,
+      "flips": 34,
+      "flip_rate": 0.003465144720750102
+    },
+    "retstd_40": {
+      "n_obs": 9811,
+      "n_above_p90": 982,
+      "flips": 50,
+      "flip_rate": 0.005096320456630313
+    }
+  },
+  "GOLD - USD": {
+    "atr_20": {
+      "n_obs": 10105,
+      "n_above_p90": 1011,
+      "flips": 69,
+      "flip_rate": 0.006828302820385947
+    },
+    "retstd_20": {
+      "n_obs": 10104,
+      "n_above_p90": 1011,
+      "flips": 69,
+      "flip_rate": 0.006828978622327791
+    },
+    "atr_40": {
+      "n_obs": 10085,
+      "n_above_p90": 1009,
+      "flips": 20,
+      "flip_rate": 0.0019831432821021317
+    },
+    "retstd_40": {
+      "n_obs": 10084,
+      "n_above_p90": 1009,
+      "flips": 47,
+      "flip_rate": 0.0046608488694962315
+    }
+  },
+  "NASDAQ100 - MINI NASDAQ100 FULL0926": {
+    "atr_20": {
+      "n_obs": 17212,
+      "n_above_p90": 1722,
+      "flips": 149,
+      "flip_rate": 0.008656751103881014
+    },
+    "retstd_20": {
+      "n_obs": 17211,
+      "n_above_p90": 1722,
+      "flips": 173,
+      "flip_rate": 0.010051711114984603
+    },
+    "atr_40": {
+      "n_obs": 17192,
+      "n_above_p90": 1720,
+      "flips": 105,
+      "flip_rate": 0.0061074918566775245
+    },
+    "retstd_40": {
+      "n_obs": 17191,
+      "n_above_p90": 1720,
+      "flips": 111,
+      "flip_rate": 0.006456866965272526
+    }
+  },
+  "NASDAQ100 INDEX": {
+    "atr_20": {
+      "n_obs": 17212,
+      "n_above_p90": 1722,
+      "flips": 149,
+      "flip_rate": 0.008656751103881014
+    },
+    "retstd_20": {
+      "n_obs": 17211,
+      "n_above_p90": 1722,
+      "flips": 173,
+      "flip_rate": 0.010051711114984603
+    },
+    "atr_40": {
+      "n_obs": 17192,
+      "n_above_p90": 1720,
+      "flips": 105,
+      "flip_rate": 0.0061074918566775245
+    },
+    "retstd_40": {
+      "n_obs": 17191,
+      "n_above_p90": 1720,
+      "flips": 111,
+      "flip_rate": 0.006456866965272526
+    }
+  },
+  "NZD/USD": {
+    "atr_20": {
+      "n_obs": 17579,
+      "n_above_p90": 1759,
+      "flips": 297,
+      "flip_rate": 0.01689515899652995
+    },
+    "retstd_20": {
+      "n_obs": 17578,
+      "n_above_p90": 1758,
+      "flips": 187,
+      "flip_rate": 0.010638297872340425
+    },
+    "atr_40": {
+      "n_obs": 17559,
+      "n_above_p90": 1756,
+      "flips": 177,
+      "flip_rate": 0.010080300700495473
+    },
+    "retstd_40": {
+      "n_obs": 17558,
+      "n_above_p90": 1756,
+      "flips": 113,
+      "flip_rate": 0.006435812734935642
+    }
+  },
+  "PALLADIUM": {
+    "atr_20": {
+      "n_obs": 11847,
+      "n_above_p90": 1185,
+      "flips": 92,
+      "flip_rate": 0.007765679074871275
+    },
+    "retstd_20": {
+      "n_obs": 11846,
+      "n_above_p90": 1185,
+      "flips": 95,
+      "flip_rate": 0.008019584669930779
+    },
+    "atr_40": {
+      "n_obs": 11827,
+      "n_above_p90": 1183,
+      "flips": 37,
+      "flip_rate": 0.0031284349370085396
+    },
+    "retstd_40": {
+      "n_obs": 11826,
+      "n_above_p90": 1183,
+      "flips": 66,
+      "flip_rate": 0.005580923389142567
+    }
+  },
+  "PLATINUM": {
+    "atr_20": {
+      "n_obs": 12394,
+      "n_above_p90": 1240,
+      "flips": 72,
+      "flip_rate": 0.0058092625463934166
+    },
+    "retstd_20": {
+      "n_obs": 12393,
+      "n_above_p90": 1240,
+      "flips": 116,
+      "flip_rate": 0.009360122649882998
+    },
+    "atr_40": {
+      "n_obs": 12374,
+      "n_above_p90": 1238,
+      "flips": 42,
+      "flip_rate": 0.003394213673832229
+    },
+    "retstd_40": {
+      "n_obs": 12373,
+      "n_above_p90": 1238,
+      "flips": 62,
+      "flip_rate": 0.005010910854279479
+    }
+  },
+  "S&P500 - MINI S&P500 FULL0926": {
+    "atr_20": {
+      "n_obs": 17209,
+      "n_above_p90": 1721,
+      "flips": 173,
+      "flip_rate": 0.010052879307339183
+    },
+    "retstd_20": {
+      "n_obs": 17208,
+      "n_above_p90": 1721,
+      "flips": 171,
+      "flip_rate": 0.00993723849372385
+    },
+    "atr_40": {
+      "n_obs": 17189,
+      "n_above_p90": 1719,
+      "flips": 97,
+      "flip_rate": 0.005643143871080342
+    },
+    "retstd_40": {
+      "n_obs": 17188,
+      "n_above_p90": 1719,
+      "flips": 105,
+      "flip_rate": 0.006108913195252501
+    }
+  },
+  "SILVER - AUD": {
+    "atr_20": {
+      "n_obs": 9828,
+      "n_above_p90": 983,
+      "flips": 74,
+      "flip_rate": 0.007529507529507529
+    },
+    "retstd_20": {
+      "n_obs": 9827,
+      "n_above_p90": 983,
+      "flips": 100,
+      "flip_rate": 0.010176045588684237
+    },
+    "atr_40": {
+      "n_obs": 9808,
+      "n_above_p90": 981,
+      "flips": 38,
+      "flip_rate": 0.003874388254486134
+    },
+    "retstd_40": {
+      "n_obs": 9807,
+      "n_above_p90": 981,
+      "flips": 40,
+      "flip_rate": 0.004078719282145407
+    }
+  },
+  "SILVER - EUR": {
+    "atr_20": {
+      "n_obs": 9829,
+      "n_above_p90": 983,
+      "flips": 90,
+      "flip_rate": 0.009156577474819412
+    },
+    "retstd_20": {
+      "n_obs": 9828,
+      "n_above_p90": 983,
+      "flips": 92,
+      "flip_rate": 0.009361009361009361
+    },
+    "atr_40": {
+      "n_obs": 9809,
+      "n_above_p90": 981,
+      "flips": 34,
+      "flip_rate": 0.0034662045060658577
+    },
+    "retstd_40": {
+      "n_obs": 9808,
+      "n_above_p90": 981,
+      "flips": 42,
+      "flip_rate": 0.004282218597063622
+    }
+  },
+  "SILVER - USD": {
+    "atr_20": {
+      "n_obs": 10104,
+      "n_above_p90": 1011,
+      "flips": 84,
+      "flip_rate": 0.00831353919239905
+    },
+    "retstd_20": {
+      "n_obs": 10103,
+      "n_above_p90": 1011,
+      "flips": 53,
+      "flip_rate": 0.005245966544590716
+    },
+    "atr_40": {
+      "n_obs": 10084,
+      "n_above_p90": 1009,
+      "flips": 46,
+      "flip_rate": 0.004561681872272907
+    },
+    "retstd_40": {
+      "n_obs": 10083,
+      "n_above_p90": 1009,
+      "flips": 36,
+      "flip_rate": 0.0035703659625111574
+    }
+  },
+  "USD/CAD": {
+    "atr_20": {
+      "n_obs": 17579,
+      "n_above_p90": 1758,
+      "flips": 221,
+      "flip_rate": 0.01257181864724956
+    },
+    "retstd_20": {
+      "n_obs": 17578,
+      "n_above_p90": 1758,
+      "flips": 197,
+      "flip_rate": 0.01120719080669018
+    },
+    "atr_40": {
+      "n_obs": 17559,
+      "n_above_p90": 1756,
+      "flips": 137,
+      "flip_rate": 0.007802266643886326
+    },
+    "retstd_40": {
+      "n_obs": 17558,
+      "n_above_p90": 1756,
+      "flips": 105,
+      "flip_rate": 0.005980179974940198
+    }
+  },
+  "USD/CHF": {
+    "atr_20": {
+      "n_obs": 17579,
+      "n_above_p90": 1758,
+      "flips": 211,
+      "flip_rate": 0.012002958074975823
+    },
+    "retstd_20": {
+      "n_obs": 17578,
+      "n_above_p90": 1758,
+      "flips": 175,
+      "flip_rate": 0.00995562635112072
+    },
+    "atr_40": {
+      "n_obs": 17559,
+      "n_above_p90": 1756,
+      "flips": 133,
+      "flip_rate": 0.007574463238225412
+    },
+    "retstd_40": {
+      "n_obs": 17558,
+      "n_above_p90": 1756,
+      "flips": 95,
+      "flip_rate": 0.0054106390249458935
+    }
+  },
+  "USD/JPY": {
+    "atr_20": {
+      "n_obs": 17579,
+      "n_above_p90": 1758,
+      "flips": 225,
+      "flip_rate": 0.012799362876159053
+    },
+    "retstd_20": {
+      "n_obs": 17578,
+      "n_above_p90": 1758,
+      "flips": 187,
+      "flip_rate": 0.010638297872340425
+    },
+    "atr_40": {
+      "n_obs": 17559,
+      "n_above_p90": 1756,
+      "flips": 121,
+      "flip_rate": 0.006891053021242668
+    },
+    "retstd_40": {
+      "n_obs": 17558,
+      "n_above_p90": 1756,
+      "flips": 105,
+      "flip_rate": 0.005980179974940198
+    }
+  }
+}
