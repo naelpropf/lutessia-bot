@@ -142,8 +142,11 @@ def build_trades_with_stop_pct(pop, sub_sorted, stop_pct_arr, wr_draw, rng):
     return trades, slot_arrivals
 
 
-def simulate_one(trades, slot_arrivals, target_duration_days, liquidity_cap_pct, rng_boot, alpha_post, beta_post):
-    """liquidity_cap_pct=None -> pas de plafond (regime non contraint, reference)."""
+def simulate_one(trades, slot_arrivals, target_duration_days, liquidity_cap_pct, rng_boot, alpha_post, beta_post,
+                  start_capital=None):
+    """liquidity_cap_pct=None -> pas de plafond (regime non contraint, reference).
+    start_capital=None -> utilise START_CAPITAL (200k$, cas standard)."""
+    start_capital = START_CAPITAL if start_capital is None else start_capital
     from real_cash_risk_year1_block_bootstrap import build_blocks
     from reference_metrics_final import build_full_block_bootstrap_sequence
 
@@ -155,7 +158,7 @@ def simulate_one(trades, slot_arrivals, target_duration_days, liquidity_cap_pct,
     raw_slots = [raw_slots[i] for i in keep]
     order = sorted(range(len(raw_trades)), key=lambda i: raw_slots[i])
 
-    balance = START_CAPITAL
+    balance = start_capital
     n_trades = 0
     n_capped = 0
     month_snapshots = {}
@@ -188,7 +191,7 @@ def simulate_one(trades, slot_arrivals, target_duration_days, liquidity_cap_pct,
 
     # complete les mois sans trade avec le dernier solde connu (pas de trou dans la trajectoire)
     filled = []
-    last = START_CAPITAL
+    last = start_capital
     for m in range(max_month):
         if m in month_snapshots:
             last = month_snapshots[m]
@@ -198,7 +201,7 @@ def simulate_one(trades, slot_arrivals, target_duration_days, liquidity_cap_pct,
                 capped_frac=n_capped / n_trades if n_trades else 0.0, month_trajectory=filled)
 
 
-def run_scenario(n_sims, seed, target_duration_days, liquidity_cap_pct, label):
+def run_scenario(n_sims, seed, target_duration_days, liquidity_cap_pct, label, start_capital=None):
     pop, sub_sorted, stop_pct_arr = load_population_with_stop_pct()
     alpha_post, beta_post = pdb.ALPHA_POST_B_PGP, pdb.BETA_POST_B_PGP
     rng_wr = random.Random(seed)
@@ -211,7 +214,7 @@ def run_scenario(n_sims, seed, target_duration_days, liquidity_cap_pct, label):
         trades, slot_arrivals = build_trades_with_stop_pct(pop, sub_sorted, stop_pct_arr, wr_draw,
                                                              random.Random(rng_boot.random()))
         res = simulate_one(trades, slot_arrivals, target_duration_days, liquidity_cap_pct, rng_boot,
-                            alpha_post, beta_post)
+                            alpha_post, beta_post, start_capital=start_capital)
         finals.append(res["final_balance"])
         capped_fracs.append(res["capped_frac"])
         trajectories.append(res["month_trajectory"])

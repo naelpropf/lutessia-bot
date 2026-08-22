@@ -319,6 +319,44 @@ d'attente séparée comme demandé.
 
 ---
 
+## 5.1 Capital atteint par année, selon le capital de départ
+
+Question complémentaire : combien de capital pour un départ à 200k, 100k,
+20k, 1k et 100€, plafond 1% ADV (le plus strict testé) ? **Ne PAS
+réappliquer le tableau §3.1** (calé sur un départ à 200k€) à un autre
+capital de départ — les seuils de plafonnement de liquidité (§4) sont
+ancrés sur le capital ABSOLU atteint, pas sur le temps écoulé depuis le
+départ. Un départ à 100€ traverse d'abord une phase plus longue de
+croissance non plafonnée (~83%/mois) avant d'atteindre les mêmes seuils
+qu'un départ à 200k€ franchit dès le mois 0. Relancé le moteur
+(`chantier_liquidity_capital_levels_2026-08-23.py`, réutilise
+`simulate_one`/`run_scenario` du chantier principal désormais paramétrés
+par `start_capital`) avec le MÊME tirage de trades (seed identique) pour
+chaque départ — seule la taille initiale change, comparaison apples-to-apples.
+
+n=300 (exploration rapide, cohérent avec la demande "à la louche"),
+médiane, plafond 1% ADV, 48 mois :
+
+| Départ | Année 1 | Année 2 | Année 3 | Année 4 |
+|---|---|---|---|---|
+| 200 000€ | 206 M€ (+102 921%) | 3,62 Md€ (+1 659%) | 9,15 Md€ (+153%) | 14,88 Md€ (+63%) |
+| 100 000€ | 122 M€ (+121 589%) | 3,14 Md€ (+2 478%) | 8,67 Md€ (+176%) | 14,35 Md€ (+66%) |
+| 20 000€ | 29,9 M€ (+149 611%) | 2,09 Md€ (+6 883%) | 7,49 Md€ (+258%) | 13,18 Md€ (+76%) |
+| 1 000€ | 1,57 M€ (+157 346%) | 637 M€ (+40 370%) | 5,26 Md€ (+725%) | 10,72 Md€ (+104%) |
+| 100€ | 157 446€ (+157 346%) | 168 M€ (+106 492%) | 3,55 Md€ (+2 015%) | 8,95 Md€ (+152%) |
+
+**Constat** : quel que soit le point de départ (100€ à 200k€), tous
+convergent vers le même ordre de grandeur en année 4 (~9-15 Md€) — la
+taille de départ décale le calendrier de l'explosion (plus le départ est
+petit, plus le % annuel affiché est extrême sur l'année où le rattrapage a
+lieu), elle ne change pas la destination. Confirme, sous un autre angle,
+que le plafond de liquidité mesuré ne rend ce calcul réaliste à AUCUN
+palier de capital de départ testé. Fichiers :
+`chantier_liquidity_capital_levels_2026-08-23.py`,
+`chantier_liquidity_capital_levels_log_2026-08-23.txt`.
+
+---
+
 ## 6. Ce qui n'a PAS été établi cette session (limites explicites)
 
 - Le plafond de liquidité par instrument (1-5% ADV) est **réfuté** comme

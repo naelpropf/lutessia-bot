@@ -1,0 +1,35 @@
+[cap1pct_200000 dur=1460j cap=0.01] n=300 (25s) final: p10=11,833,128,628 p50=14,880,494,221 moy=14,990,669,040 p90=18,077,749,222 | pct_trades_plafonnes moy=71.16%
+
+=== Depart 200,000$ (plafond 1% ADV, n=300) ===
+  Annee 1 :        206,042,344$  (+102,921% sur l'annee)
+  Annee 2 :      3,623,558,332$  (+1,659% sur l'annee)
+  Annee 3 :      9,154,368,762$  (+153% sur l'annee)
+  Annee 4 :     14,880,494,221$  (+63% sur l'annee)
+[cap1pct_100000 dur=1460j cap=0.01] n=300 (26s) final: p10=11,405,835,844 p50=14,353,679,987 moy=14,459,168,310 p90=17,596,032,830 | pct_trades_plafonnes moy=68.80%
+
+=== Depart 100,000$ (plafond 1% ADV, n=300) ===
+  Annee 1 :        121,689,257$  (+121,589% sur l'annee)
+  Annee 2 :      3,136,978,323$  (+2,478% sur l'annee)
+  Annee 3 :      8,671,808,430$  (+176% sur l'annee)
+  Annee 4 :     14,353,679,987$  (+66% sur l'annee)
+[cap1pct_20000 dur=1460j cap=0.01] n=300 (27s) final: p10=10,154,789,420 p50=13,179,987,875 moy=13,222,944,152 p90=16,406,061,258 | pct_trades_plafonnes moy=63.36%
+
+=== Depart 20,000$ (plafond 1% ADV, n=300) ===
+  Annee 1 :         29,942,289$  (+149,611% sur l'annee)
+  Annee 2 :      2,090,933,192$  (+6,883% sur l'annee)
+  Annee 3 :      7,486,536,546$  (+258% sur l'annee)
+  Annee 4 :     13,179,987,875$  (+76% sur l'annee)
+[cap1pct_1000 dur=1460j cap=0.01] n=300 (26s) final: p10=8,137,367,705 p50=10,724,805,919 moy=10,942,483,172 p90=14,224,348,385 | pct_trades_plafonnes moy=53.17%
+
+=== Depart 1,000$ (plafond 1% ADV, n=300) ===
+  Annee 1 :          1,574,458$  (+157,346% sur l'annee)
+  Annee 2 :        637,183,409$  (+40,370% sur l'annee)
+  Annee 3 :      5,256,426,681$  (+725% sur l'annee)
+  Annee 4 :     10,724,805,919$  (+104% sur l'annee)
+[cap1pct_100 dur=1460j cap=0.01] n=300 (27s) final: p10=6,454,344,425 p50=8,946,388,728 moy=9,201,161,156 p90=12,623,466,639 | pct_trades_plafonnes moy=45.33%
+
+=== Depart 100$ (plafond 1% ADV, n=300) ===
+  Annee 1 :            157,446$  (+157,346% sur l'annee)
+  Annee 2 :        167,824,177$  (+106,492% sur l'annee)
+  Annee 3 :      3,549,439,495$  (+2,015% sur l'annee)
+  Annee 4 :      8,946,388,728$  (+152% sur l'annee)
