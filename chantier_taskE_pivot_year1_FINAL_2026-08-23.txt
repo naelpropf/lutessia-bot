@@ -1,0 +1,100 @@
+Population étendue (rr_tp1 >= 1.35, forex+indices mappés, terminaux) : 742 trades
+Chargement/complément des bougies H1 pour 17 tickers...
+  AUDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  AUDUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  CHFJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  EURCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURGBP=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  GBPCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  GBPJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  GBPUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  NZDUSD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCAD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  ^GDAXI : backfill MT5 utilise (20327 bougies, depuis 2022-01-02 21:00:00)
+  ^GSPC : backfill MT5 utilise (21018 bougies, depuis 2022-01-02 21:00:00)
+  ^NDX : backfill MT5 utilise (21019 bougies, depuis 2022-01-02 21:00:00)
+Durées réelles vérifiées (bougies H1) : 742/742 (100.0%) — durée médiane de repli : 0 days 09:39:35
+  AUDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  AUDUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  CHFJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  EURCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURGBP=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  GBPCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  GBPJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  GBPUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  NZDUSD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCAD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  ^GDAXI : backfill MT5 utilise (20327 bougies, depuis 2022-01-02 21:00:00)
+  ^GSPC : backfill MT5 utilise (21018 bougies, depuis 2022-01-02 21:00:00)
+  ^NDX : backfill MT5 utilise (21019 bougies, depuis 2022-01-02 21:00:00)
+Population étendue (rr_tp1 >= 1.35, forex+indices mappés, terminaux) : 742 trades
+Chargement/complément des bougies H1 pour 17 tickers...
+  AUDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  AUDUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  CHFJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  EURCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURGBP=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  GBPCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  GBPJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  GBPUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  NZDUSD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCAD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  ^GDAXI : backfill MT5 utilise (20327 bougies, depuis 2022-01-02 21:00:00)
+  ^GSPC : backfill MT5 utilise (21018 bougies, depuis 2022-01-02 21:00:00)
+  ^NDX : backfill MT5 utilise (21019 bougies, depuis 2022-01-02 21:00:00)
+Durées réelles vérifiées (bougies H1) : 742/742 (100.0%) — durée médiane de repli : 0 days 09:39:35
+  AUDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  AUDUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  CHFJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  EURCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURGBP=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  EURUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  GBPCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  GBPJPY=X : backfill MT5 utilise (21578 bougies, depuis 2022-01-02 21:00:00)
+  GBPUSD=X : backfill MT5 utilise (22790 bougies, depuis 2021-03-25 01:00:00)
+  NZDUSD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCAD=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDCHF=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  USDJPY=X : backfill MT5 utilise (21579 bougies, depuis 2022-01-02 21:00:00)
+  ^GDAXI : backfill MT5 utilise (20327 bougies, depuis 2022-01-02 21:00:00)
+  ^GSPC : backfill MT5 utilise (21018 bougies, depuis 2022-01-02 21:00:00)
+  ^NDX : backfill MT5 utilise (21019 bougies, depuis 2022-01-02 21:00:00)
+[verif] pop_A=742 pop_B=1248 seuil_sequentiel=3000$
+[REF_25k_dynamique c=1000$] cout=800$ profit_an1_moy=+9,564,655$ profit_4ans_moy=+56,979,912$ solde_neg_an4=3.67% annee1<0=3.67% n=300 (592s)
+[Pivot_InstantElite_2500 c=1000$] cout=100$ profit_an1_moy=+9,521,165$ profit_4ans_moy=+58,520,192$ solde_neg_an4=0.00% annee1<0=0.00% n=300 (538s)
+[Pivot_InstantElite_5000 c=1000$] cout=200$ profit_an1_moy=+10,130,624$ profit_4ans_moy=+57,948,877$ solde_neg_an4=0.00% annee1<0=0.00% n=300 (547s)
+[Pivot_InstantElite_10000 c=1000$] cout=400$ profit_an1_moy=+10,340,488$ profit_4ans_moy=+56,882,801$ solde_neg_an4=2.67% annee1<0=2.67% n=300 (541s)
+[Pivot_InstantElite_25000 c=1000$] cout=800$ profit_an1_moy=+10,670,701$ profit_4ans_moy=+56,620,577$ solde_neg_an4=0.00% annee1<0=0.00% n=300 (540s)
+[REF_25k_dynamique c=3000$] cout=800$ profit_an1_moy=+11,893,997$ profit_4ans_moy=+60,473,439$ solde_neg_an4=0.00% annee1<0=0.00% n=300 (448s)
+[Pivot_InstantElite_2500 c=3000$] cout=100$ profit_an1_moy=+10,285,949$ profit_4ans_moy=+59,493,019$ solde_neg_an4=0.00% annee1<0=0.00% n=300 (422s)
+[Pivot_InstantElite_5000 c=3000$] cout=200$ profit_an1_moy=+10,979,833$ profit_4ans_moy=+60,019,176$ solde_neg_an4=0.00% annee1<0=0.00% n=300 (421s)
+[Pivot_InstantElite_10000 c=3000$] cout=400$ profit_an1_moy=+11,508,239$ profit_4ans_moy=+60,481,623$ solde_neg_an4=0.00% annee1<0=0.00% n=300 (421s)
+[Pivot_InstantElite_25000 c=3000$] cout=800$ profit_an1_moy=+11,893,801$ profit_4ans_moy=+60,473,305$ solde_neg_an4=0.00% annee1<0=0.00% n=300 (385s)
+
+===============================================================================================
+SYNTHESE
+===============================================================================================
+                  config  ceiling  cout_ouverture_reel  profit_annee1_moyen  profit_moyen  solde_negatif_annee4  annee1_neg
+       REF_25k_dynamique   1000.0                800.0         9.564655e+06  5.697991e+07              3.666667    3.666667
+ Pivot_InstantElite_2500   1000.0                100.0         9.521165e+06  5.852019e+07              0.000000    0.000000
+ Pivot_InstantElite_5000   1000.0                200.0         1.013062e+07  5.794888e+07              0.000000    0.000000
+Pivot_InstantElite_10000   1000.0                400.0         1.034049e+07  5.688280e+07              2.666667    2.666667
+Pivot_InstantElite_25000   1000.0                800.0         1.067070e+07  5.662058e+07              0.000000    0.000000
+       REF_25k_dynamique   3000.0                800.0         1.189400e+07  6.047344e+07              0.000000    0.000000
+ Pivot_InstantElite_2500   3000.0                100.0         1.028595e+07  5.949302e+07              0.000000    0.000000
+ Pivot_InstantElite_5000   3000.0                200.0         1.097983e+07  6.001918e+07              0.000000    0.000000
+Pivot_InstantElite_10000   3000.0                400.0         1.150824e+07  6.048162e+07              0.000000    0.000000
+Pivot_InstantElite_25000   3000.0                800.0         1.189380e+07  6.047330e+07              0.000000    0.000000
