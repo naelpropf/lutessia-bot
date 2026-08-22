@@ -166,9 +166,25 @@ def payout_cycle_days(gname, first_payout_done):
     return table[gname]
 
 
+PIVOT_PRICE = {
+    ("Blueberry_InstantElite", 2500.0): 100.0,
+    ("Blueberry_InstantElite", 5000.0): 200.0,
+    ("Blueberry_InstantElite", 10000.0): 400.0,
+    ("Blueberry_InstantElite", 25000.0): 800.0,
+    ("Blueberry_Prime2Step", 25000.0): 165.0,
+}
+
+
 def run_dual_ab(trades_A, slots_A, trades_B, slots_B, market_data, excluded_map,
                  ceiling_combined, seq_grouped, format_by_firm, emergency_capital,
-                 metal_set, sequential_b_threshold=None, size_func=None):
+                 metal_set, sequential_b_threshold=None, size_func=None,
+                 pivot_fmt_key=None, pivot_palier=None):
+    """<<< TACHE E (2026-08-23) : pivot_fmt_key/pivot_palier fixent format+
+    palier du compte jour0 Blueberry de B (le pivot reel, B lance en premier
+    dans l'architecture sequentielle actuelle) pour toute sa vie (y compris
+    apres casse -- pas de bascule dynamique bb_choose_fmt_key sur CE compte
+    precisement), meme convention que chantier_pivot_instant_taille_reduite_
+    2026-08-18.py. None (defaut) -> comportement inchange (25k$ dynamique)."""
     """Moteur cascade double-flotte A/B avec routage metaux Config 2.
     Reserve TOUJOURS separee par trader (architecture gagnante, cf.
     docstring module). Ceiling personnel TOUJOURS combine (meme argent
@@ -217,11 +233,17 @@ def run_dual_ab(trades_A, slots_A, trades_B, slots_B, market_data, excluded_map,
     for tid in TRADERS:
         for gname in FIRMS:
             is_day0 = (gname == ei.STARTER) and not (tid == "A" and sequential_b_threshold is not None)
+            is_pivot_acc = (is_day0 and tid == "B" and gname == "Blueberry" and pivot_fmt_key is not None)
             if gname == "Blueberry":
-                fmt_key = bb_choose_fmt_key(tid) if is_day0 else BB_CLASSIC_KEY
+                if is_pivot_acc:
+                    fmt_key = pivot_fmt_key
+                    palier = pivot_palier
+                    cost = PIVOT_PRICE[(pivot_fmt_key, pivot_palier)]
+                else:
+                    fmt_key = bb_choose_fmt_key(tid) if is_day0 else BB_CLASSIC_KEY
+                    palier = BASE_PALIER["Blueberry"]
+                    cost = price_for_bb(fmt_key, palier, ceiling_combined)
                 fmt = FORMATS[fmt_key]
-                palier = BASE_PALIER["Blueberry"]
-                cost = price_for_bb(fmt_key, palier, ceiling_combined)
             else:
                 fmt_key = format_by_firm[gname]
                 palier, cost = base_palier_cost(gname)
@@ -576,11 +598,19 @@ def run_dual_ab(trades_A, slots_A, trades_B, slots_B, market_data, excluded_map,
                                     lambda a=acc, c=cost, f=fmt: reopen_account(tid, a, c, f, skip_to_funded=True))
             else:
                 if gname == "Blueberry":
-                    new_fmt_key = bb_choose_fmt_key(tid)
-                    acc["_fmt_key"] = new_fmt_key
-                    new_fmt = FORMATS[new_fmt_key]
-                    palier_for_cost = acc["base_palier"] if downgrade_active(tid) else acc["palier"]
-                    cost = price_for_bb(new_fmt_key, palier_for_cost, ceiling_combined)
+                    if tid == "B" and pivot_fmt_key is not None:
+                        # <<< TACHE E : pivot -- format+palier FIXES pour
+                        # toute la vie du compte, pas de bascule dynamique.
+                        new_fmt_key = pivot_fmt_key
+                        acc["_fmt_key"] = new_fmt_key
+                        new_fmt = FORMATS[new_fmt_key]
+                        cost = PIVOT_PRICE[(pivot_fmt_key, pivot_palier)]
+                    else:
+                        new_fmt_key = bb_choose_fmt_key(tid)
+                        acc["_fmt_key"] = new_fmt_key
+                        new_fmt = FORMATS[new_fmt_key]
+                        palier_for_cost = acc["base_palier"] if downgrade_active(tid) else acc["palier"]
+                        cost = price_for_bb(new_fmt_key, palier_for_cost, ceiling_combined)
                     if new_fmt_key == BB_INSTANT_KEY:
                         s["bb_instant_opens"] += 1
                     else:
@@ -806,7 +836,8 @@ def build_market_data_and_excluded_map(pop_A, pop_B):
 
 def run_n_sims(pop_A, pop_B, ceiling, n_sims, seed, include_B, market_data, excluded_map, metal_set,
                 sequential_b_threshold=None, size_func=None,
-                winrate_override_B=None, ev_scale_B=None, forced_window_B=None):
+                winrate_override_B=None, ev_scale_B=None, forced_window_B=None,
+                pivot_fmt_key=None, pivot_palier=None):
     """<<< TACHE D (2026-08-23) : winrate_override_B/ev_scale_B (strate de
     robustesse generale, memes chiffres/mecanisme que chantier_tacheB_
     stress_degrade_2026-08-23.py) et forced_window_B (degradation ponctuelle,
@@ -909,7 +940,8 @@ def run_n_sims(pop_A, pop_B, ceiling, n_sims, seed, include_B, market_data, excl
 
         res = run_dual_ab(raw_A_t, raw_A_s, raw_B_t, raw_B_s, market_data, excluded_map,
                            ceiling, seq, config, ei.DEFAULT_EMERGENCY, metal_set if include_B else set(),
-                           sequential_b_threshold=sequential_b_threshold, size_func=size_func)
+                           sequential_b_threshold=sequential_b_threshold, size_func=size_func,
+                           pivot_fmt_key=pivot_fmt_key, pivot_palier=pivot_palier)
         recs.append(res)
     return pd.DataFrame(recs)
 
