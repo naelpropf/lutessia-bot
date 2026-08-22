@@ -66,9 +66,11 @@ def load_pop_b():
     return pop, market_data, excluded_map
 
 
-def run_point(pop, market_data, excluded_map, ceiling, n_sims, label, risk_val):
+def run_point(pop, market_data, excluded_map, ceiling, n_sims, label, eval_risk, fleet_risk=None):
+    if fleet_risk is None:
+        fleet_risk = eval_risk
     bb_th = BB_THRESHOLD_BY_CEILING[ceiling]
-    common_kwargs = dict(emergency=rr2.ei.DEFAULT_EMERGENCY, eval_risk=risk_val, fleet_risk=risk_val,
+    common_kwargs = dict(emergency=rr2.ei.DEFAULT_EMERGENCY, eval_risk=eval_risk, fleet_risk=fleet_risk,
                           gft_eval_risk=GFT_EVAL_RISK_FIXED, reserve_share=rr2.ei.FINAL_RESERVE_SHARE,
                           extra_threshold_mult=rr2.ei.EXTRA_THRESHOLD_MULT, n_sims=n_sims, seed=9999,
                           b_entry_frac=FULL_KW["b_entry_frac"], b_reduction=FULL_KW["b_reduction"],
@@ -82,41 +84,65 @@ def run_point(pop, market_data, excluded_map, ceiling, n_sims, label, risk_val):
                              size_func=FULL_KW["size_func"], routing_field=FULL_KW["routing_field"],
                              **common_kwargs)
     row = rr2.summarize(df, label, ceiling, bb_th, FULL_KW["use_any_rr"])
-    row["risk_grid_pct"] = risk_val
+    row["eval_risk_pct"] = eval_risk
+    row["fleet_risk_pct"] = fleet_risk
     dt = time.time() - t0
-    print(f"[{label} risk={risk_val:.2f}% c={ceiling:.0f}$] profit_moy={row['profit_moyen']:+,.0f}$ "
+    print(f"[{label} eval={eval_risk:.2f}%/funded={fleet_risk:.2f}% c={ceiling:.0f}$] profit_moy={row['profit_moyen']:+,.0f}$ "
           f"profit_median={row.get('profit_median', float('nan')):+,.0f}$ "
           f"solde_neg={row['solde_negatif_annee4']:.2f}% annee1<0={row['annee1_neg']:.2f}% "
           f"n={n_sims} ({dt:.0f}s)", flush=True)
     return row
 
 
-def sweep(pop_label, pop, market_data, excluded_map, n_sims, rows):
-    print(f"{'='*90}\nSWEEP RISQUE {pop_label} (n_sims={n_sims}, grille={RISK_GRID}, ceilings={CEILINGS})\n{'='*90}", flush=True)
+def sweep(pop_label, pop, market_data, excluded_map, n_sims, rows, risk_grid=RISK_GRID):
+    print(f"{'='*90}\nSWEEP RISQUE {pop_label} (n_sims={n_sims}, grille={risk_grid}, ceilings={CEILINGS})\n{'='*90}", flush=True)
     for ceiling in CEILINGS:
-        for risk_val in RISK_GRID:
+        for risk_val in risk_grid:
             row = run_point(pop, market_data, excluded_map, ceiling, n_sims,
                              f"{pop_label}_risk{risk_val:.2f}", risk_val)
             row["population"] = pop_label
             rows.append(row)
 
 
+def ref_point(pop_label, pop, market_data, excluded_map, n_sims, rows):
+    """Reference officielle actuelle (registre §2.23) : eval=1.25%/funded=1.90%,
+    IDENTIQUE pour A et B jusqu'ici. Aucun point de la grille uniforme ne
+    reproduit cette asymetrie -- run dedie pour servir de vraie baseline de
+    comparaison ("gain % vs reference actuelle")."""
+    print(f"{'='*90}\nREFERENCE ASYMETRIQUE {pop_label} eval=1.25%/funded=1.90% (n_sims={n_sims})\n{'='*90}", flush=True)
+    for ceiling in CEILINGS:
+        row = run_point(pop, market_data, excluded_map, ceiling, n_sims,
+                         f"{pop_label}_REF_1.25_1.90", 1.25, 1.90)
+        row["population"] = pop_label
+        rows.append(row)
+
+
 def main():
     n_sims = int(sys.argv[1]) if len(sys.argv) > 1 else 600
     which = sys.argv[2] if len(sys.argv) > 2 else "AB"
+    mode = sys.argv[3] if len(sys.argv) > 3 else "grid"  # grid | ref | escalate
     rows = []
 
+    pops = []
     if "A" in which:
         pop_a, md_a, ex_a = load_pop_a()
         print(f"[verif] population A_seule : {len(pop_a)} trades", flush=True)
-        sweep("A_seule", pop_a, md_a, ex_a, n_sims, rows)
-
+        pops.append(("A_seule", pop_a, md_a, ex_a, [1.75, 1.90, 2.25]))
     if "B" in which:
         pop_b, md_b, ex_b = load_pop_b()
         print(f"[verif] population B_tradable_pgp : {len(pop_b)} trades", flush=True)
-        sweep("B_tradable_pgp", pop_b, md_b, ex_b, n_sims, rows)
+        pops.append(("B_tradable_pgp", pop_b, md_b, ex_b, [1.50, 1.75, 1.90]))
 
-    pd.DataFrame(rows).to_csv(f"chantier_taskC2_risque_sweep_AB_2026-08-23_{which}_n{n_sims}.csv", index=False)
+    for label, pop, md, ex, escalate_grid in pops:
+        if mode == "ref":
+            ref_point(label, pop, md, ex, n_sims, rows)
+        elif mode == "escalate":
+            sweep(label, pop, md, ex, n_sims, rows, risk_grid=escalate_grid)
+            ref_point(label, pop, md, ex, n_sims, rows)
+        else:
+            sweep(label, pop, md, ex, n_sims, rows)
+
+    pd.DataFrame(rows).to_csv(f"chantier_taskC2_risque_sweep_AB_2026-08-23_{which}_{mode}_n{n_sims}.csv", index=False)
 
 
 if __name__ == "__main__":
